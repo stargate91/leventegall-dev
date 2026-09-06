@@ -1,0 +1,394 @@
+:root {
+  /* High-Contrast 2-Tone Alternating Chamber Palette */
+  --tone-a: #05070b; /* Pure Deep Space Void / Obsidian */
+  --tone-b: #0f1626; /* High-Tech Orbital Deck / Slate Titanium */
+  --tone-b-card: #151e33; /* Elevated Card Surface inside Tone B */
+
+  /* Glassmorphic Surfaces */
+  --bg-surface-1: rgba(15, 22, 38, 0.78);
+  --bg-surface-2: rgba(20, 30, 52, 0.7);
+  --bg-surface-elevated: rgba(25, 38, 64, 0.88);
+  --bg-glass: rgba(12, 18, 30, 0.65);
+  
+  /* Unified Tron: Legacy Luminescent Electric Cyan Palette */
+  --cyan-tron: #00e5ff;
+  --cyan-core: #38bdf8;
+  --cyan-bright: #e0faff;
+  --cyan-glow: rgba(0, 229, 255, 0.4);
+  --cyan-subtle: rgba(0, 229, 255, 0.08);
+
+  /* Fallback aliases mapped strictly to Tron Cyan */
+  --amber-gargantua: #00e5ff;
+  --amber-core: #38bdf8;
+  --amber-glow: rgba(0, 229, 255, 0.4);
+  --amber-subtle: rgba(0, 229, 255, 0.08);
+  --phosphor-green: #00e5ff;
+  --phosphor-glow: rgba(0, 229, 255, 0.4);
+  --deep-nebula: #0284c7;
+  --nebula-glow: rgba(0, 229, 255, 0.25);
+
+  /* Typography & Structure */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-high: rgba(255, 255, 255, 0.3);
+  --border-cyan: rgba(0, 229, 255, 0.35);
+  --border-amber: rgba(0, 229, 255, 0.35);
+
+  /* Measurements & Transitions */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--tone-a);
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--tone-a);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Monospace telemetry typography */
+.font-telemetry {
+  font-family: var(--font-jetbrains), "Space Mono", monospace;
+  letter-spacing: 0.05em;
+}
+
+.font-heading {
+  font-family: var(--font-space), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--tone-a);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-tron);
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--cyan-glow);
+  color: #ffffff;
+}
+
+/* 2-Tone Alternating Section Chambers */
+.chamber-tone-a {
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+/* Chamber B Module with zero box leakage */
+.chamber-b-module {
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+}
+
+.chamber-b-body {
+  background-color: var(--tone-b);
+  position: relative;
+  z-index: 2;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.05) 0%, transparent 60%),
+    linear-gradient(to right, rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 60px 60px, 60px 60px;
+}
+
+/* Glassmorphism Containers */
+.glass-panel {
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.chamber-b-body .glass-panel {
+  background: var(--tone-b-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-cyan);
+  box-shadow: 0 10px 30px -10px var(--cyan-glow);
+}
+
+.glass-panel-amber:hover,
+.glass-panel-cyan:hover {
+  border-color: var(--border-cyan);
+  box-shadow: 0 10px 30px -10px var(--cyan-glow);
+}
+
+/* Sci-Fi HUD Corner Brackets (Tron / Gattaca) */
+.hud-card {
+  position: relative;
+}
+
+.hud-card::before,
+.hud-card::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  transition: border-color var(--transition-fast);
+}
+
+.hud-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--border-medium);
+  border-left: 2px solid var(--border-medium);
+}
+
+.hud-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--border-medium);
+  border-right: 2px solid var(--border-medium);
+}
+
+.hud-card:hover::before,
+.hud-card:hover::after {
+  border-color: var(--cyan-tron);
+}
+
+/* Badges & Telemetry Pills */
+.telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-jetbrains), monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--cyan-subtle);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: var(--cyan-tron);
+  transition: all var(--transition-smooth);
+}
+
+.telemetry-badge-cyan,
+.telemetry-badge-amber,
+.telemetry-badge-green {
+  background: var(--cyan-subtle);
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--cyan-tron);
+}
+
+/* Blinking Beacon / Status Dot */
+.beacon-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background-color: var(--cyan-tron);
+  box-shadow: 0 0 8px var(--cyan-tron);
+}
+
+.beacon-dot::after,
+.beacon-dot-green::after,
+.beacon-dot-amber::after,
+.beacon-dot-cyan::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan-tron);
+  animation: beaconPulse 1.8s infinite ease-out;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Primary Futuristic Tron Buttons */
+.btn-cosmic-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00e5ff 0%, #0284c7 100%);
+  color: #05070b;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 20px var(--cyan-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.btn-cosmic-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.7), inset 0 1px 0 #ffffff;
+}
+
+.btn-cosmic-primary::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.3) 50%, transparent 60%);
+  transform: rotate(25deg) translateY(-100%);
+  transition: transform 0.75s ease-in-out;
+}
+
+.btn-cosmic-primary:hover::after {
+  transform: rotate(25deg) translateY(100%);
+}
+
+.btn-cosmic-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-space), sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  background: rgba(15, 22, 38, 0.8);
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  transition: all var(--transition-smooth);
+}
+
+.btn-cosmic-secondary:hover {
+  background: rgba(25, 38, 64, 0.9);
+  border-color: var(--cyan-tron);
+  color: var(--cyan-tron);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Stargate / Tron Circular Portal Accent */
+.portal-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 229, 255, 0.25);
+  pointer-events: none;
+  animation: rotatePortal 80s linear infinite;
+}
+
+@keyframes rotatePortal {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Section Containers */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-subtitle {
+  color: var(--cyan-tron);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-space), sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  background: linear-gradient(180deg, #ffffff 30%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding: 3rem 1rem;
+  }
+}
