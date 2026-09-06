@@ -5,18 +5,42 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
+    "lint:spell": "cspell \"src/**/*.{ts,tsx,css,md,json}\" --no-progress",
+    "lint:knip": "knip",
+    "lint:secrets": "secretlint \"src/**/*\"",
+    "lint:all": "npm run lint && npm run lint:css && npm run lint:spell && npm run lint:secrets && npm run lint:knip"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.2.16",
     "lucide-react": "^1.41.0",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@secretlint/quick-start": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5"
+    "cspell": "^9.6.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-security": "^3.0.1",
+    "knip": "^5.85.0",
+    "secretlint": "^10.0.1",
+    "stylelint": "^17.15.0",
+    "stylelint-config-recess-order": "^7.8.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.1",
+    "typescript": "^5",
+    "typescript-eslint": "^8.69.0"
   }
 }

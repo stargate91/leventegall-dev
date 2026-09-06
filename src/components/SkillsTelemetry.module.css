@@ -1,0 +1,127 @@
+.matrixGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.vectorCard {
+  padding: 2rem;
+  background: rgb(10 14 24 / 75%);
+  border: 1px solid rgb(0 229 255 / 25%);
+}
+
+.vectorHeader {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vectorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--cyan-tron);
+  background: rgb(0 229 255 / 12%);
+  border: 1px solid var(--cyan-tron);
+  border-radius: var(--radius-sm);
+}
+
+.vectorTitle {
+  font-family: var(--font-space), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.vectorSub {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.7rem;
+  color: var(--cyan-tron);
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.skillTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.skillName {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skillStatus {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.7rem;
+  color: var(--cyan-tron);
+  letter-spacing: 0.05em;
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 6%);
+  border-radius: var(--radius-full);
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7 0%, #00e5ff 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.feedbackGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.feedbackCard {
+  padding: 1.5rem;
+  background: rgb(10 15 25 / 60%);
+  border: 1px solid var(--border-subtle);
+}
+
+.starsRow {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.feedbackQuote {
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.feedbackFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}

@@ -1,18 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { Layers, ArrowRight } from "lucide-react";
+import styles from "./ProjectCard.module.css";
 import {
-  ExternalLink,
-  Terminal,
-  Layers,
-  Sparkles,
-  Zap,
-  Check,
-  ChevronRight,
-  Eye,
-  Sliders,
-  Maximize2
-} from "lucide-react";
+  SectionHeader,
+  HudCard,
+  TelemetryBadge,
+  Button,
+  Tabs,
+  Stat,
+  ProgressBar,
+  TerminalBox,
+  TagList,
+  Callout,
+  Inline,
+  Stack,
+  Grid,
+} from "@/components/ui";
 
 interface ProjectData {
   id: string;
@@ -21,620 +26,358 @@ interface ProjectData {
   codename: string;
   tagline: string;
   description: string;
-  accentColor: string;
-  borderColor: string;
-  glowColor: string;
+  githubUrl: string;
   role: string;
   duration: string;
   stack: string[];
   challenge: string;
   solution: string;
   impactMetrics: { label: string; value: string }[];
-  demoType: "dashboard" | "branding";
+  demoType: "swaya" | "iris" | "branding";
 }
 
 export default function ProjectCard() {
   const [activeTab, setActiveTab] = useState<Record<string, "overview" | "architecture" | "interactive">>({
-    novapulse: "overview",
-    aetheria: "overview",
+    swaya: "interactive",
+    iris: "interactive",
+    aetheria: "interactive",
   });
 
-  // Interactive demo states for project 1
-  const [streamSpeed, setStreamSpeed] = useState(1);
-  const [systemOnline, setSystemOnline] = useState(true);
+  // Swaya Simulator State
+  const [swayaTaskStatus, setSwayaTaskStatus] = useState<"IDLE" | "SCANNING" | "ENRICHING" | "COMPLETED">("ENRICHING");
+  const [swayaProgress, setSwayaProgress] = useState(68);
 
-  // Interactive demo states for project 2
+  // Iris Simulator State
+  const [irisEventLog, setIrisEventLog] = useState([
+    { time: "10:04:12", user: "User_Alex", action: "VOICE_CHANNEL_ACTIVE", pts: "+25 XP" },
+    { time: "10:04:18", user: "Member_Dave", action: "PROFILE_CARD_RENDER", pts: "SUCCESS" },
+    { time: "10:04:25", user: "Elena_V", action: "WEEKLY_RANK_AWARDED", pts: "TIER 01" },
+  ]);
+
+  // Aetheria Tagline State
   const [selectedTaglineIndex, setSelectedTaglineIndex] = useState(0);
-
   const taglines = [
-    { text: "Sculpted in vacuum. Engineered for eternity.", focus: "Luxury / Scientific" },
-    { text: "Beyond the threshold of biological noise.", focus: "Modern / Minimal" },
-    { text: "Clarity at the speed of starlight.", focus: "Dynamic / Direct" },
+    { text: "Engineered for clarity. Built for daily resilience.", focus: "Modern / Minimal" },
+    { text: "Where precision hardware meets intuitive software.", focus: "Technical / Direct" },
+    { text: "Quiet performance. Uncompromising quality.", focus: "Premium / Understated" },
   ];
 
   const projects: ProjectData[] = [
     {
-      id: "novapulse",
-      badge: "MISSION ARTIFACT 01 // FULL-STACK DEV",
-      title: "NovaPulse Observability Engine",
-      codename: "DEEP-SPACE DATA TELEMETRY",
-      tagline: "High-density real-time visualization platform with sub-second latency.",
+      id: "swaya",
+      badge: "FEATURED PROJECT 01 // DESKTOP & API",
+      title: "Swaya Media & Library Ecosystem",
+      codename: "FASTAPI + REACT + ELECTRON",
+      tagline: "4-iteration evolution from PyQt6 to asynchronous FastAPI, React, Electron & SQLAlchemy 2.0.",
       description:
-        "Engineered to solve the clutter of enterprise data feeds. NovaPulse delivers a high-contrast, military/aerospace-inspired telemetry dashboard capable of rendering live events with fluid micro-animations and zero dropped frames.",
-      accentColor: "var(--cyan-tron)",
-      borderColor: "var(--border-cyan)",
-      glowColor: "var(--cyan-glow)",
-      role: "Lead Architect & UI Engineer",
-      duration: "4 Weeks Orbit",
-      stack: ["Next.js App Router", "TypeScript", "HTML5 Canvas", "Tailored CSS", "REST Streams"],
+        "A desktop media and library organizer evolved over four distinct iterations. It pairs an asynchronous FastAPI Python backend with a reactive React frontend packaged in Electron, featuring automated TMDB/OMDb metadata matching, SQLite caching, and background task queues.",
+      githubUrl: "https://github.com/stargate91/Swaya",
+      role: "Lead Architect & Developer",
+      duration: "4 Architecture Iterations",
+      stack: ["FastAPI", "Python", "React (Vite)", "Electron", "SQLAlchemy 2.0", "SQLite", "Alembic", "TanStack Query", "Zustand"],
       challenge:
-        "Rendering thousands of metric data points without CPU lag or battery drain on mobile devices.",
+        "Handling high-volume metadata lookups, multi-threaded filesystem indexing, and database migrations without freezing the desktop user interface.",
       solution:
-        "Implemented lightweight custom Canvas render routines combined with Next.js SSR and memoized state selectors.",
+        "Separated the app into a clean layered architecture (Domain-Driven Design) with an asynchronous background worker queue, SQLAlchemy 2.0 migrations, and in-memory TTL caching.",
       impactMetrics: [
-        { label: "Render Framerate", value: "60 FPS Constant" },
-        { label: "Lighthouse Performance", value: "99 / 100" },
-        { label: "Bundle Overhead", value: "< 42 KB Gzip" },
+        { label: "Evolution History", value: "4 Iterations" },
+        { label: "API Response Time", value: "< 15ms (Cached)" },
+        { label: "Architecture", value: "Layered DDD" },
       ],
-      demoType: "dashboard",
+      demoType: "swaya",
+    },
+    {
+      id: "iris",
+      badge: "FEATURED PROJECT 02 // EVENT STREAM",
+      title: "Iris Activity & Telemetry Bot",
+      codename: "PYTHON ASYNCIO + PILLOW",
+      tagline: "Real-time Discord activity tracker with dynamic image generation and ranking algorithms.",
+      description:
+        "An event-driven Discord bot built with Python and asyncio. It monitors server engagement across voice channels, stream sessions, and messages, dynamically composites customized visual profile cards on-the-fly with Pillow, and assigns automated weekly ranks.",
+      githubUrl: "https://github.com/stargate91/discord-activity-watcher-bot",
+      role: "Backend & Bot Developer",
+      duration: "Active Open Source",
+      stack: ["Python", "Asyncio", "discord.py", "SQLite", "Pillow Image Processing", "HU/EN Localization"],
+      challenge:
+        "Tracking high-frequency multi-channel event streams in real time while rendering high-resolution profile images without blocking the main event loop.",
+      solution:
+        "Utilized Python asyncio task pipelines, optimized in-memory Pillow image buffers, and an indexed SQLite database for fast ranking queries.",
+      impactMetrics: [
+        { label: "Event Pipeline", value: "Async Task Loop" },
+        { label: "Card Render Time", value: "Sub-50ms Buffer" },
+        { label: "Localization", value: "English & Hungarian" },
+      ],
+      demoType: "iris",
     },
     {
       id: "aetheria",
-      badge: "MISSION ARTIFACT 02 // BRANDING + DEV",
-      title: "Aetheria Kinetic Identity & Commerce",
-      codename: "VERBAL IDENTITY & PLATFORM",
-      tagline: "From phonetic brand naming and slogan architecture to a deployed Next.js flagship.",
+      badge: "FEATURED PROJECT 03 // BRAND + WEB",
+      title: "Aetheria Platform Concept",
+      codename: "BRAND NAMING + NEXT.JS",
+      tagline: "A showcase of how brand strategy, positioning copy, and clean web engineering come together.",
       description:
-        "The complete synthesis of my Fiverr branding expertise and full-stack development. Built for a premium biometric wellness device: conceived the name 'Aetheria', authored the brand manifesto, and developed the web platform with future-ready checkout architecture.",
-      accentColor: "var(--cyan-tron)",
-      borderColor: "var(--border-cyan)",
-      glowColor: "var(--cyan-glow)",
+        "A concept demonstrating end-to-end product creation: from phonetic brand naming, domain vetting, and conversion-focused copywriting to a responsive, accessible Next.js 16 web application built with TypeScript and modern CSS.",
+      githubUrl: "https://github.com/stargate91",
       role: "Brand Strategist & Full-Stack Developer",
-      duration: "3 Weeks Orbit",
-      stack: ["Brand Naming", "Copywriting", "Next.js", "TypeScript", "Stripe Readiness"],
+      duration: "Prototype Showcase",
+      stack: ["Brand Naming", "Copywriting", "Next.js 16", "TypeScript", "Vanilla CSS", "Stripe Ready"],
       challenge:
-        "Finding an available international domain (.com/global) and building a brand story that commands premium pricing.",
+        "Creating a distinctive, legally viable brand name and clear value proposition while delivering a sub-second page load web experience.",
       solution:
-        "Exhaustive trademark clearance, linguistic phonetic scoring, and crafting an editorial landing page with high-conversion purchase funnels.",
+        "Applied proven Fiverr naming frameworks, phonetic clearance checks, and built a lightweight Next.js front-end with zero third-party bundle bloat.",
       impactMetrics: [
-        { label: "Brand Recall Score", value: "Top Decile" },
-        { label: "Checkout Readiness", value: "100% Modular" },
-        { label: "Client Satisfaction", value: "5.0 ★ Rating" },
+        { label: "Fiverr Methodology", value: "1,100+ Lineage" },
+        { label: "Performance", value: "99+ Lighthouse" },
+        { label: "Domain Clearance", value: "100% Vetted" },
       ],
       demoType: "branding",
     },
   ];
 
   return (
-    <section id="projects" style={{ position: "relative" }}>
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="section-header">
-          <div className="section-subtitle">
-            <Layers size={14} />
-            <span>Mission Artifacts // Case Studies</span>
-          </div>
-          <h2 className="section-title">Engineered Case Studies</h2>
-          <p className="section-desc">
-            Deep technical and brand architectures built with uncompromising standards. 
-            Quality and end-to-end execution prioritized over superficial volume.
-          </p>
-        </div>
+    <div className="section-container">
+      {/* Header */}
+      <SectionHeader
+        subtitle="Selected Projects"
+        subtitleIcon={<Layers size={14} />}
+        title="Featured Systems & Case Studies"
+        description="A look into how I architect backend services, desktop tools, and full-stack web applications."
+      />
 
-        {/* Projects List */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
-          {projects.map((p) => {
-            const currentTab = activeTab[p.id] || "overview";
+      {/* Projects List */}
+      <Stack gap="xl" className={styles.projectList}>
+        {projects.map((project) => {
+          const currTab = activeTab[project.id] || "interactive";
 
-            return (
-              <div
-                key={p.id}
-                id={`project-${p.id}`}
-                className="glass-panel hud-card"
-                style={{
-                  padding: "clamp(1.5rem, 3vw, 2.5rem)",
-                  background: "rgba(10, 14, 24, 0.8)",
-                  borderColor: p.borderColor,
-                  boxShadow: `0 20px 50px -15px rgba(0, 0, 0, 0.9), 0 0 25px ${p.glowColor}`,
-                }}
-              >
-                {/* Top Meta Bar */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    gap: "1rem",
-                    borderBottom: "1px solid var(--border-subtle)",
-                    paddingBottom: "1.25rem",
-                    marginBottom: "1.75rem",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    <span
-                      className="telemetry-badge"
-                      style={{
-                        borderColor: p.borderColor,
-                        color: p.accentColor,
-                        background: "rgba(255, 255, 255, 0.03)",
-                      }}
-                    >
-                      <span
-                        className="beacon-dot"
-                        style={{ backgroundColor: p.accentColor, boxShadow: `0 0 8px ${p.accentColor}` }}
-                      />
-                      {p.badge}
-                    </span>
-                    <span className="font-telemetry" style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                      // {p.codename}
-                    </span>
-                  </div>
+          return (
+            <HudCard
+              key={project.id}
+              id={`project-${project.id}`}
+              variant="surface"
+              className={styles.projectCard}
+            >
+              {/* Top Meta Bar */}
+              <div className={styles.topBar}>
+                <TelemetryBadge variant="cyan">
+                  {project.badge}
+                </TelemetryBadge>
 
-                  {/* Tab Selector */}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      background: "rgba(255, 255, 255, 0.04)",
-                      padding: "0.25rem",
-                      borderRadius: "var(--radius-md)",
-                      border: "1px solid var(--border-subtle)",
-                      gap: "0.25rem",
-                    }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab({ ...activeTab, [p.id]: "overview" })}
-                      style={{
-                        background: currentTab === "overview" ? "rgba(255, 255, 255, 0.12)" : "transparent",
-                        border: "none",
-                        color: currentTab === "overview" ? "#ffffff" : "var(--text-secondary)",
-                        padding: "0.35rem 0.75rem",
-                        borderRadius: "var(--radius-sm)",
-                        fontSize: "0.78rem",
-                        fontFamily: "var(--font-jetbrains)",
-                        cursor: "pointer",
-                        transition: "all var(--transition-fast)",
-                      }}
-                    >
-                      Overview
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab({ ...activeTab, [p.id]: "architecture" })}
-                      style={{
-                        background: currentTab === "architecture" ? "rgba(255, 255, 255, 0.12)" : "transparent",
-                        border: "none",
-                        color: currentTab === "architecture" ? "#ffffff" : "var(--text-secondary)",
-                        padding: "0.35rem 0.75rem",
-                        borderRadius: "var(--radius-sm)",
-                        fontSize: "0.78rem",
-                        fontFamily: "var(--font-jetbrains)",
-                        cursor: "pointer",
-                        transition: "all var(--transition-fast)",
-                      }}
-                    >
-                      Architecture
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab({ ...activeTab, [p.id]: "interactive" })}
-                      style={{
-                        background: currentTab === "interactive" ? p.accentColor : "transparent",
-                        border: "none",
-                        color: currentTab === "interactive" ? "#05070b" : p.accentColor,
-                        fontWeight: currentTab === "interactive" ? 700 : 500,
-                        padding: "0.35rem 0.75rem",
-                        borderRadius: "var(--radius-sm)",
-                        fontSize: "0.78rem",
-                        fontFamily: "var(--font-jetbrains)",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.35rem",
-                        transition: "all var(--transition-fast)",
-                      }}
-                    >
-                      <Sparkles size={12} />
-                      Live Simulation
-                    </button>
-                  </div>
-                </div>
+                {/* Sub-Tabs Primitive */}
+                <Tabs
+                  value={currTab}
+                  onChange={(val) =>
+                    setActiveTab((prev) => ({
+                      ...prev,
+                      [project.id]: val as "overview" | "architecture" | "interactive",
+                    }))
+                  }
+                  items={[
+                    { id: "interactive", label: "⚡ Live Demo" },
+                    { id: "overview", label: "Overview" },
+                    { id: "architecture", label: "Architecture" },
+                  ]}
+                />
+              </div>
 
-                {/* Content Grid */}
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                    gap: "2.5rem",
-                    alignItems: "start",
-                  }}
-                >
-                  {/* Left Column: Details */}
+              {/* Main Two-Column Layout */}
+              <div className={styles.mainGrid}>
+                {/* Left Column */}
+                <Stack gap="md">
                   <div>
-                    <h3
-                      className="font-heading"
-                      style={{
-                        fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)",
-                        fontWeight: 700,
-                        color: "#ffffff",
-                        lineHeight: 1.2,
-                        marginBottom: "0.5rem",
-                      }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: "1.05rem",
-                        color: p.accentColor,
-                        marginBottom: "1.25rem",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {p.tagline}
-                    </p>
+                    <div className="font-telemetry">
+                      STACK // {project.codename}
+                    </div>
+                    <h3 className={styles.projectTitle}>{project.title}</h3>
+                    <div className={styles.projectTagline}>{project.tagline}</div>
+                  </div>
 
-                    {currentTab === "overview" && (
-                      <div>
-                        <p
-                          style={{
-                            color: "var(--text-secondary)",
-                            fontSize: "0.95rem",
-                            lineHeight: 1.7,
-                            marginBottom: "1.5rem",
+                  {currTab === "overview" && (
+                    <Stack gap="md">
+                      <p className={styles.projectDesc}>{project.description}</p>
+                      <Grid cols={2} gap="md" className={styles.metaGrid}>
+                        <Stat variant="card" label="ROLE" value={project.role} />
+                        <Stat variant="card" label="TIMELINE" value={project.duration} />
+                      </Grid>
+                    </Stack>
+                  )}
+
+                  {currTab === "architecture" && (
+                    <Stack gap="md">
+                      <Callout title="// THE CHALLENGE" variant="dark">
+                        {project.challenge}
+                      </Callout>
+
+                      <Callout title="// THE SOLUTION" variant="cyan">
+                        {project.solution}
+                      </Callout>
+                    </Stack>
+                  )}
+
+                  {currTab === "interactive" && (
+                    <p className={styles.projectDesc}>{project.description}</p>
+                  )}
+
+                  {/* Technology TagList Primitive */}
+                  <TagList items={project.stack} variant="subtle" size="sm" className={styles.stackList} />
+
+                  {/* Impact Metrics Grid */}
+                  <Grid cols={3} gap="sm" className={styles.metricsGrid}>
+                    {project.impactMetrics.map((metric) => (
+                      <Stat
+                        key={metric.label}
+                        variant="card"
+                        value={metric.value}
+                        label={metric.label}
+                      />
+                    ))}
+                  </Grid>
+
+                  {/* Links */}
+                  <Inline gap="md">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      iconRight={<ArrowRight size={14} />}
+                    >
+                      View Code on GitHub
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      href="#contact"
+                    >
+                      Discuss Similar Work
+                    </Button>
+                  </Inline>
+                </Stack>
+
+                {/* Right Column: Interactive Simulators */}
+                <div>
+                  {project.demoType === "swaya" && (
+                    <TerminalBox
+                      title="FASTAPI TASK QUEUE"
+                      status={swayaTaskStatus}
+                      statusColor="cyan"
+                      actions={
+                        <Inline gap="sm">
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => {
+                              setSwayaProgress(25);
+                              setSwayaTaskStatus("ENRICHING");
+                            }}
+                          >
+                            Reset
+                          </Button>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={() => {
+                              setSwayaProgress(Math.min(100, swayaProgress + 15));
+                              if (swayaProgress + 15 >= 100) {setSwayaTaskStatus("COMPLETED");}
+                            }}
+                          >
+                            + Step Queue
+                          </Button>
+                        </Inline>
+                      }
+                    >
+                      <Stack gap="md">
+                        <ProgressBar
+                          label="TMDB Metadata Enrichment:"
+                          tag={`[ ${swayaProgress}% ]`}
+                          value={swayaProgress}
+                          variant="cyan"
+                        />
+                        <div className={styles.logDetail}>
+                          <div>• TMDB API Sync: Interstellar (2014) [200 OK]</div>
+                          <div>• SQLAlchemy Session: 42 records committed</div>
+                          <div>• Alembic Schema: Migration v4.2 in sync</div>
+                        </div>
+                      </Stack>
+                    </TerminalBox>
+                  )}
+
+                  {project.demoType === "iris" && (
+                    <TerminalBox
+                      title="DISCORD ACTIVITY STREAM"
+                      status="ACTIVE"
+                      statusColor="green"
+                      actions={
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          fullWidth
+                          onClick={() => {
+                            const actions = ["VOICE_ACTIVE", "SPOTIFY_STREAM", "PILLOW_RENDER", "WEEKLY_RANK"];
+                            const randomAction = actions[Math.floor(Math.random() * actions.length)];
+                            const names = ["Alex", "Sarah", "David", "Mira", "Tom"];
+                            const randomName = names[Math.floor(Math.random() * names.length)];
+                            const newLog = {
+                              time: new Date().toTimeString().slice(0, 8),
+                              user: `User_${randomName}`,
+                              action: randomAction,
+                              pts: "+15 XP",
+                            };
+                            setIrisEventLog((prev) => [newLog, prev[0], prev[1]]);
                           }}
                         >
-                          {p.description}
-                        </p>
-
-                        {/* Tech Stack Pills */}
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.75rem" }}>
-                          {p.stack.map((item) => (
-                            <span
-                              key={item}
-                              className="font-telemetry"
-                              style={{
-                                fontSize: "0.75rem",
-                                padding: "0.3rem 0.65rem",
-                                borderRadius: "var(--radius-sm)",
-                                background: "rgba(255, 255, 255, 0.05)",
-                                border: "1px solid var(--border-subtle)",
-                                color: "var(--text-primary)",
-                              }}
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {currentTab === "architecture" && (
-                      <div
-                        style={{
-                          background: "rgba(0, 0, 0, 0.4)",
-                          padding: "1.25rem",
-                          borderRadius: "var(--radius-md)",
-                          border: "1px solid var(--border-subtle)",
-                          marginBottom: "1.5rem",
-                        }}
-                      >
-                        <div style={{ marginBottom: "1rem" }}>
-                          <div
-                            className="font-telemetry"
-                            style={{ fontSize: "0.75rem", color: "var(--amber-core)", marginBottom: "0.25rem" }}
-                          >
-                            [ THE ENGINEERING CHALLENGE ]
-                          </div>
-                          <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                            {p.challenge}
-                          </p>
-                        </div>
-                        <div>
-                          <div
-                            className="font-telemetry"
-                            style={{ fontSize: "0.75rem", color: "var(--cyan-tron)", marginBottom: "0.25rem" }}
-                          >
-                            [ THE APPLIED SOLUTION ]
-                          </div>
-                          <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                            {p.solution}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {currentTab === "interactive" && (
-                      <div
-                        style={{
-                          background: "rgba(0, 0, 0, 0.4)",
-                          padding: "1.25rem",
-                          borderRadius: "var(--radius-md)",
-                          border: `1px solid ${p.borderColor}`,
-                          marginBottom: "1.5rem",
-                        }}
-                      >
-                        <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
-                          Test the interactive parameters in the right console to observe live reactive state updates.
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Metrics Strip */}
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
-                        gap: "1rem",
-                        borderTop: "1px solid var(--border-subtle)",
-                        paddingTop: "1.25rem",
-                      }}
+                          ⚡ Emulate Discord Event
+                        </Button>
+                      }
                     >
-                      {p.impactMetrics.map((m) => (
-                        <div key={m.label}>
-                          <div
-                            className="font-telemetry"
-                            style={{
-                              fontSize: "1.1rem",
-                              fontWeight: 700,
-                              color: "#ffffff",
-                              lineHeight: 1.1,
-                            }}
-                          >
-                            {m.value}
+                      <Stack gap="xs">
+                        {irisEventLog.map((ev, i) => (
+                          <div key={i} className={styles.irisRow}>
+                            <span className={styles.irisTime}>{ev.time}</span>
+                            <span className={styles.irisUser}>{ev.user}</span>
+                            <span className={styles.irisAction}>{ev.action}</span>
+                            <span className={styles.irisPts}>{ev.pts}</span>
                           </div>
-                          <div
-                            style={{
-                              fontSize: "0.72rem",
-                              color: "var(--text-muted)",
-                              marginTop: "0.25rem",
-                            }}
-                          >
-                            {m.label}
+                        ))}
+                      </Stack>
+                    </TerminalBox>
+                  )}
+
+                  {project.demoType === "branding" && (
+                    <TerminalBox title="AETHERIA BRAND MATRIX" status="PHONETIC [OK]">
+                      <Stack gap="md">
+                        <div className={styles.aetheriaCard}>
+                          <div className={styles.aetheriaTitle}>
+                            AETHERIA
+                          </div>
+                          <div className={styles.aetheriaSub}>
+                            Phonetic: [eɪˈθɪəri.ə] • Origins: Aether + -ia
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Right Column: Live Interactive Sci-Fi Simulator */}
-                  <div
-                    className="glass-panel hud-card"
-                    style={{
-                      background: "rgba(7, 10, 18, 0.95)",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      borderRadius: "var(--radius-md)",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {/* Console Header */}
-                    <div
-                      style={{
-                        padding: "0.75rem 1rem",
-                        background: "rgba(255, 255, 255, 0.03)",
-                        borderBottom: "1px solid var(--border-subtle)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ef4444" }} />
-                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#f59e0b" }} />
-                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#10b981" }} />
-                        <span
-                          className="font-telemetry"
-                          style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginLeft: "0.5rem" }}
-                        >
-                          telemetry://{p.id}.runtime
-                        </span>
-                      </div>
-                      <span className="font-telemetry" style={{ fontSize: "0.68rem", color: p.accentColor }}>
-                        SIMULATOR ACTIVE
-                      </span>
-                    </div>
-
-                    {/* Console Interactive Body */}
-                    <div style={{ padding: "1.5rem" }}>
-                      {p.demoType === "dashboard" ? (
-                        <div>
-                          {/* Telemetry Stream Simulation */}
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                              marginBottom: "1rem",
-                            }}
-                          >
-                            <span className="font-telemetry" style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>
-                              STREAM STATUS:
-                            </span>
+                        <Stack gap="xs">
+                          {taglines.map((t, i) => (
                             <button
+                              key={i}
                               type="button"
-                              onClick={() => setSystemOnline(!systemOnline)}
-                              className="telemetry-badge"
-                              style={{
-                                cursor: "pointer",
-                                borderColor: systemOnline ? "var(--phosphor-green)" : "#ef4444",
-                                color: systemOnline ? "var(--phosphor-green)" : "#ef4444",
-                              }}
+                              onClick={() => setSelectedTaglineIndex(i)}
+                              className={`${styles.taglineBtn} ${selectedTaglineIndex === i ? styles.taglineBtnActive : ""}`}
                             >
-                              <span
-                                className="beacon-dot"
-                                style={{ backgroundColor: systemOnline ? "var(--phosphor-green)" : "#ef4444" }}
-                              />
-                              {systemOnline ? "TRANSMITTING" : "PAUSED"}
+                              <div className={styles.taglineText}>
+                                &ldquo;{t.text}&rdquo;
+                              </div>
                             </button>
-                          </div>
-
-                          {/* Mock Data Waveform */}
-                          <div
-                            style={{
-                              height: "120px",
-                              background: "rgba(0, 0, 0, 0.6)",
-                              borderRadius: "var(--radius-sm)",
-                              border: "1px solid var(--border-subtle)",
-                              position: "relative",
-                              overflow: "hidden",
-                              display: "flex",
-                              alignItems: "flex-end",
-                              padding: "0 0.5rem 0.5rem",
-                              gap: "4px",
-                            }}
-                          >
-                            {Array.from({ length: 24 }).map((_, idx) => {
-                              const heightPercent = systemOnline
-                                ? Math.round(20 + Math.sin((idx + streamSpeed * 2) * 0.8) * 35 + Math.cos(idx * 1.2) * 25)
-                                : 8;
-                              const clampedHeight = Math.max(8, Math.min(95, heightPercent));
-                              return (
-                                <div
-                                  key={idx}
-                                  style={{
-                                    flex: 1,
-                                    height: `${clampedHeight}%`,
-                                    background:
-                                      idx % 3 === 0
-                                        ? "var(--cyan-tron)"
-                                        : "linear-gradient(180deg, rgba(0, 229, 255, 0.8) 0%, rgba(59, 130, 246, 0.2) 100%)",
-                                    borderRadius: "1px",
-                                    transition: "height 0.3s ease",
-                                  }}
-                                />
-                              );
-                            })}
-                          </div>
-
-                          {/* Interactive Speed Controller */}
-                          <div
-                            style={{
-                              marginTop: "1.25rem",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <span className="font-telemetry" style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                              Telemetry Frequency:
-                            </span>
-                            <div style={{ display: "flex", gap: "0.5rem" }}>
-                              {[1, 2, 4].map((spd) => (
-                                <button
-                                  key={spd}
-                                  type="button"
-                                  onClick={() => setStreamSpeed(spd)}
-                                  style={{
-                                    background: streamSpeed === spd ? "var(--cyan-tron)" : "rgba(255, 255, 255, 0.05)",
-                                    color: streamSpeed === spd ? "#05070b" : "var(--text-secondary)",
-                                    border: "1px solid var(--border-subtle)",
-                                    borderRadius: "var(--radius-sm)",
-                                    padding: "0.2rem 0.6rem",
-                                    fontSize: "0.72rem",
-                                    fontFamily: "var(--font-jetbrains)",
-                                    cursor: "pointer",
-                                  }}
-                                >
-                                  {spd}x Hz
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          {/* Aetheria Branding Simulator */}
-                          <div
-                            style={{
-                              padding: "1rem",
-                              background: "rgba(0, 0, 0, 0.5)",
-                              borderRadius: "var(--radius-sm)",
-                              border: "1px solid rgba(0, 229, 255, 0.3)",
-                              marginBottom: "1.25rem",
-                            }}
-                          >
-                            <div
-                              className="font-telemetry"
-                              style={{ fontSize: "0.7rem", color: "var(--cyan-tron)", marginBottom: "0.35rem" }}
-                            >
-                              PHONETIC VETTING // [eɪˈθɪəri.ə]
-                            </div>
-                            <div
-                              className="font-heading"
-                              style={{ fontSize: "1.6rem", fontWeight: 700, color: "#ffffff", letterSpacing: "0.08em" }}
-                            >
-                              AETHERIA
-                            </div>
-                            <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)", marginTop: "0.35rem" }}>
-                              Etymology: Aether (Pure upper celestial air) + -ia (Domain/Entity).
-                            </div>
-                          </div>
-
-                          {/* Interactive Tagline Switcher */}
-                          <div style={{ marginBottom: "1rem" }}>
-                            <div
-                              className="font-telemetry"
-                              style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginBottom: "0.5rem" }}
-                            >
-                              SELECT VERBAL IDENTITY MATRIX:
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                              {taglines.map((t, i) => (
-                                <button
-                                  key={i}
-                                  type="button"
-                                  onClick={() => setSelectedTaglineIndex(i)}
-                                  style={{
-                                    textAlign: "left",
-                                    padding: "0.6rem 0.85rem",
-                                    borderRadius: "var(--radius-sm)",
-                                    background:
-                                      selectedTaglineIndex === i
-                                        ? "rgba(0, 229, 255, 0.15)"
-                                        : "rgba(255, 255, 255, 0.02)",
-                                    border:
-                                      selectedTaglineIndex === i
-                                        ? "1px solid var(--cyan-tron)"
-                                        : "1px solid var(--border-subtle)",
-                                    cursor: "pointer",
-                                    transition: "all var(--transition-fast)",
-                                  }}
-                                >
-                                  <div
-                                    style={{
-                                      fontSize: "0.85rem",
-                                      color: selectedTaglineIndex === i ? "#ffffff" : "var(--text-secondary)",
-                                      fontStyle: "italic",
-                                    }}
-                                  >
-                                    &ldquo;{t.text}&rdquo;
-                                  </div>
-                                  <div
-                                    className="font-telemetry"
-                                    style={{
-                                      fontSize: "0.68rem",
-                                      color: selectedTaglineIndex === i ? "var(--cyan-tron)" : "var(--text-dim)",
-                                      marginTop: "0.25rem",
-                                    }}
-                                  >
-                                    Target Angle: {t.focus}
-                                  </div>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                          ))}
+                        </Stack>
+                      </Stack>
+                    </TerminalBox>
+                  )}
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+            </HudCard>
+          );
+        })}
+      </Stack>
+    </div>
   );
 }

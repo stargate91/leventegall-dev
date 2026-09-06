@@ -1,0 +1,68 @@
+.beacon {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.sm {
+  width: 6px;
+  height: 6px;
+}
+
+.md {
+  width: 7px;
+  height: 7px;
+}
+
+.lg {
+  width: 9px;
+  height: 9px;
+}
+
+.cyan {
+  background-color: var(--cyan-tron);
+  box-shadow: 0 0 8px var(--cyan-tron);
+}
+
+.green {
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.red {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.beacon::after {
+  position: absolute;
+  inset: -3px;
+  content: "";
+  border-radius: 50%;
+  animation: beaconPulse 1.8s infinite ease-out;
+}
+
+.cyan::after {
+  border: 1px solid var(--cyan-tron);
+}
+
+.green::after {
+  border: 1px solid #10b981;
+}
+
+.red::after {
+  border: 1px solid #ef4444;
+}
+
+@keyframes beaconPulse {
+  0% {
+    opacity: 100%;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 0%;
+    transform: scale(2.2);
+  }
+}

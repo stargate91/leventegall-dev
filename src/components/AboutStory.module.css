@@ -1,0 +1,135 @@
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+
+.logCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-xl);
+}
+
+.logMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.logSol {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--cyan-tron);
+  letter-spacing: 0.08em;
+}
+
+.metaBadge {
+  padding: var(--space-3xs) var(--space-xs);
+  font-size: var(--text-2xs);
+}
+
+.logHeader {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+
+.iconWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--cyan-tron);
+  background: var(--cyan-subtle);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-sm);
+}
+
+.logTitle {
+  font-family: var(--font-space), sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-white);
+}
+
+.logDesc {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.metricsList {
+  padding-top: var(--space-md);
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.metricItem {
+  font-size: var(--text-xs);
+  color: var(--text-primary);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  color: var(--cyan-tron);
+}
+
+.fiverrBanner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  margin-top: var(--space-3xl);
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 80%), 0 0 20px var(--cyan-glow);
+}
+
+.fiverrLeft {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  max-width: 780px;
+}
+
+.fiverrIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: var(--cyan-tron);
+  background: var(--cyan-subtle);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-sm);
+}
+
+.fiverrTitle {
+  margin-bottom: var(--space-3xs);
+  font-family: var(--font-space), sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.fiverrDesc {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.fiverrBadge {
+  padding: var(--space-2xs) var(--space-sm);
+  font-size: var(--text-xs);
+}

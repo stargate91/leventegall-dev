@@ -1,0 +1,50 @@
+:root {
+  /* =========================================================================
+     Tone Palette Tokens
+     ========================================================================= */
+  --tone-a: #04060a;              /* Deep Space Void / Pure Obsidian */
+  --tone-b: #0f1626;              /* Tactical Slate Deck / Aerospace Titanium */
+  --tone-b-card: #151e33;         /* Elevated Card Surface inside Tone B */
+
+  /* Neutral & Base Colors */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Unified Tron: Legacy Luminescent Electric Cyan Palette */
+  --cyan-tron: #00e5ff;
+  --cyan-core: #38bdf8;
+  --cyan-bright: #e0faff;
+  --cyan-glow: rgb(0 229 255 / 40%);
+  --cyan-subtle: rgb(0 229 255 / 8%);
+
+  /* Fallback aliases mapped strictly to Tron Cyan for backwards safety */
+  --amber-gargantua: #00e5ff;
+  --amber-core: #38bdf8;
+  --amber-glow: rgb(0 229 255 / 40%);
+  --amber-subtle: rgb(0 229 255 / 8%);
+  --phosphor-green: #00e5ff;
+  --phosphor-glow: rgb(0 229 255 / 40%);
+  --deep-nebula: #0284c7;
+  --nebula-glow: rgb(0 229 255 / 25%);
+
+  /* =========================================================================
+     Surface & Glassmorphism Tokens
+     ========================================================================= */
+  --bg-surface-1: rgb(15 22 38 / 78%);
+  --bg-surface-2: rgb(20 30 52 / 70%);
+  --bg-surface-elevated: rgb(25 38 64 / 88%);
+  --bg-glass: rgb(12 18 30 / 65%);
+  --bg-dark-card: rgb(8 12 22 / 95%);
+  --bg-dark-overlay: rgb(0 0 0 / 40%);
+
+  /* =========================================================================
+     Text Contrast Tokens
+     ========================================================================= */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+}

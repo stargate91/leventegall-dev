@@ -1,9 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { Check, ArrowRight, ShieldCheck, Zap, Sparkles, Orbit, Terminal } from "lucide-react";
+import { ArrowRight, Orbit, Terminal } from "lucide-react";
+import styles from "./ServicesPricing.module.css";
+import {
+  SectionHeader,
+  HudCard,
+  Button,
+  TelemetryBadge,
+  CheckList,
+  Callout,
+  Grid,
+  Stack,
+  Inline,
+} from "@/components/ui";
 
-export interface PackageTier {
+interface PackageTier {
   id: string;
   name: string;
   badge: string;
@@ -13,82 +24,71 @@ export interface PackageTier {
   isPopular?: boolean;
   description: string;
   features: string[];
-  accentColor: string;
-  borderColor: string;
 }
 
 export default function ServicesPricing() {
-  const [selectedTier, setSelectedTier] = useState<string | null>(null);
-
   const tiers: PackageTier[] = [
     {
       id: "naming",
-      name: "Orbital Identity",
-      badge: "VERBAL ARCHITECTURE",
-      codename: "TIER 01 // NAMING & SLOGANS",
+      name: "Brand Naming & Identity",
+      badge: "VERBAL BRANDING",
+      codename: "TIER 01 // NAMING & POSITIONING",
       priceEstimate: "From $490",
-      duration: "5-7 Days Orbit",
+      duration: "5-7 Days",
       description:
-        "Ideal for new ventures or rebrands. Leverage my proven Fiverr naming methodology to birth a legally viable, phonetically memorable brand name and slogan.",
+        "Ideal for startups, new products, or rebrands. Leverage my proven Fiverr methodology to develop a memorable, trademark-cleared brand name and positioning story.",
       features: [
         "10+ Original Vetted Name Concepts",
-        "Phonetic & Pronunciation Analysis",
-        "International Domain (.com) Clearance",
+        "Pronunciation & Phonetic Analysis",
+        "International .com Domain Clearance",
         "Preliminary Trademark Screening",
-        "3 Punchy Slogans & Taglines",
-        "Brand Narrative & Positioning Manifesto",
-        "Fiverr-Tested Revisions Included",
+        "3 High-Impact Slogans & Taglines",
+        "Brand Story & Positioning Brief",
+        "Direct Revisions & Consultation",
       ],
-      accentColor: "var(--cyan-tron)",
-      borderColor: "var(--border-cyan)",
     },
     {
       id: "full-orbit",
-      name: "Full-Orbit Launch",
-      badge: "MOST POPULAR // END-TO-END",
-      codename: "TIER 02 // COMPLETE SYNTHESIS",
+      name: "Complete Product Launch",
+      badge: "MOST POPULAR // FULL STACK",
+      codename: "TIER 02 // BRAND + NEXT.JS APP",
       priceEstimate: "From $1,850",
-      duration: "2-3 Weeks Orbit",
+      duration: "2-3 Weeks",
       isPopular: true,
       description:
-        "The complete T-shaped synthesis. Zero disconnect between your brand name, voice, and web application. One mind orchestrating your entire launch.",
+        "The end-to-end launch package. A unified process combining your brand identity, messaging, and a custom, high-performance web application.",
       features: [
-        "Everything in Orbital Identity (Naming + Slogans)",
-        "Bespoke Next.js & TypeScript Web Platform",
-        "Custom Sci-Fi / High-Contrast CSS Design System",
-        "Stripe / Payment Gateway Architecture",
-        "Sub-second Lighthouse Performance (95+)",
-        "Self-Hosting Ready (Docker & Standalone Builds)",
-        "1-on-1 Direct Technical & Brand Consultation",
+        "Everything in Brand Naming & Identity",
+        "Custom Next.js & TypeScript Web Application",
+        "Fast, Responsive & Accessible UI Design",
+        "Stripe / Payment Gateway Integration",
+        "Top-Tier Performance (95+ Lighthouse)",
+        "Self-Hosting Ready (Docker & Node Standalone)",
+        "1-on-1 Direct Technical & Brand Guidance",
       ],
-      accentColor: "var(--cyan-tron)",
-      borderColor: "var(--border-cyan)",
     },
     {
       id: "web-dev",
-      name: "Deep-Space Engine",
-      badge: "WEB ENGINEERING",
-      codename: "TIER 03 // FULL-STACK APPS",
+      name: "Full-Stack Development",
+      badge: "SOFTWARE ENGINEERING",
+      codename: "TIER 03 // WEB APPS & APIS",
       priceEstimate: "From $1,450",
-      duration: "10-14 Days Orbit",
+      duration: "10-14 Days",
       description:
-        "For teams with an existing brand identity that need an elite, blazing fast, scalable web experience built with modern Next.js and TypeScript.",
+        "For teams with an existing brand who need clean, reliable software. From backend APIs and databases to interactive frontends built with FastAPI, Python, and React.",
       features: [
-        "Next.js App Router & TypeScript Architecture",
-        "Vanilla CSS Design Tokens (Zero Framework Bloat)",
-        "High-Converting Responsive UI/UX Layouts",
-        "API Routes, Contact Submissions & Webhooks",
-        "Full Standalone Server Deployment Scripts",
-        "SEO Meta-Architecture & Dynamic Social Cards",
-        "Code Ownership & Clean Documentation",
+        "FastAPI / Python Backend & REST APIs",
+        "React, Next.js & TypeScript Frontends",
+        "Database Architecture (PostgreSQL / SQLite)",
+        "Clean, Maintainable Code & Documentation",
+        "Docker & Deployment Configuration",
+        "SEO Meta Tags & Dynamic Open Graph Cards",
+        "Full Source Code Ownership",
       ],
-      accentColor: "var(--cyan-tron)",
-      borderColor: "var(--border-cyan)",
     },
   ];
 
   const handleSelectPackage = (tierId: string) => {
-    setSelectedTier(tierId);
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
@@ -100,235 +100,80 @@ export default function ServicesPricing() {
   };
 
   return (
-    <section id="services" style={{ position: "relative" }}>
-      <div className="section-container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="section-subtitle">
-            <Orbit size={14} />
-            <span>Missions & Payloads // Services & Packages</span>
-          </div>
-          <h2 className="section-title">Standardized Mission Payloads</h2>
-          <p className="section-desc">
-            Transparent, high-velocity engagements. Whether you need an unforgettable
-            brand name, a bespoke Next.js web application, or the full unified launch.
-          </p>
-        </div>
+    <div className="section-container">
+      {/* Header */}
+      <SectionHeader
+        subtitle="Services & Packages"
+        subtitleIcon={<Orbit size={14} />}
+        title="Transparent Services & Working Together"
+        description="Whether you need a distinct brand name, a custom full-stack web application, or a complete product launch from scratch."
+      />
 
-        {/* Packages Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "2rem",
-            alignItems: "stretch",
-          }}
-        >
-          {tiers.map((tier) => (
-            <div
-              key={tier.id}
-              id={`tier-${tier.id}`}
-              className="glass-panel hud-card"
-              style={{
-                padding: "2.25rem 2rem",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                background: tier.isPopular ? "rgba(18, 28, 48, 0.9)" : "rgba(10, 14, 24, 0.75)",
-                borderColor: tier.isPopular ? "var(--cyan-tron)" : "rgba(0, 229, 255, 0.25)",
-                boxShadow: tier.isPopular ? "0 20px 45px -10px rgba(0, 229, 255, 0.3)" : "none",
-                position: "relative",
-              }}
-            >
-              {/* Popular Flag */}
-              {tier.isPopular && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-12px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "var(--cyan-tron)",
-                    color: "#05070b",
-                    fontSize: "0.72rem",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-jetbrains)",
-                    padding: "0.25rem 0.85rem",
-                    borderRadius: "var(--radius-full)",
-                    boxShadow: "0 0 15px var(--cyan-glow)",
-                    letterSpacing: "0.08em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  RECOMMENDED FLIGHT PLAN
-                </div>
-              )}
+      {/* Packages Grid */}
+      <Grid cols={3} gap="lg" className={styles.tiersGrid}>
+        {tiers.map((tier) => (
+          <HudCard
+            key={tier.id}
+            id={`tier-${tier.id}`}
+            variant={tier.isPopular ? "elevated" : "surface"}
+            className={styles.tierCard}
+          >
+            {tier.isPopular && (
+              <div className={styles.popularBadge}>RECOMMENDED PACKAGE</div>
+            )}
 
+            <Stack gap="md" justify="space-between" className={styles.cardInner}>
               <div>
-                {/* Codename */}
-                <div
-                  className="font-telemetry"
-                  style={{
-                    fontSize: "0.72rem",
-                    color: tier.accentColor,
-                    marginBottom: "0.5rem",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {tier.codename}
-                </div>
-
-                <h3
-                  className="font-heading"
-                  style={{
-                    fontSize: "1.75rem",
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {tier.name}
-                </h3>
-
-                <p
-                  style={{
-                    fontSize: "0.9rem",
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.6,
-                    marginBottom: "1.5rem",
-                    minHeight: "58px",
-                  }}
-                >
-                  {tier.description}
-                </p>
+                <div className={styles.tierCodename}>{tier.codename}</div>
+                <h3 className={styles.tierName}>{tier.name}</h3>
+                <p className={styles.tierDesc}>{tier.description}</p>
 
                 {/* Pricing & Duration Banner */}
-                <div
-                  style={{
-                    padding: "1rem",
-                    borderRadius: "var(--radius-sm)",
-                    background: "rgba(0, 229, 255, 0.04)",
-                    border: "1px solid rgba(0, 229, 255, 0.2)",
-                    marginBottom: "1.75rem",
-                    display: "flex",
-                    alignItems: "baseline",
-                    justifyContent: "space-between",
-                  }}
-                >
+                <Inline justify="space-between" align="center" className={styles.pricingBanner}>
                   <div>
-                    <span
-                      className="font-telemetry"
-                      style={{ fontSize: "1.6rem", fontWeight: 700, color: "#ffffff" }}
-                    >
-                      {tier.priceEstimate}
-                    </span>
-                    <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginLeft: "0.3rem" }}>
-                      / flat
-                    </span>
+                    <span className={styles.priceValue}>{tier.priceEstimate}</span>
+                    <span className={styles.pricePeriod}>/ flat</span>
                   </div>
-                  <span
-                    className="telemetry-badge"
-                    style={{ fontSize: "0.7rem", padding: "0.2rem 0.6rem" }}
-                  >
+                  <TelemetryBadge variant="cyan" className={styles.durationBadge}>
                     {tier.duration}
-                  </span>
-                </div>
+                  </TelemetryBadge>
+                </Inline>
 
-                {/* Features List */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "2rem" }}>
-                  {tier.features.map((feature) => (
-                    <div
-                      key={feature}
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "0.6rem",
-                        fontSize: "0.85rem",
-                        color: "var(--text-primary)",
-                      }}
-                    >
-                      <div
-                        style={{
-                          marginTop: "2px",
-                          color: "var(--cyan-tron)",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <Check size={16} />
-                      </div>
-                      <span style={{ lineHeight: 1.5 }}>{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                {/* Features List Primitive */}
+                <CheckList items={tier.features} size="sm" gap="sm" className={styles.featuresList} />
               </div>
 
               {/* Action Button */}
-              <button
+              <Button
                 type="button"
+                variant={tier.isPopular ? "primary" : "secondary"}
+                size="md"
+                fullWidth
                 id={`btn-select-tier-${tier.id}`}
                 onClick={() => handleSelectPackage(tier.id)}
-                className={tier.isPopular ? "btn-cosmic-primary" : "btn-cosmic-secondary"}
-                style={{
-                  width: "100%",
-                  cursor: "pointer",
-                }}
+                iconRight={<ArrowRight size={15} />}
               >
-                <span>Initiate Flight Plan</span>
-                <ArrowRight size={15} />
-              </button>
-            </div>
-          ))}
-        </div>
+                Get Started with This Package
+              </Button>
+            </Stack>
+          </HudCard>
+        ))}
+      </Grid>
 
-        {/* Self-Hosting & Future Payment Architecture Note */}
-        <div
-          className="glass-panel"
-          style={{
-            marginTop: "3rem",
-            padding: "1.5rem 2rem",
-            background: "rgba(10, 15, 25, 0.6)",
-            border: "1px dashed rgba(0, 229, 255, 0.25)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "1.25rem",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "var(--radius-sm)",
-                background: "rgba(0, 229, 255, 0.12)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--cyan-tron)",
-              }}
-            >
-              <Terminal size={20} />
-            </div>
-            <div>
-              <div style={{ fontWeight: 600, color: "#ffffff", fontSize: "0.95rem" }}>
-                Architecture Status: Automated Checkout & Self-Hosted Ready
-              </div>
-              <div style={{ fontSize: "0.82rem", color: "var(--text-secondary)" }}>
-                Built on Next.js 16 App Router with pre-wired API routes (`/api/checkout`, `/api/contact`)
-                and lightweight Docker standalone configuration for home/VPS server deployment.
-              </div>
-            </div>
-          </div>
-          <a
-            href="#contact"
-            className="telemetry-badge"
-            style={{ textDecoration: "none", cursor: "pointer" }}
-          >
-            CUSTOM REQUEST? LET&apos;S TALK
-          </a>
-        </div>
-      </div>
-    </section>
+      {/* Architecture Notice Primitive */}
+      <Callout
+        variant="notice"
+        icon={<Terminal size={20} className={styles.terminalIcon} />}
+        title="Need a Custom Project or Architecture?"
+        action={
+          <TelemetryBadge variant="cyan" className={styles.scopeBadge}>
+            CUSTOM SCOPE? REACH OUT BELOW
+          </TelemetryBadge>
+        }
+        className={styles.checkoutNotice}
+      >
+        Have unique requirements or need a tailored backend API, automation tool, or desktop application? Let&apos;s discuss your timeline and scope.
+      </Callout>
+    </div>
   );
 }

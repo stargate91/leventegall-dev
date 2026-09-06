@@ -1,0 +1,36 @@
+.checkList {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-xs { gap: var(--space-2xs); }
+.gap-sm { gap: var(--space-xs); }
+.gap-md { gap: var(--space-sm); }
+
+.checkItem {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: flex-start;
+  line-height: 1.45;
+}
+
+.iconWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-3xs);
+  color: var(--cyan-tron);
+}
+
+.content {
+  color: var(--text-secondary);
+}
+
+.size-sm .content {
+  font-size: var(--text-sm);
+}
+
+.size-md .content {
+  font-size: var(--text-base);
+}

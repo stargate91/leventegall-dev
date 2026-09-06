@@ -1,0 +1,12 @@
+/* =========================================================================
+   Typography Global Classes
+   ========================================================================= */
+.font-telemetry {
+  font-family: var(--font-jetbrains), "Space Mono", monospace;
+  letter-spacing: 0.06em;
+}
+
+.font-heading {
+  font-family: var(--font-space), Inter, sans-serif;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,45 @@
+.copyBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-dark-overlay);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.copyBox:hover {
+  border-color: var(--border-medium);
+}
+
+.text {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  user-select: all;
+}
+
+.copyBtn {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+  padding: var(--space-3xs) var(--space-2xs);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.copyBtn:hover {
+  color: var(--color-white);
+  background: var(--border-subtle);
+}
+
+.copyBtn.copied {
+  color: var(--cyan-tron);
+}

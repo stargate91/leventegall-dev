@@ -1,0 +1,21 @@
+.ring {
+  position: absolute;
+  pointer-events: none;
+  border: 1px dashed rgb(0 229 255 / 25%);
+  border-radius: 50%;
+  animation: rotatePortal 80s linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes rotatePortal {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

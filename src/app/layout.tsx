@@ -1,5 +1,5 @@
-import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -28,24 +28,27 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Creative Developer & Brand Strategist | Celestial Engineering & Verbal Identity",
+  title: "Gáll Levente | Full-Stack Developer & Brand Strategist",
   description:
-    "Portfolio of a Full-Stack Creative Developer & Brand Strategist. Merging deep-space code architecture with Fiverr-proven naming, slogans, and product psychology.",
+    "Portfolio of Levente Gáll. Full-stack software architecture (Python, FastAPI, React, TypeScript) backed by an ELTE Physics background and 1,100+ branding missions on Fiverr.",
   keywords: [
-    "Creative Developer",
-    "Brand Strategist",
+    "Gáll Levente",
     "Full-Stack Developer",
-    "Naming Specialist",
-    "Slogan Writer",
+    "Brand Strategist",
+    "Python Developer",
+    "FastAPI",
+    "React",
     "Next.js",
     "TypeScript",
-    "Portfolio",
+    "Brand Naming",
+    "Copywriting",
+    "Budapest",
   ],
-  authors: [{ name: "Creative Developer" }],
+  authors: [{ name: "Gáll Levente" }],
   openGraph: {
-    title: "Creative Developer & Brand Strategist",
+    title: "Gáll Levente | Full-Stack Developer & Brand Strategist",
     description:
-      "Where modern full-stack web architecture meets high-converting brand naming and verbal identity.",
+      "Full-stack software architecture meets high-converting brand naming and product psychology.",
     type: "website",
   },
 };

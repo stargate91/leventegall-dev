@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 /**
  * Future Payment Endpoint (/api/checkout)
- * 
+ *
  * Ready to connect with Stripe Checkout, Lemon Squeezy, or Barion/SimplePay.
  * To activate live Stripe checkout on your self-hosted server:
  * 1. npm install stripe

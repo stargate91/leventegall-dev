@@ -1,0 +1,179 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  width: 100%;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.telemetryTag {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  color: var(--cyan-tron);
+  letter-spacing: 0.08em;
+}
+
+.selectContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Custom Sci-Fi Trigger Button */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-sm) var(--space-xl) var(--space-sm) var(--space-md);
+  font-family: var(--font-inter), sans-serif;
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.triggerTextActive {
+  color: var(--color-white);
+}
+
+.triggerTextPlaceholder {
+  color: var(--text-muted);
+}
+
+.withIconLeft {
+  padding-left: var(--space-2xl);
+}
+
+.iconLeft {
+  position: absolute;
+  left: var(--space-sm);
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.chevron {
+  position: absolute;
+  right: var(--space-sm);
+  display: flex;
+  align-items: center;
+  color: var(--cyan-tron);
+  pointer-events: none;
+  transition: transform var(--transition-fast);
+}
+
+.trigger.triggerOpen {
+  background: var(--tone-b);
+  border-color: var(--cyan-tron);
+  box-shadow: 0 0 15px var(--cyan-glow), inset 0 1px 2px rgb(0 0 0 / 50%);
+}
+
+.trigger.triggerOpen .chevron {
+  transform: rotate(180deg);
+}
+
+.trigger.selectError {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 12px rgb(239 68 68 / 25%);
+}
+
+/* Floating Sci-Fi Popover Menu */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + var(--space-2xs));
+  right: 0;
+  left: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  max-height: 260px;
+  padding: var(--space-2xs);
+  overflow-y: auto;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 15px 35px -5px rgb(0 0 0 / 90%), 0 0 20px var(--cyan-glow);
+  backdrop-filter: blur(16px);
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-inter), sans-serif;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.optionItem:hover:not(:disabled) {
+  color: var(--color-white);
+  background: var(--cyan-subtle);
+  border-color: var(--border-cyan);
+}
+
+.optionItem.optionSelected {
+  font-weight: 600;
+  color: var(--cyan-tron);
+  background: var(--cyan-subtle);
+  border-color: var(--cyan-tron);
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.optionSubtext {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  color: var(--cyan-tron);
+}
+
+.errorText {
+  margin-top: var(--space-3xs);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+}
+
+.hintText {
+  margin-top: var(--space-3xs);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}

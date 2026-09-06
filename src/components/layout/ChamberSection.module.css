@@ -1,0 +1,35 @@
+.chamberToneA {
+  position: relative;
+  z-index: 10;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+.chamberToneA:first-child,
+.chamberToneA:first-of-type {
+  padding-top: 0;
+  padding-bottom: var(--space-xl);
+}
+
+.chamberDeckModule {
+  position: relative;
+  z-index: 20;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  margin-top: var(--space-4xl);
+  margin-bottom: var(--space-4xl);
+  background-color: var(--tone-b);
+  box-shadow: 0 0 50px rgb(0 0 0 / 80%);
+}
+
+/* Eliminate bottom margin and seal the final deck to the floor when at the end of the page */
+.chamberDeckModule:last-child,
+.chamberDeckModule:last-of-type {
+  padding-bottom: var(--space-xl);
+  margin-bottom: 0;
+}
+
+.chamberDeckBody {
+  position: relative;
+  z-index: 20;
+}
