@@ -1,0 +1,80 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl);
+  overflow: hidden;
+  background-color: var(--tone-a);
+}
+
+.card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.glyphWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  color: var(--cyan-400);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-full);
+  box-shadow: var(--glow-cyan-subtle);
+}
+
+.glyphIcon {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.errorCode {
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.description {
+  max-width: 440px;
+  margin: var(--space-xs) auto 0;
+  line-height: var(--leading-relaxed);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 60%;
+    transform: scale(0.94);
+  }
+}

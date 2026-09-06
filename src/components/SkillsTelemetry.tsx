@@ -1,5 +1,3 @@
-"use client";
-
 import { Terminal, Cpu, PenTool } from "lucide-react";
 import styles from "./SkillsTelemetry.module.css";
 import {
@@ -11,13 +9,17 @@ import {
   Testimonial,
   Text,
 } from "@/components/ui";
-import { engineeringSkills, brandingSkills, fiverrFeedback } from "@/data/skills";
+import { getEngineeringSkills, getBrandingSkills, getFiverrFeedback } from "@/data/skills";
 import { getDictionary } from "@/locales";
 
 export default function SkillsTelemetry() {
   const dict = getDictionary("en");
+  const engineeringSkills = getEngineeringSkills(dict);
+  const brandingSkills = getBrandingSkills(dict);
+  const fiverrFeedback = getFiverrFeedback(dict);
 
   return (
+
     <div className="section-container">
       {/* Header */}
       <SectionHeader
@@ -92,9 +94,9 @@ export default function SkillsTelemetry() {
 
       {/* Fiverr Social Proof Quotes */}
       <Grid cols={2} gap="md" className={styles.feedbackGrid}>
-        {fiverrFeedback.map((fb, idx) => (
+        {fiverrFeedback.map((fb) => (
           <Testimonial
-            key={idx}
+            key={fb.id}
             stars={fb.stars}
             quote={fb.quote}
             author={fb.client}

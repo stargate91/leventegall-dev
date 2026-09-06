@@ -1,5 +1,3 @@
-"use client";
-
 import { Atom, Award, CheckCircle, Cpu, Feather, Terminal } from "lucide-react";
 import styles from "./AboutStory.module.css";
 import {
@@ -12,7 +10,7 @@ import {
   Text,
   Tooltip,
 } from "@/components/ui";
-import { timelineEntries } from "@/data/timeline";
+import { getTimelineEntries } from "@/data/timeline";
 import { getDictionary } from "@/locales";
 
 const iconMap = {
@@ -23,8 +21,10 @@ const iconMap = {
 
 export default function AboutStory() {
   const dict = getDictionary("en");
+  const timelineEntries = getTimelineEntries(dict);
 
   return (
+
     <div className="section-container">
       {/* Header */}
       <SectionHeader

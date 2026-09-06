@@ -1,14 +1,13 @@
-"use client";
-
 import { Layers } from "lucide-react";
 import styles from "./ProjectCard.module.css";
 import ProjectItemCard from "./projects/ProjectItemCard";
 import { SectionHeader, Stack } from "@/components/ui";
-import { projectsData } from "@/data/projects";
+import { getProjectsData } from "@/data/projects";
 import { getDictionary } from "@/locales";
 
 export default function ProjectCard() {
   const dict = getDictionary("en");
+  const projectsData = getProjectsData(dict);
 
   return (
     <div className="section-container">

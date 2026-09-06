@@ -56,7 +56,7 @@ export default function Footer() {
               leading="relaxed"
               className={styles.quoteText}
             >
-              &ldquo;The Grid. A digital frontier. I kept dreaming of a world I thought I&apos;d never see. And then, one day... I got in.&rdquo;
+              {dict.footer.quote}
             </Text>
             <Text font="mono" size="2xs" tone="cyan" className={styles.quoteSub}>
               {dict.footer.quoteSub}

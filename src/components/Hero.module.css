@@ -23,6 +23,7 @@
   filter: blur(45px);
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease-out;
+  will-change: transform;
 }
 
 /* =========================================================================
@@ -277,4 +278,16 @@
   margin-top: var(--space-3xs);
   font-size: var(--text-xs);
   color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coreGlow {
+    transition: none;
+  }
+
+  .photonPulsePrimary,
+  .photonPulseSecondary {
+    display: none;
+    animation: none;
+  }
 }

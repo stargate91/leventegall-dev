@@ -41,10 +41,10 @@
   --bg-dark-overlay: rgb(0 0 0 / 40%);
 
   /* =========================================================================
-     Text Contrast Tokens
+     Text Contrast Tokens (WCAG 2.1 AA & AAA Compliant)
      ========================================================================= */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-dim: #475569;
+  --text-muted: #8295a9;
+  --text-dim: #76889b;
 }

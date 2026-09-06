@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Compass, Menu, X, ArrowUpRight } from "lucide-react";
 import styles from "./Navbar.module.css";
 import Button from "@/components/ui/Button";
@@ -10,6 +10,8 @@ import { getDictionary } from "@/locales";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const dict = getDictionary("en");
 
   useEffect(() => {
@@ -20,6 +22,44 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Keyboard accessibility: Escape to close and Tab focus trap for mobile drawer
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+        toggleBtnRef.current?.focus();
+        return;
+      }
+
+      if (e.key === "Tab" && menuRef.current) {
+        const interactiveItems = menuRef.current.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
+        );
+        if (interactiveItems.length === 0) {
+          return;
+        }
+
+        const first = interactiveItems[0];
+        const last = interactiveItems[interactiveItems.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: dict.nav.journey, href: "#trajectory", index: "01" },
@@ -44,7 +84,7 @@ export default function Navbar() {
         </a>
 
         {/* Navigation Links (Desktop) */}
-        <nav className={styles.desktopNav}>
+        <nav className={styles.desktopNav} aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -72,10 +112,13 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
+            ref={toggleBtnRef}
             type="button"
             className={styles.mobileMenuBtn}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -84,7 +127,14 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className={styles.mobileMenu}>
+        <div
+          id="mobile-nav-drawer"
+          ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Menu"
+          className={styles.mobileMenu}
+        >
           {navLinks.map((link) => (
             <a
               key={link.label}

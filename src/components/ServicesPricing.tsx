@@ -12,20 +12,18 @@ import {
   Grid,
   Stack,
 } from "@/components/ui";
-import { packageTiers } from "@/data/services";
+import { getPackageTiers } from "@/data/services";
 import { getDictionary } from "@/locales";
 
 export default function ServicesPricing() {
   const dict = getDictionary("en");
+  const packageTiers = getPackageTiers(dict);
 
   const handleSelectPackage = (tierId: string) => {
+    window.dispatchEvent(new CustomEvent("select-package-tier", { detail: { tierId } }));
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
-      const selectElem = document.getElementById("contact-tier-select") as HTMLSelectElement | null;
-      if (selectElem) {
-        selectElem.value = tierId;
-      }
     }
   };
 
@@ -65,7 +63,7 @@ export default function ServicesPricing() {
               {/* Price & Duration */}
               <div className={styles.priceRow}>
                 <div className={styles.price}>{tier.priceEstimate}</div>
-                <div className={styles.duration}>• {tier.duration} Delivery</div>
+                <div className={styles.duration}>• {tier.duration}</div>
               </div>
 
               {/* Description */}

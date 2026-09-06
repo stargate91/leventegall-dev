@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send, CheckCircle2, Radio, User, Mail, AlertTriangle } from "lucide-react";
 import styles from "./ContactForm.module.css";
+import type { ContactRequestBody, ContactApiResponse } from "@/types/contact";
 import {
   SectionHeader,
   HudCard,
@@ -17,17 +18,9 @@ import {
   Callout,
   Text,
 } from "@/components/ui";
-import { contactTierOptions, timelineOptions } from "@/data/services";
+import { getContactTierOptions, getTimelineOptions } from "@/data/services";
 import { siteConfig } from "@/config/site";
 import { getDictionary } from "@/locales";
-
-interface ContactPayload {
-  name: string;
-  email: string;
-  tier: string;
-  timeline: string;
-  brief: string;
-}
 
 interface FormErrors {
   name?: string;
@@ -37,7 +30,10 @@ interface FormErrors {
 
 export default function ContactForm() {
   const dict = getDictionary("en");
-  const [formData, setFormData] = useState<ContactPayload>({
+  const contactTierOptions = getContactTierOptions(dict);
+  const timelineOptions = getTimelineOptions(dict);
+
+  const [formData, setFormData] = useState<ContactRequestBody>({
     name: "",
     email: "",
     tier: "full-orbit",
@@ -48,6 +44,20 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "transmitting" | "success" | "error">("idle");
   const [telemetryId, setTelemetryId] = useState<string>("");
+
+  useEffect(() => {
+    const handlePackageSelect = (e: Event) => {
+      const customEvent = e as CustomEvent<{ tierId?: string }>;
+      if (customEvent.detail?.tierId) {
+        setFormData((prev) => ({ ...prev, tier: customEvent.detail?.tierId ?? prev.tier }));
+      }
+    };
+
+    window.addEventListener("select-package-tier", handlePackageSelect);
+    return () => {
+      window.removeEventListener("select-package-tier", handlePackageSelect);
+    };
+  }, []);
 
   const directEmail = siteConfig.email;
 
@@ -88,11 +98,11 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as ContactApiResponse;
 
-      if (response.ok) {
+      if (response.ok && "telemetryId" in data) {
         setStatus("success");
-        setTelemetryId(data.transmissionId || "ACK-200");
+        setTelemetryId(data.telemetryId);
       } else {
         setStatus("error");
       }

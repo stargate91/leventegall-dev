@@ -29,6 +29,14 @@ export interface HeroLocale {
   };
 }
 
+export interface TimelineItemLocale {
+  sol: string;
+  date: string;
+  title: string;
+  desc: string;
+  metrics: string[];
+}
+
 export interface StoryLocale {
   subtitle: string;
   title: string;
@@ -37,6 +45,26 @@ export interface StoryLocale {
   fiverrBannerDesc: string;
   fiverrBadge: string;
   fiverrTooltip: string;
+  timeline: TimelineItemLocale[];
+}
+
+export interface ProjectItemLocale {
+  badge: string;
+  title: string;
+  codename: string;
+  tagline: string;
+  description: string;
+  role: string;
+  duration: string;
+  challenge: string;
+  solution: string;
+  impactMetrics: { label: string; value: string }[];
+}
+
+export interface BrandingTaglineLocale {
+  id: string;
+  text: string;
+  focus: string;
 }
 
 export interface ProjectsLocale {
@@ -71,6 +99,23 @@ export interface ProjectsLocale {
     aetheriaStatus: string;
     aetheriaPhonetic: string;
   };
+  items: {
+    swaya: ProjectItemLocale;
+    iris: ProjectItemLocale;
+    aetheria: ProjectItemLocale;
+  };
+  brandingTaglines: BrandingTaglineLocale[];
+}
+
+export interface SkillItemLocale {
+  name: string;
+  status: string;
+}
+
+export interface ClientFeedbackLocale {
+  id: string;
+  quote: string;
+  client: string;
 }
 
 export interface SkillsLocale {
@@ -82,6 +127,24 @@ export interface SkillsLocale {
   brandingTitle: string;
   brandingSub: string;
   verifiedBadge: string;
+  engineeringList: SkillItemLocale[];
+  brandingList: SkillItemLocale[];
+  feedback: ClientFeedbackLocale[];
+}
+
+export interface PackageTierLocale {
+  name: string;
+  badge: string;
+  codename: string;
+  priceEstimate: string;
+  duration: string;
+  description: string;
+  features: string[];
+}
+
+export interface ServiceOptionLocale {
+  value: string;
+  label: string;
 }
 
 export interface ServicesLocale {
@@ -94,6 +157,13 @@ export interface ServicesLocale {
   customCalloutTitle: string;
   customCalloutDesc: string;
   customCalloutButton: string;
+  tiers: {
+    naming: PackageTierLocale;
+    fullOrbit: PackageTierLocale;
+    webDev: PackageTierLocale;
+  };
+  contactTierOptions: ServiceOptionLocale[];
+  timelineOptions: ServiceOptionLocale[];
 }
 
 export interface ContactLocale {

@@ -6,12 +6,13 @@ import {
   TerminalBox,
   Stack,
 } from "@/components/ui";
-import { brandingTaglines } from "@/data/projects";
+import { getBrandingTaglines } from "@/data/projects";
 import { getDictionary } from "@/locales";
 
 export default function AetheriaSimulator() {
   const [selectedTaglineIndex, setSelectedTaglineIndex] = useState(0);
   const dict = getDictionary("en");
+  const brandingTaglines = getBrandingTaglines(dict);
 
   return (
     <TerminalBox
@@ -31,7 +32,7 @@ export default function AetheriaSimulator() {
         <Stack gap="xs">
           {brandingTaglines.map((t, i) => (
             <button
-              key={i}
+              key={t.id}
               type="button"
               onClick={() => setSelectedTaglineIndex(i)}
               className={`${styles.taglineBtn} ${selectedTaglineIndex === i ? styles.taglineBtnActive : ""}`}

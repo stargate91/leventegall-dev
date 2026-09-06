@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowRight, Code2, Orbit, Atom, Zap } from "lucide-react";
 import styles from "./Hero.module.css";
 import {
@@ -15,30 +15,49 @@ import {
 import { getDictionary } from "@/locales";
 
 export default function Hero() {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const glowRef = useRef<HTMLDivElement>(null);
   const dict = getDictionary("en");
 
   useEffect(() => {
+    // Only bind mouse tracking on devices with a fine pointer (desktop mouse)
+    if (typeof window === "undefined" || !window.matchMedia("(pointer: fine)").matches) {
+      return;
+    }
+
+    let rafId: number | null = null;
+
     const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      setCoords({
-        x: Number(((e.clientX / innerWidth) * 2 - 1).toFixed(2)),
-        y: Number(((e.clientY / innerHeight) * 2 - 1).toFixed(2)),
+      if (rafId !== null) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        if (!glowRef.current) {
+          return;
+        }
+        const { innerWidth, innerHeight } = window;
+        const x = (((e.clientX / innerWidth) * 2 - 1) * 20).toFixed(2);
+        const y = (((e.clientY / innerHeight) * 2 - 1) * 20).toFixed(2);
+        glowRef.current.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
       });
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   return (
     <section id="hero" className={styles.hero}>
       {/* Background Tron Luminescent Core Glow */}
       <div
+        ref={glowRef}
         className={styles.coreGlow}
-        style={{
-          transform: `translate(-50%, -50%) translate(${coords.x * 20}px, ${coords.y * 20}px)`,
-        }}
         aria-hidden="true"
       />
 

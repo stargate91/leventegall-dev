@@ -1,16 +1,18 @@
 /**
- * COSMIC / TRON GLOBAL DESIGN SYSTEM
- * Modular architecture orchestrator.
+ * COSMIC / TRON GLOBAL UTILITIES
+ * Tokens and base resets are bundled statically via layout.tsx.
  */
 
-/* 1. Design Tokens */
-@import url("../styles/tokens/colors.css");
-@import url("../styles/tokens/spacing.css");
-@import url("../styles/tokens/typography.css");
-@import url("../styles/tokens/borders.css");
+.cosmic-mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
 
-/* 2. Base & Resets */
-@import url("../styles/base/reset.css");
-@import url("../styles/base/typography.css");
-@import url("../styles/base/layout.css");
-@import url("../styles/base/scrollbar.css");
+.cosmic-grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}

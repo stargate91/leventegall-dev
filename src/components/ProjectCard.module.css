@@ -148,3 +148,17 @@
   font-style: italic;
   color: var(--color-white);
 }
+
+.simulatorSkeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: var(--space-lg);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--cyan-tron);
+  background: var(--bg-dark-overlay);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-sm);
+}

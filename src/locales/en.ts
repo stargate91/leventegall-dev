@@ -38,6 +38,41 @@ export const en: Dictionary = {
     fiverrBannerDesc: "5 years of continuous international client delivery, brand naming, and conversion copy with a 100% on-time completion rate.",
     fiverrBadge: "[ 5.0★ TOP-RATED SELLER ]",
     fiverrTooltip: "// TOP 1% SELLER • 1,100+ MISSIONS • 100% ON-TIME DISPATCH",
+    timeline: [
+      {
+        sol: "CHAPTER 01",
+        date: "ELTE PHYSICS BACKGROUND",
+        title: "Analytical Thinking & Problem Solving",
+        desc: "Studying Physics and Astronomy at Eötvös Loránd University gave me a strong foundation in math, calculus, and first-principles thinking. When architecting software, I don't just glue third-party packages together—I think in terms of state transitions, edge cases, and building predictable, maintainable systems.",
+        metrics: [
+          "ELTE Physics & Astronomy Studies",
+          "Calculus & Mathematical Logic",
+          "Systematic Problem Solving",
+        ],
+      },
+      {
+        sol: "CHAPTER 02",
+        date: "5 YEARS ON FIVERR",
+        title: "Human Psychology & High-Converting Copy",
+        desc: "Over 5 years, I built a top-rated freelance branding practice on Fiverr, helping more than 1,100 international founders find the right name and message for their startups. It taught me how people actually think, choose, and buy. Clear naming and sharp copywriting aren't decoration—they're how you earn attention in a crowded market.",
+        metrics: [
+          "1,100+ Completed Projects",
+          "400+ Verified 5-Star Reviews",
+          "Brand Naming, Slogans & Copy",
+        ],
+      },
+      {
+        sol: "CHAPTER 03",
+        date: "FULL-STACK DEVELOPMENT",
+        title: "Clean Backend Architecture & Modern Frontends",
+        desc: "Great branding falls flat without a reliable product, and clean code is wasted if the messaging is confusing. I build robust backends with FastAPI and Python, paired with modern, responsive React and TypeScript frontends. Having one person oversee both means zero handoff friction and a product that feels cohesive from the first headline to the final API call.",
+        metrics: [
+          "FastAPI, Python & Domain-Driven Design",
+          "React, Next.js & TypeScript Frontends",
+          "Unified Vision from Concept to Code",
+        ],
+      },
+    ],
   },
   projects: {
     subtitle: "Selected Projects",
@@ -71,6 +106,70 @@ export const en: Dictionary = {
       aetheriaStatus: "PHONETIC [OK]",
       aetheriaPhonetic: "Phonetic: [eɪˈθɪəri.ə] • Origins: Aether + -ia",
     },
+    items: {
+      swaya: {
+        badge: "FEATURED PROJECT 01 // DESKTOP & API",
+        title: "Swaya Media & Library Ecosystem",
+        codename: "FASTAPI + REACT + ELECTRON",
+        tagline: "4-iteration evolution from PyQt6 to asynchronous FastAPI, React, Electron & SQLAlchemy 2.0.",
+        description:
+          "A desktop media and library organizer evolved over four distinct iterations. It pairs an asynchronous FastAPI Python backend with a reactive React frontend packaged in Electron, featuring automated TMDB/OMDb metadata matching, SQLite caching, and background task queues.",
+        role: "Lead Architect & Developer",
+        duration: "4 Architecture Iterations",
+        challenge:
+          "Handling high-volume metadata lookups, multi-threaded filesystem indexing, and database migrations without freezing the desktop user interface.",
+        solution:
+          "Separated the app into a clean layered architecture (Domain-Driven Design) with an asynchronous background worker queue, SQLAlchemy 2.0 migrations, and in-memory TTL caching.",
+        impactMetrics: [
+          { label: "Evolution History", value: "4 Iterations" },
+          { label: "API Response Time", value: "< 15ms (Cached)" },
+          { label: "Architecture", value: "Layered DDD" },
+        ],
+      },
+      iris: {
+        badge: "FEATURED PROJECT 02 // EVENT STREAM",
+        title: "Iris Activity & Telemetry Bot",
+        codename: "PYTHON ASYNCIO + PILLOW",
+        tagline: "Real-time Discord activity tracker with dynamic image generation and ranking algorithms.",
+        description:
+          "An event-driven Discord bot built with Python and asyncio. It monitors server engagement across voice channels, stream sessions, and messages, dynamically composites customized visual profile cards on-the-fly with Pillow, and assigns automated weekly ranks.",
+        role: "Backend & Bot Developer",
+        duration: "Active Open Source",
+        challenge:
+          "Tracking high-frequency multi-channel event streams in real time while rendering high-resolution profile images without blocking the main event loop.",
+        solution:
+          "Utilized Python asyncio task pipelines, optimized in-memory Pillow image buffers, and an indexed SQLite database for fast ranking queries.",
+        impactMetrics: [
+          { label: "Event Pipeline", value: "Async Task Loop" },
+          { label: "Card Render Time", value: "Sub-50ms Buffer" },
+          { label: "Localization", value: "English & Hungarian" },
+        ],
+      },
+      aetheria: {
+        badge: "FEATURED PROJECT 03 // BRAND + WEB",
+        title: "Aetheria Platform Concept",
+        codename: "BRAND NAMING + NEXT.JS",
+        tagline: "A showcase of how brand strategy, positioning copy, and clean web engineering come together.",
+        description:
+          "A concept demonstrating end-to-end product creation: from phonetic brand naming, domain vetting, and conversion-focused copywriting to a responsive, accessible Next.js 16 web application built with TypeScript and modern CSS.",
+        role: "Brand Strategist & Full-Stack Developer",
+        duration: "Prototype Showcase",
+        challenge:
+          "Creating a distinctive, legally viable brand name and clear value proposition while delivering a sub-second page load web experience.",
+        solution:
+          "Applied proven Fiverr naming frameworks, phonetic clearance checks, and built a lightweight Next.js front-end with zero third-party bundle bloat.",
+        impactMetrics: [
+          { label: "Fiverr Methodology", value: "1,100+ Lineage" },
+          { label: "Performance", value: "99+ Lighthouse" },
+          { label: "Domain Clearance", value: "100% Vetted" },
+        ],
+      },
+    },
+    brandingTaglines: [
+      { id: "tagline-clarity", text: "Engineered for clarity. Built for daily resilience.", focus: "Modern / Minimal" },
+      { id: "tagline-precision", text: "Where precision hardware meets intuitive software.", focus: "Technical / Direct" },
+      { id: "tagline-performance", text: "Quiet performance. Uncompromising quality.", focus: "Premium / Understated" },
+    ],
   },
   skills: {
     subtitle: "Core Competencies",
@@ -81,6 +180,36 @@ export const en: Dictionary = {
     brandingTitle: "Brand Strategy & Copywriting",
     brandingSub: "1,100+ CLIENTS • 400+ 5-STAR REVIEWS ON FIVERR",
     verifiedBadge: "VERIFIED FIVERR CLIENT",
+    engineeringList: [
+      { name: "Python (FastAPI, Asyncio, Flask)", status: "PRIMARY BACKEND" },
+      { name: "React, Next.js & TypeScript (Vite, Zustand)", status: "MODERN FRONTEND" },
+      { name: "SQL (PostgreSQL, SQLite, SQLAlchemy 2.0)", status: "DATABASE & ORM" },
+      { name: "Desktop & Systems (Electron, PyQt6, REST)", status: "GUI & APIS" },
+      { name: "Media & Automation (FFmpeg, Pillow, ETL)", status: "DATA PIPELINES" },
+      { name: "Analytical Thinking & Mathematics (ELTE)", status: "LOGIC & MODELING" },
+    ],
+    brandingList: [
+      { name: "Brand Naming & Linguistic Testing", status: "1,100+ CLIENTS" },
+      { name: "High-Converting Slogans & Taglines", status: "400+ 5.0★ REVIEWS" },
+      { name: "Domain (.com) & Trademark Clearance", status: "VETTED CONCEPTS" },
+      { name: "Brand Positioning & Value Proposition", status: "MARKET FIT" },
+      { name: "International Client Communication", status: "FLUENT ENGLISH" },
+      { name: "Landing Page Copywriting & Conversion Flow", status: "USER FOCUSED" },
+    ],
+    feedback: [
+      {
+        id: "feedback-fintech",
+        quote:
+          "The names delivered weren't just creative—they felt instantly legitimate, memorable, and right on point. Found the perfect domain and our team was thrilled.",
+        client: "Fintech Startup Founder (United States)",
+      },
+      {
+        id: "feedback-saas",
+        quote:
+          "Clear communication, fast turnaround, and brilliant work. The tagline captured our entire product in five words. Over 1,100 completed orders speak for themselves.",
+        client: "SaaS Platform Director (United Kingdom)",
+      },
+    ],
   },
   services: {
     subtitle: "Services & Engagements",
@@ -92,6 +221,73 @@ export const en: Dictionary = {
     customCalloutTitle: "NEED A CUSTOM ARCHITECTURE OR HYBRID SCOPE?",
     customCalloutDesc: "Have a project with custom requirements, complex API integrations, or specific deadlines? Let's discuss a tailored scope that fits your technical and business goals.",
     customCalloutButton: "Get a Custom Proposal",
+    tiers: {
+      naming: {
+        name: "Brand Naming & Identity",
+        badge: "VERBAL BRANDING",
+        codename: "TIER 01 // NAMING & POSITIONING",
+        priceEstimate: "From $490",
+        duration: "5-7 Days",
+        description:
+          "Ideal for startups, new products, or rebrands. Leverage my proven Fiverr methodology to develop a memorable, trademark-cleared brand name and positioning story.",
+        features: [
+          "10+ Original Vetted Name Concepts",
+          "Pronunciation & Phonetic Analysis",
+          "International .com Domain Clearance",
+          "Preliminary Trademark Screening",
+          "3 High-Impact Slogans & Taglines",
+          "Brand Story & Positioning Brief",
+          "Direct Revisions & Consultation",
+        ],
+      },
+      fullOrbit: {
+        name: "Complete Product Launch",
+        badge: "MOST POPULAR // FULL STACK",
+        codename: "TIER 02 // BRAND + NEXT.JS APP",
+        priceEstimate: "From $1,850",
+        duration: "2-3 Weeks",
+        description:
+          "The end-to-end launch package. A unified process combining your brand identity, messaging, and a custom, high-performance web application.",
+        features: [
+          "Everything in Brand Naming & Identity",
+          "Custom Next.js & TypeScript Web Application",
+          "Fast, Responsive & Accessible UI Design",
+          "Stripe / Payment Gateway Integration",
+          "Top-Tier Performance (95+ Lighthouse)",
+          "Self-Hosting Ready (Docker & Node Standalone)",
+          "1-on-1 Direct Technical & Brand Guidance",
+        ],
+      },
+      webDev: {
+        name: "Full-Stack Development",
+        badge: "SOFTWARE ENGINEERING",
+        codename: "TIER 03 // WEB APPS & APIS",
+        priceEstimate: "From $1,450",
+        duration: "10-14 Days",
+        description:
+          "For teams with an existing brand who need clean, reliable software. From backend APIs and databases to interactive frontends built with FastAPI, Python, and React.",
+        features: [
+          "FastAPI / Python Backend & REST APIs",
+          "React, Next.js & TypeScript Frontends",
+          "Database Architecture (PostgreSQL / SQLite)",
+          "Clean, Maintainable Code & Documentation",
+          "Docker & Deployment Configuration",
+          "SEO Meta Tags & Dynamic Open Graph Cards",
+          "Full Source Code Ownership",
+        ],
+      },
+    },
+    contactTierOptions: [
+      { value: "naming", label: "Brand Naming & Identity — From $490" },
+      { value: "full-orbit", label: "Complete Product Launch (Brand + Next.js App) — From $1,850" },
+      { value: "web-dev", label: "Full-Stack Development (FastAPI / React) — From $1,450" },
+      { value: "custom", label: "Custom Architecture / Consultation" },
+    ],
+    timelineOptions: [
+      { value: "immediate", label: "Fast Turnaround (Under 2 weeks)" },
+      { value: "2-3-weeks", label: "Standard Timeline (2-4 weeks)" },
+      { value: "flexible", label: "Flexible Timeline (1-2 months)" },
+    ],
   },
   contact: {
     subtitle: "Get in Touch",

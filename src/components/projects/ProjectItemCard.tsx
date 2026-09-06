@@ -1,12 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
 import styles from "../ProjectCard.module.css";
-import SwayaSimulator from "./SwayaSimulator";
-import IrisSimulator from "./IrisSimulator";
-import AetheriaSimulator from "./AetheriaSimulator";
 import type { ProjectData } from "@/data/projects";
+
+const SwayaSimulator = dynamic(() => import("./SwayaSimulator"), {
+  loading: () => <div className={styles.simulatorSkeleton}>[ INITIALIZING FASTAPI TASK QUEUE... ]</div>,
+});
+const IrisSimulator = dynamic(() => import("./IrisSimulator"), {
+  loading: () => <div className={styles.simulatorSkeleton}>[ CONNECTING DISCORD STREAM... ]</div>,
+});
+const AetheriaSimulator = dynamic(() => import("./AetheriaSimulator"), {
+  loading: () => <div className={styles.simulatorSkeleton}>[ LOADING BRAND MATRIX ENGINE... ]</div>,
+});
 import {
   HudCard,
   TelemetryBadge,

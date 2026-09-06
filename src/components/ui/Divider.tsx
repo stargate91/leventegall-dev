@@ -16,29 +16,29 @@ export interface DividerProps extends HTMLAttributes<HTMLHRElement | HTMLDivElem
 }
 
 const spacingMap: Record<DividerSpacing, string> = {
-  none: styles.spacingNone,
-  xs: styles.spacingXs,
-  sm: styles.spacingSm,
-  md: styles.spacingMd,
-  lg: styles.spacingLg,
-  xl: styles.spacingXl,
-  "2xl": styles.spacing2xl,
+  none: styles.spacingNone ?? "",
+  xs: styles.spacingXs ?? "",
+  sm: styles.spacingSm ?? "",
+  md: styles.spacingMd ?? "",
+  lg: styles.spacingLg ?? "",
+  xl: styles.spacingXl ?? "",
+  "2xl": styles.spacing2xl ?? "",
 };
 
 const verticalSpacingMap: Record<DividerSpacing, string> = {
-  none: styles.verticalSpacingNone,
-  xs: styles.verticalSpacingXs,
-  sm: styles.verticalSpacingSm,
-  md: styles.verticalSpacingMd,
-  lg: styles.verticalSpacingLg,
-  xl: styles.verticalSpacingLg,
-  "2xl": styles.verticalSpacingLg,
+  none: styles.verticalSpacingNone ?? "",
+  xs: styles.verticalSpacingXs ?? "",
+  sm: styles.verticalSpacingSm ?? "",
+  md: styles.verticalSpacingMd ?? "",
+  lg: styles.verticalSpacingLg ?? "",
+  xl: styles.verticalSpacingLg ?? "",
+  "2xl": styles.verticalSpacingLg ?? "",
 };
 
 const variantMap: Record<DividerVariant, string> = {
-  subtle: styles.variantSubtle,
-  gradient: styles.variantGradient,
-  laser: styles.variantLaser,
+  subtle: styles.variantSubtle ?? "",
+  gradient: styles.variantGradient ?? "",
+  laser: styles.variantLaser ?? "",
 };
 
 const Divider = forwardRef<HTMLHRElement, DividerProps>(

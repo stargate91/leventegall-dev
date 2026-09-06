@@ -99,3 +99,15 @@
   );
   filter: blur(4px);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .perspectiveFloor,
+  .perspectiveCeiling {
+    mask-image: none;
+    transform: none;
+  }
+
+  .horizonLaser {
+    box-shadow: 0 0 10px var(--cyan-tron);
+  }
+}

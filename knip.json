@@ -1,18 +1,22 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "entry": [
-    "src/app/**/{page,layout,not-found,loading,error,route}.{ts,tsx}",
+    "src/app/**/{page,layout,not-found,loading,error,global-error,route}.{ts,tsx}",
     "src/app/api/**/route.ts",
     "src/components/ui/index.ts",
     "src/data/index.ts",
     "src/config/site.ts",
-    "src/locales/index.ts"
+    "src/locales/index.ts",
+    "src/**/*.test.{ts,tsx}",
+    "e2e/**/*.spec.ts"
   ],
   "project": [
-    "src/**/*.{ts,tsx}"
+    "src/**/*.{ts,tsx}",
+    "e2e/**/*.{ts,tsx}"
   ],
   "ignoreDependencies": [
     "@secretlint/quick-start",
-    "eslint-config-next"
+    "eslint-config-next",
+    "@testing-library/user-event"
   ]
 }

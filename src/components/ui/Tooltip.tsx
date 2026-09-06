@@ -24,8 +24,8 @@ export interface TooltipProps {
 
 const variantMap: Record<TooltipVariant, string> = {
   default: "",
-  cyan: styles.variantCyan,
-  muted: styles.variantMuted,
+  cyan: styles.variantCyan ?? "",
+  muted: styles.variantMuted ?? "",
 };
 
 export function TooltipProvider({

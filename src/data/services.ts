@@ -1,3 +1,5 @@
+import type { Dictionary } from "@/locales";
+
 export interface PackageTier {
   id: string;
   name: string;
@@ -15,76 +17,46 @@ export interface ServiceOption {
   label: string;
 }
 
-export const packageTiers: PackageTier[] = [
-  {
-    id: "naming",
-    name: "Brand Naming & Identity",
-    badge: "VERBAL BRANDING",
-    codename: "TIER 01 // NAMING & POSITIONING",
-    priceEstimate: "From $490",
-    duration: "5-7 Days",
-    description:
-      "Ideal for startups, new products, or rebrands. Leverage my proven Fiverr methodology to develop a memorable, trademark-cleared brand name and positioning story.",
-    features: [
-      "10+ Original Vetted Name Concepts",
-      "Pronunciation & Phonetic Analysis",
-      "International .com Domain Clearance",
-      "Preliminary Trademark Screening",
-      "3 High-Impact Slogans & Taglines",
-      "Brand Story & Positioning Brief",
-      "Direct Revisions & Consultation",
-    ],
-  },
-  {
-    id: "full-orbit",
-    name: "Complete Product Launch",
-    badge: "MOST POPULAR // FULL STACK",
-    codename: "TIER 02 // BRAND + NEXT.JS APP",
-    priceEstimate: "From $1,850",
-    duration: "2-3 Weeks",
-    isPopular: true,
-    description:
-      "The end-to-end launch package. A unified process combining your brand identity, messaging, and a custom, high-performance web application.",
-    features: [
-      "Everything in Brand Naming & Identity",
-      "Custom Next.js & TypeScript Web Application",
-      "Fast, Responsive & Accessible UI Design",
-      "Stripe / Payment Gateway Integration",
-      "Top-Tier Performance (95+ Lighthouse)",
-      "Self-Hosting Ready (Docker & Node Standalone)",
-      "1-on-1 Direct Technical & Brand Guidance",
-    ],
-  },
-  {
-    id: "web-dev",
-    name: "Full-Stack Development",
-    badge: "SOFTWARE ENGINEERING",
-    codename: "TIER 03 // WEB APPS & APIS",
-    priceEstimate: "From $1,450",
-    duration: "10-14 Days",
-    description:
-      "For teams with an existing brand who need clean, reliable software. From backend APIs and databases to interactive frontends built with FastAPI, Python, and React.",
-    features: [
-      "FastAPI / Python Backend & REST APIs",
-      "React, Next.js & TypeScript Frontends",
-      "Database Architecture (PostgreSQL / SQLite)",
-      "Clean, Maintainable Code & Documentation",
-      "Docker & Deployment Configuration",
-      "SEO Meta Tags & Dynamic Open Graph Cards",
-      "Full Source Code Ownership",
-    ],
-  },
-];
+export function getPackageTiers(dict: Dictionary): PackageTier[] {
+  return [
+    {
+      id: "naming",
+      name: dict.services.tiers.naming.name,
+      badge: dict.services.tiers.naming.badge,
+      codename: dict.services.tiers.naming.codename,
+      priceEstimate: dict.services.tiers.naming.priceEstimate,
+      duration: dict.services.tiers.naming.duration,
+      description: dict.services.tiers.naming.description,
+      features: dict.services.tiers.naming.features,
+    },
+    {
+      id: "full-orbit",
+      name: dict.services.tiers.fullOrbit.name,
+      badge: dict.services.tiers.fullOrbit.badge,
+      codename: dict.services.tiers.fullOrbit.codename,
+      priceEstimate: dict.services.tiers.fullOrbit.priceEstimate,
+      duration: dict.services.tiers.fullOrbit.duration,
+      isPopular: true,
+      description: dict.services.tiers.fullOrbit.description,
+      features: dict.services.tiers.fullOrbit.features,
+    },
+    {
+      id: "web-dev",
+      name: dict.services.tiers.webDev.name,
+      badge: dict.services.tiers.webDev.badge,
+      codename: dict.services.tiers.webDev.codename,
+      priceEstimate: dict.services.tiers.webDev.priceEstimate,
+      duration: dict.services.tiers.webDev.duration,
+      description: dict.services.tiers.webDev.description,
+      features: dict.services.tiers.webDev.features,
+    },
+  ];
+}
 
-export const contactTierOptions: ServiceOption[] = [
-  { value: "naming", label: "Brand Naming & Identity — From $490" },
-  { value: "full-orbit", label: "Complete Product Launch (Brand + Next.js App) — From $1,850" },
-  { value: "web-dev", label: "Full-Stack Development (FastAPI / React) — From $1,450" },
-  { value: "custom", label: "Custom Architecture / Consultation" },
-];
+export function getContactTierOptions(dict: Dictionary): ServiceOption[] {
+  return dict.services.contactTierOptions;
+}
 
-export const timelineOptions: ServiceOption[] = [
-  { value: "immediate", label: "Fast Turnaround (Under 2 weeks)" },
-  { value: "2-3-weeks", label: "Standard Timeline (2-4 weeks)" },
-  { value: "flexible", label: "Flexible Timeline (1-2 months)" },
-];
+export function getTimelineOptions(dict: Dictionary): ServiceOption[] {
+  return dict.services.timelineOptions;
+}

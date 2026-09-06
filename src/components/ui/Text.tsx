@@ -31,71 +31,71 @@ export type TextLeading = "none" | "tight" | "normal" | "relaxed";
 export type TextAlign = "left" | "center" | "right";
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {
-  as?: ElementType;
-  tone?: TextTone;
-  size?: TextSize;
-  font?: TextFont;
-  weight?: TextWeight;
-  leading?: TextLeading;
-  align?: TextAlign;
-  glow?: boolean;
-  italic?: boolean;
-  uppercase?: boolean;
-  truncate?: boolean;
+  as?: ElementType | undefined;
+  tone?: TextTone | undefined;
+  size?: TextSize | undefined;
+  font?: TextFont | undefined;
+  weight?: TextWeight | undefined;
+  leading?: TextLeading | undefined;
+  align?: TextAlign | undefined;
+  glow?: boolean | undefined;
+  italic?: boolean | undefined;
+  uppercase?: boolean | undefined;
+  truncate?: boolean | undefined;
   children?: React.ReactNode;
-  className?: string;
+  className?: string | undefined;
 }
 
 const sizeMap: Record<TextSize, string> = {
-  "2xs": styles.size2xs,
-  xs: styles.sizeXs,
-  sm: styles.sizeSm,
-  base: styles.sizeBase,
-  lg: styles.sizeLg,
-  xl: styles.sizeXl,
-  "2xl": styles.size2xl,
-  "3xl": styles.size3xl,
-  "4xl": styles.size4xl,
-  "5xl": styles.size5xl,
+  "2xs": styles.size2xs ?? "",
+  xs: styles.sizeXs ?? "",
+  sm: styles.sizeSm ?? "",
+  base: styles.sizeBase ?? "",
+  lg: styles.sizeLg ?? "",
+  xl: styles.sizeXl ?? "",
+  "2xl": styles.size2xl ?? "",
+  "3xl": styles.size3xl ?? "",
+  "4xl": styles.size4xl ?? "",
+  "5xl": styles.size5xl ?? "",
 };
 
 const toneMap: Record<TextTone, string> = {
-  primary: styles.tonePrimary,
-  secondary: styles.toneSecondary,
-  muted: styles.toneMuted,
-  dim: styles.toneDim,
-  cyan: styles.toneCyan,
-  success: styles.toneSuccess,
-  warning: styles.toneWarning,
-  danger: styles.toneDanger,
-  gradient: styles.toneGradient,
+  primary: styles.tonePrimary ?? "",
+  secondary: styles.toneSecondary ?? "",
+  muted: styles.toneMuted ?? "",
+  dim: styles.toneDim ?? "",
+  cyan: styles.toneCyan ?? "",
+  success: styles.toneSuccess ?? "",
+  warning: styles.toneWarning ?? "",
+  danger: styles.toneDanger ?? "",
+  gradient: styles.toneGradient ?? "",
 };
 
 const fontMap: Record<TextFont, string> = {
-  body: styles.fontBody,
-  heading: styles.fontHeading,
-  mono: styles.fontMono,
+  body: styles.fontBody ?? "",
+  heading: styles.fontHeading ?? "",
+  mono: styles.fontMono ?? "",
 };
 
 const weightMap: Record<TextWeight, string> = {
-  regular: styles.weightRegular,
-  medium: styles.weightMedium,
-  semibold: styles.weightSemibold,
-  bold: styles.weightBold,
-  extrabold: styles.weightExtrabold,
+  regular: styles.weightRegular ?? "",
+  medium: styles.weightMedium ?? "",
+  semibold: styles.weightSemibold ?? "",
+  bold: styles.weightBold ?? "",
+  extrabold: styles.weightExtrabold ?? "",
 };
 
 const leadingMap: Record<TextLeading, string> = {
-  none: styles.leadingNone,
-  tight: styles.leadingTight,
-  normal: styles.leadingNormal,
-  relaxed: styles.leadingRelaxed,
+  none: styles.leadingNone ?? "",
+  tight: styles.leadingTight ?? "",
+  normal: styles.leadingNormal ?? "",
+  relaxed: styles.leadingRelaxed ?? "",
 };
 
 const alignMap: Record<TextAlign, string> = {
-  left: styles.alignLeft,
-  center: styles.alignCenter,
-  right: styles.alignRight,
+  left: styles.alignLeft ?? "",
+  center: styles.alignCenter ?? "",
+  right: styles.alignRight ?? "",
 };
 
 const Text = forwardRef<HTMLElement, TextProps>(

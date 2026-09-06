@@ -38,3 +38,21 @@ a {
   outline: 1px solid var(--cyan-tron);
   outline-offset: 2px;
 }
+
+/* =========================================================================
+   Accessibility: WCAG 2.1 Criterion 2.3.3 (Reduced Motion)
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
