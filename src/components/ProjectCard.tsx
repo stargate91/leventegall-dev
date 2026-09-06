@@ -1,12 +1,14 @@
+"use client";
+
 import { Layers } from "lucide-react";
 import styles from "./ProjectCard.module.css";
 import ProjectItemCard from "./projects/ProjectItemCard";
 import { SectionHeader, Stack } from "@/components/ui";
 import { getProjectsData } from "@/data/projects";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function ProjectCard() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const projectsData = getProjectsData(dict);
 
   return (

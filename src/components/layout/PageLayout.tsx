@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import TronGridBackground from "@/components/TronGridBackground";
+import { LocaleProvider } from "@/locales";
 
 interface PageLayoutProps {
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 /**
@@ -14,24 +15,33 @@ interface PageLayoutProps {
  */
 export default function PageLayout({ children, className = "", style }: PageLayoutProps) {
   return (
-    <main
-      className={`page-layout ${className}`}
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        backgroundColor: "var(--tone-a)",
-        overflowX: "hidden",
-        ...style,
-      }}
-    >
-      {/* Background GPU-Accelerated Tron 3D Vector Grid */}
-      <TronGridBackground />
+    <LocaleProvider>
+      <main
+        id="main-content"
+        className={`page-layout ${className}`}
+        tabIndex={-1}
+        style={{
+          position: "relative",
+          minHeight: "100vh",
+          backgroundColor: "var(--tone-a)",
+          overflowX: "hidden",
+          ...style,
+        }}
+      >
+        {/* Accessibility: Skip Navigation Link */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
 
-      {/* Persistent Navigation Header with Live Status Telemetry */}
-      <Navbar />
+        {/* Background GPU-Accelerated Tron 3D Vector Grid */}
+        <TronGridBackground />
 
-      {/* Main Page Chambers */}
-      {children}
-    </main>
+        {/* Persistent Navigation Header with Live Status Telemetry */}
+        <Navbar />
+
+        {/* Main Page Chambers */}
+        {children}
+      </main>
+    </LocaleProvider>
   );
 }

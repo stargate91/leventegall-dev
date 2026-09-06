@@ -17,6 +17,7 @@
   "ignoreDependencies": [
     "@secretlint/quick-start",
     "eslint-config-next",
-    "@testing-library/user-event"
+    "@testing-library/user-event",
+    "@vitest/coverage-v8"
   ]
 }

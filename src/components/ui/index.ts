@@ -87,3 +87,6 @@ export type {
   TooltipAlign,
   TooltipVariant,
 } from "./Tooltip";
+
+export { default as LanguageSwitcher } from "./LanguageSwitcher";
+export type { LanguageSwitcherProps } from "./LanguageSwitcher";

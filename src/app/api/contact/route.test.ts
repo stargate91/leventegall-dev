@@ -66,4 +66,27 @@ describe("Contact API Endpoint (/api/contact)", () => {
     const response = await POST(request);
     expect(response.status).toBe(403);
   });
+
+  it("traps automated bot transmissions when honeypot field is filled", async () => {
+    const botPayload = {
+      ...validPayload,
+      botProbe: "http://spam-link-buy-now.com",
+    };
+
+    const request = new Request("http://localhost:3000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        origin: "http://localhost:3000",
+      },
+      body: JSON.stringify(botPayload),
+    });
+
+    const response = await POST(request);
+    expect(response.status).toBe(200);
+
+    const data = (await response.json()) as { success: boolean; telemetryId: string };
+    expect(data.success).toBe(true);
+    expect(data.telemetryId).toContain("TX-BOT-");
+  });
 });

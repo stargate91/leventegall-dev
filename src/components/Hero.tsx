@@ -12,11 +12,11 @@ import {
   Text,
   Tooltip,
 } from "@/components/ui";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function Hero() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
 
   useEffect(() => {
     // Only bind mouse tracking on devices with a fine pointer (desktop mouse)

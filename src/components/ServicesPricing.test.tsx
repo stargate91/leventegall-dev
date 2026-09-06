@@ -15,8 +15,9 @@ describe("ServicesPricing Component", () => {
     expect(screen.getByText(/From \$1,450/i)).toBeInTheDocument();
   });
 
-  it("dispatches select-package-tier custom window event on package selection", () => {
+  it("dispatches select-package-tier custom window event and pushes deep link URL on package selection", () => {
     const dispatchSpy = vi.spyOn(window, "dispatchEvent");
+    const pushStateSpy = vi.spyOn(window.history, "pushState");
     render(<ServicesPricing />);
 
     const selectButtons = screen.getAllByRole("button", { name: /Select Package/i });
@@ -29,6 +30,12 @@ describe("ServicesPricing Component", () => {
     expect(dispatchSpy).toHaveBeenCalled();
     const event = dispatchSpy.mock.calls[0]?.[0] as CustomEvent<{ tierId: string }>;
     expect(event?.type).toBe("select-package-tier");
-    expect(event?.detail?.tierId).toBeTruthy();
+    expect(event?.detail?.tierId).toBe("naming");
+
+    expect(pushStateSpy).toHaveBeenCalledWith(
+      {},
+      "",
+      expect.stringContaining("tier=naming#contact"),
+    );
   });
 });

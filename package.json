@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "lint:all": "npm run lint && npm run lint:css && npm run lint:spell && npm run lint:secrets && npm run lint:knip && npm run test"
+    "lint:all": "npm run lint && npm run lint:css && npm run lint:spell && npm run lint:secrets && npm run lint:knip && npm run test",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.2.16",
@@ -44,8 +45,10 @@
     "eslint-plugin-import-x": "^4.16.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-security": "^3.0.1",
+    "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "knip": "^5.85.0",
+    "lint-staged": "^17.5.0",
     "secretlint": "^10.0.1",
     "stylelint": "^17.15.0",
     "stylelint-config-recess-order": "^7.8.0",
@@ -54,5 +57,10 @@
     "typescript": "^5",
     "typescript-eslint": "^8.69.0",
     "vitest": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
   }
 }
+

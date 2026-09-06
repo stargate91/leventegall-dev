@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { checkRateLimit } from "./rateLimit";
+import { checkRateLimit, checkDistributedRateLimit } from "./rateLimit";
 
 describe("Rate Limiter Utility", () => {
   beforeEach(() => {
@@ -50,5 +50,12 @@ describe("Rate Limiter Utility", () => {
     const allowedAgain = checkRateLimit(id, 1, 1000);
     expect(allowedAgain.success).toBe(true);
     expect(allowedAgain.remaining).toBe(0);
+  });
+
+  it("checkDistributedRateLimit falls back cleanly to memory when no env credentials exist", async () => {
+    const id = "distributed-fallback-id";
+    const res = await checkDistributedRateLimit(id, 2, 60000);
+    expect(res.success).toBe(true);
+    expect(res.remaining).toBe(1);
   });
 });

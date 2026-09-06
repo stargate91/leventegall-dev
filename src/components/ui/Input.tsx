@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./Input.module.css";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  telemetryTag?: string;
-  hint?: string;
-  error?: string;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
-  containerClassName?: string;
+  label?: string | undefined;
+  telemetryTag?: string | undefined;
+  hint?: string | undefined;
+  error?: string | undefined;
+  iconLeft?: React.ReactNode | undefined;
+  iconRight?: React.ReactNode | undefined;
+  containerClassName?: string | undefined;
 }
 
 export default function Input({
@@ -25,6 +25,7 @@ export default function Input({
   ...props
 }: InputProps) {
   const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, "-")}` : undefined);
+  const errorId = error && inputId ? `${inputId}-error` : undefined;
 
   return (
     <div className={`${styles.wrapper} ${containerClassName}`} style={style}>
@@ -41,6 +42,8 @@ export default function Input({
         {iconLeft && <div className={styles.iconLeft}>{iconLeft}</div>}
         <input
           id={inputId}
+          aria-invalid={Boolean(error)}
+          aria-describedby={errorId || props["aria-describedby"]}
           className={`
             ${styles.input}
             ${iconLeft ? styles.withIconLeft : ""}
@@ -53,7 +56,11 @@ export default function Input({
         {iconRight && <div className={styles.iconRight}>{iconRight}</div>}
       </div>
 
-      {error && <div className={styles.errorText}>{error}</div>}
+      {error && (
+        <div id={errorId} role="alert" className={styles.errorText}>
+          {error}
+        </div>
+      )}
       {hint && !error && <div className={styles.hintText}>{hint}</div>}
     </div>
   );

@@ -7,7 +7,7 @@ import {
   Button,
   Stack,
 } from "@/components/ui";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 interface IrisEvent {
   id: string;
@@ -18,7 +18,7 @@ interface IrisEvent {
 }
 
 export default function IrisSimulator() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const [irisEventLog, setIrisEventLog] = useState<IrisEvent[]>([
     { id: "iris-ev-1", time: "10:04:12", user: "User_Alex", action: "VOICE_CHANNEL_ACTIVE", pts: "+25 XP" },
     { id: "iris-ev-2", time: "10:04:18", user: "Member_Dave", action: "PROFILE_CARD_RENDER", pts: "SUCCESS" },

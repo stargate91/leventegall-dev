@@ -10,7 +10,10 @@ import ServicesPricing from "@/components/ServicesPricing";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
+export const dynamic = "force-static";
+
 export default function Home() {
+
   return (
     <PageLayout>
       {/* ============================================================

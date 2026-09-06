@@ -6,15 +6,15 @@ export type InlineAlign = "start" | "center" | "end" | "baseline";
 export type InlineJustify = "start" | "center" | "end" | "space-between" | "space-around";
 
 export interface InlineProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
-  gap?: InlineGap;
-  align?: InlineAlign;
-  justify?: InlineJustify;
-  wrap?: boolean;
-  fullWidth?: boolean;
+  as?: React.ElementType | undefined;
+  gap?: InlineGap | undefined;
+  align?: InlineAlign | undefined;
+  justify?: InlineJustify | undefined;
+  wrap?: boolean | undefined;
+  fullWidth?: boolean | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export default function Inline({

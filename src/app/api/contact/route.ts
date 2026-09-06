@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { ContactApiResponse } from "@/types/contact";
 import { validateOrigin } from "@/lib/csrf";
 import { logger } from "@/lib/logger";
-import { checkRateLimit } from "@/lib/rateLimit";
+import { checkDistributedRateLimit } from "@/lib/rateLimit";
 import { contactFormSchema } from "@/lib/validations/contact";
 
 export async function POST(request: Request): Promise<NextResponse<ContactApiResponse>> {
@@ -23,7 +23,7 @@ export async function POST(request: Request): Promise<NextResponse<ContactApiRes
     request.headers.get("x-real-ip") ||
     "127.0.0.1";
 
-  const rateLimitResult = checkRateLimit(`contact:${clientIp}`, 5, 60 * 1000);
+  const rateLimitResult = await checkDistributedRateLimit(`contact:${clientIp}`, 5, 60 * 1000);
 
   const rateLimitHeaders = {
     "x-request-id": traceId,
@@ -61,9 +61,25 @@ export async function POST(request: Request): Promise<NextResponse<ContactApiRes
       );
     }
 
-    const { name, email, tier, timeline, brief } = parseResult.data;
+    const { name, email, tier, timeline, brief, botProbe } = parseResult.data;
 
-    // 4. Mask PII in server logs for privacy compliance
+    // 4. Honeypot check: If botProbe is filled, silently discard bot transmission
+    if (botProbe && botProbe.trim().length > 0) {
+      logger.warn("Bot submission trapped via honeypot field", {
+        traceId,
+        context: { clientIp: `${clientIp.slice(0, 4)}***` },
+      });
+      return NextResponse.json(
+        {
+          success: true,
+          message: "Signal received and verified. Mission team will establish uplink within 24 hours.",
+          telemetryId: `TX-BOT-${Date.now().toString(36).toUpperCase()}`,
+        },
+        { status: 200, headers: rateLimitHeaders },
+      );
+    }
+
+    // 5. Mask PII in server logs for privacy compliance
     const maskedEmail = email.replace(/(?<=^.{2}).*(?=@)/, "***");
     logger.info("Incoming contact transmission verified", {
       traceId,

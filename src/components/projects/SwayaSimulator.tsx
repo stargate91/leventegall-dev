@@ -9,12 +9,12 @@ import {
   Inline,
   Stack,
 } from "@/components/ui";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function SwayaSimulator() {
   const [swayaTaskStatus, setSwayaTaskStatus] = useState<"IDLE" | "SCANNING" | "ENRICHING" | "COMPLETED">("ENRICHING");
   const [swayaProgress, setSwayaProgress] = useState(68);
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
 
   const handleReset = () => {
     setSwayaProgress(25);

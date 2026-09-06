@@ -40,7 +40,7 @@ class Logger {
         entry.error = {
           name: meta.error.name,
           message: meta.error.message,
-          stack: meta.error.stack,
+          ...(meta.error.stack ? { stack: meta.error.stack } : {}),
         };
       } else {
         entry.error = {

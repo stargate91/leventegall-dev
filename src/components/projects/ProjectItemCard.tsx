@@ -27,7 +27,7 @@ import {
   Stack,
   Grid,
 } from "@/components/ui";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 interface ProjectItemCardProps {
   project: ProjectData;
@@ -35,7 +35,7 @@ interface ProjectItemCardProps {
 
 export default function ProjectItemCard({ project }: ProjectItemCardProps) {
   const [currTab, setCurrTab] = useState<"overview" | "architecture" | "interactive">("interactive");
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
 
   return (
     <HudCard

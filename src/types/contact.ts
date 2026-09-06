@@ -8,6 +8,7 @@ export interface ContactRequestBody {
   tier: string;
   timeline: string;
   brief: string;
+  botProbe?: string | undefined;
 }
 
 export interface ContactSuccessResponse {

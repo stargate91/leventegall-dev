@@ -3,12 +3,13 @@
 import { ArrowUp, Compass, ExternalLink } from "lucide-react";
 import styles from "./Footer.module.css";
 import Button from "@/components/ui/Button";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { Text } from "@/components/ui";
 import { siteConfig } from "@/config/site";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function Footer() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -33,15 +34,19 @@ export default function Footer() {
             </div>
           </div>
 
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            onClick={scrollToTop}
-            iconLeft={<ArrowUp size={14} />}
-          >
-            {dict.footer.returnToOrbit}
-          </Button>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <LanguageSwitcher />
+
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={scrollToTop}
+              iconLeft={<ArrowUp size={14} />}
+            >
+              {dict.footer.returnToOrbit}
+            </Button>
+          </div>
         </div>
 
         {/* Middle Row: Quote & Links */}

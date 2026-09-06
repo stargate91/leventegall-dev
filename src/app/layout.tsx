@@ -64,6 +64,10 @@ export const metadata: Metadata = {
   publisher: siteConfig.author,
   alternates: {
     canonical: siteConfig.url,
+    languages: {
+      "en-US": siteConfig.url,
+      "hu-HU": siteConfig.url,
+    },
   },
   openGraph: {
     type: "website",
@@ -99,6 +103,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-token",
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || "yandex-verification-token",
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "bing-verification-token",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -106,6 +117,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html
       lang="en"

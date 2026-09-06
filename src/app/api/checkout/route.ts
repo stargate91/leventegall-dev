@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import type { CheckoutApiResponse, CheckoutRequestBody } from "@/types/checkout";
 import { validateOrigin } from "@/lib/csrf";
 import { logger } from "@/lib/logger";
-import { checkRateLimit } from "@/lib/rateLimit";
+import { checkDistributedRateLimit } from "@/lib/rateLimit";
+import { checkoutFormSchema } from "@/lib/validations/checkout";
 
 /**
  * Payment Endpoint (/api/checkout)
@@ -9,7 +11,7 @@ import { checkRateLimit } from "@/lib/rateLimit";
  * Ready to connect with Stripe Checkout, Lemon Squeezy, or Barion/SimplePay.
  */
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: Request): Promise<NextResponse<CheckoutApiResponse>> {
   const traceId = request.headers.get("x-request-id") || logger.createTraceId();
 
   // 1. Origin & CSRF validation
@@ -27,7 +29,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     request.headers.get("x-real-ip") ||
     "127.0.0.1";
 
-  const rateLimitResult = checkRateLimit(`checkout:${clientIp}`, 10, 60 * 1000);
+  const rateLimitResult = await checkDistributedRateLimit(`checkout:${clientIp}`, 10, 60 * 1000);
 
   const rateLimitHeaders = {
     "x-request-id": traceId,
@@ -48,7 +50,24 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   try {
-    const { packageId, email } = (await request.json()) as { packageId?: string; email?: string };
+    const rawBody = (await request.json()) as unknown;
+
+    // 3. Server-side Zod Schema Validation
+    const parseResult = checkoutFormSchema.safeParse(rawBody);
+
+    if (!parseResult.success) {
+      const firstError = parseResult.error.issues[0]?.message || "Invalid payload format.";
+      logger.warn("Checkout validation failed", {
+        traceId,
+        context: { errorDetails: parseResult.error.flatten().fieldErrors },
+      });
+      return NextResponse.json(
+        { error: firstError },
+        { status: 400, headers: rateLimitHeaders },
+      );
+    }
+
+    const { packageId, email }: CheckoutRequestBody = parseResult.data;
 
     const prices: Record<string, { name: string; amount: number }> = {
       naming: { name: "Orbital Identity (Naming & Slogans)", amount: 49000 },
@@ -56,18 +75,14 @@ export async function POST(request: Request): Promise<NextResponse> {
       "web-dev": { name: "Deep-Space Engine (Next.js Application)", amount: 145000 },
     };
 
-    if (!packageId || !prices[packageId]) {
-      logger.warn("Checkout failed: invalid package ID", {
-        traceId,
-        context: { packageId },
-      });
+    const selectedPkg = prices[packageId];
+    if (!selectedPkg) {
       return NextResponse.json(
         { error: "Invalid mission payload package ID." },
         { status: 400, headers: rateLimitHeaders },
       );
     }
 
-    const selectedPkg = prices[packageId];
     const stripeKey = process.env.STRIPE_SECRET_KEY;
 
     if (!stripeKey) {
@@ -86,13 +101,14 @@ export async function POST(request: Request): Promise<NextResponse> {
           message: "Payment subsystem operational in sandbox mode. Add STRIPE_SECRET_KEY to .env to enable direct live card charges.",
           orderSummary: {
             package: selectedPkg.name,
-            amountFormatted: `$${(selectedPkg.amount / 100).toLocaleString()}`,
+            amountFormatted: `$${(selectedPkg.amount / 100).toLocaleString("en-US")}`,
             clientEmail: email || "Not provided",
             status: "READY_FOR_ORBIT",
           },
         },
-        { headers: rateLimitHeaders },
+        { status: 200, headers: rateLimitHeaders },
       );
+
     }
 
     return NextResponse.json(

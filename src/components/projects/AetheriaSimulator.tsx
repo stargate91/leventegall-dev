@@ -7,11 +7,11 @@ import {
   Stack,
 } from "@/components/ui";
 import { getBrandingTaglines } from "@/data/projects";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function AetheriaSimulator() {
   const [selectedTaglineIndex, setSelectedTaglineIndex] = useState(0);
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const brandingTaglines = getBrandingTaglines(dict);
 
   return (

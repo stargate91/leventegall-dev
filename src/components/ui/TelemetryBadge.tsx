@@ -3,13 +3,13 @@ import styles from "./TelemetryBadge.module.css";
 import BeaconDot from "./BeaconDot";
 
 export interface TelemetryBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "cyan" | "subtle" | "solidCyan";
-  beacon?: boolean;
-  beaconColor?: "cyan" | "amber" | "green" | "red";
-  icon?: React.ReactNode;
+  variant?: "cyan" | "subtle" | "solidCyan" | undefined;
+  beacon?: boolean | undefined;
+  beaconColor?: "cyan" | "amber" | "green" | "red" | undefined;
+  icon?: React.ReactNode | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export default function TelemetryBadge({

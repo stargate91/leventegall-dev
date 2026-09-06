@@ -6,14 +6,14 @@ export type GridGap = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 export type GridAlign = "start" | "center" | "end" | "stretch";
 
 export interface GridProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
-  cols?: GridCols;
-  gap?: GridGap;
-  align?: GridAlign;
-  templateColumns?: string;
+  as?: React.ElementType | undefined;
+  cols?: GridCols | undefined;
+  gap?: GridGap | undefined;
+  align?: GridAlign | undefined;
+  templateColumns?: string | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export default function Grid({

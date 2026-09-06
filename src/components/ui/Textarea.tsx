@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./Textarea.module.css";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: string;
-  telemetryTag?: string;
-  hint?: string;
-  error?: string;
-  containerClassName?: string;
+  label?: string | undefined;
+  telemetryTag?: string | undefined;
+  hint?: string | undefined;
+  error?: string | undefined;
+  containerClassName?: string | undefined;
 }
 
 export default function Textarea({
@@ -21,6 +21,7 @@ export default function Textarea({
   ...props
 }: TextareaProps) {
   const textareaId = id || (label ? `textarea-${label.toLowerCase().replace(/\s+/g, "-")}` : undefined);
+  const errorId = error && textareaId ? `${textareaId}-error` : undefined;
 
   return (
     <div className={`${styles.wrapper} ${containerClassName}`} style={style}>
@@ -35,6 +36,8 @@ export default function Textarea({
 
       <textarea
         id={textareaId}
+        aria-invalid={Boolean(error)}
+        aria-describedby={errorId || props["aria-describedby"]}
         className={`
           ${styles.textarea}
           ${error ? styles.textareaError : ""}
@@ -43,7 +46,11 @@ export default function Textarea({
         {...props}
       />
 
-      {error && <div className={styles.errorText}>{error}</div>}
+      {error && (
+        <div id={errorId} role="alert" className={styles.errorText}>
+          {error}
+        </div>
+      )}
       {hint && !error && <div className={styles.hintText}>{hint}</div>}
     </div>
   );

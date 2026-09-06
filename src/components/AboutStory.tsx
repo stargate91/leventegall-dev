@@ -1,3 +1,5 @@
+"use client";
+
 import { Atom, Award, CheckCircle, Cpu, Feather, Terminal } from "lucide-react";
 import styles from "./AboutStory.module.css";
 import {
@@ -11,7 +13,7 @@ import {
   Tooltip,
 } from "@/components/ui";
 import { getTimelineEntries } from "@/data/timeline";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 const iconMap = {
   Atom,
@@ -20,7 +22,7 @@ const iconMap = {
 };
 
 export default function AboutStory() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const timelineEntries = getTimelineEntries(dict);
 
   return (

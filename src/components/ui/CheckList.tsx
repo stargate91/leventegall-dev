@@ -54,11 +54,19 @@ function CheckList({
       style={style}
       {...props}
     >
-      {items.map((item, index) => (
-        <CheckItem key={index} size={size}>
-          {item}
-        </CheckItem>
-      ))}
+      {items.map((item, index) => {
+        const key =
+          typeof item === "string" || typeof item === "number"
+            ? String(item)
+            : React.isValidElement(item) && item.key !== null && item.key !== undefined
+              ? String(item.key)
+              : `chk-${index}`;
+        return (
+          <CheckItem key={key} size={size}>
+            {item}
+          </CheckItem>
+        );
+      })}
     </div>
   );
 }

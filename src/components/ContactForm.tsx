@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { Send, CheckCircle2, Radio, User, Mail, AlertTriangle } from "lucide-react";
 import styles from "./ContactForm.module.css";
 import type { ContactRequestBody, ContactApiResponse } from "@/types/contact";
@@ -20,42 +20,167 @@ import {
 } from "@/components/ui";
 import { getContactTierOptions, getTimelineOptions } from "@/data/services";
 import { siteConfig } from "@/config/site";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
+
+type FormStatus = "idle" | "transmitting" | "success" | "error";
 
 interface FormErrors {
-  name?: string;
-  email?: string;
-  brief?: string;
+  name?: string | undefined;
+  email?: string | undefined;
+  brief?: string | undefined;
 }
 
-export default function ContactForm() {
-  const dict = getDictionary("en");
-  const contactTierOptions = getContactTierOptions(dict);
-  const timelineOptions = getTimelineOptions(dict);
+export interface ContactFormState {
+  formData: ContactRequestBody;
+  errors: FormErrors;
+  status: FormStatus;
+  telemetryId: string;
+}
 
-  const [formData, setFormData] = useState<ContactRequestBody>({
+type ContactFormAction =
+  | { type: "SET_FIELD"; field: keyof ContactRequestBody; value: string }
+  | { type: "SET_TIER"; tier: string }
+  | { type: "SET_ERRORS"; errors: FormErrors }
+  | { type: "CLEAR_ERROR"; field: keyof FormErrors }
+  | { type: "SUBMIT_START" }
+  | { type: "SUBMIT_SUCCESS"; telemetryId: string }
+  | { type: "SUBMIT_ERROR" }
+  | { type: "RESET_FORM" };
+
+export const initialFormState: ContactFormState = {
+  formData: {
     name: "",
     email: "",
     tier: "full-orbit",
     timeline: "2-3-weeks",
     brief: "",
-  });
+    botProbe: "",
+  },
+  errors: {},
+  status: "idle",
+  telemetryId: "",
+};
 
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "transmitting" | "success" | "error">("idle");
-  const [telemetryId, setTelemetryId] = useState<string>("");
+export function contactFormReducer(
+  state: ContactFormState,
+  action: ContactFormAction,
+): ContactFormState {
+  switch (action.type) {
+    case "SET_FIELD":
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [action.field]: action.value,
+        },
+        errors: {
+          ...state.errors,
+          [action.field]: undefined,
+        },
+      };
+
+    case "SET_TIER":
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          tier: action.tier,
+        },
+      };
+
+    case "SET_ERRORS":
+      return {
+        ...state,
+        errors: action.errors,
+      };
+
+    case "CLEAR_ERROR":
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [action.field]: undefined,
+        },
+      };
+
+    case "SUBMIT_START":
+      if (state.status === "transmitting") {
+        return state;
+      }
+      return {
+        ...state,
+        status: "transmitting",
+      };
+
+    case "SUBMIT_SUCCESS":
+      return {
+        ...state,
+        status: "success",
+        telemetryId: action.telemetryId,
+        errors: {},
+      };
+
+    case "SUBMIT_ERROR":
+      return {
+        ...state,
+        status: "error",
+      };
+
+    case "RESET_FORM":
+      return {
+        ...state,
+        formData: {
+          ...initialFormState.formData,
+          tier: state.formData.tier,
+        },
+        errors: {},
+        status: "idle",
+        telemetryId: "",
+      };
+
+    default:
+      return state;
+  }
+}
+
+export default function ContactForm() {
+  const { dict } = useLocale();
+  const contactTierOptions = getContactTierOptions(dict);
+  const timelineOptions = getTimelineOptions(dict);
+
+  const [{ formData, errors, status, telemetryId }, dispatch] = useReducer(
+    contactFormReducer,
+    initialFormState,
+  );
 
   useEffect(() => {
-    const handlePackageSelect = (e: Event) => {
-      const customEvent = e as CustomEvent<{ tierId?: string }>;
-      if (customEvent.detail?.tierId) {
-        setFormData((prev) => ({ ...prev, tier: customEvent.detail?.tierId ?? prev.tier }));
+    // 1. Sync tier from URL query parameters on mount or browser popstate
+    const syncTierFromUrl = () => {
+      if (typeof window === "undefined") {
+        return;
+      }
+      const params = new URLSearchParams(window.location.search);
+      const tierParam = params.get("tier");
+      if (tierParam && ["naming", "full-orbit", "web-dev"].includes(tierParam)) {
+        dispatch({ type: "SET_TIER", tier: tierParam });
+      }
+    };
+
+    syncTierFromUrl();
+
+    // 2. React to custom in-page selection events
+    const handlePackageSelect = (e: CustomEvent<{ tierId: string }>) => {
+      if (e.detail?.tierId) {
+        dispatch({ type: "SET_TIER", tier: e.detail.tierId });
       }
     };
 
     window.addEventListener("select-package-tier", handlePackageSelect);
+    window.addEventListener("popstate", syncTierFromUrl);
+
     return () => {
       window.removeEventListener("select-package-tier", handlePackageSelect);
+      window.removeEventListener("popstate", syncTierFromUrl);
     };
   }, []);
 
@@ -78,7 +203,7 @@ export default function ContactForm() {
       newErrors.brief = dict.contact.errors.briefRequired;
     }
 
-    setErrors(newErrors);
+    dispatch({ type: "SET_ERRORS", errors: newErrors });
     return Object.keys(newErrors).length === 0;
   };
 
@@ -89,7 +214,7 @@ export default function ContactForm() {
       return;
     }
 
-    setStatus("transmitting");
+    dispatch({ type: "SUBMIT_START" });
 
     try {
       const response = await fetch("/api/contact", {
@@ -101,13 +226,12 @@ export default function ContactForm() {
       const data = (await response.json()) as ContactApiResponse;
 
       if (response.ok && "telemetryId" in data) {
-        setStatus("success");
-        setTelemetryId(data.telemetryId);
+        dispatch({ type: "SUBMIT_SUCCESS", telemetryId: data.telemetryId });
       } else {
-        setStatus("error");
+        dispatch({ type: "SUBMIT_ERROR" });
       }
     } catch {
-      setStatus("error");
+      dispatch({ type: "SUBMIT_ERROR" });
     }
   };
 
@@ -126,7 +250,7 @@ export default function ContactForm() {
         {/* Left Console: Contact Form */}
         <HudCard variant="surface" className={styles.formCard}>
           {status === "success" ? (
-            <div className={styles.successWrapper}>
+            <div role="status" aria-live="polite" className={styles.successWrapper}>
               <div className={styles.successIcon}>
                 <CheckCircle2 size={30} />
               </div>
@@ -139,23 +263,38 @@ export default function ContactForm() {
               <p className={styles.successDesc}>
                 {dict.contact.success.desc}
               </p>
-              <Button variant="secondary" size="md" onClick={() => setStatus("idle")}>
+              <Button variant="secondary" size="md" onClick={() => dispatch({ type: "RESET_FORM" })}>
                 {dict.contact.success.button}
               </Button>
             </div>
           ) : (
-            <form noValidate onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit} aria-busy={status === "transmitting"}>
+              {/* Honeypot field for bot mitigation */}
+              <input
+                type="text"
+                name="botProbe"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ display: "none" }}
+                aria-hidden="true"
+                value={formData.botProbe || ""}
+                onChange={(e) =>
+                  dispatch({ type: "SET_FIELD", field: "botProbe", value: e.target.value })
+                }
+              />
               <Stack gap="lg">
                 {status === "error" && (
-                  <Callout
-                    variant="notice"
-                    icon={<AlertTriangle size={16} />}
-                    title="TRANSMISSION FAILED"
-                  >
-                    <Text size="xs" tone="secondary">
-                      {dict.contact.errors.transmissionFailed} ({directEmail})
-                    </Text>
-                  </Callout>
+                  <div role="alert" aria-live="assertive">
+                    <Callout
+                      variant="notice"
+                      icon={<AlertTriangle size={16} />}
+                      title="TRANSMISSION FAILED"
+                    >
+                      <Text size="xs" tone="secondary">
+                        {dict.contact.errors.transmissionFailed} ({directEmail})
+                      </Text>
+                    </Callout>
+                  </div>
                 )}
 
                 {/* Row 1: Name & Email */}
@@ -168,12 +307,9 @@ export default function ContactForm() {
                     iconLeft={<User size={16} />}
                     value={formData.name}
                     error={errors.name}
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                      if (errors.name) {
-                        setErrors((prev) => ({ ...prev, name: undefined }));
-                      }
-                    }}
+                    onChange={(e) =>
+                      dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })
+                    }
                   />
 
                   <Input
@@ -184,12 +320,9 @@ export default function ContactForm() {
                     iconLeft={<Mail size={16} />}
                     value={formData.email}
                     error={errors.email}
-                    onChange={(e) => {
-                      setFormData({ ...formData, email: e.target.value });
-                      if (errors.email) {
-                        setErrors((prev) => ({ ...prev, email: undefined }));
-                      }
-                    }}
+                    onChange={(e) =>
+                      dispatch({ type: "SET_FIELD", field: "email", value: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -200,7 +333,9 @@ export default function ContactForm() {
                     label={dict.contact.fields.tier}
                     options={contactTierOptions}
                     value={formData.tier}
-                    onChange={(val) => setFormData({ ...formData, tier: val })}
+                    onChange={(val) =>
+                      dispatch({ type: "SET_FIELD", field: "tier", value: val })
+                    }
                   />
 
                   <Select
@@ -208,7 +343,9 @@ export default function ContactForm() {
                     label={dict.contact.fields.timeline}
                     options={timelineOptions}
                     value={formData.timeline}
-                    onChange={(val) => setFormData({ ...formData, timeline: val })}
+                    onChange={(val) =>
+                      dispatch({ type: "SET_FIELD", field: "timeline", value: val })
+                    }
                   />
                 </Grid>
 
@@ -220,12 +357,9 @@ export default function ContactForm() {
                   placeholder={dict.contact.fields.briefPlaceholder}
                   value={formData.brief}
                   error={errors.brief}
-                  onChange={(e) => {
-                    setFormData({ ...formData, brief: e.target.value });
-                    if (errors.brief) {
-                      setErrors((prev) => ({ ...prev, brief: undefined }));
-                    }
-                  }}
+                  onChange={(e) =>
+                    dispatch({ type: "SET_FIELD", field: "brief", value: e.target.value })
+                  }
                 />
 
                 {/* Submit Button */}

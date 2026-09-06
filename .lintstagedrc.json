@@ -1,0 +1,14 @@
+{
+  "src/**/*.{ts,tsx}": [
+    "eslint --fix"
+  ],
+  "src/**/*.css": [
+    "stylelint --fix"
+  ],
+  "src/**/*.{ts,tsx,css,md,json}": [
+    "cspell --no-progress"
+  ],
+  "*": [
+    "secretlint"
+  ]
+}

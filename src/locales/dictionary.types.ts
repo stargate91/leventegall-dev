@@ -1,3 +1,5 @@
+export type Locale = "en" | "hu";
+
 export interface NavLocale {
   journey: string;
   projects: string;

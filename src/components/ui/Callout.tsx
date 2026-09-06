@@ -3,13 +3,13 @@ import styles from "./Callout.module.css";
 import Text from "./Text";
 
 export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string;
-  variant?: "dark" | "cyan" | "notice";
-  icon?: React.ReactNode;
-  action?: React.ReactNode;
+  title?: string | undefined;
+  variant?: "dark" | "cyan" | "notice" | undefined;
+  icon?: React.ReactNode | undefined;
+  action?: React.ReactNode | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export default function Callout({

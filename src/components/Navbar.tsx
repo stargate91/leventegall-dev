@@ -4,15 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import { Compass, Menu, X, ArrowUpRight } from "lucide-react";
 import styles from "./Navbar.module.css";
 import Button from "@/components/ui/Button";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { siteConfig } from "@/config/site";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,9 +88,9 @@ export default function Navbar() {
         <nav className={styles.desktopNav} aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.index}
               href={link.href}
-              id={`nav-link-${link.label.toLowerCase()}`}
+              id={`nav-link-${link.index}`}
               className={styles.navLink}
             >
               <span className={styles.navLinkIndex}>{link.index}</span>
@@ -98,8 +99,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Action Button */}
+        {/* Action Controls & Language Switcher */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <LanguageSwitcher />
+
           <Button
             variant="primary"
             size="sm"
@@ -135,9 +138,13 @@ export default function Navbar() {
           aria-label="Mobile Navigation Menu"
           className={styles.mobileMenu}
         >
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
+            <LanguageSwitcher />
+          </div>
+
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.index}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
               className={styles.navLink}

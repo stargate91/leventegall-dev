@@ -13,14 +13,22 @@ import {
   Stack,
 } from "@/components/ui";
 import { getPackageTiers } from "@/data/services";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function ServicesPricing() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const packageTiers = getPackageTiers(dict);
 
   const handleSelectPackage = (tierId: string) => {
-    window.dispatchEvent(new CustomEvent("select-package-tier", { detail: { tierId } }));
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tier", tierId);
+      url.hash = "contact";
+      window.history.pushState({}, "", url.toString());
+
+      window.dispatchEvent(new CustomEvent("select-package-tier", { detail: { tierId } }));
+    }
+
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });

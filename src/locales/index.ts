@@ -1,10 +1,10 @@
 import { en } from "./en";
-import type { Dictionary } from "./dictionary.types";
-
-export type Locale = "en";
+import { hu } from "./hu";
+import type { Dictionary, Locale } from "./dictionary.types";
 
 export const dictionaries: Record<Locale, Dictionary> = {
   en,
+  hu,
 };
 
 export function getDictionary(locale: Locale = "en"): Dictionary {
@@ -12,3 +12,4 @@ export function getDictionary(locale: Locale = "en"): Dictionary {
 }
 
 export * from "./dictionary.types";
+export * from "./LocaleContext";

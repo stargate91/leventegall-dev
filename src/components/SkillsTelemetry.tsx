@@ -1,3 +1,5 @@
+"use client";
+
 import { Terminal, Cpu, PenTool } from "lucide-react";
 import styles from "./SkillsTelemetry.module.css";
 import {
@@ -10,10 +12,10 @@ import {
   Text,
 } from "@/components/ui";
 import { getEngineeringSkills, getBrandingSkills, getFiverrFeedback } from "@/data/skills";
-import { getDictionary } from "@/locales";
+import { useLocale } from "@/locales";
 
 export default function SkillsTelemetry() {
-  const dict = getDictionary("en");
+  const { dict } = useLocale();
   const engineeringSkills = getEngineeringSkills(dict);
   const brandingSkills = getBrandingSkills(dict);
   const fiverrFeedback = getFiverrFeedback(dict);

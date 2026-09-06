@@ -31,4 +31,5 @@ export const contactFormSchema = z.object({
     .min(1, { message: "Project details are required" })
     .min(10, { message: "Project brief must be at least 10 characters" })
     .max(5000, { message: "Project brief must not exceed 5000 characters" }),
+  botProbe: z.string().optional(),
 });

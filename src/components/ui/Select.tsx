@@ -7,26 +7,26 @@ import styles from "./Select.module.css";
 export interface SelectOption {
   value: string;
   label: string;
-  subtext?: string;
-  disabled?: boolean;
+  subtext?: string | undefined;
+  disabled?: boolean | undefined;
 }
 
 export interface SelectProps {
-  id?: string;
-  name?: string;
-  label?: string;
-  telemetryTag?: string;
-  placeholder?: string;
+  id?: string | undefined;
+  name?: string | undefined;
+  label?: string | undefined;
+  telemetryTag?: string | undefined;
+  placeholder?: string | undefined;
   options: SelectOption[];
-  value?: string;
-  defaultValue?: string;
-  error?: string;
-  hint?: string;
-  iconLeft?: React.ReactNode;
-  disabled?: boolean;
-  required?: boolean;
-  onChange?: (value: string) => void;
-  className?: string;
+  value?: string | undefined;
+  defaultValue?: string | undefined;
+  error?: string | undefined;
+  hint?: string | undefined;
+  iconLeft?: React.ReactNode | undefined;
+  disabled?: boolean | undefined;
+  required?: boolean | undefined;
+  onChange?: ((value: string) => void) | undefined;
+  className?: string | undefined;
 }
 
 export default function Select({

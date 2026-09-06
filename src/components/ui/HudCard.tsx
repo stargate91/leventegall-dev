@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./HudCard.module.css";
 
 export interface HudCardProps {
-  id?: string;
-  variant?: "surface" | "surfaceDeck" | "elevated" | "transparent";
-  corners?: boolean;
-  glowHover?: boolean;
+  id?: string | undefined;
+  variant?: "surface" | "surfaceDeck" | "elevated" | "transparent" | undefined;
+  corners?: boolean | undefined;
+  glowHover?: boolean | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export default function HudCard({

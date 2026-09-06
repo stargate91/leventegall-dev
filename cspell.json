@@ -8,7 +8,8 @@
     "out",
     "build",
     "package-lock.json",
-    "*.log"
+    "*.log",
+    "src/locales/hu.ts"
   ],
   "words": [
     "Aetheria",
@@ -40,6 +41,7 @@
     "Healthcheck",
     "JetBrains",
     "knip",
+    "KOMPETENCIÁK",
     "Levente",
     "leventegall",
     "Loránd",
@@ -47,10 +49,13 @@
     "luminescent",
     "markdownlint",
     "monospaced",
+    "msvalidate",
     "NextJS",
+
     "not-found",
     "opengraph",
     "Oxlint",
+    "PÁLYAÍV",
     "Pillow",
     "playwright",
     "PyQt",

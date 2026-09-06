@@ -60,3 +60,60 @@ export function checkRateLimit(
     resetTime: existing.resetTime,
   };
 }
+
+/**
+ * Distributed Rate Limiting Layer
+ * Supports Upstash Redis / Vercel KV REST API when configured via environment variables.
+ * Automatically falls back to local in-memory store in development and test environments.
+ */
+export async function checkDistributedRateLimit(
+  identifier: string,
+  limit = 5,
+  windowMs: number = 60 * 1000,
+): Promise<RateLimitResult> {
+  const upstashUrl = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
+  if (!upstashUrl || !upstashToken) {
+    return checkRateLimit(identifier, limit, windowMs);
+  }
+
+  try {
+    const windowSeconds = Math.ceil(windowMs / 1000);
+    const key = `ratelimit:${identifier}`;
+
+    // Execute atomic INCR and EXPIRE pipeline via Upstash REST API
+    const response = await fetch(`${upstashUrl}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${upstashToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([
+        ["INCR", key],
+        ["EXPIRE", key, windowSeconds],
+        ["TTL", key],
+      ]),
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      return checkRateLimit(identifier, limit, windowMs);
+    }
+
+    const data = (await response.json()) as Array<{ result: number }>;
+    const currentCount = data[0]?.result ?? 1;
+    const ttlSeconds = (data[2]?.result ?? windowSeconds) > 0 ? (data[2]?.result ?? windowSeconds) : windowSeconds;
+    const resetTime = Date.now() + ttlSeconds * 1000;
+
+    return {
+      success: currentCount <= limit,
+      limit,
+      remaining: Math.max(0, limit - currentCount),
+      resetTime,
+    };
+  } catch {
+    // Fail open or fallback to memory on network/adapter failure
+    return checkRateLimit(identifier, limit, windowMs);
+  }
+}

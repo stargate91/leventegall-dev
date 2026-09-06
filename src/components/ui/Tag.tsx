@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./Tag.module.css";
 
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: "subtle" | "cyan" | "outline";
-  size?: "sm" | "md";
-  icon?: React.ReactNode;
+  variant?: "subtle" | "cyan" | "outline" | undefined;
+  size?: "sm" | "md" | undefined;
+  icon?: React.ReactNode | undefined;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 function Tag({
@@ -33,10 +33,10 @@ function Tag({
 
 export interface TagListProps extends React.HTMLAttributes<HTMLDivElement> {
   items: string[];
-  variant?: "subtle" | "cyan" | "outline";
-  size?: "sm" | "md";
-  className?: string;
-  style?: React.CSSProperties;
+  variant?: "subtle" | "cyan" | "outline" | undefined;
+  size?: "sm" | "md" | undefined;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 export function TagList({
