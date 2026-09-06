@@ -10,10 +10,13 @@ import {
   Stat,
   Inline,
   Text,
+  Tooltip,
 } from "@/components/ui";
+import { getDictionary } from "@/locales";
 
 export default function Hero() {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const dict = getDictionary("en");
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -51,23 +54,25 @@ export default function Hero() {
 
       <div className={`section-container ${styles.content}`}>
         {/* Top Tag */}
-        <TelemetryBadge
-          variant="cyan"
-          beacon={false}
-          className={styles.hudPill}
-        >
-          <Text as="span" font="mono" tone="cyan" weight="bold" className={styles.tronGlyph}>
-            [ // ]
-          </Text>
-          <Text as="span" font="mono" size="xs" tone="primary">
-            LEVENTE GÁLL • FULL-STACK DEVELOPER &amp; BRAND STRATEGIST
-          </Text>
-        </TelemetryBadge>
+        <Tooltip content={dict.hero.badgeTooltip} side="bottom" variant="cyan">
+          <TelemetryBadge
+            variant="cyan"
+            beacon={false}
+            className={styles.hudPill}
+          >
+            <Text as="span" font="mono" tone="cyan" weight="bold" className={styles.tronGlyph}>
+              {dict.hero.badgeGlyph}
+            </Text>
+            <Text as="span" font="mono" size="xs" tone="primary">
+              {dict.hero.badgeText}
+            </Text>
+          </TelemetryBadge>
+        </Tooltip>
 
         {/* Hero Title */}
         <h1 className={styles.title}>
-          <span className={styles.titleMain}>CLEAN CODE ARCHITECTURE.</span>
-          <span className={styles.titleGradient}>SHARP BRAND IDENTITY.</span>
+          <span className={styles.titleMain}>{dict.hero.titleMain}</span>
+          <span className={styles.titleGradient}>{dict.hero.titleGradient}</span>
         </h1>
 
         {/* Grounded, Human Narrative */}
@@ -78,16 +83,15 @@ export default function Hero() {
           leading="relaxed"
           className={styles.description}
         >
-          I build robust full-stack web applications and help startups find their voice.
-          With a background in{" "}
+          {dict.hero.descriptionLead}{" "}
           <Text as="strong" tone="primary" weight="bold">
-            Physics at ELTE
+            {dict.hero.descriptionPhysics}
           </Text>{" "}
           and over{" "}
           <Text as="strong" tone="cyan" weight="bold">
-            1,100 clients served on Fiverr
+            {dict.hero.descriptionFiverr}
           </Text>
-          , I connect dependable backend systems (Python, FastAPI, React) with clear, high-converting messaging that people actually remember.
+          {dict.hero.descriptionTail}
         </Text>
 
         {/* Call to Actions */}
@@ -99,7 +103,7 @@ export default function Hero() {
             id="hero-cta-projects"
             iconRight={<ArrowRight size={16} />}
           >
-            View Projects &amp; Code
+            {dict.hero.ctaProjects}
           </Button>
 
           <Button
@@ -109,7 +113,7 @@ export default function Hero() {
             id="hero-cta-packages"
             iconLeft={<Orbit size={16} />}
           >
-            Services &amp; Working Together
+            {dict.hero.ctaServices}
           </Button>
         </Inline>
 
@@ -117,20 +121,20 @@ export default function Hero() {
         <HudCard variant="surface" className={styles.telemetryStrip}>
           <Stat
             icon={<Zap size={20} />}
-            value="1,100+ Clients • 5.0★"
-            label="400+ Verified 5-Star Reviews on Fiverr"
+            value={dict.hero.stats.fiverrValue}
+            label={dict.hero.stats.fiverrLabel}
           />
 
           <Stat
             icon={<Code2 size={20} />}
-            value="Full-Stack Development"
-            label="FastAPI, Python, React &amp; TypeScript"
+            value={dict.hero.stats.stackValue}
+            label={dict.hero.stats.stackLabel}
           />
 
           <Stat
             icon={<Atom size={20} />}
-            value="Analytical Physics Mindset"
-            label="ELTE Physics / Problem Solving"
+            value={dict.hero.stats.physicsValue}
+            label={dict.hero.stats.physicsLabel}
           />
         </HudCard>
       </div>

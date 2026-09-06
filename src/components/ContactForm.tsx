@@ -17,6 +17,9 @@ import {
   Callout,
   Text,
 } from "@/components/ui";
+import { contactTierOptions, timelineOptions } from "@/data/services";
+import { siteConfig } from "@/config/site";
+import { getDictionary } from "@/locales";
 
 interface ContactPayload {
   name: string;
@@ -33,6 +36,7 @@ interface FormErrors {
 }
 
 export default function ContactForm() {
+  const dict = getDictionary("en");
   const [formData, setFormData] = useState<ContactPayload>({
     name: "",
     email: "",
@@ -45,23 +49,23 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "transmitting" | "success" | "error">("idle");
   const [telemetryId, setTelemetryId] = useState<string>("");
 
-  const directEmail = "leventegall@proton.me";
+  const directEmail = siteConfig.email;
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "// CALLSIGN REQUIRED — Please enter your name.";
+      newErrors.name = dict.contact.errors.nameRequired;
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "// FREQUENCY REQUIRED — Please enter your email address.";
+      newErrors.email = dict.contact.errors.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = "// INVALID PROTOCOL — Please enter a valid email (e.g. alex@startup.com).";
+      newErrors.email = dict.contact.errors.emailInvalid;
     }
 
     if (!formData.brief.trim()) {
-      newErrors.brief = "// PAYLOAD REQUIRED — Please describe your project goals or scope.";
+      newErrors.brief = dict.contact.errors.briefRequired;
     }
 
     setErrors(newErrors);
@@ -97,27 +101,14 @@ export default function ContactForm() {
     }
   };
 
-  const tierOptions = [
-    { value: "naming", label: "Brand Naming & Identity — From $490" },
-    { value: "full-orbit", label: "Complete Product Launch (Brand + Next.js App) — From $1,850" },
-    { value: "web-dev", label: "Full-Stack Development (FastAPI / React) — From $1,450" },
-    { value: "custom", label: "Custom Architecture / Consultation" },
-  ];
-
-  const timelineOptions = [
-    { value: "immediate", label: "Fast Turnaround (Under 2 weeks)" },
-    { value: "2-3-weeks", label: "Standard Timeline (2-4 weeks)" },
-    { value: "flexible", label: "Flexible Timeline (1-2 months)" },
-  ];
-
   return (
     <div className={`section-container ${styles.sectionWrapper}`}>
       {/* Header */}
       <SectionHeader
-        subtitle="Get in Touch"
+        subtitle={dict.contact.subtitle}
         subtitleIcon={<Radio size={14} />}
-        title="Let's Talk About Your Project"
-        description="Have an idea in mind, need a strong brand name, or want to build a dependable full-stack web application? Send me a message and I'll get back to you within 24 hours."
+        title={dict.contact.title}
+        description={dict.contact.description}
       />
 
       {/* Main Grid */}
@@ -130,16 +121,16 @@ export default function ContactForm() {
                 <CheckCircle2 size={30} />
               </div>
               <h3 className={styles.successTitle}>
-                Message Sent Successfully
+                {dict.contact.success.title}
               </h3>
               <p className={styles.successTelemetry}>
                 [ Reference ID: {telemetryId} ]
               </p>
               <p className={styles.successDesc}>
-                Thanks for reaching out! I&apos;ve received your message and will review your project details and get back to you shortly.
+                {dict.contact.success.desc}
               </p>
               <Button variant="secondary" size="md" onClick={() => setStatus("idle")}>
-                Send Another Message
+                {dict.contact.success.button}
               </Button>
             </div>
           ) : (
@@ -152,7 +143,7 @@ export default function ContactForm() {
                     title="TRANSMISSION FAILED"
                   >
                     <Text size="xs" tone="secondary">
-                      Unable to send message through the orbital gateway. Please try again or email me directly at {directEmail}.
+                      {dict.contact.errors.transmissionFailed} ({directEmail})
                     </Text>
                   </Callout>
                 )}
@@ -161,9 +152,9 @@ export default function ContactForm() {
                 <Grid cols={2} gap="md">
                   <Input
                     id="contact-name"
-                    label="Your Name *"
+                    label={dict.contact.fields.name}
                     type="text"
-                    placeholder="e.g. Alex Miller"
+                    placeholder={dict.contact.fields.namePlaceholder}
                     iconLeft={<User size={16} />}
                     value={formData.name}
                     error={errors.name}
@@ -177,9 +168,9 @@ export default function ContactForm() {
 
                   <Input
                     id="contact-email"
-                    label="Your Email Address *"
+                    label={dict.contact.fields.email}
                     type="email"
-                    placeholder="alex@startup.com"
+                    placeholder={dict.contact.fields.emailPlaceholder}
                     iconLeft={<Mail size={16} />}
                     value={formData.email}
                     error={errors.email}
@@ -196,15 +187,15 @@ export default function ContactForm() {
                 <Grid cols={2} gap="md">
                   <Select
                     id="contact-tier-select"
-                    label="Project Scope / Service"
-                    options={tierOptions}
+                    label={dict.contact.fields.tier}
+                    options={contactTierOptions}
                     value={formData.tier}
                     onChange={(val) => setFormData({ ...formData, tier: val })}
                   />
 
                   <Select
                     id="contact-timeline"
-                    label="Expected Timeline"
+                    label={dict.contact.fields.timeline}
                     options={timelineOptions}
                     value={formData.timeline}
                     onChange={(val) => setFormData({ ...formData, timeline: val })}
@@ -214,9 +205,9 @@ export default function ContactForm() {
                 {/* Row 3: Message Brief */}
                 <Textarea
                   id="contact-brief"
-                  label="Project Details & Goals *"
+                  label={dict.contact.fields.brief}
                   rows={4}
-                  placeholder="Tell me a bit about your product, your goals, or what kind of brand identity or software system you're looking to build..."
+                  placeholder={dict.contact.fields.briefPlaceholder}
                   value={formData.brief}
                   error={errors.brief}
                   onChange={(e) => {
@@ -236,7 +227,7 @@ export default function ContactForm() {
                   disabled={status === "transmitting"}
                   iconLeft={<Send size={16} />}
                 >
-                  {status === "transmitting" ? "Sending Message..." : "Send Message"}
+                  {status === "transmitting" ? dict.contact.transmittingButton : dict.contact.submitButton}
                 </Button>
               </Stack>
             </form>
@@ -247,13 +238,13 @@ export default function ContactForm() {
         <Stack gap="md" className={styles.infoColumn}>
           <HudCard variant="transparent" corners={false} className={styles.infoCard}>
             <div className={styles.infoCardTag}>
-              // DIRECT EMAIL
+              {dict.contact.infoColumn.directEmailTag}
             </div>
             <h4 className={styles.infoCardTitle}>
-              Prefer to email directly?
+              {dict.contact.infoColumn.directEmailTitle}
             </h4>
             <p className={styles.infoCardDesc}>
-              Feel free to send me a direct email anytime. I usually reply within a few hours during business days.
+              {dict.contact.infoColumn.directEmailDesc}
             </p>
 
             <CopySnippet text={directEmail} label="COPY" copiedLabel="COPIED" />
@@ -262,13 +253,13 @@ export default function ContactForm() {
           {/* Key Facts */}
           <HudCard variant="transparent" corners={false} className={styles.infoCard}>
             <div className={styles.infoCardTag}>
-              // AT A GLANCE
+              {dict.contact.infoColumn.atAGlanceTag}
             </div>
             <Stack gap="none">
-              <Stat variant="row" label="Core Backend:" value="Python / FastAPI / SQL" />
-              <Stat variant="row" label="Frontend Stack:" value="React / Next.js / TypeScript" />
-              <Stat variant="row" label="Fiverr Track Record:" value="1,100+ Clients (5.0★)" />
-              <Stat variant="row" label="Academic Background:" value="Physics & Astronomy (ELTE)" />
+              <Stat variant="row" label={dict.contact.infoColumn.backendLabel} value={dict.contact.infoColumn.backendValue} />
+              <Stat variant="row" label={dict.contact.infoColumn.frontendLabel} value={dict.contact.infoColumn.frontendValue} />
+              <Stat variant="row" label={dict.contact.infoColumn.fiverrLabel} value={`${siteConfig.telemetry.missionsDelivered} Clients (${siteConfig.telemetry.rating})`} />
+              <Stat variant="row" label={dict.contact.infoColumn.physicsLabel} value={dict.contact.infoColumn.physicsValue} />
             </Stack>
           </HudCard>
         </Stack>

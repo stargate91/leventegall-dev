@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import { Compass, Menu, X, ArrowUpRight } from "lucide-react";
 import styles from "./Navbar.module.css";
 import Button from "@/components/ui/Button";
+import { siteConfig } from "@/config/site";
+import { getDictionary } from "@/locales";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dict = getDictionary("en");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +22,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Trajectory", href: "#trajectory", index: "01" },
-    { label: "Artifacts", href: "#projects", index: "02" },
-    { label: "Telemetry", href: "#skills", index: "03" },
-    { label: "Payloads", href: "#services", index: "04" },
-    { label: "Uplink", href: "#contact", index: "05" },
+    { label: dict.nav.journey, href: "#trajectory", index: "01" },
+    { label: dict.nav.projects, href: "#projects", index: "02" },
+    { label: dict.nav.skills, href: "#skills", index: "03" },
+    { label: dict.nav.packages, href: "#services", index: "04" },
+    { label: dict.nav.contact, href: "#contact", index: "05" },
   ];
 
   return (
@@ -35,8 +38,8 @@ export default function Navbar() {
             <Compass size={18} />
           </div>
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>LEVENTE GÁLL // DEV</span>
-            <span className={styles.brandSubtitle}>LOC: 47.49°N, 19.04°E</span>
+            <span className={styles.brandTitle}>{siteConfig.name.toUpperCase()}</span>
+            <span className={styles.brandSubtitle}>LOC: {siteConfig.coordinates.coords}</span>
           </div>
         </a>
 
@@ -64,7 +67,7 @@ export default function Navbar() {
             id="nav-cta-contact"
             iconRight={<ArrowUpRight size={14} />}
           >
-            Transmit Signal
+            {dict.contact.submitButton}
           </Button>
 
           {/* Mobile Menu Toggle */}
@@ -101,7 +104,7 @@ export default function Navbar() {
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Transmit Signal
+            {dict.contact.submitButton}
           </Button>
         </div>
       )}

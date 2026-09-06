@@ -4,8 +4,12 @@ import { ArrowUp, Compass, ExternalLink } from "lucide-react";
 import styles from "./Footer.module.css";
 import Button from "@/components/ui/Button";
 import { Text } from "@/components/ui";
+import { siteConfig } from "@/config/site";
+import { getDictionary } from "@/locales";
 
 export default function Footer() {
+  const dict = getDictionary("en");
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -21,10 +25,10 @@ export default function Footer() {
             </div>
             <div>
               <Text font="heading" size="sm" weight="bold" tone="primary" uppercase>
-                LEVENTE GÁLL // STARGATE91
+                {siteConfig.name}
               </Text>
               <Text font="mono" size="2xs" tone="cyan">
-                FULL-STACK ARCHITECT &amp; BRAND STRATEGIST
+                {dict.footer.subTitle}
               </Text>
             </div>
           </div>
@@ -36,7 +40,7 @@ export default function Footer() {
             onClick={scrollToTop}
             iconLeft={<ArrowUp size={14} />}
           >
-            RETURN TO ORBIT
+            {dict.footer.returnToOrbit}
           </Button>
         </div>
 
@@ -55,31 +59,31 @@ export default function Footer() {
               &ldquo;The Grid. A digital frontier. I kept dreaming of a world I thought I&apos;d never see. And then, one day... I got in.&rdquo;
             </Text>
             <Text font="mono" size="2xs" tone="cyan" className={styles.quoteSub}>
-              // IN HOMAGE TO COSMOS &amp; INTERSTELLAR
+              {dict.footer.quoteSub}
             </Text>
           </div>
 
           <div className={styles.linksColumn}>
             <Text font="mono" size="2xs" tone="secondary" uppercase weight="semibold" className={styles.linksHeading}>
-              TRANSMISSION &amp; REPOSITORY ARRAYS
+              {dict.footer.transmissionHeading}
             </Text>
             <a
-              href="https://github.com/stargate91"
+              href={siteConfig.socials.github}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkItem}
             >
               <Text as="span" size="xs" tone="secondary">
-                GitHub (github.com/stargate91)
+                {dict.footer.githubLabel}
               </Text>
               <ExternalLink size={12} />
             </a>
             <a
-              href="mailto:leventegall@proton.me"
+              href={`mailto:${siteConfig.email}`}
               className={styles.linkItem}
             >
               <Text as="span" size="xs" tone="secondary">
-                Direct Comms: leventegall@proton.me
+                {dict.footer.directCommsLabel} {siteConfig.email}
               </Text>
               <ExternalLink size={12} />
             </a>
@@ -89,10 +93,10 @@ export default function Footer() {
         {/* Bottom Row: Telemetry */}
         <div className={styles.bottomRow}>
           <Text font="mono" size="2xs" tone="muted">
-            BUDAPEST [47.49°N, 19.04°E] • CRAFTED WITH NEXT.JS 16 &amp; TRON VANILLA CSS
+            {siteConfig.coordinates.city.toUpperCase()} [{siteConfig.coordinates.coords}] • {dict.footer.craftedWith}
           </Text>
           <Text font="mono" size="2xs" tone="cyan">
-            STATUS: 1,100+ MISSIONS DELIVERED // ALL SYSTEMS NOMINAL
+            {dict.footer.statusLabel} {siteConfig.telemetry.missionsDelivered} MISSIONS DELIVERED // {siteConfig.telemetry.systemStatus}
           </Text>
         </div>
       </div>

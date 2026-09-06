@@ -1,101 +1,140 @@
-.tiersGrid {
+/* =========================================================================
+   Services & Pricing Section Styles
+   ========================================================================= */
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
   align-items: stretch;
 }
 
-.tierCard {
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.pricingCard {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
   padding: var(--space-xl) var(--space-lg);
+}
+
+.popularCard {
+  border-color: var(--cyan-tron);
+  box-shadow:
+    0 0 25px rgb(0 229 255 / 15%),
+    0 10px 40px rgb(0 0 0 / 60%);
+}
+
+.cardInner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.topRow {
+  margin-bottom: var(--space-xs);
+}
+
+.tierCodename {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--cyan-tron);
+  letter-spacing: 0.05em;
 }
 
 .popularBadge {
   position: absolute;
   top: -12px;
   left: 50%;
-  padding: var(--space-2xs) var(--space-sm);
+  padding: var(--space-3xs) var(--space-sm);
   font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-xs);
+  font-size: var(--text-2xs);
   font-weight: 700;
   color: var(--tone-a);
   letter-spacing: 0.08em;
   white-space: nowrap;
-  background: var(--cyan-tron);
+  background-color: var(--cyan-tron);
   border-radius: var(--radius-full);
-  box-shadow: 0 0 15px var(--cyan-glow);
+  box-shadow: 0 0 16px rgb(0 229 255 / 80%);
   transform: translateX(-50%);
 }
 
-.tierCodename {
-  margin-bottom: var(--space-2xs);
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-xs);
-  color: var(--cyan-tron);
-  letter-spacing: 0.05em;
+.tierName {
+  margin-top: var(--space-2xs);
+  margin-bottom: var(--space-3xs);
+  font-family: var(--font-space), sans-serif;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
-.tierName {
-  margin-bottom: var(--space-2xs);
-  font-family: var(--font-space), sans-serif;
+.tierBadge {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.priceRow {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+  padding: var(--space-sm) 0;
+  margin: var(--space-xs) 0;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+}
+
+.price {
+  font-family: var(--font-space), monospace;
   font-size: var(--text-2xl);
-  font-weight: 700;
-  color: var(--color-white);
+  font-weight: 800;
+  color: var(--cyan-tron);
+}
+
+.duration {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
 }
 
 .tierDesc {
-  min-height: 58px;
-  margin-bottom: var(--space-lg);
+  min-height: 4.5rem;
   font-size: var(--text-sm);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
-.pricingBanner {
-  padding: var(--space-md);
-  margin-bottom: var(--space-lg);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
-  border-radius: var(--radius-sm);
+.featuresSection {
+  flex: 1;
+  padding: var(--space-sm) 0;
+  margin: var(--space-sm) 0 var(--space-md);
 }
 
-.priceValue {
+.featuresHeading {
+  margin-bottom: var(--space-xs);
   font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-2xl);
-  font-weight: 800;
-  color: var(--color-white);
-}
-
-.pricePeriod {
-  margin-left: var(--space-2xs);
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-}
-
-.durationBadge {
-  padding: var(--space-3xs) var(--space-xs);
   font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
-.featuresList {
-  margin-bottom: var(--space-xl);
+.buttonWrapper {
+  padding-top: var(--space-sm);
+  margin-top: auto;
 }
 
-.checkoutNotice {
-  margin-top: var(--space-3xl);
-}
-
-.scopeBadge {
-  cursor: pointer;
-}
-
-.terminalIcon {
-  color: var(--cyan-tron);
-}
-
-.cardInner {
-  height: 100%;
+.consultCallout {
+  margin-top: var(--space-xl);
 }

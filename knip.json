@@ -3,7 +3,10 @@
   "entry": [
     "src/app/**/{page,layout,not-found,loading,error,route}.{ts,tsx}",
     "src/app/api/**/route.ts",
-    "src/components/ui/index.ts"
+    "src/components/ui/index.ts",
+    "src/data/index.ts",
+    "src/config/site.ts",
+    "src/locales/index.ts"
   ],
   "project": [
     "src/**/*.{ts,tsx}"

@@ -1,0 +1,140 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
+import styles from "../ProjectCard.module.css";
+import SwayaSimulator from "./SwayaSimulator";
+import IrisSimulator from "./IrisSimulator";
+import AetheriaSimulator from "./AetheriaSimulator";
+import type { ProjectData } from "@/data/projects";
+import {
+  HudCard,
+  TelemetryBadge,
+  Button,
+  Tabs,
+  Stat,
+  TagList,
+  Callout,
+  Inline,
+  Stack,
+  Grid,
+} from "@/components/ui";
+import { getDictionary } from "@/locales";
+
+interface ProjectItemCardProps {
+  project: ProjectData;
+}
+
+export default function ProjectItemCard({ project }: ProjectItemCardProps) {
+  const [currTab, setCurrTab] = useState<"overview" | "architecture" | "interactive">("interactive");
+  const dict = getDictionary("en");
+
+  return (
+    <HudCard
+      id={`project-${project.id}`}
+      variant="surface"
+      className={styles.projectCard}
+    >
+      {/* Top Meta Bar */}
+      <div className={styles.topBar}>
+        <TelemetryBadge variant="cyan">
+          {project.badge}
+        </TelemetryBadge>
+
+        {/* Sub-Tabs Primitive */}
+        <Tabs
+          value={currTab}
+          onChange={(val) => setCurrTab(val as "overview" | "architecture" | "interactive")}
+          items={[
+            { id: "interactive", label: dict.projects.tabs.interactive },
+            { id: "overview", label: dict.projects.tabs.overview },
+            { id: "architecture", label: dict.projects.tabs.architecture },
+          ]}
+        />
+      </div>
+
+      {/* Main Two-Column Layout */}
+      <div className={styles.mainGrid}>
+        {/* Left Column */}
+        <Stack gap="md">
+          <div>
+            <div className="font-telemetry">
+              {dict.projects.labels.stack} {project.codename}
+            </div>
+            <h3 className={styles.projectTitle}>{project.title}</h3>
+            <div className={styles.projectTagline}>{project.tagline}</div>
+          </div>
+
+          {currTab === "overview" && (
+            <Stack gap="md">
+              <p className={styles.projectDesc}>{project.description}</p>
+              <Grid cols={2} gap="md" className={styles.metaGrid}>
+                <Stat variant="card" label={dict.projects.labels.role} value={project.role} />
+                <Stat variant="card" label={dict.projects.labels.timeline} value={project.duration} />
+              </Grid>
+            </Stack>
+          )}
+
+          {currTab === "architecture" && (
+            <Stack gap="md">
+              <Callout title={dict.projects.labels.challenge} variant="dark">
+                {project.challenge}
+              </Callout>
+
+              <Callout title={dict.projects.labels.solution} variant="cyan">
+                {project.solution}
+              </Callout>
+            </Stack>
+          )}
+
+          {currTab === "interactive" && (
+            <p className={styles.projectDesc}>{project.description}</p>
+          )}
+
+          {/* Technology TagList Primitive */}
+          <TagList items={project.stack} variant="subtle" size="sm" className={styles.stackList} />
+
+          {/* Impact Metrics Grid */}
+          <Grid cols={3} gap="sm" className={styles.metricsGrid}>
+            {project.impactMetrics.map((metric) => (
+              <Stat
+                key={metric.label}
+                variant="card"
+                value={metric.value}
+                label={metric.label}
+              />
+            ))}
+          </Grid>
+
+          {/* Links */}
+          <Inline gap="md">
+            <Button
+              variant="primary"
+              size="sm"
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              iconRight={<ArrowRight size={14} />}
+            >
+              {dict.projects.labels.viewGithub}
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              href="#contact"
+            >
+              {dict.projects.labels.discussWork}
+            </Button>
+          </Inline>
+        </Stack>
+
+        {/* Right Column: Interactive Simulators */}
+        <div>
+          {project.demoType === "swaya" && <SwayaSimulator />}
+          {project.demoType === "iris" && <IrisSimulator />}
+          {project.demoType === "branding" && <AetheriaSimulator />}
+        </div>
+      </div>
+    </HudCard>
+  );
+}
