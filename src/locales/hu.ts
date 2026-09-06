@@ -1,6 +1,8 @@
 import type { Dictionary } from "./dictionary.types";
 
 export const hu: Dictionary = {
+  brandName: "GÁLL LEVENTE // STARGATE91",
+  personName: "Gáll Levente",
   nav: {
     journey: "PÁLYAÍV",
     projects: "PROJEKTEK",
@@ -22,11 +24,11 @@ export const hu: Dictionary = {
     ctaProjects: "Projektek & Forráskód",
     ctaServices: "Szolgáltatások & Együttműködés",
     stats: {
-      fiverrValue: "1 100+ Ügyfél • 5.0★",
-      fiverrLabel: "400+ Igazolt 5-Csillagos Értékelés Fiverr-en",
-      stackValue: "Full-Stack Fejlesztés",
+      fiverrValue: "1 100+ Ügyfél\n4.8★ Értékelés",
+      fiverrLabel: "400+ Igazolt Értékelés a Fiverr-en",
+      stackValue: "Full-Stack\nFejlesztés",
       stackLabel: "FastAPI, Python, React & TypeScript",
-      physicsValue: "Analitikus Fizikusi Szemlélet",
+      physicsValue: "Analitikus Fizikusi\nSzemlélet",
       physicsLabel: "ELTE Fizika / Problémamegoldás",
     },
   },
@@ -34,9 +36,9 @@ export const hu: Dictionary = {
     subtitle: "Háttér & Pályaív",
     title: "Ahol a Fizika, a Márka és a Kód Találkozik",
     description: "Hogyan alkot egységet az analitikus gondolkodásmód, az 5 évnyi nemzetközi piaci tapasztalat a Fiverr-en és a full-stack szoftverfejlesztés.",
-    fiverrBannerTitle: "Bizonyított Eredmények a Fiverr-en: 1 100+ Ügyfél & 400+ 5-Csillagos Értékelés",
+    fiverrBannerTitle: "Bizonyított Eredmények a Fiverr-en: 1 100+ Ügyfél & 400+ Értékelés (4.8★)",
     fiverrBannerDesc: "5 év folyamatos nemzetközi projektátadás, márkanévadás és konverziós szövegírás 100%-os határidő-teljesítéssel.",
-    fiverrBadge: "[ 5.0★ TOP-RATED ELADÓ ]",
+    fiverrBadge: "[ 4.8★ TOP-RATED ELADÓ ]",
     fiverrTooltip: "// TOP 1% ELADÓ • 1 100+ KÜLDETÉS • 100% PONTOS SZÁLLÍTÁS",
     timeline: [
       {
@@ -57,7 +59,7 @@ export const hu: Dictionary = {
         desc: "Öt év alatt egy kiemelkedő nemzetközi branding praxist építettem fel a Fiverr-en, több mint 1 100 külföldi alapítónak segítve a megfelelő név és pozicionálás megtalálásában. Megtanultam, hogyan gondolkodnak, döntenek és vásárolnak az emberek. A letisztult névadás és a tűpontos szöveg nem dísz: ez a figyelem megszerzésének eszköze a telített piacokon.",
         metrics: [
           "1 100+ Befejezett Projekt",
-          "400+ Igazolt 5-Csillagos Értékelés",
+          "400+ Igazolt Értékelés (4.8★)",
           "Márkanévadás, Szlogenek & Szövegírás",
         ],
       },
@@ -178,7 +180,7 @@ export const hu: Dictionary = {
     engineeringTitle: "Szoftverfejlesztés & Rendszerek",
     engineeringSub: "BACKEND, FRONTEND & ADATBÁZIS ARCHITEKTÚRA",
     brandingTitle: "Márkastratégia & Szövegírás",
-    brandingSub: "1 100+ ÜGYFÉL • 400+ 5-CSILLAGOS ÉRTÉKELÉS FIVERR-EN",
+    brandingSub: "1 100+ ÜGYFÉL • 400+ ÉRTÉKELÉS FIVERR-EN (4.8★)",
     verifiedBadge: "IGAZOLT FIVERR ÜGYFÉL",
     engineeringList: [
       { name: "Python (FastAPI, Asyncio, Flask)", status: "ELSŐDLEGES BACKEND" },
@@ -190,7 +192,7 @@ export const hu: Dictionary = {
     ],
     brandingList: [
       { name: "Márkanévadás & Nyelvészeti Tesztelés", status: "1 100+ ÜGYFÉL" },
-      { name: "Konverziós Szlogenek & Címsorok", status: "400+ 5.0★ ÉRTÉKELÉS" },
+      { name: "Konverziós Szlogenek & Címsorok", status: "400+ 4.8★ ÉRTÉKELÉS" },
       { name: "Domain (.com) & Védjegy-ellenőrzés", status: "ELLENŐRZÖTT KONCEPCIÓK" },
       { name: "Márkapozicionálás & Értékajánlat", status: "PIACI ILLESZKEDÉS" },
       { name: "Nemzetközi Ügyfélkommunikáció", status: "FOLYÉKONY ANGOL" },
@@ -214,7 +216,7 @@ export const hu: Dictionary = {
   services: {
     subtitle: "Szolgáltatások & Együttműködés",
     title: "Kiszámítható Árazás & Csomagok",
-    description: "Akár karakteres márkaidentitásra, akár komplett full-stack webalkalmazásra van szüksége – átlátható terjedelem rejtett költségek nélkül.",
+    description: "Akár karakteres márkaidentitásra, akár komplett full-stack webalkalmazásra van szüksége - átlátható terjedelem rejtett költségek nélkül.",
     includedHeading: "TARTALMAZOTT ELEMEK:",
     selectButton: "Csomag Kiválasztása",
     recommendedBadge: "AJÁNLOTT",
@@ -278,9 +280,9 @@ export const hu: Dictionary = {
       },
     },
     contactTierOptions: [
-      { value: "naming", label: "Márkanévadás & Identitás — 490 $-tól" },
-      { value: "full-orbit", label: "Komplett Termékbevezetés (Márka + Next.js App) — 1 850 $-tól" },
-      { value: "web-dev", label: "Full-Stack Fejlesztés (FastAPI / React) — 1 450 $-tól" },
+      { value: "naming", label: "Márkanévadás & Identitás - 490 $-tól" },
+      { value: "full-orbit", label: "Komplett Termékbevezetés (Márka + Next.js App) - 1 850 $-tól" },
+      { value: "web-dev", label: "Full-Stack Fejlesztés (FastAPI / React) - 1 450 $-tól" },
       { value: "custom", label: "Egyedi Architektúra / Konzultáció" },
     ],
     timelineOptions: [
@@ -304,10 +306,10 @@ export const hu: Dictionary = {
       briefPlaceholder: "Írja le röviden a termékét, céljait, vagy hogy milyen márkaidentitást vagy szoftverrendszert szeretne megvalósítani...",
     },
     errors: {
-      nameRequired: "// HÍVÓJEL KÖTELEZŐ — Kérjük, adja meg a nevét.",
-      emailRequired: "// FREKVENCIA KÖTELEZŐ — Kérjük, adja meg az email címét.",
-      emailInvalid: "// ÉRVÉNYTELEN PROTOKOLL — Kérjük, adjon meg érvényes email címet (pl. nev@ceg.hu).",
-      briefRequired: "// TARTALOM KÖTELEZŐ — Kérjük, írja le a projekt céljait vagy terjedelmét.",
+      nameRequired: "// HÍVÓJEL KÖTELEZŐ - Kérjük, adja meg a nevét.",
+      emailRequired: "// FREKVENCIA KÖTELEZŐ - Kérjük, adja meg az email címét.",
+      emailInvalid: "// ÉRVÉNYTELEN PROTOKOLL - Kérjük, adjon meg érvényes email címet (pl. nev@ceg.hu).",
+      briefRequired: "// TARTALOM KÖTELEZŐ - Kérjük, írja le a projekt céljait vagy terjedelmét.",
       transmissionFailed: "Nem sikerült elküldeni az üzenetet az orbitális átjárón keresztül. Kérjük, próbálja újra, vagy írjon közvetlen emailt.",
     },
     success: {

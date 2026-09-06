@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Levente Gáll — Full-Stack Developer & Brand Strategist",
+        alt: "Levente Gáll - Full-Stack Developer & Brand Strategist",
       },
     ],
   },

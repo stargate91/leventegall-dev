@@ -53,7 +53,7 @@ export default function StructuredData() {
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: "5.0",
+          ratingValue: "4.8",
           reviewCount: "400",
           bestRating: "5",
         },

@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
             <div>
               <Text font="heading" size="sm" weight="bold" tone="primary" uppercase>
-                {siteConfig.name}
+                {dict.brandName}
               </Text>
               <Text font="mono" size="2xs" tone="cyan">
                 {dict.footer.subTitle}

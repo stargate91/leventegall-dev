@@ -25,11 +25,6 @@
   border: 1px solid var(--border-subtle);
 }
 
-.variant-subtle:hover {
-  background: var(--border-medium);
-  border-color: var(--border-medium);
-}
-
 .variant-cyan {
   color: var(--cyan-tron);
   background: var(--cyan-subtle);

@@ -85,6 +85,45 @@
   box-shadow: 0 0 18px var(--cyan-tron), 0 0 35px var(--cyan-tron);
 }
 
+.dataPacket {
+  position: absolute;
+  top: -1px;
+  left: -180px;
+  width: 160px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(0 229 255 / 40%) 25%,
+    #00e5ff 60%,
+    #fff 85%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 15px #00e5ff, 0 0 30px rgb(0 229 255 / 70%);
+  animation: dataStream 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes dataStream {
+  0% {
+    left: -200px;
+    opacity: 0%;
+  }
+
+  10% {
+    opacity: 100%;
+  }
+
+  85% {
+    opacity: 100%;
+  }
+
+  100% {
+    left: calc(100% + 200px);
+    opacity: 0%;
+  }
+}
+
 .horizonLaserSoft {
   position: absolute;
   top: 60%;
@@ -109,5 +148,10 @@
 
   .horizonLaser {
     box-shadow: 0 0 10px var(--cyan-tron);
+  }
+
+  .dataPacket {
+    display: none;
+    animation: none;
   }
 }

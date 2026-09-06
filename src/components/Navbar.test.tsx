@@ -8,17 +8,28 @@ describe("Navbar Component", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders brand signifier and navigation links", () => {
-    render(
+  it("renders brand signifier and navigation links in English and Hungarian", () => {
+    const { unmount } = render(
       <LocaleProvider initialLocale="en">
         <Navbar />
       </LocaleProvider>,
     );
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
-    expect(screen.getByText(/LEVENTE GÁLL/i)).toBeInTheDocument();
+    expect(screen.getByText(/LEVENTE GALL/i)).toBeInTheDocument();
     expect(screen.getAllByText(/JOURNEY/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/PROJECTS/i).length).toBeGreaterThan(0);
+
+    unmount();
+
+    render(
+      <LocaleProvider initialLocale="hu">
+        <Navbar />
+      </LocaleProvider>,
+    );
+
+    expect(screen.getByText(/GÁLL LEVENTE/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/PÁLYAÍV/i).length).toBeGreaterThan(0);
   });
 
   it("toggles mobile menu drawer when mobile menu button is clicked", () => {

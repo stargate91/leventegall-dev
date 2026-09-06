@@ -224,6 +224,8 @@ export interface FooterLocale {
 }
 
 export interface Dictionary {
+  brandName: string;
+  personName: string;
   nav: NavLocale;
   hero: HeroLocale;
   story: StoryLocale;

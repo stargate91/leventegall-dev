@@ -47,8 +47,9 @@
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-lg);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   color: var(--color-white);
+  white-space: pre-line;
 }
 
 .label {

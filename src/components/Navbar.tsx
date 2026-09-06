@@ -79,7 +79,7 @@ export default function Navbar() {
             <Compass size={18} />
           </div>
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>{siteConfig.name.toUpperCase()}</span>
+            <span className={styles.brandTitle}>{dict.brandName.toUpperCase()}</span>
             <span className={styles.brandSubtitle}>LOC: {siteConfig.coordinates.coords}</span>
           </div>
         </a>
@@ -100,18 +100,20 @@ export default function Navbar() {
         </nav>
 
         {/* Action Controls & Language Switcher */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+        <div className={styles.navActions}>
           <LanguageSwitcher />
 
-          <Button
-            variant="primary"
-            size="sm"
-            href="#contact"
-            id="nav-cta-contact"
-            iconRight={<ArrowUpRight size={14} />}
-          >
-            {dict.contact.submitButton}
-          </Button>
+          <div className={styles.desktopCta}>
+            <Button
+              variant="primary"
+              size="sm"
+              href="#contact"
+              id="nav-cta-contact"
+              iconRight={<ArrowUpRight size={14} />}
+            >
+              {dict.contact.submitButton}
+            </Button>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -138,17 +140,12 @@ export default function Navbar() {
           aria-label="Mobile Navigation Menu"
           className={styles.mobileMenu}
         >
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
-            <LanguageSwitcher />
-          </div>
-
           {navLinks.map((link) => (
             <a
               key={link.index}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={styles.navLink}
-              style={{ padding: "0.5rem 0", fontSize: "1rem" }}
+              className={styles.mobileMenuLink}
             >
               <span className={styles.navLinkIndex}>{link.index}</span>
               <span>{link.label}</span>

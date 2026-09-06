@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Levente Gáll — Full-Stack Architect & Brand Strategist";
+export const alt = "Levente Gáll - Full-Stack Architect & Brand Strategist";
 export const size = {
   width: 1200,
   height: 630,
@@ -54,7 +54,7 @@ export default function Image() {
               letterSpacing: "2px",
             }}
           >
-            5.0 TOP-RATED • 1,100+ CLIENTS
+            4.8 TOP-RATED • 1,100+ CLIENTS
           </div>
         </div>
 

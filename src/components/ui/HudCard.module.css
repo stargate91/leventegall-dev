@@ -30,12 +30,6 @@
   backdrop-filter: blur(12px);
 }
 
-/* Hover effects */
-.glowHover:hover {
-  border-color: var(--border-cyan);
-  box-shadow: 0 10px 30px -10px var(--cyan-glow);
-}
-
 /* Sci-Fi HUD Corner Brackets (Tron / Gattaca) */
 .corners::before,
 .corners::after {
@@ -44,7 +38,6 @@
   height: 8px;
   pointer-events: none;
   content: "";
-  transition: border-color var(--transition-smooth);
 }
 
 .corners::before {
@@ -59,9 +52,4 @@
   bottom: -1px;
   border-right: 2px solid var(--cyan-tron);
   border-bottom: 2px solid var(--cyan-tron);
-}
-
-.card:hover .corners::before,
-.card:hover .corners::after {
-  border-color: #fff;
 }

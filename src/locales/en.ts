@@ -1,6 +1,8 @@
 import type { Dictionary } from "./dictionary.types";
 
 export const en: Dictionary = {
+  brandName: "LEVENTE GALL // STARGATE91",
+  personName: "Levente Gall",
   nav: {
     journey: "JOURNEY",
     projects: "PROJECTS",
@@ -11,7 +13,7 @@ export const en: Dictionary = {
   },
   hero: {
     badgeGlyph: "[ // ]",
-    badgeText: "LEVENTE GÁLL • FULL-STACK DEVELOPER & BRAND STRATEGIST",
+    badgeText: "LEVENTE GALL • FULL-STACK DEVELOPER & BRAND STRATEGIST",
     badgeTooltip: "// TELEMETRY: ORBITAL SYSTEMS ONLINE • BUDAPEST GRID",
     titleMain: "CLEAN CODE ARCHITECTURE.",
     titleGradient: "SHARP BRAND IDENTITY.",
@@ -22,11 +24,11 @@ export const en: Dictionary = {
     ctaProjects: "View Projects & Code",
     ctaServices: "Services & Working Together",
     stats: {
-      fiverrValue: "1,100+ Clients • 5.0★",
-      fiverrLabel: "400+ Verified 5-Star Reviews on Fiverr",
-      stackValue: "Full-Stack Development",
+      fiverrValue: "1,100+ Clients\n4.8★ Rating",
+      fiverrLabel: "400+ Verified Reviews on Fiverr",
+      stackValue: "Full-Stack\nDevelopment",
       stackLabel: "FastAPI, Python, React & TypeScript",
-      physicsValue: "Analytical Physics Mindset",
+      physicsValue: "Analytical Physics\nMindset",
       physicsLabel: "ELTE Physics / Problem Solving",
     },
   },
@@ -34,16 +36,16 @@ export const en: Dictionary = {
     subtitle: "Background & Journey",
     title: "Where Physics, Branding & Code Meet",
     description: "How an analytical mindset, 5 years of client-tested marketing on Fiverr, and full-stack software development come together.",
-    fiverrBannerTitle: "Proven Track Record on Fiverr: 1,100+ Clients & 400+ 5-Star Reviews",
+    fiverrBannerTitle: "Proven Track Record on Fiverr: 1,100+ Clients & 400+ Reviews (4.8★)",
     fiverrBannerDesc: "5 years of continuous international client delivery, brand naming, and conversion copy with a 100% on-time completion rate.",
-    fiverrBadge: "[ 5.0★ TOP-RATED SELLER ]",
+    fiverrBadge: "[ 4.8★ TOP-RATED SELLER ]",
     fiverrTooltip: "// TOP 1% SELLER • 1,100+ MISSIONS • 100% ON-TIME DISPATCH",
     timeline: [
       {
         sol: "CHAPTER 01",
         date: "ELTE PHYSICS BACKGROUND",
         title: "Analytical Thinking & Problem Solving",
-        desc: "Studying Physics and Astronomy at Eötvös Loránd University gave me a strong foundation in math, calculus, and first-principles thinking. When architecting software, I don't just glue third-party packages together—I think in terms of state transitions, edge cases, and building predictable, maintainable systems.",
+        desc: "Studying Physics and Astronomy at Eötvös Loránd University gave me a strong foundation in math, calculus, and first-principles thinking. When architecting software, I don't just glue third-party packages together - I think in terms of state transitions, edge cases, and building predictable, maintainable systems.",
         metrics: [
           "ELTE Physics & Astronomy Studies",
           "Calculus & Mathematical Logic",
@@ -54,10 +56,10 @@ export const en: Dictionary = {
         sol: "CHAPTER 02",
         date: "5 YEARS ON FIVERR",
         title: "Human Psychology & High-Converting Copy",
-        desc: "Over 5 years, I built a top-rated freelance branding practice on Fiverr, helping more than 1,100 international founders find the right name and message for their startups. It taught me how people actually think, choose, and buy. Clear naming and sharp copywriting aren't decoration—they're how you earn attention in a crowded market.",
+        desc: "Over 5 years, I built a top-rated freelance branding practice on Fiverr, helping more than 1,100 international founders find the right name and message for their startups. It taught me how people actually think, choose, and buy. Clear naming and sharp copywriting aren't decoration - they're how you earn attention in a crowded market.",
         metrics: [
           "1,100+ Completed Projects",
-          "400+ Verified 5-Star Reviews",
+          "400+ Verified Reviews (4.8★)",
           "Brand Naming, Slogans & Copy",
         ],
       },
@@ -178,7 +180,7 @@ export const en: Dictionary = {
     engineeringTitle: "Software Engineering & Systems",
     engineeringSub: "BACKEND, FRONTEND & DATABASE ARCHITECTURE",
     brandingTitle: "Brand Strategy & Copywriting",
-    brandingSub: "1,100+ CLIENTS • 400+ 5-STAR REVIEWS ON FIVERR",
+    brandingSub: "1,100+ CLIENTS • 400+ REVIEWS ON FIVERR (4.8★)",
     verifiedBadge: "VERIFIED FIVERR CLIENT",
     engineeringList: [
       { name: "Python (FastAPI, Asyncio, Flask)", status: "PRIMARY BACKEND" },
@@ -190,7 +192,7 @@ export const en: Dictionary = {
     ],
     brandingList: [
       { name: "Brand Naming & Linguistic Testing", status: "1,100+ CLIENTS" },
-      { name: "High-Converting Slogans & Taglines", status: "400+ 5.0★ REVIEWS" },
+      { name: "High-Converting Slogans & Taglines", status: "400+ 4.8★ REVIEWS" },
       { name: "Domain (.com) & Trademark Clearance", status: "VETTED CONCEPTS" },
       { name: "Brand Positioning & Value Proposition", status: "MARKET FIT" },
       { name: "International Client Communication", status: "FLUENT ENGLISH" },
@@ -200,7 +202,7 @@ export const en: Dictionary = {
       {
         id: "feedback-fintech",
         quote:
-          "The names delivered weren't just creative—they felt instantly legitimate, memorable, and right on point. Found the perfect domain and our team was thrilled.",
+          "The names delivered weren't just creative - they felt instantly legitimate, memorable, and right on point. Found the perfect domain and our team was thrilled.",
         client: "Fintech Startup Founder (United States)",
       },
       {
@@ -214,7 +216,7 @@ export const en: Dictionary = {
   services: {
     subtitle: "Services & Engagements",
     title: "Predictable Pricing & Packages",
-    description: "Whether you need a distinctive brand identity, a complete full-stack web application, or both—transparent scopes with zero hidden fees.",
+    description: "Whether you need a distinctive brand identity, a complete full-stack web application, or both - transparent scopes with zero hidden fees.",
     includedHeading: "INCLUDED DELIVERABLES:",
     selectButton: "Select Package",
     recommendedBadge: "RECOMMENDED",
@@ -278,9 +280,9 @@ export const en: Dictionary = {
       },
     },
     contactTierOptions: [
-      { value: "naming", label: "Brand Naming & Identity — From $490" },
-      { value: "full-orbit", label: "Complete Product Launch (Brand + Next.js App) — From $1,850" },
-      { value: "web-dev", label: "Full-Stack Development (FastAPI / React) — From $1,450" },
+      { value: "naming", label: "Brand Naming & Identity - From $490" },
+      { value: "full-orbit", label: "Complete Product Launch (Brand + Next.js App) - From $1,850" },
+      { value: "web-dev", label: "Full-Stack Development (FastAPI / React) - From $1,450" },
       { value: "custom", label: "Custom Architecture / Consultation" },
     ],
     timelineOptions: [
@@ -304,10 +306,10 @@ export const en: Dictionary = {
       briefPlaceholder: "Tell me a bit about your product, your goals, or what kind of brand identity or software system you're looking to build...",
     },
     errors: {
-      nameRequired: "// CALLSIGN REQUIRED — Please enter your name.",
-      emailRequired: "// FREQUENCY REQUIRED — Please enter your email address.",
-      emailInvalid: "// INVALID PROTOCOL — Please enter a valid email (e.g. alex@startup.com).",
-      briefRequired: "// PAYLOAD REQUIRED — Please describe your project goals or scope.",
+      nameRequired: "// CALLSIGN REQUIRED - Please enter your name.",
+      emailRequired: "// FREQUENCY REQUIRED - Please enter your email address.",
+      emailInvalid: "// INVALID PROTOCOL - Please enter a valid email (e.g. alex@startup.com).",
+      briefRequired: "// PAYLOAD REQUIRED - Please describe your project goals or scope.",
       transmissionFailed: "Unable to send message through the orbital gateway. Please try again or email me directly.",
     },
     success: {

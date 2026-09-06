@@ -45,7 +45,7 @@ export const siteConfig: SiteConfig = {
   },
   telemetry: {
     missionsDelivered: "1,100+",
-    rating: "5.0★",
+    rating: "4.8★",
     reviewsCount: "400+",
     systemStatus: "ALL SYSTEMS NOMINAL",
   },

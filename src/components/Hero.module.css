@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 4.5rem);
-  padding-top: var(--space-2xl);
+  padding-top: calc(5.5rem + var(--space-xl));
   padding-bottom: var(--space-xl);
   overflow: hidden;
 }
@@ -74,43 +74,6 @@
   animation: photonSurge 7.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
-/* Secondary Lower Horizon Beam - Placed beneath buttons */
-.ribbonSecondary {
-  position: absolute;
-  top: 72%;
-  right: 5%;
-  left: 5%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgb(0 229 255 / 6%) 20%,
-    rgb(0 229 255 / 20%) 50%,
-    rgb(0 229 255 / 6%) 80%,
-    transparent 100%
-  );
-}
-
-.photonPulseSecondary {
-  position: absolute;
-  top: -1px;
-  right: -200px;
-  width: 140px;
-  height: 3px;
-  background: linear-gradient(
-    270deg,
-    transparent 0%,
-    rgb(0 229 255 / 40%) 25%,
-    #00e5ff 60%,
-    #fff 85%,
-    transparent 100%
-  );
-  border-radius: 2px;
-  box-shadow: 0 0 15px #00e5ff, 0 0 25px rgb(0 229 255 / 50%);
-  animation: photonSurgeReverse 9s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-  animation-delay: 2.5s;
-}
-
 @keyframes photonSurge {
   0% {
     left: -220px;
@@ -127,26 +90,6 @@
 
   100% {
     left: calc(100% + 220px);
-    opacity: 0%;
-  }
-}
-
-@keyframes photonSurgeReverse {
-  0% {
-    right: -220px;
-    opacity: 0%;
-  }
-
-  10% {
-    opacity: 100%;
-  }
-
-  85% {
-    opacity: 100%;
-  }
-
-  100% {
-    right: calc(100% + 220px);
     opacity: 0%;
   }
 }
@@ -280,13 +223,20 @@
   color: var(--text-secondary);
 }
 
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 6.5rem;
+    padding-bottom: var(--space-lg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .coreGlow {
     transition: none;
   }
 
-  .photonPulsePrimary,
-  .photonPulseSecondary {
+  .photonPulsePrimary {
     display: none;
     animation: none;
   }

@@ -13,8 +13,10 @@ export default function TronGridBackground() {
       {/* Top Cyber Matrix Ceiling */}
       <div className={styles.perspectiveCeiling} />
 
-      {/* Horizon Laser Line */}
-      <div className={styles.horizonLaser} />
+      {/* Horizon Laser Line with 1:1 aligned traveling data pulse */}
+      <div className={styles.horizonLaser}>
+        <div className={styles.dataPacket} />
+      </div>
 
       {/* Soft Horizon Laser Blur Glow */}
       <div className={styles.horizonLaserSoft} />

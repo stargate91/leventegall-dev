@@ -66,9 +66,6 @@ export default function Hero() {
         <div className={styles.ribbonPrimary}>
           <div className={styles.photonPulsePrimary} />
         </div>
-        <div className={styles.ribbonSecondary}>
-          <div className={styles.photonPulseSecondary} />
-        </div>
       </div>
 
       <div className={`section-container ${styles.content}`}>
