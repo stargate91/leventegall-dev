@@ -21,6 +21,7 @@ import {
 } from "@/components/ui";
 import { getContactTierOptions, getTimelineOptions } from "@/data/services";
 import { siteConfig } from "@/config/site";
+import { contactFormSchema } from "@/lib/validations/contact";
 import { useLocale } from "@/locales";
 
 type FormStatus = "idle" | "transmitting" | "success" | "error";
@@ -191,24 +192,28 @@ export default function ContactForm() {
   const directEmail = siteConfig.email;
 
   const validate = (): boolean => {
+    const result = contactFormSchema.safeParse(formData);
+    if (result.success) {
+      dispatch({ type: "SET_ERRORS", errors: {} });
+      return true;
+    }
+
     const newErrors: FormErrors = {};
-
-    if (!formData.name.trim() || formData.name.trim().length < 2) {
-      newErrors.name = dict.contact.errors.nameRequired;
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = dict.contact.errors.emailRequired;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = dict.contact.errors.emailInvalid;
-    }
-
-    if (!formData.brief.trim() || formData.brief.trim().length < 10) {
-      newErrors.brief = dict.contact.errors.briefRequired;
+    for (const issue of result.error.issues) {
+      const field = issue.path[0] as keyof FormErrors;
+      if (field === "name" && !newErrors.name) {
+        newErrors.name = dict.contact.errors.nameRequired;
+      } else if (field === "email" && !newErrors.email) {
+        newErrors.email = !formData.email.trim()
+          ? dict.contact.errors.emailRequired
+          : dict.contact.errors.emailInvalid;
+      } else if (field === "brief" && !newErrors.brief) {
+        newErrors.brief = dict.contact.errors.briefRequired;
+      }
     }
 
     dispatch({ type: "SET_ERRORS", errors: newErrors });
-    return Object.keys(newErrors).length === 0;
+    return false;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

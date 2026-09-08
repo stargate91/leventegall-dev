@@ -406,4 +406,19 @@ export const hu: Dictionary = {
     selectTrack: "Számlista",
     directPlayHint: "Kattints a lejátszóra az indításhoz",
   },
+  error: {
+    badge: "VALAMI HIBA TÖRTÉNT",
+    title: "Váratlan hiba történt",
+    description: "Váratlan hiba lépett fel az oldal betöltése közben. Kérlek, próbáld újra, vagy térj vissza a főoldalra.",
+    errorReference: "Hiba azonosító",
+    tryAgain: "Újrapróbálkozás",
+    backHome: "Vissza a főoldalra",
+  },
+  notFound: {
+    badge: "// TELEMETRIA: FELTÉRKÉPEZETLEN SZEKTOR",
+    title: "A JEL ELVESZETT A MÉLYŰRBEN",
+    description: "A megadott koordináták nem felelnek meg egyetlen ismert pályagörbének vagy aktív szektornak sem.",
+    returnOrbit: "Vissza a pályára",
+    directUplink: "Közvetlen kapcsolat",
+  },
 };

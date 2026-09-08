@@ -10,8 +10,8 @@ import {
   Stack,
   Text,
 } from "@/components/ui";
-
 import { logger } from "@/lib/logger";
+import { useLocale } from "@/locales";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -19,6 +19,8 @@ interface ErrorProps {
 }
 
 export default function ErrorBoundary({ error, reset }: ErrorProps) {
+  const { dict } = useLocale();
+
   useEffect(() => {
     logger.error("Orbital telemetry exception caught by error boundary", {
       context: { digest: error.digest, message: error.message },
@@ -34,7 +36,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
       <HudCard variant="surface" className={styles.card}>
         <Stack gap="lg" align="center" className={styles.content}>
           <TelemetryBadge variant="subtle">
-            SOMETHING WENT WRONG
+            {dict.error.badge}
           </TelemetryBadge>
 
           <div className={styles.glyphWrapper}>
@@ -43,14 +45,14 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
 
           <div className={styles.headingGroup}>
             <Text as="h1" font="heading" size="2xl" weight="bold" tone="primary">
-              Something Went Wrong
+              {dict.error.title}
             </Text>
             <Text as="p" size="sm" tone="secondary" className={styles.description}>
-              An unexpected error occurred while loading this page. Please try again, or head back to the homepage.
+              {dict.error.description}
             </Text>
             {error.digest && (
               <Text font="mono" size="2xs" tone="cyan" className={styles.digest}>
-                [ Error Reference: {error.digest} ]
+                [ {dict.error.errorReference}: {error.digest} ]
               </Text>
             )}
           </div>
@@ -62,7 +64,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
               onClick={() => reset()}
               iconLeft={<Restart size={16} />}
             >
-              Try Again
+              {dict.error.tryAgain}
             </Button>
             <Button
               variant="secondary"
@@ -70,7 +72,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
               href="/"
               iconLeft={<Home size={16} />}
             >
-              Back to Home
+              {dict.error.backHome}
             </Button>
           </div>
         </Stack>

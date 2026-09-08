@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip static assets, internal Next.js paths, and APIs
@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
-    pathname.includes(".") // favicon.ico, opengraph-image, etc.
+    /\.(ico|png|jpg|jpeg|svg|webp|css|js|map|txt|xml|webmanifest)$/i.test(pathname)
   ) {
     return NextResponse.next();
   }
@@ -51,5 +51,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|opengraph-image|robots.txt|sitemap.xml).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|favicon.svg|icon|apple-icon|opengraph-image|robots.txt|sitemap.xml).*)"],
 };

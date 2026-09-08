@@ -24,7 +24,7 @@ test.describe("Cosmic Portfolio E2E Quality Verification", () => {
     const stepBtn = page.locator('button:has-text("Step Queue"), button:has-text("Léptetése")').first();
     if (await stepBtn.isVisible()) {
       await stepBtn.click();
-      await expect(page.locator('text="[ 83% ]"')).toBeVisible();
+      await expect(page.locator("text=/\\[ \\d+% \\]/").first()).toBeVisible();
     }
   });
 

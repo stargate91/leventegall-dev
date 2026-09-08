@@ -241,6 +241,23 @@ export interface AudioPlayerLocale {
   directPlayHint: string;
 }
 
+export interface ErrorLocale {
+  badge: string;
+  title: string;
+  description: string;
+  errorReference: string;
+  tryAgain: string;
+  backHome: string;
+}
+
+export interface NotFoundLocale {
+  badge: string;
+  title: string;
+  description: string;
+  returnOrbit: string;
+  directUplink: string;
+}
+
 export interface Dictionary {
   brandName: string;
   personName: string;
@@ -255,4 +272,6 @@ export interface Dictionary {
   contact: ContactLocale;
   footer: FooterLocale;
   audioPlayer: AudioPlayerLocale;
+  error: ErrorLocale;
+  notFound: NotFoundLocale;
 }

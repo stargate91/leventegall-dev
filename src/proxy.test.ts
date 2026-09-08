@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { NextRequest } from "next/server";
-import { middleware } from "./middleware";
+import { proxy } from "./proxy";
 
-describe("Locale Middleware", () => {
+describe("Locale Proxy", () => {
   it("skips static assets and internal next paths", () => {
     const request = new NextRequest("https://example.com/_next/static/chunks/main.js");
-    const response = middleware(request);
+    const response = proxy(request);
     expect(response.headers.get("x-locale")).toBeNull();
   });
 
@@ -16,7 +16,7 @@ describe("Locale Middleware", () => {
       },
     });
 
-    const response = middleware(request);
+    const response = proxy(request);
     expect(response.headers.get("x-locale")).toBe("hu");
   });
 
@@ -27,7 +27,7 @@ describe("Locale Middleware", () => {
       },
     });
 
-    const response = middleware(request);
+    const response = proxy(request);
     expect(response.headers.get("x-locale")).toBe("hu");
     const setCookie = response.headers.get("set-cookie");
     expect(setCookie).toContain("NEXT_LOCALE=hu");
@@ -40,7 +40,7 @@ describe("Locale Middleware", () => {
       },
     });
 
-    const response = middleware(request);
+    const response = proxy(request);
     expect(response.headers.get("x-locale")).toBe("en");
     const setCookie = response.headers.get("set-cookie");
     expect(setCookie).toContain("NEXT_LOCALE=en");

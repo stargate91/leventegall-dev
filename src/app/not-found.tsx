@@ -1,3 +1,4 @@
+import { cookies, headers } from "next/headers";
 import { Warning, ArrowLeft, Connect } from "@carbon/icons-react";
 import styles from "./not-found.module.css";
 import {
@@ -7,8 +8,14 @@ import {
   Stack,
   Text,
 } from "@/components/ui";
+import { getDictionary, type Locale } from "@/locales";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const cookieStore = await cookies();
+  const headersList = await headers();
+  const locale = (cookieStore.get("NEXT_LOCALE")?.value || headersList.get("x-locale") || "en") as Locale;
+  const dict = getDictionary(locale === "hu" ? "hu" : "en");
+
   return (
     <main className={styles.container}>
       <div className="cosmic-mesh-bg" aria-hidden="true" />
@@ -17,7 +24,7 @@ export default function NotFound() {
       <HudCard variant="surface" className={styles.card}>
         <Stack gap="lg" align="center" className={styles.content}>
           <TelemetryBadge variant="cyan" beacon>
-            // TELEMETRY: SECTOR UNCHARTED
+            {dict.notFound.badge}
           </TelemetryBadge>
 
           <div className={styles.glyphWrapper}>
@@ -29,10 +36,10 @@ export default function NotFound() {
               404
             </Text>
             <Text as="h1" font="heading" size="2xl" weight="bold" tone="primary" uppercase>
-              SIGNAL LOST IN DEEP SPACE
+              {dict.notFound.title}
             </Text>
             <Text as="p" size="sm" tone="secondary" className={styles.description}>
-              The coordinates you attempted to navigate do not correspond to any known orbital trajectory or active telemetry sector.
+              {dict.notFound.description}
             </Text>
           </div>
 
@@ -43,7 +50,7 @@ export default function NotFound() {
               href="/"
               iconLeft={<ArrowLeft size={16} />}
             >
-              Return to Orbit
+              {dict.notFound.returnOrbit}
             </Button>
             <Button
               variant="secondary"
@@ -51,7 +58,7 @@ export default function NotFound() {
               href="/#contact"
               iconLeft={<Connect size={16} />}
             >
-              Direct Uplink
+              {dict.notFound.directUplink}
             </Button>
           </div>
         </Stack>

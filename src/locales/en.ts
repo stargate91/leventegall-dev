@@ -406,4 +406,19 @@ export const en: Dictionary = {
     selectTrack: "Tracklist",
     directPlayHint: "Click player to start playback directly",
   },
+  error: {
+    badge: "SOMETHING WENT WRONG",
+    title: "Something Went Wrong",
+    description: "An unexpected error occurred while loading this page. Please try again, or head back to the homepage.",
+    errorReference: "Error Reference",
+    tryAgain: "Try Again",
+    backHome: "Back to Home",
+  },
+  notFound: {
+    badge: "// TELEMETRY: SECTOR UNCHARTED",
+    title: "SIGNAL LOST IN DEEP SPACE",
+    description: "The coordinates you attempted to navigate do not correspond to any known orbital trajectory or active telemetry sector.",
+    returnOrbit: "Return to Orbit",
+    directUplink: "Direct Uplink",
+  },
 };

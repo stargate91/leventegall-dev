@@ -1,3 +1,4 @@
+import { cookies, headers } from "next/headers";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import StructuredData from "@/components/StructuredData";
@@ -70,6 +71,15 @@ export const metadata: Metadata = {
       "hu-HU": siteConfig.url,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -113,15 +123,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const headersList = await headers();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || headersList.get("x-locale") || "en";
+  const lang = locale === "hu" ? "hu" : "en";
 
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
