@@ -12,6 +12,7 @@ export default function StructuredData() {
         url: siteConfig.url,
         image: `${siteConfig.url}/opengraph-image`,
         jobTitle: "Full-Stack Developer & Brand Strategist",
+        email: siteConfig.email,
         worksFor: {
           "@type": "Organization",
           name: "Independent Contractor / Freelance",
@@ -31,13 +32,31 @@ export default function StructuredData() {
           "Copywriting",
           "Physics",
         ],
-        sameAs: [siteConfig.socials.github, siteConfig.socials.fiverr],
+        sameAs: [
+          siteConfig.socials.github,
+          siteConfig.socials.linkedin,
+          siteConfig.socials.fiverr,
+        ],
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${siteConfig.url}/#profilepage`,
+        url: siteConfig.url,
+        name: `${siteConfig.author} • Portfolio & Technical Profile`,
+        isPartOf: {
+          "@id": `${siteConfig.url}/#website`,
+        },
+        mainEntity: {
+          "@id": `${siteConfig.url}/#person`,
+        },
+        inLanguage: ["en", "hu"],
       },
       {
         "@type": "ProfessionalService",
         "@id": `${siteConfig.url}/#service`,
         name: "Levente Gáll - Full-Stack Architecture & Brand Strategy",
         url: siteConfig.url,
+        email: siteConfig.email,
         founder: {
           "@id": `${siteConfig.url}/#person`,
         },
@@ -50,6 +69,12 @@ export default function StructuredData() {
           "@type": "GeoCoordinates",
           latitude: siteConfig.coordinates.lat,
           longitude: siteConfig.coordinates.lng,
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: siteConfig.email,
+          contactType: "customer service",
+          availableLanguage: ["English", "Hungarian"],
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -67,7 +92,7 @@ export default function StructuredData() {
         publisher: {
           "@id": `${siteConfig.url}/#person`,
         },
-        inLanguage: "en",
+        inLanguage: ["en", "hu"],
       },
     ],
   };

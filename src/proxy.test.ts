@@ -45,4 +45,13 @@ describe("Locale Proxy", () => {
     const setCookie = response.headers.get("set-cookie");
     expect(setCookie).toContain("NEXT_LOCALE=en");
   });
+
+  it("rewrites /hu pathname to root with x-locale hu and sets cookie", () => {
+    const request = new NextRequest("https://example.com/hu");
+    const response = proxy(request);
+
+    expect(response.headers.get("x-locale")).toBe("hu");
+    const setCookie = response.headers.get("set-cookie");
+    expect(setCookie).toContain("NEXT_LOCALE=hu");
+  });
 });

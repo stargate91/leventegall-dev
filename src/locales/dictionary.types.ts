@@ -66,6 +66,7 @@ export interface ProjectsLocale {
     viewGithub: string;
     visitWebsite: string;
     discussWork: string;
+    caseStudy: string;
     expandScreenshot: string;
     closeLightbox: string;
   };
@@ -103,9 +104,16 @@ export interface SkillsLocale {
   categories: SkillCategoryLocale[];
 }
 
+export interface TestimonialsLabelsLocale {
+  prev: string;
+  next: string;
+  carousel: string;
+}
+
 export interface TestimonialsLocale {
   subtitle: string;
   title: string;
+  labels?: TestimonialsLabelsLocale;
   feedback: ClientFeedbackLocale[];
 }
 
@@ -220,6 +228,72 @@ export interface NotFoundLocale {
   directUplink: string;
 }
 
+export interface SwayaCaseStudyLocale {
+  breadcrumbs: {
+    home: string;
+    projects: string;
+    caseStudy: string;
+  };
+  hero: {
+    badge: string;
+    telemetry: string;
+    title: string;
+    tagline: string;
+    description: string;
+    metrics: {
+      latencyValue: string;
+      latencyLabel: string;
+      filesValue: string;
+      filesLabel: string;
+      privacyValue: string;
+      privacyLabel: string;
+    };
+    visitWebsite: string;
+    backToOverview: string;
+  };
+  gallery: {
+    title: string;
+    subtitle: string;
+    previewCaption: string;
+  };
+  architecture: {
+    title: string;
+    subtitle: string;
+    cards: {
+      hybridCore: {
+        title: string;
+        description: string;
+      };
+      organizer: {
+        title: string;
+        description: string;
+      };
+      privacy: {
+        title: string;
+        description: string;
+      };
+      player: {
+        title: string;
+        description: string;
+      };
+    };
+  };
+  telemetry: {
+    title: string;
+    subtitle: string;
+    specs: {
+      key: string;
+      value: string;
+    }[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    discussButton: string;
+    exploreButton: string;
+  };
+}
+
 export interface Dictionary {
   brandName: string;
   personName: string;
@@ -236,4 +310,5 @@ export interface Dictionary {
   audioPlayer: AudioPlayerLocale;
   error: ErrorLocale;
   notFound: NotFoundLocale;
+  swayaCaseStudy: SwayaCaseStudyLocale;
 }

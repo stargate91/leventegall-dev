@@ -11,9 +11,14 @@ import { useLocale } from "@/locales";
 interface ProjectGalleryProps {
   items: ProjectScreenshot[];
   previewCaption?: string | undefined;
+  layout?: "vertical" | "grid";
 }
 
-export default function ProjectGallery({ items, previewCaption }: ProjectGalleryProps) {
+export default function ProjectGallery({
+  items,
+  previewCaption,
+  layout = "vertical",
+}: ProjectGalleryProps) {
   const { dict } = useLocale();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
@@ -38,15 +43,16 @@ export default function ProjectGallery({ items, previewCaption }: ProjectGallery
   }
 
   const activeShot = activeIdx !== null ? items[activeIdx] : null;
+  const isGrid = layout === "grid";
 
   return (
-    <div className={styles.galleryContainer}>
-      <div className={styles.grid}>
+    <div className={isGrid ? styles.galleryContainerGrid : styles.galleryContainer}>
+      <div className={isGrid ? styles.gridColumns : styles.grid}>
         {items.map((shot, idx) => (
           <button
             key={shot.id}
             type="button"
-            className={styles.thumbnailCard}
+            className={isGrid ? styles.thumbnailCardGrid : styles.thumbnailCard}
             onClick={() => handleOpen(idx)}
             aria-label={`${dict.projects.labels.expandScreenshot}: ${shot.title}`}
           >

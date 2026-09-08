@@ -111,3 +111,6 @@ export type {
 
 export { default as Lightbox } from "./Lightbox";
 export type { LightboxProps, LightboxItem } from "./Lightbox";
+
+export { default as CardMetaBar } from "./CardMetaBar";
+export type { CardMetaBarProps } from "./CardMetaBar";

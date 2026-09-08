@@ -1,4 +1,3 @@
-import { cookies, headers } from "next/headers";
 import { Warning, ArrowLeft, Connect } from "@carbon/icons-react";
 import styles from "./not-found.module.css";
 import {
@@ -8,13 +7,10 @@ import {
   Stack,
   Text,
 } from "@/components/ui";
-import { getDictionary, type Locale } from "@/locales";
+import { getDictionary } from "@/locales";
 
-export default async function NotFound() {
-  const cookieStore = await cookies();
-  const headersList = await headers();
-  const locale = (cookieStore.get("NEXT_LOCALE")?.value || headersList.get("x-locale") || "en") as Locale;
-  const dict = getDictionary(locale === "hu" ? "hu" : "en");
+export default function NotFound() {
+  const dict = getDictionary("en");
 
   return (
     <main className={styles.container}>

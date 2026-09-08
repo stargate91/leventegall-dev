@@ -4,37 +4,6 @@
   overflow: hidden;
 }
 
-.topBar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: var(--space-md);
-  margin-bottom: var(--space-lg);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.overviewText {
-  display: inline-flex;
-  gap: var(--space-2xs);
-  align-items: center;
-  padding: calc(var(--space-2xs) + 1px) 0;
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-xs);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-}
-
-.overviewPrefix {
-  font-weight: 600;
-  color: var(--color-accent-core);
-}
-
 .mainGrid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;

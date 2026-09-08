@@ -1,7 +1,7 @@
-import { cookies, headers } from "next/headers";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import StructuredData from "@/components/StructuredData";
+import AudioPlayer from "@/components/AudioPlayer";
 import { siteConfig } from "@/config/site";
 import { LocaleProvider } from "@/locales";
 import "@/styles/tokens/colors.css";
@@ -50,16 +50,22 @@ export const metadata: Metadata = {
     "Levente Gáll",
     "Gáll Levente",
     "Full-Stack Developer",
+    "Full-Stack Fejlesztő",
     "Brand Strategist",
+    "Márkastratéga",
     "Python Developer",
+    "Python Fejlesztő",
     "FastAPI",
     "React",
     "Next.js",
     "TypeScript",
     "Brand Naming",
+    "Névadás",
     "Copywriting",
+    "Szövegírás",
     "Budapest",
     "ELTE Physics",
+    "ELTE Fizika",
   ],
   authors: [{ name: siteConfig.author, url: siteConfig.url }],
   creator: siteConfig.author,
@@ -67,8 +73,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
     languages: {
-      "en-US": siteConfig.url,
-      "hu-HU": siteConfig.url,
+      "en-US": `${siteConfig.url}/`,
+      "hu-HU": `${siteConfig.url}/hu`,
+      "x-default": `${siteConfig.url}/`,
     },
   },
   icons: {
@@ -83,10 +90,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: ["hu_HU"],
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: "Levente Gáll Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    creator: "@stargate91",
     images: [
       {
         url: "/opengraph-image",
@@ -95,13 +109,6 @@ export const metadata: Metadata = {
         alt: "Levente Gáll - Full-Stack Developer & Brand Strategist",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-    creator: "@stargate91",
-    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -123,28 +130,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const headersList = await headers();
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || headersList.get("x-locale") || "en";
-  const lang = locale === "hu" ? "hu" : "en";
-
   return (
     <html
-      lang={lang}
+      lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <head>
-        <StructuredData />
-      </head>
       <body>
+        <StructuredData />
         <div className="cosmic-mesh-bg" aria-hidden="true" />
         <div className="cosmic-grid-overlay" aria-hidden="true" />
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider>
+          {children}
+          <AudioPlayer />
+        </LocaleProvider>
       </body>
     </html>
   );

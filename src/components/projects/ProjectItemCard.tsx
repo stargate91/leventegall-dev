@@ -6,7 +6,7 @@ import ProjectGallery from "./ProjectGallery";
 import type { ProjectData } from "@/data/projects";
 import {
   HudCard,
-  TelemetryBadge,
+  CardMetaBar,
   Button,
   Stat,
   TagList,
@@ -30,17 +30,11 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
       variant="surface"
       className={styles.projectCard}
     >
-      {/* Top Meta Bar */}
-      <div className={styles.topBar}>
-        <TelemetryBadge variant="cyan">
-          {project.badge}
-        </TelemetryBadge>
-
-        <div className={styles.overviewText}>
-          <span className={styles.overviewPrefix}>//</span>
-          <span>{dict.projects.labels.appOverview}</span>
-        </div>
-      </div>
+      {/* Modular Top Meta Bar */}
+      <CardMetaBar
+        badge={project.badge}
+        telemetry={dict.projects.labels.appOverview}
+      />
 
       {/* Main Two-Column Layout */}
       <div className={styles.mainGrid}>
@@ -90,7 +84,7 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
             )}
             {project.githubUrl && (
               <Button
-                variant={project.liveUrl ? "secondary" : "primary"}
+                variant="secondary"
                 size="sm"
                 href={project.githubUrl}
                 target="_blank"
@@ -100,13 +94,33 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
                 {dict.projects.labels.viewGithub}
               </Button>
             )}
-            <Button
-              variant="secondary"
-              size="sm"
-              href="#contact"
-            >
-              {dict.projects.labels.discussWork}
-            </Button>
+            {!project.githubUrl && (
+              <Button
+                variant="secondary"
+                size="sm"
+                href="#contact"
+              >
+                {dict.projects.labels.discussWork}
+              </Button>
+            )}
+            {project.id === "swaya" && (
+              <Button
+                variant="secondary"
+                size="sm"
+                href="/projects/swaya"
+              >
+                {dict.projects.labels.caseStudy}
+              </Button>
+            )}
+            {project.githubUrl && (
+              <Button
+                variant="secondary"
+                size="sm"
+                href="#contact"
+              >
+                {dict.projects.labels.discussWork}
+              </Button>
+            )}
           </Inline>
         </Stack>
 

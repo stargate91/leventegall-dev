@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: siteConfig.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#181818",
-    theme_color: "#0078d4",
+    background_color: "#05070b",
+    theme_color: "#05070b",
     icons: [
       {
         src: "/favicon.ico",
@@ -30,6 +30,18 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/apple-icon",
         sizes: "180x180",
         type: "image/png",
+      },
+      {
+        src: "/apple-icon",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "maskable",
+      },
+      {
+        src: "/opengraph-image",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

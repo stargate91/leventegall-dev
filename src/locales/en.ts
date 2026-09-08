@@ -18,8 +18,8 @@ export const en: Dictionary = {
     projects: "02 // FEATURED PROJECTS",
     skills: "03 // SKILLS & TECH STACK",
     services: "04 // HOW I CAN HELP",
-    reviews: "05 // CLIENT REVIEWS",
-    contact: "06 // GET IN TOUCH",
+    reviews: "05 // TESTIMONIALS",
+    contact: "06 // CONTACT",
   },
   hero: {
     titleMain: "Hi, I’m Levente.",
@@ -84,6 +84,7 @@ export const en: Dictionary = {
       viewGithub: "View Code on GitHub",
       visitWebsite: "Visit Product Website",
       discussWork: "Discuss Similar Work",
+      caseStudy: "Case Study",
       expandScreenshot: "Click to expand screenshot",
       closeLightbox: "Close viewer",
     },
@@ -98,7 +99,7 @@ export const en: Dictionary = {
         title: "Swaya Media & Library Ecosystem",
         tagline: "High-performance desktop media manager & automated metadata pipeline running on Windows & Linux.",
         description:
-          "A commercial desktop media management ecosystem built as a client-server hybrid. Pairs a high-throughput Python FastAPI backend with an Electron & React 19 frontend, featuring multi-source metadata pairing (TMDb, OMDb, StashDB, ThePornDB, FansDB), customizable renaming templates, dual SFW/NSFW privacy modes with server-side blurring, and synchronized MPV video playback.",
+          "A commercial desktop media management ecosystem built as a client-server hybrid. Pairs a high-throughput Python FastAPI backend with an Electron & React frontend, featuring multi-source metadata pairing (TMDb, OMDb, StashDB, ThePornDB, FansDB), customizable renaming templates, dual SFW/NSFW privacy modes with server-side blurring, and synchronized MPV video playback.",
         impactMetrics: [
           { label: "Architecture", value: "Modular Monolith" },
           { label: "Data Providers", value: "5+ Metadata APIs" },
@@ -134,7 +135,7 @@ export const en: Dictionary = {
         id: "database",
         title: "Database",
         description: "Relational and in-memory persistence, WAL-mode embedded storage, and type-safe ORMs.",
-        skills: ["PostgreSQL", "SQLite", "Redis", "SQLAlchemy 2.0", "Drizzle ORM", "Alembic"],
+        skills: ["PostgreSQL", "SQLite", "Redis", "SQLAlchemy", "Drizzle ORM", "Alembic"],
       },
       {
         id: "devops",
@@ -225,7 +226,12 @@ export const en: Dictionary = {
   },
   testimonials: {
     subtitle: "Client Feedback",
-    title: "Client Reviews & Track Record",
+    title: "What Founders Say About Working With Me",
+    labels: {
+      prev: "Previous reviews",
+      next: "Next reviews",
+      carousel: "Client reviews carousel",
+    },
     feedback: [
       {
         id: "feedback-silur",
@@ -270,7 +276,7 @@ export const en: Dictionary = {
     ],
   },
   contact: {
-    subtitle: "Get in Touch",
+    subtitle: "Project Inquiry",
     title: "Let's Talk About Your Project",
     description: "Have an idea in mind, need a strong brand name, or want to build a dependable full-stack web application? Send me a message and I'll get back to you within 24 hours.",
     fields: {
@@ -346,5 +352,106 @@ export const en: Dictionary = {
     description: "The coordinates you attempted to navigate do not correspond to any known orbital trajectory or active telemetry sector.",
     returnOrbit: "Return to Orbit",
     directUplink: "Direct Uplink",
+  },
+  swayaCaseStudy: {
+    breadcrumbs: {
+      home: "Home",
+      projects: "Projects",
+      caseStudy: "Swaya Case Study",
+    },
+    hero: {
+      badge: "PRODUCTION ARTIFACT",
+      telemetry: "DESKTOP SYSTEM ARCHITECTURE",
+      title: "Swaya Media Manager",
+      tagline: "FastAPI & Electron Desktop Architecture for Local Media Management",
+      description:
+        "Swaya is a desktop media management application built as a client-server hybrid. It pairs a local Python FastAPI backend with an Electron and React frontend, featuring multi-source metadata scraping, customizable file renaming, and integrated MPV video playback.",
+      metrics: {
+        latencyValue: "Modular Monolith",
+        latencyLabel: "Architecture Pattern",
+        filesValue: "5+ Providers",
+        filesLabel: "Metadata Scraping APIs",
+        privacyValue: "100% Offline",
+        privacyLabel: "Local Privacy & Storage",
+      },
+      visitWebsite: "Visit Live Website",
+      backToOverview: "Back to Overview",
+    },
+    gallery: {
+      title: "System Interface & Interactive Previews",
+      subtitle: "Multi-pane library virtualization, fast search indexing, and synchronized video playback.",
+      previewCaption: "Swaya Media Manager Interface",
+    },
+    architecture: {
+      title: "Key Architectural Highlights",
+      subtitle: "Engineered for instantaneous local execution, atomic database writes, and zero UI thread latency.",
+      cards: {
+        hybridCore: {
+          title: "Hybrid Client-Server Desktop Core",
+          description:
+            "Combines an Electron desktop container with an internal Python FastAPI ASGI daemon communicating over local loopback with token authentication (X-API-Token). This completely decouples disk-heavy filesystem I/O, scraping, and database indexing from the React UI thread, ensuring fluid 60fps responsiveness.",
+        },
+        organizer: {
+          title: "Intelligent Renaming & Organization Pipeline",
+          description:
+            "Automated media ingestion powered by GuessIt regex intelligence and custom syntax templates ({studio} - {date} - {performers} - {title}). Features industry presets (Plex, Jellyfin), extras detection (.srt, .nfo), collision handling policies, and transactional ActionBatches with audit logs for safe rollbacks.",
+        },
+        privacy: {
+          title: "Dual-Mode Privacy & Image Processing",
+          description:
+            "Enables seamless toggling between mainstream (SFW) and specialized adult (NSFW) media sessions directly from the window titlebar. Employs a server-side Pillow image proxy with dynamic Gaussian blurring, 18+ content filters, and automatic navigation protection that guards against accidental exposure.",
+        },
+        player: {
+          title: "Synchronized MPV IPC Playback Engine",
+          description:
+            "Low-level inter-process communication using raw JSON-RPC sockets over Node net.Socket to control an embedded MPV player. Enables precision sub-second frame seeking, hardware-accelerated video decoding, instant lossless snapshot capture, and continuous watch progress synchronization back to SQLite.",
+        },
+      },
+    },
+    telemetry: {
+      title: "Technical Telemetry & System Specifications",
+      subtitle: "Detailed engineering parameters and implementation stack.",
+      specs: [
+        {
+          key: "Architecture Pattern",
+          value: "Modular Monolith - Local Python FastAPI daemon paired with Electron & React",
+        },
+        {
+          key: "Frontend Stack & Virtualization",
+          value: "React 19, Electron 42, Vite 8, TanStack Query v5, TanStack Virtual (virtualized library grid), Zustand 5 (persistent stores)",
+        },
+        {
+          key: "Database & Persistence",
+          value: "Embedded SQLite in Write-Ahead Logging (WAL) mode, SQLAlchemy ORM, automatic Alembic startup migrations, custom composite indexes",
+        },
+        {
+          key: "Metadata Scraper Pipeline",
+          value: "Multi-provider integration (TMDb, OMDb, StashDB GraphQL, ThePornDB, FansDB) + GuessIt intelligent filename parser",
+        },
+        {
+          key: "IPC & Inter-Process Protocols",
+          value: "Electron typed contextBridge (window.electronAPI) + Raw JSON-RPC over Named Pipes / Unix Domain Sockets (MPV)",
+        },
+        {
+          key: "Task & Concurrency Model",
+          value: "Asyncio event loop + Multi-worker TaskManager with worker cancellation + ThreadPoolExecutor for CPU-bound hashing",
+        },
+        {
+          key: "Filesystem Event Monitoring",
+          value: "Watchdog real-time folder change monitoring + 4 configurable collision policies (Keep Both, Replace, Overwrite, Skip)",
+        },
+        {
+          key: "Binary Distribution & Security",
+          value: "Electron Builder + PyInstaller standalone portable bundling • 100% offline air-gapped execution, zero external analytics",
+        },
+      ],
+    },
+    cta: {
+      title: "Ready to Build High-Performance Architecture?",
+      description:
+        "Whether you need low-latency desktop applications, high-throughput backend services, or modern web platforms, let's engineer something extraordinary together.",
+      discussButton: "Discuss a Project",
+      exploreButton: "Explore All Projects",
+    },
   },
 };

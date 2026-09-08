@@ -18,8 +18,8 @@ export const hu: Dictionary = {
     projects: "02 // KIEMELT PROJEKTEK",
     skills: "03 // TECH STACK",
     services: "04 // MIBEN SEGÍTHETEK",
-    reviews: "05 // ÜGYFÉLVÉLEMÉNYEK",
-    contact: "06 // KAPCSOLATFELVÉTEL",
+    reviews: "05 // VISSZAJELZÉSEK",
+    contact: "06 // KAPCSOLAT",
   },
   hero: {
     titleMain: "Szia, Levente vagyok.",
@@ -84,6 +84,7 @@ export const hu: Dictionary = {
       viewGithub: "Forráskód a GitHubon",
       visitWebsite: "Termék Weboldala",
       discussWork: "Hasonló Munka Megbeszélése",
+      caseStudy: "Esettanulmány",
       expandScreenshot: "Kattints a nagyításhoz",
       closeLightbox: "Előnézet bezárása",
     },
@@ -98,7 +99,7 @@ export const hu: Dictionary = {
         title: "Swaya Média & Könyvtár Rendszer",
         tagline: "Nagy teljesítményű asztali médiakezelő és automatizált metaadat-feldolgozó Windowsra és Linuxra.",
         description:
-          "Kereskedelmi asztali médiakezelő szoftver kliens-szerver hibrid architektúrával. Nagy átviteli sebességű Python FastAPI backendet ötvöz Electron és React 19 felülettel, többforrásos metaadat-párosítással (TMDb, OMDb, StashDB, ThePornDB, FansDB), testreszabható átnevezési sablonokkal, kettős SFW/NSFW adatvédelmi móddal és szerveroldali képelhomályosítással, valamint szinkronizált beépített MPV videólejátszóval.",
+          "Kereskedelmi asztali médiakezelő szoftver kliens-szerver hibrid architektúrával. Nagy átviteli sebességű Python FastAPI backendet ötvöz Electron és React felülettel, többforrásos metaadat-párosítással (TMDb, OMDb, StashDB, ThePornDB, FansDB), testreszabható átnevezési sablonokkal, kettős SFW/NSFW adatvédelmi móddal és szerveroldali képelhomályosítással, valamint szinkronizált beépített MPV videólejátszóval.",
         impactMetrics: [
           { label: "Architektúra", value: "Moduláris Monolit" },
           { label: "Adatszolgáltatók", value: "5+ Metaadat API" },
@@ -134,7 +135,7 @@ export const hu: Dictionary = {
         id: "database",
         title: "Adatbázis",
         description: "Relációs és memóriabeli perzisztencia, WAL-módú beágyazott tárak és típusbiztos ORM-ek.",
-        skills: ["PostgreSQL", "SQLite", "Redis", "SQLAlchemy 2.0", "Drizzle ORM", "Alembic"],
+        skills: ["PostgreSQL", "SQLite", "Redis", "SQLAlchemy", "Drizzle ORM", "Alembic"],
       },
       {
         id: "devops",
@@ -224,8 +225,13 @@ export const hu: Dictionary = {
     ],
   },
   testimonials: {
-    subtitle: "Ügyfélvélemények",
-    title: "Ügyfélvélemények & Hírnév",
+    subtitle: "Ügyféltapasztalatok",
+    title: "Mit mondanak, akikkel együtt dolgoztam?",
+    labels: {
+      prev: "Előző vélemények",
+      next: "Következő vélemények",
+      carousel: "Ügyfélvélemények karusszel",
+    },
     feedback: [
       {
         id: "feedback-silur",
@@ -270,7 +276,7 @@ export const hu: Dictionary = {
     ],
   },
   contact: {
-    subtitle: "Kapcsolatfelvétel",
+    subtitle: "Projekt Megkeresés",
     title: "Beszéljünk a Projektedről",
     description: "Van egy konkrét ötleted, erős márkapozicionálást keresel, vagy megbízható full-stack webalkalmazást szeretnél építeni? Küldj üzenetet, és 24 órán belül válaszolok.",
     fields: {
@@ -346,5 +352,106 @@ export const hu: Dictionary = {
     description: "A megadott koordináták nem felelnek meg egyetlen ismert pályagörbének vagy aktív szektornak sem.",
     returnOrbit: "Vissza a pályára",
     directUplink: "Közvetlen kapcsolat",
+  },
+  swayaCaseStudy: {
+    breadcrumbs: {
+      home: "Főoldal",
+      projects: "Projektek",
+      caseStudy: "Swaya Esettanulmány",
+    },
+    hero: {
+      badge: "PRODUKCIÓS ARTIFAKTUM",
+      telemetry: "ASZTALI RENDSZERARCHITEKTÚRA",
+      title: "Swaya Media Manager",
+      tagline: "FastAPI & Electron asztali architektúra helyi médiakezeléshez",
+      description:
+        "A Swaya egy asztali médiagazdálkodási szoftver kliens-szerver hibrid felépítéssel. Egy helyi Python FastAPI backendet ötvöz Electron és React felhasználói felülettel, többforrásos automatizált metaadat-letöltéssel, rugalmas fájlátnevezéssel és beépített MPV videólejátszással.",
+      metrics: {
+        latencyValue: "Moduláris Monolit",
+        latencyLabel: "Architektúra Minta",
+        filesValue: "5+ Forrás",
+        filesLabel: "Metaadat Adatszolgáltató",
+        privacyValue: "100% Offline",
+        privacyLabel: "Helyi Adattárolás & Adatvédelem",
+      },
+      visitWebsite: "Weboldal Megtekintése",
+      backToOverview: "Vissza az Áttekintéshez",
+    },
+    gallery: {
+      title: "Rendszerfelület & Interaktív Előnézetek",
+      subtitle: "Többpaneles médiatár-virtualizáció, gyors keresési indexelés és szinkronizált videólejátszás.",
+      previewCaption: "Swaya Media Manager Felület",
+    },
+    architecture: {
+      title: "Főbb Architektúrális Kiemelések",
+      subtitle: "Azonnali helyi végrehajtásra, atomi adatbázis-írásokra és nulla UI-szál késleltetésre optimalizálva.",
+      cards: {
+        hybridCore: {
+          title: "Hibrid Kliens-Szerver Asztali Mag",
+          description:
+            "Egy keresztplatformos Electron asztali klienst ötvöz egy helyi Python FastAPI ASGI démonnal, amelyek belső loopback hálózaton, token-alapú hitelesítéssel (X-API-Token) kommunikálnak. Ez teljesen függetleníti a nagy terhelésű fájl I/O-t, scraper hívásokat és adatbázis-indexelést a React UI-száltól, garantálva a folyamatos 60fps sebességet.",
+        },
+        organizer: {
+          title: "Intelligens Rendező & Átnevező Pipeline",
+          description:
+            "Automatizált médiafeldolgozás GuessIt regex motorral és egyedi sablonszintaxissal ({studio} - {date} - {performers} - {title}). Támogatja az iparági szabványokat (Plex, Jellyfin), a feliratok és extrák (.srt, .nfo) felismerését, az ütközéskezelési szabályokat, valamint az auditálható és visszavonható tranzakciós műveletnaplókat (ActionBatches).",
+        },
+        privacy: {
+          title: "Kétmódú Adatvédelem & Képfeldolgozás",
+          description:
+            "Azonnali váltás a fősodorbeli (SFW) és a felnőtt (NSFW) médiatárak között közvetlenül az ablak fejlécéből. Szerveroldali Pillow képproxy végzi a poszterek és előnézetek dinamikus Gauss-homályosítását és a 18+ szűrést, automatikus visszairányítással védve a felhasználót az érzékeny tartalmak akaratlan megjelenésétől.",
+        },
+        player: {
+          title: "Szinkronizált MPV IPC Médiamotor",
+          description:
+            "Alacsony szintű folyamatközi kommunikáció natív JSON-RPC socketeken (Node net.Socket) keresztül a beágyazott MPV médialejátszóval. Másodpercen belüli precíz képkocka-navigációt, hardveres videódekódolást, azonnali veszteségmentes képkivágást és valós idejű lejátszási pozíció-szinkronizációt biztosít az SQLite adatbázisba.",
+        },
+      },
+    },
+    telemetry: {
+      title: "Technikai Telemetria & Rendszerspecifikációk",
+      subtitle: "Részletes mérnöki paraméterek és megvalósítási stack.",
+      specs: [
+        {
+          key: "Architektúra Minta",
+          value: "Moduláris Monolit - Helyi Python FastAPI démon Electron és React klienssel párosítva",
+        },
+        {
+          key: "Frontend Stack & Virtualizáció",
+          value: "React 19, Electron 42, Vite 8, TanStack Query v5, TanStack Virtual (virtualizált médiatár-rács), Zustand 5 (perzisztens store-ok)",
+        },
+        {
+          key: "Adatbázis & Perzisztencia",
+          value: "Beágyazott SQLite Write-Ahead Logging (WAL) módban, SQLAlchemy ORM, automatikus indítási Alembic migrációk, egyedi összetett indexek",
+        },
+        {
+          key: "Metaadat Scraper Pipeline",
+          value: "Többforrásos aggregáció (TMDb, OMDb, StashDB GraphQL, ThePornDB, FansDB) + GuessIt intelligens fájlnév-felismerő",
+        },
+        {
+          key: "IPC & Kommunikációs Protokollok",
+          value: "Electron típusbiztos contextBridge (window.electronAPI) + Nyers JSON-RPC Named Pipe-okon / Unix Socketeken (MPV)",
+        },
+        {
+          key: "Feladatkezelési & Párhuzamossági Modell",
+          value: "Asyncio eseményhurok + Többszálas TaskManager feladat-megszakítással + ThreadPoolExecutor a CPU-igényes hasheléshez",
+        },
+        {
+          key: "Fájlrendszer Eseménykezelés",
+          value: "Watchdog valós idejű mappaváltozás-figyelés + 4 konfigurálható ütközési szabályzat (Mindkettő megtartása, Felülírás, Csere, Kihagyás)",
+        },
+        {
+          key: "Bináris Csomagolás & Biztonság",
+          value: "Electron Builder + PyInstaller önálló hordozható csomagolás • 100% offline, légmentes működés, nulla külső analitika",
+        },
+      ],
+    },
+    cta: {
+      title: "Készen állsz egy csúcsteljesítményű architektúra felépítésére?",
+      description:
+        "Legyen szó alacsony késleltetésű asztali alkalmazásokról, nagy átviteli sebességű backend szolgáltatásokról vagy modern webes platformokról, tervezzünk valami kivételeset együtt.",
+      discussButton: "Projekt Megbeszélése",
+      exploreButton: "Összes Projekt Felfedezése",
+    },
   },
 };

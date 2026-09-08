@@ -6,7 +6,7 @@ describe("Testimonials Component", () => {
   it("renders the section header", () => {
     render(<Testimonials />);
 
-    expect(screen.getByText(/Client Reviews & Track Record/i)).toBeInTheDocument();
+    expect(screen.getByText(/What Founders Say About Working With Me/i)).toBeInTheDocument();
     expect(screen.getByText(/Client Feedback/i)).toBeInTheDocument();
   });
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef, useMemo } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   Close,
@@ -24,6 +26,8 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const { dict } = useLocale();
+  const pathname = usePathname();
+  const isHomePage = !pathname || pathname === "/" || pathname === "/hu";
 
   const scrollSpyOptions = useMemo(() => ({ sectionIds: SECTION_IDS }), []);
   const { scrolled, activeSection } = useScrollSpy(scrollSpyOptions);
@@ -55,7 +59,7 @@ export default function Navbar() {
       <div className={styles.sidebarInner}>
         {/* Top: Identity & Status Zone */}
         <div className={styles.identityBlock}>
-          <a href="#hero" className={styles.brandLink}>
+          <Link href={isHomePage ? "#hero" : "/"} className={styles.brandLink}>
             <div className={styles.brandInfo}>
               <div className={styles.brandTitle}>
                 <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
@@ -63,7 +67,7 @@ export default function Navbar() {
               </div>
               <span className={styles.brandRole}>{dict.footer.subTitle}</span>
             </div>
-          </a>
+          </Link>
 
           {/* Live Status & Coordinates Telemetry Pill */}
           <StatusPill
@@ -87,20 +91,21 @@ export default function Navbar() {
         <nav className={styles.navBlock} aria-label="Section Navigation">
           <ul className={styles.navList}>
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isActive = isHomePage && activeSection === link.id;
+              const targetHref = isHomePage ? link.href : `/${link.href}`;
 
               return (
                 <li key={link.index} className={styles.navListItem}>
-                  <a
-                    href={link.href}
+                  <Link
+                    href={targetHref}
                     id={`nav-link-${link.index}`}
                     className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
-                    aria-current={isActive ? "page" : undefined}
+                    aria-current={isActive ? "true" : undefined}
                   >
                     <span className={styles.indicatorLine} aria-hidden="true" />
                     <span className={styles.navIndex}>{link.index}</span>
                     <span className={styles.navLabel}>{link.label}</span>
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -108,7 +113,7 @@ export default function Navbar() {
         </nav>
 
         {/* Bottom Actions: Socials on left & Language Switcher on right */}
-        <div className={styles.footerBlock}>
+        <footer className={styles.footerBlock} role="contentinfo" aria-label="Sidebar Footer">
           <div className={styles.socialRow}>
             <div className={styles.socialGroup}>
               <IconButton
@@ -139,19 +144,19 @@ export default function Navbar() {
               <LanguageSwitcher />
             </div>
           </div>
-        </div>
+        </footer>
       </div>
 
       {/* =========================================================================
          Mobile Header Bar (< 1024px)
          ========================================================================= */}
       <div className={styles.mobileBar}>
-        <a href="#hero" className={styles.mobileBrand}>
+        <Link href={isHomePage ? "#hero" : "/"} className={styles.mobileBrand}>
           <span className={styles.mobileBrandTitle}>
             <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
             <span className={styles.brandCallsign}> // {siteConfig.callsign}</span>
           </span>
-        </a>
+        </Link>
 
         <div className={styles.mobileActions}>
           <LanguageSwitcher />
@@ -182,14 +187,14 @@ export default function Navbar() {
           <ul className={styles.mobileDrawerList}>
             {navLinks.map((link) => (
               <li key={link.index}>
-                <a
-                  href={link.href}
+                <Link
+                  href={isHomePage ? link.href : `/${link.href}`}
                   onClick={() => setMobileMenuOpen(false)}
                   className={styles.mobileDrawerLink}
                 >
                   <span className={styles.mobileDrawerIndex}>{link.index}</span>
                   <span>{link.label}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

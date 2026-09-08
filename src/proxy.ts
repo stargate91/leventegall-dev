@@ -14,10 +14,13 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const isHuPath = pathname === "/hu" || pathname.startsWith("/hu/");
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
   let activeLocale = "en";
 
-  if (cookieLocale === "hu" || cookieLocale === "en") {
+  if (isHuPath) {
+    activeLocale = "hu";
+  } else if (cookieLocale === "hu" || cookieLocale === "en") {
     activeLocale = cookieLocale;
   } else {
     // Detect from Accept-Language header
@@ -29,6 +32,23 @@ export function proxy(request: NextRequest) {
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", activeLocale);
+
+  if (isHuPath) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    const response = NextResponse.rewrite(url, {
+      request: {
+        headers: requestHeaders,
+      },
+    });
+    response.headers.set("x-locale", "hu");
+    response.cookies.set("NEXT_LOCALE", "hu", {
+      path: "/",
+      maxAge: 31536000,
+      sameSite: "lax",
+    });
+    return response;
+  }
 
   const response = NextResponse.next({
     request: {

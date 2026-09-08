@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./PageLayout.module.css";
 import Navbar from "@/components/Navbar";
-import AudioPlayer from "@/components/AudioPlayer";
 import TronGridBackground from "@/components/TronGridBackground";
 
 interface PageLayoutProps {
@@ -39,9 +38,6 @@ export default function PageLayout({ children, className = "", style }: PageLayo
       <main id="primary-content" className={styles.contentColumn} tabIndex={-1}>
         {children}
       </main>
-
-      {/* Orbital Audio Telemetry Console */}
-      <AudioPlayer />
     </div>
   );
 }

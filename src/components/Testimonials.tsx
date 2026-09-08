@@ -100,7 +100,7 @@ export default function Testimonials() {
       <div className={styles.carouselContainer}>
         <IconButton
           icon={<ChevronLeft size={20} />}
-          ariaLabel="Previous reviews"
+          ariaLabel={dict.testimonials.labels?.prev || "Previous reviews"}
           size="md"
           variant="surface"
           onClick={handlePrev}
@@ -113,7 +113,7 @@ export default function Testimonials() {
           className={styles.viewport}
           tabIndex={0}
           role="region"
-          aria-label="Client reviews carousel"
+          aria-label={dict.testimonials.labels?.carousel || "Client reviews carousel"}
         >
           <div className={styles.track}>
             {feedback.map((fb) => (
@@ -134,7 +134,7 @@ export default function Testimonials() {
 
         <IconButton
           icon={<ChevronRight size={20} />}
-          ariaLabel="Next reviews"
+          ariaLabel={dict.testimonials.labels?.next || "Next reviews"}
           size="md"
           variant="surface"
           onClick={handleNext}

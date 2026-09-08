@@ -1,0 +1,29 @@
+# Levente Gáll - Full-Stack Developer & Brand Strategist
+
+> Full-stack software engineer & brand strategist with an ELTE physics background. Over 1,100 international founders served on Fiverr with a 4.8★ rating. Specializing in Python, FastAPI, React 19, Next.js, TypeScript, and high-conversion startup brand naming.
+
+## Identity & Contact
+- Name: Levente Gáll (Hungarian: Gáll Levente)
+- Callsign: STARGATE91
+- Location: Budapest, Hungary (47.49°N, 19.04°E)
+- Email: leventegall@proton.me
+- Canonical URL: https://leventegall.dev
+- GitHub: https://github.com/stargate91
+- LinkedIn: https://www.linkedin.com/in/leventegall
+
+## Core Technical Competencies
+- Systems & Backend: Python, FastAPI, Uvicorn, SQLAlchemy, SQLite, Alembic, REST APIs, Rate Limiting, SQLite DB architecture
+- Frontend & UI: React, Next.js (App Router), TypeScript, JavaScript, Electron, Vite, Zustand, TanStack Query, Vanilla CSS Tokens
+- Scientific Background: Eötvös Loránd University (ELTE) Physics & Astronomy, numerical simulations, C programming
+- Creative Direction: Startup naming, slogan architecture, trademark vetting, brand positioning, conversion copywriting, audio engineering
+
+## Key Projects & Case Studies
+- Swaya Media Manager: Desktop media management application (FastAPI, Python, Electron, React, JavaScript, SQLite, MPV IPC streaming). Dedicated Case Study: https://leventegall.dev/projects/swaya
+- Freelance Branding Practice: 1,100+ delivered branding orders on Fiverr, 400+ reviews, 4.8★ rating.
+
+## Indexable Routes
+- English Home: https://leventegall.dev/
+- Hungarian Version: https://leventegall.dev/hu
+- Swaya Case Study: https://leventegall.dev/projects/swaya
+- XML Sitemap: https://leventegall.dev/sitemap.xml
+- Robots Directives: https://leventegall.dev/robots.txt
