@@ -28,7 +28,7 @@ export default function Callout({
       style={style}
       {...props}
     >
-      <div>
+      <div className={styles.textContainer}>
         {title && (
           <div className={styles.titleRow}>
             {icon && <span>{icon}</span>}
@@ -39,7 +39,7 @@ export default function Callout({
         )}
         <div className={styles.content}>{children}</div>
       </div>
-      {action && <div>{action}</div>}
+      {action && <div className={styles.actionContainer}>{action}</div>}
     </div>
   );
 }

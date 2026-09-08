@@ -1,16 +1,14 @@
 "use client";
 
-import { Calculation, Certificate, CheckmarkFilled, Chip, Pen, Terminal } from "@carbon/icons-react";
+import { Calculation, CheckmarkFilled, Chip, Pen, Terminal } from "@carbon/icons-react";
 import styles from "./AboutStory.module.css";
 import {
   SectionHeader,
   HudCard,
   TelemetryBadge,
-  Grid,
   Stack,
   Inline,
   Text,
-  Tooltip,
 } from "@/components/ui";
 import { getTimelineEntries } from "@/data/timeline";
 import { useLocale } from "@/locales";
@@ -26,7 +24,6 @@ export default function AboutStory() {
   const timelineEntries = getTimelineEntries(dict);
 
   return (
-
     <div className="section-container">
       {/* Header */}
       <SectionHeader
@@ -36,8 +33,21 @@ export default function AboutStory() {
         description={dict.story.description}
       />
 
+      {/* Trajectory Pipeline Bar */}
+      <div className={styles.pipelineWrapper} aria-hidden="true">
+        <div className={styles.pipelineTrack}>
+          <div className={styles.pipelineLine} />
+          {timelineEntries.map((log, index) => (
+            <div key={log.sol} className={styles.pipelineNode}>
+              <span className={styles.nodeIndex}>0{index + 1}</span>
+              <span className={styles.nodeLabel}>{log.sol}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Timeline Log Grid */}
-      <Grid cols={3} gap="md" className={styles.grid}>
+      <div className={styles.grid}>
         {timelineEntries.map((log) => {
           const Icon = iconMap[log.iconName];
           return (
@@ -48,14 +58,11 @@ export default function AboutStory() {
             >
               <Stack gap="sm">
                 {/* Meta Badge */}
-                <Inline justify="space-between" className={styles.logMeta}>
-                  <Text font="mono" size="2xs" tone="cyan" weight="semibold" className={styles.logSol}>
-                    {log.sol}
-                  </Text>
+                <div className={styles.logMeta}>
                   <TelemetryBadge variant="cyan" className={styles.metaBadge}>
                     {log.date}
                   </TelemetryBadge>
-                </Inline>
+                </div>
 
                 {/* Icon & Title */}
                 <div className={styles.logHeader}>
@@ -87,36 +94,6 @@ export default function AboutStory() {
             </HudCard>
           );
         })}
-      </Grid>
-
-      {/* The Fiverr Badge of Honor */}
-      <div className={styles.fiverrBanner}>
-        <Inline gap="md" align="center" className={styles.fiverrLeft}>
-          <div className={styles.fiverrIcon}>
-            <Certificate size={22} />
-          </div>
-          <div>
-            <Text font="heading" size="base" weight="bold" tone="primary" className={styles.fiverrTitle}>
-              {dict.story.fiverrBannerTitle}
-            </Text>
-            <Text size="sm" tone="secondary" className={styles.fiverrDesc}>
-              {dict.story.fiverrBannerDesc}
-            </Text>
-          </div>
-        </Inline>
-
-        <Tooltip
-          content={dict.story.fiverrTooltip}
-          side="top"
-          variant="cyan"
-        >
-          <TelemetryBadge
-            variant="cyan"
-            className={styles.fiverrBadge}
-          >
-            {dict.story.fiverrBadge}
-          </TelemetryBadge>
-        </Tooltip>
       </div>
     </div>
   );

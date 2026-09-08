@@ -22,7 +22,7 @@ export default function Home() {
         <Hero />
       </ChamberSection>
 
-      <DeckDivider label="01 // TRAJECTORY" />
+      <DeckDivider label="01 // ABOUT ME" />
 
       {/* ============================================================
           CHAMBER 02: TRAJECTORY & STORY
@@ -31,7 +31,7 @@ export default function Home() {
         <AboutStory />
       </ChamberSection>
 
-      <DeckDivider label="02 // PROJECTS & CODE" />
+      <DeckDivider label="02 // FEATURED PROJECTS" />
 
       {/* ============================================================
           CHAMBER 03: MISSION ARTIFACTS / PROJECTS
@@ -40,7 +40,7 @@ export default function Home() {
         <ProjectCard />
       </ChamberSection>
 
-      <DeckDivider label="03 // SKILLS & TELEMETRY" />
+      <DeckDivider label="03 // SKILLS & TECH STACK" />
 
       {/* ============================================================
           CHAMBER 04: TELEMETRY & CAPABILITIES
@@ -49,7 +49,7 @@ export default function Home() {
         <SkillsTelemetry />
       </ChamberSection>
 
-      <DeckDivider label="04 // SERVICES & PACKAGES" />
+      <DeckDivider label="04 // HOW I CAN HELP" />
 
       {/* ============================================================
           CHAMBER 05: PAYLOADS & PACKAGES
@@ -58,7 +58,7 @@ export default function Home() {
         <ServicesPricing />
       </ChamberSection>
 
-      <DeckDivider label="05 // CLIENT VERIFICATION" />
+      <DeckDivider label="05 // CLIENT REVIEWS" />
 
       {/* ============================================================
           CHAMBER 06: CLIENT TESTIMONIALS & REPUTATION
@@ -67,7 +67,7 @@ export default function Home() {
         <Testimonials />
       </ChamberSection>
 
-      <DeckDivider label="06 // DIRECT TRANSMISSION" />
+      <DeckDivider label="06 // GET IN TOUCH" />
 
       {/* ============================================================
           CHAMBER 07: DIRECT TRANSMISSION

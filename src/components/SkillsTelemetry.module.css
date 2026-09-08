@@ -20,11 +20,6 @@
   background: var(--bg-surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  transition: border-color var(--transition-smooth);
-}
-
-.categoryCard:hover {
-  border-color: var(--border-accent);
 }
 
 .cardHeader {

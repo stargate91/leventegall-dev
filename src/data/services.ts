@@ -3,13 +3,9 @@ import type { Dictionary } from "@/locales";
 export interface PackageTier {
   id: string;
   name: string;
-  badge: string;
   codename: string;
-  priceEstimate: string;
-  duration: string;
-  isPopular?: boolean;
   description: string;
-  features: string[];
+  isPopular?: boolean | undefined;
 }
 
 export interface ServiceOption {
@@ -20,35 +16,23 @@ export interface ServiceOption {
 export function getPackageTiers(dict: Dictionary): PackageTier[] {
   return [
     {
-      id: "naming",
-      name: dict.services.tiers.naming.name,
-      badge: dict.services.tiers.naming.badge,
-      codename: dict.services.tiers.naming.codename,
-      priceEstimate: dict.services.tiers.naming.priceEstimate,
-      duration: dict.services.tiers.naming.duration,
-      description: dict.services.tiers.naming.description,
-      features: dict.services.tiers.naming.features,
+      id: "branding",
+      name: dict.services.tiers.branding.name,
+      codename: dict.services.tiers.branding.codename,
+      description: dict.services.tiers.branding.description,
     },
     {
-      id: "full-orbit",
-      name: dict.services.tiers.fullOrbit.name,
-      badge: dict.services.tiers.fullOrbit.badge,
-      codename: dict.services.tiers.fullOrbit.codename,
-      priceEstimate: dict.services.tiers.fullOrbit.priceEstimate,
-      duration: dict.services.tiers.fullOrbit.duration,
+      id: "development",
+      name: dict.services.tiers.development.name,
+      codename: dict.services.tiers.development.codename,
       isPopular: true,
-      description: dict.services.tiers.fullOrbit.description,
-      features: dict.services.tiers.fullOrbit.features,
+      description: dict.services.tiers.development.description,
     },
     {
-      id: "web-dev",
-      name: dict.services.tiers.webDev.name,
-      badge: dict.services.tiers.webDev.badge,
-      codename: dict.services.tiers.webDev.codename,
-      priceEstimate: dict.services.tiers.webDev.priceEstimate,
-      duration: dict.services.tiers.webDev.duration,
-      description: dict.services.tiers.webDev.description,
-      features: dict.services.tiers.webDev.features,
+      id: "discord-bot",
+      name: dict.services.tiers.discordBot.name,
+      codename: dict.services.tiers.discordBot.codename,
+      description: dict.services.tiers.discordBot.description,
     },
   ];
 }

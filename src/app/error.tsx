@@ -33,24 +33,24 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
 
       <HudCard variant="surface" className={styles.card}>
         <Stack gap="lg" align="center" className={styles.content}>
-          <TelemetryBadge variant="subtle" beacon beaconColor="amber">
-            // ANOMALY DETECTED: SUBSYSTEM EXCEPTION
+          <TelemetryBadge variant="subtle">
+            SOMETHING WENT WRONG
           </TelemetryBadge>
 
           <div className={styles.glyphWrapper}>
-            <WarningAlt size={48} className={styles.glyphIcon} />
+            <WarningAlt size={40} className={styles.glyphIcon} />
           </div>
 
           <div className={styles.headingGroup}>
-            <Text as="h1" font="heading" size="2xl" weight="bold" tone="primary" uppercase>
-              SYSTEM MALFUNCTION
+            <Text as="h1" font="heading" size="2xl" weight="bold" tone="primary">
+              Something Went Wrong
             </Text>
             <Text as="p" size="sm" tone="secondary" className={styles.description}>
-              An unexpected anomaly occurred during state execution. Diagnostic logs have been recorded for inspection.
+              An unexpected error occurred while loading this page. Please try again, or head back to the homepage.
             </Text>
             {error.digest && (
               <Text font="mono" size="2xs" tone="cyan" className={styles.digest}>
-                [ TRACE_DIGEST: {error.digest} ]
+                [ Error Reference: {error.digest} ]
               </Text>
             )}
           </div>
@@ -62,7 +62,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
               onClick={() => reset()}
               iconLeft={<Restart size={16} />}
             >
-              Reboot Subsystem
+              Try Again
             </Button>
             <Button
               variant="secondary"
@@ -70,7 +70,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
               href="/"
               iconLeft={<Home size={16} />}
             >
-              Return Home
+              Back to Home
             </Button>
           </div>
         </Stack>

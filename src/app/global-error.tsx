@@ -57,16 +57,15 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
             style={{
               fontSize: "24px",
               fontWeight: "bold",
-              letterSpacing: "2px",
-              textTransform: "uppercase",
+              letterSpacing: "1px",
               margin: "0 0 12px 0",
               color: "#00f0ff",
             }}
           >
-            Critical Root Anomaly
+            Critical Application Error
           </h1>
           <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: "1.6", margin: "0 0 24px 0" }}>
-            The root rendering matrix encountered an unrecoverable state error.
+            An unexpected error occurred while loading the application. Please try reloading the page.
           </p>
           {error.digest && (
             <div
@@ -77,7 +76,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                 marginBottom: "24px",
               }}
             >
-              [ DIGEST: {error.digest} ]
+              [ Error Reference: {error.digest} ]
             </div>
           )}
           <button
@@ -98,7 +97,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
             }}
           >
             <Restart size={16} />
-            Reinitialize System
+            Try Again
           </button>
         </div>
       </body>

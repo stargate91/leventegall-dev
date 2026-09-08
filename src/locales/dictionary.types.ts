@@ -4,7 +4,8 @@ export interface NavLocale {
   journey: string;
   projects: string;
   skills: string;
-  packages: string;
+  services: string;
+  clients: string;
   contact: string;
   status: string;
   sidebarBio: string;
@@ -37,10 +38,6 @@ export interface StoryLocale {
   subtitle: string;
   title: string;
   description: string;
-  fiverrBannerTitle: string;
-  fiverrBannerDesc: string;
-  fiverrBadge: string;
-  fiverrTooltip: string;
   timeline: TimelineItemLocale[];
 }
 
@@ -113,7 +110,11 @@ export interface SkillCategoryLocale {
 export interface ClientFeedbackLocale {
   id: string;
   quote: string;
-  client: string;
+  author: string;
+  role: string;
+  location: string;
+  initials: string;
+  avatar?: string | undefined;
 }
 
 export interface SkillsLocale {
@@ -126,21 +127,13 @@ export interface SkillsLocale {
 export interface TestimonialsLocale {
   subtitle: string;
   title: string;
-  description: string;
-  verifiedBadge: string;
-  ratingBadge: string;
-  verifyFiverrLink: string;
   feedback: ClientFeedbackLocale[];
 }
 
 export interface PackageTierLocale {
   name: string;
-  badge: string;
   codename: string;
-  priceEstimate: string;
-  duration: string;
   description: string;
-  features: string[];
 }
 
 export interface ServiceOptionLocale {
@@ -152,16 +145,14 @@ export interface ServicesLocale {
   subtitle: string;
   title: string;
   description: string;
-  includedHeading: string;
-  selectButton: string;
   recommendedBadge: string;
   customCalloutTitle: string;
   customCalloutDesc: string;
   customCalloutButton: string;
   tiers: {
-    naming: PackageTierLocale;
-    fullOrbit: PackageTierLocale;
-    webDev: PackageTierLocale;
+    branding: PackageTierLocale;
+    development: PackageTierLocale;
+    discordBot: PackageTierLocale;
   };
   contactTierOptions: ServiceOptionLocale[];
   timelineOptions: ServiceOptionLocale[];

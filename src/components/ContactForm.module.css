@@ -4,9 +4,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: var(--space-xl);
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 900px) {
@@ -17,20 +17,57 @@
 }
 
 .formCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: var(--space-xl) var(--space-lg);
+}
+
+.form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.formStack {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.briefWrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.briefTextarea {
+  flex: 1;
+  min-height: 100px;
 }
 
 .infoColumn {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  height: 100%;
 }
 
 .infoCard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: var(--space-lg);
   background: var(--bg-dark-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
+}
+
+.emailCard {
+  justify-content: space-between;
 }
 
 .infoCardTag {

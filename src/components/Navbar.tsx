@@ -12,6 +12,8 @@ import styles from "./Navbar.module.css";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import StatusPill from "@/components/ui/StatusPill";
 import IconButton from "@/components/ui/IconButton";
+import Tooltip from "@/components/ui/Tooltip";
+import Text from "@/components/ui/Text";
 import { siteConfig } from "@/config/site";
 import { useLocale } from "@/locales";
 
@@ -28,7 +30,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sectionIds = ["hero", "trajectory", "projects", "skills", "services", "contact"];
+      const sectionIds = ["hero", "trajectory", "projects", "skills", "services", "reviews", "contact"];
       const scrollPosition = window.scrollY + window.innerHeight * 0.35;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -90,8 +92,9 @@ export default function Navbar() {
     { label: dict.nav.journey, href: "#trajectory", id: "trajectory", index: "01" },
     { label: dict.nav.projects, href: "#projects", id: "projects", index: "02" },
     { label: dict.nav.skills, href: "#skills", id: "skills", index: "03" },
-    { label: dict.nav.packages, href: "#services", id: "services", index: "04" },
-    { label: dict.nav.contact, href: "#contact", id: "contact", index: "05" },
+    { label: dict.nav.services, href: "#services", id: "services", index: "04" },
+    { label: dict.nav.clients, href: "#reviews", id: "reviews", index: "05" },
+    { label: dict.nav.contact, href: "#contact", id: "contact", index: "06" },
   ];
 
   return (
@@ -129,7 +132,9 @@ export default function Navbar() {
           />
 
           {/* Current Focus Micro-Bio */}
-          <p className={styles.sidebarBio}>{dict.nav.sidebarBio}</p>
+          <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.sidebarBio}>
+            {dict.nav.sidebarBio}
+          </Text>
         </div>
 
         {/* Middle: Vertical Navigation Links */}
@@ -160,32 +165,35 @@ export default function Navbar() {
         <div className={styles.footerBlock}>
           <div className={styles.socialRow}>
             <div className={styles.socialGroup}>
-              <IconButton
-                icon={<LogoGithub size={18} />}
-                href={siteConfig.socials.github}
-                target="_blank"
-                ariaLabel="GitHub Profile"
-                title="GitHub"
-                variant="surface"
-                size="md"
-              />
-              <IconButton
-                icon={<LogoLinkedin size={18} />}
-                href={siteConfig.socials.linkedin}
-                target="_blank"
-                ariaLabel="LinkedIn Profile"
-                title="LinkedIn"
-                variant="surface"
-                size="md"
-              />
-              <IconButton
-                icon={<Email size={18} />}
-                href={`mailto:${siteConfig.email}`}
-                ariaLabel="Email Transmission"
-                title="Email"
-                variant="surface"
-                size="md"
-              />
+              <Tooltip content="GitHub" side="top">
+                <IconButton
+                  icon={<LogoGithub size={18} />}
+                  href={siteConfig.socials.github}
+                  target="_blank"
+                  ariaLabel="GitHub Profile"
+                  variant="surface"
+                  size="md"
+                />
+              </Tooltip>
+              <Tooltip content="LinkedIn" side="top">
+                <IconButton
+                  icon={<LogoLinkedin size={18} />}
+                  href={siteConfig.socials.linkedin}
+                  target="_blank"
+                  ariaLabel="LinkedIn Profile"
+                  variant="surface"
+                  size="md"
+                />
+              </Tooltip>
+              <Tooltip content="Email" side="top">
+                <IconButton
+                  icon={<Email size={18} />}
+                  href={`mailto:${siteConfig.email}`}
+                  ariaLabel="Email Transmission"
+                  variant="surface"
+                  size="md"
+                />
+              </Tooltip>
             </div>
             <div className={styles.langContainer}>
               <LanguageSwitcher />

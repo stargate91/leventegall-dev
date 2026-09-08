@@ -52,7 +52,7 @@ export const initialFormState: ContactFormState = {
   formData: {
     name: "",
     email: "",
-    tier: "full-orbit",
+    tier: "development",
     timeline: "2-3-weeks",
     brief: "",
     botProbe: "",
@@ -252,21 +252,26 @@ export default function ContactForm() {
               <div className={styles.successIcon}>
                 <CheckmarkFilled size={30} />
               </div>
-              <h3 className={styles.successTitle}>
+              <Text as="h3" font="heading" size="2xl" weight="bold" tone="primary" className={styles.successTitle}>
                 {dict.contact.success.title}
-              </h3>
-              <p className={styles.successTelemetry}>
+              </Text>
+              <Text as="p" font="mono" size="sm" tone="cyan" className={styles.successTelemetry}>
                 [ Reference ID: {telemetryId} ]
-              </p>
-              <p className={styles.successDesc}>
+              </Text>
+              <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.successDesc}>
                 {dict.contact.success.desc}
-              </p>
+              </Text>
               <Button variant="secondary" size="md" onClick={() => dispatch({ type: "RESET_FORM" })}>
                 {dict.contact.success.button}
               </Button>
             </div>
           ) : (
-            <form noValidate onSubmit={handleSubmit} aria-busy={status === "transmitting"}>
+            <form
+              noValidate
+              onSubmit={handleSubmit}
+              aria-busy={status === "transmitting"}
+              className={styles.form}
+            >
               {/* Honeypot field for bot mitigation */}
               <input
                 type="text"
@@ -280,7 +285,7 @@ export default function ContactForm() {
                   dispatch({ type: "SET_FIELD", field: "botProbe", value: e.target.value })
                 }
               />
-              <Stack gap="lg">
+              <Stack gap="lg" className={styles.formStack}>
                 {status === "error" && (
                   <div role="alert" aria-live="assertive">
                     <Callout
@@ -355,6 +360,8 @@ export default function ContactForm() {
                   placeholder={dict.contact.fields.briefPlaceholder}
                   value={formData.brief}
                   error={errors.brief}
+                  containerClassName={styles.briefWrapper}
+                  className={styles.briefTextarea}
                   onChange={(e) =>
                     dispatch({ type: "SET_FIELD", field: "brief", value: e.target.value })
                   }
@@ -377,17 +384,19 @@ export default function ContactForm() {
         </HudCard>
 
         {/* Right Info Column */}
-        <Stack gap="md" className={styles.infoColumn}>
-          <HudCard variant="surface" corners={false} className={styles.infoCard}>
-            <TelemetryBadge variant="cyan" className={styles.infoCardTag}>
-              {dict.contact.infoColumn.directEmailTag}
-            </TelemetryBadge>
-            <h4 className={styles.infoCardTitle}>
-              {dict.contact.infoColumn.directEmailTitle}
-            </h4>
-            <p className={styles.infoCardDesc}>
-              {dict.contact.infoColumn.directEmailDesc}
-            </p>
+        <div className={styles.infoColumn}>
+          <HudCard variant="surface" corners={false} className={`${styles.infoCard} ${styles.emailCard}`}>
+            <div>
+              <TelemetryBadge variant="cyan" className={styles.infoCardTag}>
+                {dict.contact.infoColumn.directEmailTag}
+              </TelemetryBadge>
+              <Text as="h4" font="heading" size="lg" weight="semibold" tone="primary" className={styles.infoCardTitle}>
+                {dict.contact.infoColumn.directEmailTitle}
+              </Text>
+              <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.infoCardDesc}>
+                {dict.contact.infoColumn.directEmailDesc}
+              </Text>
+            </div>
 
             <CopySnippet text={directEmail} label="COPY" copiedLabel="COPIED" />
           </HudCard>
@@ -404,7 +413,7 @@ export default function ContactForm() {
               <Stat variant="row" label={dict.contact.infoColumn.physicsLabel} value={dict.contact.infoColumn.physicsValue} />
             </Stack>
           </HudCard>
-        </Stack>
+        </div>
       </div>
     </div>
   );

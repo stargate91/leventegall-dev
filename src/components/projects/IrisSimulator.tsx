@@ -6,6 +6,7 @@ import {
   TerminalBox,
   Button,
   Stack,
+  Text,
 } from "@/components/ui";
 import { useLocale } from "@/locales";
 
@@ -59,10 +60,18 @@ export default function IrisSimulator() {
       <Stack gap="xs">
         {irisEventLog.map((ev) => (
           <div key={ev.id} className={styles.irisRow}>
-            <span className={styles.irisTime}>{ev.time}</span>
-            <span className={styles.irisUser}>{ev.user}</span>
-            <span className={styles.irisAction}>{ev.action}</span>
-            <span className={styles.irisPts}>{ev.pts}</span>
+            <Text as="span" font="mono" size="xs" tone="muted" className={styles.irisTime}>
+              {ev.time}
+            </Text>
+            <Text as="span" font="mono" size="xs" tone="primary" className={styles.irisUser}>
+              {ev.user}
+            </Text>
+            <Text as="span" font="mono" size="xs" tone="cyan" className={styles.irisAction}>
+              {ev.action}
+            </Text>
+            <Text as="span" font="mono" size="xs" tone="success" className={styles.irisPts}>
+              {ev.pts}
+            </Text>
           </div>
         ))}
       </Stack>

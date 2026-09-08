@@ -1,37 +1,37 @@
 /* =========================================================================
-   Services & Pricing Section Styles
+   Services & Capabilities Section Styles (Compact HUD Cards)
    ========================================================================= */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+  gap: var(--space-md);
   align-items: stretch;
 }
 
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 }
 
-.pricingCard {
+.card {
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
 }
 
 .popularCard {
   border-color: var(--border-accent);
   box-shadow:
-    0 0 25px var(--color-accent-subtle),
-    0 10px 40px rgb(0 0 0 / 60%);
+    0 0 20px var(--color-accent-subtle),
+    0 8px 30px rgb(0 0 0 / 50%);
 }
 
-.cardInner {
+.cardContent {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -39,8 +39,16 @@
   height: 100%;
 }
 
-.topRow {
-  margin-bottom: var(--space-xs);
+.headerZone {
+  margin-bottom: var(--space-sm);
+}
+
+.metaRow {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
 }
 
 .tierCodename {
@@ -51,9 +59,25 @@
   letter-spacing: 0.05em;
 }
 
+.serviceIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-core);
+}
+
+.tierName {
+  margin-top: var(--space-2xs);
+  font-family: var(--font-space), sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
 .popularBadge {
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
   padding: var(--space-3xs) var(--space-sm);
   font-family: var(--font-jetbrains), monospace;
@@ -69,73 +93,12 @@
   transform: translateX(-50%);
 }
 
-.tierName {
-  margin-top: var(--space-2xs);
-  margin-bottom: var(--space-3xs);
-  font-family: var(--font-space), sans-serif;
-  font-size: var(--text-xl);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.tierBadge {
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-}
-
-.priceRow {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: baseline;
-  padding: var(--space-sm) 0;
-  margin: var(--space-xs) 0;
-  border-top: 1px solid rgb(255 255 255 / 6%);
-  border-bottom: 1px solid rgb(255 255 255 / 6%);
-}
-
-.price {
-  font-family: var(--font-space), monospace;
-  font-size: var(--text-2xl);
-  font-weight: 800;
-  color: var(--color-white);
-}
-
-.duration {
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
-}
-
 .tierDesc {
-  min-height: 4.5rem;
   font-size: var(--text-sm);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
-.featuresSection {
-  flex: 1;
-  padding: var(--space-sm) 0;
-  margin: var(--space-sm) 0 var(--space-md);
-}
-
-.featuresHeading {
-  margin-bottom: var(--space-xs);
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-}
-
-.buttonWrapper {
-  padding-top: var(--space-sm);
-  margin-top: auto;
-}
-
 .consultCallout {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }

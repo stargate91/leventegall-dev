@@ -188,22 +188,22 @@ describe("ContactForm Component", () => {
     render(<ContactForm />);
 
     const select = screen.getByRole("combobox", { name: /Project Scope/i });
-    expect(select).toHaveTextContent(/Complete Product Launch/i);
+    expect(select).toHaveTextContent(/Full-Stack & Web Development/i);
 
     fireEvent(
       window,
-      new CustomEvent("select-package-tier", { detail: { tierId: "naming" } }),
+      new CustomEvent("select-package-tier", { detail: { tierId: "branding" } }),
     );
 
-    expect(select).toHaveTextContent(/Brand Naming & Identity/i);
+    expect(select).toHaveTextContent(/Brand Naming & Slogans/i);
   });
 
   it("syncs selected package tier from URL search parameter on load", () => {
-    window.history.pushState({}, "", "/?tier=web-dev#contact");
+    window.history.pushState({}, "", "/?tier=discord-bot#contact");
 
     render(<ContactForm />);
 
     const select = screen.getByRole("combobox", { name: /Project Scope/i });
-    expect(select).toHaveTextContent(/Full-Stack Development/i);
+    expect(select).toHaveTextContent(/Discord Bot Development/i);
   });
 });

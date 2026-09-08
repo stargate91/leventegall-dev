@@ -8,6 +8,7 @@ import {
   Button,
   Inline,
   Stack,
+  Text,
 } from "@/components/ui";
 import { useLocale } from "@/locales";
 
@@ -60,11 +61,17 @@ export default function SwayaSimulator() {
           value={swayaProgress}
           variant="cyan"
         />
-        <div className={styles.logDetail}>
-          <div>{dict.projects.simulators.swayaLog1}</div>
-          <div>{dict.projects.simulators.swayaLog2}</div>
-          <div>{dict.projects.simulators.swayaLog3}</div>
-        </div>
+        <Stack gap="xs" className={styles.logDetail}>
+          <Text font="mono" size="xs" tone="secondary" leading="relaxed">
+            {dict.projects.simulators.swayaLog1}
+          </Text>
+          <Text font="mono" size="xs" tone="secondary" leading="relaxed">
+            {dict.projects.simulators.swayaLog2}
+          </Text>
+          <Text font="mono" size="xs" tone="secondary" leading="relaxed">
+            {dict.projects.simulators.swayaLog3}
+          </Text>
+        </Stack>
       </Stack>
     </TerminalBox>
   );

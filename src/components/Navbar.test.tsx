@@ -34,7 +34,7 @@ describe("Navbar Component", () => {
     expect(screen.getByText(/Swaya media manager backendjét írom át/i)).toBeInTheDocument();
   });
 
-  it("renders all 5 section navigation links with correct IDs and hrefs", () => {
+  it("renders all 6 section navigation links with correct IDs and hrefs", () => {
     render(
       <LocaleProvider initialLocale="en">
         <Navbar />
@@ -50,8 +50,11 @@ describe("Navbar Component", () => {
     const skillsLink = screen.getByRole("link", { name: /Skills/i });
     expect(skillsLink).toHaveAttribute("href", "#skills");
 
-    const servicesLink = screen.getByRole("link", { name: /Packages/i });
+    const servicesLink = screen.getByRole("link", { name: /Services/i });
     expect(servicesLink).toHaveAttribute("href", "#services");
+
+    const clientsLink = screen.getByRole("link", { name: /Clients/i });
+    expect(clientsLink).toHaveAttribute("href", "#reviews");
 
     const contactLink = screen.getByRole("link", { name: /Contact/i });
     expect(contactLink).toHaveAttribute("href", "#contact");

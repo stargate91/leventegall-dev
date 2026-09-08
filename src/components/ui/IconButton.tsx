@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import styles from "./IconButton.module.css";
 
-export interface IconButtonProps {
+export interface IconButtonProps extends React.HTMLAttributes<HTMLElement> {
   icon: React.ReactNode;
   ariaLabel: string;
   href?: string | undefined;
@@ -43,6 +43,7 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
       className = "",
       style,
       id,
+      ...rest
     },
     ref,
   ) => {
@@ -53,16 +54,17 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
     if (href && !disabled) {
       return (
         <a
-          ref={ref}
+          ref={ref as unknown as React.Ref<HTMLAnchorElement>}
           id={id}
           href={href}
           target={target}
           rel={target === "_blank" ? (rel ?? "noopener noreferrer") : rel}
           onClick={onClick}
           aria-label={ariaLabel}
-          title={title ?? ariaLabel}
+          title={title}
           className={combinedClass}
           style={style}
+          {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {icon}
         </a>
@@ -71,7 +73,7 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
 
     return (
       <button
-        ref={ref}
+        ref={ref as unknown as React.Ref<HTMLButtonElement>}
         id={id}
         type={type}
         onClick={onClick}
@@ -79,9 +81,10 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
         aria-label={ariaLabel}
         aria-expanded={ariaExpanded}
         aria-controls={ariaControls}
-        title={title ?? ariaLabel}
+        title={title}
         className={combinedClass}
         style={style}
+        {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {icon}
       </button>

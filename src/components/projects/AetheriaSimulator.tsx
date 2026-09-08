@@ -6,6 +6,7 @@ import {
   TerminalBox,
   Button,
   Stack,
+  Text,
 } from "@/components/ui";
 import { getBrandingTaglines } from "@/data/projects";
 import { useLocale } from "@/locales";
@@ -22,12 +23,12 @@ export default function AetheriaSimulator() {
     >
       <Stack gap="md">
         <div className={styles.aetheriaCard}>
-          <div className={styles.aetheriaTitle}>
+          <Text font="heading" size="xl" weight="bold" tone="primary" className={styles.aetheriaTitle}>
             AETHERIA
-          </div>
-          <div className={styles.aetheriaSub}>
+          </Text>
+          <Text size="xs" tone="secondary" className={styles.aetheriaSub}>
             {dict.projects.simulators.aetheriaPhonetic}
-          </div>
+          </Text>
         </div>
 
         <Stack gap="xs">

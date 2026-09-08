@@ -37,6 +37,8 @@
 }
 
 .glyphIcon {
+  display: block;
+  transform-origin: center;
   animation: pulse 2s infinite ease-in-out;
 }
 

@@ -5,9 +5,10 @@
 }
 
 .statRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(130px, 150px) 1fr;
+  gap: var(--space-sm);
+  align-items: baseline;
   padding: var(--space-2xs) 0;
   border-bottom: 1px solid var(--border-subtle);
 }

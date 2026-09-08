@@ -39,9 +39,9 @@
   top: 50%;
   left: 50%;
   display: flex;
-  gap: 0.5rem;
   align-items: center;
-  padding: 0.2rem 0.75rem;
+  justify-content: center;
+  padding: 0.25rem 0.85rem;
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
   font-weight: 600;
@@ -55,10 +55,3 @@
   transform: translate(-50%, -50%);
 }
 
-.labelDot {
-  width: 5px;
-  height: 5px;
-  background: var(--color-accent-core);
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--color-accent-glow);
-}

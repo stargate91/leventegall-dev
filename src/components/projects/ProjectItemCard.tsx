@@ -26,6 +26,7 @@ import {
   Inline,
   Stack,
   Grid,
+  Text,
 } from "@/components/ui";
 import { useLocale } from "@/locales";
 
@@ -67,16 +68,22 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
         {/* Left Column */}
         <Stack gap="md">
           <div>
-            <div className="font-telemetry">
+            <Text font="mono" size="2xs" tone="cyan" weight="semibold" className="font-telemetry">
               {dict.projects.labels.stack} {project.codename}
-            </div>
-            <h3 className={styles.projectTitle}>{project.title}</h3>
-            <div className={styles.projectTagline}>{project.tagline}</div>
+            </Text>
+            <Text as="h3" font="heading" size="2xl" weight="bold" tone="primary" className={styles.projectTitle}>
+              {project.title}
+            </Text>
+            <Text size="sm" weight="medium" tone="cyan" className={styles.projectTagline}>
+              {project.tagline}
+            </Text>
           </div>
 
           {currTab === "overview" && (
             <Stack gap="md">
-              <p className={styles.projectDesc}>{project.description}</p>
+              <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.projectDesc}>
+                {project.description}
+              </Text>
               <Grid cols={2} gap="md" className={styles.metaGrid}>
                 <Stat variant="card" label={dict.projects.labels.role} value={project.role} />
                 <Stat variant="card" label={dict.projects.labels.timeline} value={project.duration} />
@@ -97,7 +104,9 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
           )}
 
           {currTab === "interactive" && (
-            <p className={styles.projectDesc}>{project.description}</p>
+            <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.projectDesc}>
+              {project.description}
+            </Text>
           )}
 
           {/* Technology TagList Primitive */}

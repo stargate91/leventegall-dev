@@ -28,7 +28,6 @@ export default function DeckDivider({
     >
       {label ? (
         <div className={styles.labelWrapper}>
-          <span className={styles.labelDot} />
           <span>{label}</span>
         </div>
       ) : (

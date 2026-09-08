@@ -16,6 +16,8 @@ import {
   SectionHeader,
   HudCard,
   TagList,
+  Text,
+  Divider,
 } from "@/components/ui";
 import { getSkillCategories } from "@/data/skills";
 import { useLocale } from "@/locales";
@@ -67,12 +69,16 @@ export default function SkillsTelemetry() {
                 {getCategoryIcon(cat.id)}
               </div>
               <div className={styles.headerInfo}>
-                <h3 className={styles.categoryTitle}>{cat.title}</h3>
-                <p className={styles.categoryDesc}>{cat.description}</p>
+                <Text as="h3" font="heading" size="base" weight="bold" tone="primary" className={styles.categoryTitle}>
+                  {cat.title}
+                </Text>
+                <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.categoryDesc}>
+                  {cat.description}
+                </Text>
               </div>
             </div>
 
-            <div className={styles.cardDivider} />
+            <Divider variant="laser" spacing="none" className={styles.cardDivider} />
 
             <div className={styles.cardBody}>
               <TagList items={cat.skills} variant="cyan" size="sm" />

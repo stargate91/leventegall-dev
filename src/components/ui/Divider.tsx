@@ -8,11 +8,11 @@ export type DividerVariant = "subtle" | "gradient" | "laser";
 export type DividerSpacing = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export interface DividerProps extends HTMLAttributes<HTMLHRElement | HTMLDivElement> {
-  orientation?: DividerOrientation;
-  variant?: DividerVariant;
-  spacing?: DividerSpacing;
-  label?: React.ReactNode;
-  className?: string;
+  orientation?: DividerOrientation | undefined;
+  variant?: DividerVariant | undefined;
+  spacing?: DividerSpacing | undefined;
+  label?: React.ReactNode | undefined;
+  className?: string | undefined;
 }
 
 const spacingMap: Record<DividerSpacing, string> = {
