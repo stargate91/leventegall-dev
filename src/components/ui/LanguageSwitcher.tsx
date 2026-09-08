@@ -20,11 +20,11 @@ export default function LanguageSwitcher({ className = "" }: LanguageSwitcherPro
       <button
         type="button"
         aria-pressed={locale === "en"}
-        aria-label="Switch language to English"
         onClick={() => setLocale("en")}
         className={`${styles.langBtn} ${locale === "en" ? styles.active : ""}`}
       >
         EN
+        <span className="sr-only"> Switch language to English</span>
       </button>
 
       <div className={styles.divider} aria-hidden="true" />
@@ -32,11 +32,11 @@ export default function LanguageSwitcher({ className = "" }: LanguageSwitcherPro
       <button
         type="button"
         aria-pressed={locale === "hu"}
-        aria-label="Switch language to Hungarian"
         onClick={() => setLocale("hu")}
         className={`${styles.langBtn} ${locale === "hu" ? styles.active : ""}`}
       >
         HU
+        <span className="sr-only"> Switch language to Hungarian</span>
       </button>
     </div>
   );

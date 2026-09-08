@@ -6,7 +6,6 @@ import styles from "./error.module.css";
 import {
   HudCard,
   Button,
-  TelemetryBadge,
   Stack,
   Text,
 } from "@/components/ui";
@@ -35,10 +34,6 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
 
       <HudCard variant="surface" className={styles.card}>
         <Stack gap="lg" align="center" className={styles.content}>
-          <TelemetryBadge variant="subtle">
-            {dict.error.badge}
-          </TelemetryBadge>
-
           <div className={styles.glyphWrapper}>
             <WarningAlt size={40} className={styles.glyphIcon} />
           </div>

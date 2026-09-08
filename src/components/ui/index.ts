@@ -108,3 +108,6 @@ export type {
   AvatarVariant,
   AvatarStatus,
 } from "./Avatar";
+
+export { default as Lightbox } from "./Lightbox";
+export type { LightboxProps, LightboxItem } from "./Lightbox";

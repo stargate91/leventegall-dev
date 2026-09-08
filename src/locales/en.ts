@@ -11,7 +11,6 @@ export const en: Dictionary = {
     clients: "CLIENTS",
     contact: "CONTACT",
     available: "Available",
-    status: "AVAILABLE FOR NEW PROJECTS // BUDAPEST",
     sidebarBio: "Currently expanding my full-stack depth while migrating the Swaya media manager backend from Python to TypeScript.",
   },
   sections: {
@@ -23,11 +22,10 @@ export const en: Dictionary = {
     contact: "06 // GET IN TOUCH",
   },
   hero: {
-    greeting: "WELCOME // BUDAPEST",
     titleMain: "Hi, I’m Levente.",
     titleGradient: "I build software & brands.",
     description:
-      "Full-stack web development, an ELTE physics background, and independent brand naming & taglines.",
+      "Full-stack development, an ELTE physics background, and independent brand naming & taglines.",
     stats: {
       fiverrValue: "1,100+ Clients\n4.8★ Rating",
       fiverrLabel: "Brand Naming & Slogans on Fiverr",
@@ -79,100 +77,35 @@ export const en: Dictionary = {
   },
   projects: {
     subtitle: "Selected Projects",
-    title: "Featured Systems & Case Studies",
-    description: "A look into how I architect backend services, desktop tools, and full-stack web applications.",
-    tabs: {
-      interactive: "⚡ Live Demo",
-      overview: "Overview",
-      architecture: "Architecture",
-    },
+    title: "Featured Work & Projects",
+    description: "Real-world software and systems built from architectural design to polished, working products.",
     labels: {
-      stack: "TECH STACK",
-      role: "ROLE",
-      timeline: "TIMELINE",
-      challenge: "THE CHALLENGE",
-      solution: "THE SOLUTION",
+      appOverview: "APP OVERVIEW",
       viewGithub: "View Code on GitHub",
+      visitWebsite: "Visit Product Website",
       discussWork: "Discuss Similar Work",
+      expandScreenshot: "Click to expand screenshot",
+      closeLightbox: "Close viewer",
     },
     simulators: {
-      swayaTitle: "FASTAPI TASK QUEUE",
-      swayaReset: "Reset",
-      swayaStep: "+ Step Queue",
-      swayaTag: "TMDB Metadata Enrichment:",
-      swayaLog1: "• TMDB API Sync: Interstellar (2014) [200 OK]",
-      swayaLog2: "• SQLAlchemy Session: 42 records committed",
-      swayaLog3: "• Alembic Schema: Migration v4.2 in sync",
-      irisTitle: "DISCORD ACTIVITY STREAM",
-      irisEmulate: "⚡ Emulate Discord Event",
-      aetheriaTitle: "AETHERIA BRAND MATRIX",
-      aetheriaStatus: "PHONETIC [OK]",
-      aetheriaPhonetic: "Phonetic: [eɪˈθɪəri.ə] • Origins: Aether + -ia",
+      swayaOrganizerShot: "Media Organizer & Renaming Pipeline",
+      swayaLibraryShot: "Media Library & Poster Grid",
+      swayaDetailShot: "Media Details & Metadata Inspector",
     },
     items: {
       swaya: {
-        badge: "FEATURED PROJECT 01 • DESKTOP & API",
+        badge: "FEATURED PROJECT • COMMERCIAL DESKTOP SUITE",
         title: "Swaya Media & Library Ecosystem",
-        codename: "FASTAPI + REACT + ELECTRON",
-        tagline: "4-iteration evolution from PyQt6 to asynchronous FastAPI, React, Electron & SQLAlchemy 2.0.",
+        tagline: "High-performance desktop media manager & automated metadata pipeline running on Windows & Linux.",
         description:
-          "A desktop media and library organizer evolved over four distinct iterations. It pairs an asynchronous FastAPI Python backend with a reactive React frontend packaged in Electron, featuring automated TMDB/OMDb metadata matching, SQLite caching, and background task queues.",
-        role: "Lead Architect & Developer",
-        duration: "4 Architecture Iterations",
-        challenge:
-          "Handling high-volume metadata lookups, multi-threaded filesystem indexing, and database migrations without freezing the desktop user interface.",
-        solution:
-          "Separated the app into a clean layered architecture (Domain-Driven Design) with an asynchronous background worker queue, SQLAlchemy 2.0 migrations, and in-memory TTL caching.",
+          "A commercial desktop media management ecosystem built as a client-server hybrid. Pairs a high-throughput Python FastAPI backend with an Electron & React 19 frontend, featuring multi-source metadata pairing (TMDb, OMDb, StashDB, ThePornDB, FansDB), customizable renaming templates, dual SFW/NSFW privacy modes with server-side blurring, and synchronized MPV video playback.",
         impactMetrics: [
-          { label: "Evolution History", value: "4 Iterations" },
-          { label: "API Response Time", value: "< 15ms (Cached)" },
-          { label: "Architecture", value: "Layered DDD" },
-        ],
-      },
-      iris: {
-        badge: "FEATURED PROJECT 02 • EVENT BOT",
-        title: "Iris Activity & Telemetry Bot",
-        codename: "PYTHON ASYNCIO + PILLOW",
-        tagline: "Real-time Discord activity tracker with dynamic image generation and ranking algorithms.",
-        description:
-          "An event-driven Discord bot built with Python and asyncio. It monitors server engagement across voice channels, stream sessions, and messages, dynamically composites customized visual profile cards on-the-fly with Pillow, and assigns automated weekly ranks.",
-        role: "Backend & Bot Developer",
-        duration: "Active Open Source",
-        challenge:
-          "Tracking high-frequency multi-channel event streams in real time while rendering high-resolution profile images without blocking the main event loop.",
-        solution:
-          "Utilized Python asyncio task pipelines, optimized in-memory Pillow image buffers, and an indexed SQLite database for fast ranking queries.",
-        impactMetrics: [
-          { label: "Event Pipeline", value: "Async Task Loop" },
-          { label: "Card Render Time", value: "Sub-50ms Buffer" },
-          { label: "Localization", value: "English & Hungarian" },
-        ],
-      },
-      aetheria: {
-        badge: "FEATURED PROJECT 03 • BRAND & WEB",
-        title: "Aetheria Platform Concept",
-        codename: "BRAND NAMING + NEXT.JS",
-        tagline: "A showcase of how brand strategy, positioning copy, and clean web engineering come together.",
-        description:
-          "A concept demonstrating end-to-end product creation: from phonetic brand naming, domain vetting, and conversion-focused copywriting to a responsive, accessible Next.js 16 web application built with TypeScript and modern CSS.",
-        role: "Brand Strategist & Full-Stack Developer",
-        duration: "Prototype Showcase",
-        challenge:
-          "Creating a distinctive, legally viable brand name and clear value proposition while delivering a sub-second page load web experience.",
-        solution:
-          "Applied proven Fiverr naming frameworks, phonetic clearance checks, and built a lightweight Next.js front-end with zero third-party bundle bloat.",
-        impactMetrics: [
-          { label: "Fiverr Methodology", value: "1,100+ Lineage" },
-          { label: "Performance", value: "99+ Lighthouse" },
-          { label: "Domain Clearance", value: "100% Vetted" },
+          { label: "Architecture", value: "Modular Monolith" },
+          { label: "Data Providers", value: "5+ Metadata APIs" },
+          { label: "Distribution", value: "Portable .EXE" },
         ],
       },
     },
-    brandingTaglines: [
-      { id: "tagline-clarity", text: "Engineered for clarity. Built for daily resilience.", focus: "Modern / Minimal" },
-      { id: "tagline-precision", text: "Where precision hardware meets intuitive software.", focus: "Technical / Direct" },
-      { id: "tagline-performance", text: "Quiet performance. Uncompromising quality.", focus: "Premium / Understated" },
-    ],
   },
   skills: {
     subtitle: "Core Competencies",
@@ -218,7 +151,7 @@ export const en: Dictionary = {
       {
         id: "mathematics",
         title: "Mathematics & Modeling",
-        description: "Mathematical foundation from university physics, numerical simulations, and scientific visualization.",
+        description: "University physics background, numerical modeling, and scientific visualization.",
         skills: [
           "Analysis",
           "Differential Equations",
@@ -252,7 +185,7 @@ export const en: Dictionary = {
     subtitle: "Capabilities & Solutions",
     title: "How Can I Help You?",
     description:
-      "Whether you are launching a new startup, need a scalable full-stack web application, or want a custom event-driven Discord bot — let's build something exceptional together.",
+      "Whether you are launching a new startup, need a scalable full-stack web application, or want a custom event-driven Discord bot - let's build something exceptional together.",
     recommendedBadge: "FEATURED",
     customCalloutTitle: "HAVE A CUSTOM OR HYBRID REQUIREMENT?",
     customCalloutDesc:
@@ -382,12 +315,6 @@ export const en: Dictionary = {
   },
   footer: {
     subTitle: "FULL-STACK DEVELOPER & BRAND STRATEGIST",
-    returnToOrbit: "RETURN TO TOP",
-    githubLabel: "GitHub",
-    directCommsLabel: "Direct Contact:",
-    craftedWith: "BUILT WITH NEXT.JS 16 & MODERN CSS",
-    statusLabel: "STATUS:",
-    projectsCompleted: "Projects Completed",
   },
   audioPlayer: {
     badge: "Music Player",
@@ -407,7 +334,6 @@ export const en: Dictionary = {
     directPlayHint: "Click player to start playback directly",
   },
   error: {
-    badge: "SOMETHING WENT WRONG",
     title: "Something Went Wrong",
     description: "An unexpected error occurred while loading this page. Please try again, or head back to the homepage.",
     errorReference: "Error Reference",

@@ -49,9 +49,9 @@ describe("Avatar UI Component", () => {
   });
 
   it("renders status beacon dot when status prop is provided", () => {
-    render(<Avatar status="online" initials="ON" />);
-    const badge = screen.getByTitle("Status: online");
+    const { container } = render(<Avatar status="online" initials="ON" />);
+    const badge = container.querySelector("[aria-hidden='true']._statusBadge_5ca9fb, [class*='statusBadge']");
     expect(badge).toBeInTheDocument();
-    expect(badge.className).toContain("statusOnline");
+    expect(badge?.className).toContain("statusOnline");
   });
 });

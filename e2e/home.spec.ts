@@ -18,14 +18,17 @@ test.describe("Cosmic Portfolio E2E Quality Verification", () => {
     await expect(page.locator("#projects")).toBeInViewport();
   });
 
-  test("allows interactive project simulator interaction", async ({ page }) => {
+  test("allows interactive project preview and lightbox modal interaction", async ({ page }) => {
     await page.goto("/");
 
-    const stepBtn = page.locator('button:has-text("Step Queue"), button:has-text("Léptetése")').first();
-    if (await stepBtn.isVisible()) {
-      await stepBtn.click();
-      await expect(page.locator("text=/\\[ \\d+% \\]/").first()).toBeVisible();
-    }
+    const screenshotCard = page.locator('button[aria-label*="Organizer"], button[aria-label*="Rendszerező"]').first();
+    await screenshotCard.waitFor({ state: "visible" });
+    await screenshotCard.click();
+
+    const dialog = page.locator('[role="dialog"]');
+    await expect(dialog).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
   });
 
   test("validates contact form submission in UI", async ({ page }) => {

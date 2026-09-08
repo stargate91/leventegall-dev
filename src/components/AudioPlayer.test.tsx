@@ -29,7 +29,7 @@ describe("AudioPlayer Component", () => {
     fireEvent.click(toggleButton);
 
     expect(screen.getByRole("dialog", { name: /Mix 07 - Critical x Shogun DnB/i })).toBeInTheDocument();
-    expect(screen.getByText(/Music Player/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Music Player$/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Critical x Shogun DnB/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /^Play$/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /^Mute$/i })).toBeInTheDocument();

@@ -19,4 +19,22 @@
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* =========================================================================
+     Z-Index Layer Hierarchy
+     ========================================================================= */
+  --z-base: 0;
+  --z-card: 1;
+  --z-section: 10;
+  --z-chamber: 20;
+  --z-sticky: 40;
+  --z-header: 50;
+  --z-dropdown: 60;
+  --z-modal-backdrop: 89;
+  --z-modal: 90;
+  --z-lightbox: 9990;
+  --z-skip-link: 9999;
+  --z-tooltip: 10000;
+  --z-toast: 10010;
 }
+

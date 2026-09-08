@@ -60,13 +60,13 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
           target={target}
           rel={target === "_blank" ? (rel ?? "noopener noreferrer") : rel}
           onClick={onClick}
-          aria-label={ariaLabel}
           title={title}
           className={combinedClass}
           style={style}
           {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {icon}
+          {ariaLabel && <span className="sr-only">{ariaLabel}</span>}
         </a>
       );
     }
@@ -78,7 +78,6 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
         type={type}
         onClick={onClick}
         disabled={disabled}
-        aria-label={ariaLabel}
         aria-expanded={ariaExpanded}
         aria-controls={ariaControls}
         title={title}
@@ -87,6 +86,7 @@ const IconButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, IconButtonP
         {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {icon}
+        {ariaLabel && <span className="sr-only">{ariaLabel}</span>}
       </button>
     );
   },

@@ -8,7 +8,6 @@ export interface NavLocale {
   clients: string;
   contact: string;
   available: string;
-  status: string;
   sidebarBio: string;
 }
 
@@ -22,7 +21,6 @@ export interface SectionsLocale {
 }
 
 export interface HeroLocale {
-  greeting: string;
   titleMain: string;
   titleGradient: string;
   description: string;
@@ -54,60 +52,31 @@ export interface StoryLocale {
 export interface ProjectItemLocale {
   badge: string;
   title: string;
-  codename: string;
   tagline: string;
   description: string;
-  role: string;
-  duration: string;
-  challenge: string;
-  solution: string;
   impactMetrics: { label: string; value: string }[];
-}
-
-export interface BrandingTaglineLocale {
-  id: string;
-  text: string;
-  focus: string;
 }
 
 export interface ProjectsLocale {
   subtitle: string;
   title: string;
   description: string;
-  tabs: {
-    interactive: string;
-    overview: string;
-    architecture: string;
-  };
   labels: {
-    stack: string;
-    role: string;
-    timeline: string;
-    challenge: string;
-    solution: string;
+    appOverview: string;
     viewGithub: string;
+    visitWebsite: string;
     discussWork: string;
+    expandScreenshot: string;
+    closeLightbox: string;
   };
   simulators: {
-    swayaTitle: string;
-    swayaReset: string;
-    swayaStep: string;
-    swayaTag: string;
-    swayaLog1: string;
-    swayaLog2: string;
-    swayaLog3: string;
-    irisTitle: string;
-    irisEmulate: string;
-    aetheriaTitle: string;
-    aetheriaStatus: string;
-    aetheriaPhonetic: string;
+    swayaOrganizerShot: string;
+    swayaLibraryShot: string;
+    swayaDetailShot: string;
   };
   items: {
     swaya: ProjectItemLocale;
-    iris: ProjectItemLocale;
-    aetheria: ProjectItemLocale;
   };
-  brandingTaglines: BrandingTaglineLocale[];
 }
 
 export interface SkillCategoryLocale {
@@ -215,12 +184,6 @@ export interface ContactLocale {
 
 export interface FooterLocale {
   subTitle: string;
-  returnToOrbit: string;
-  githubLabel: string;
-  directCommsLabel: string;
-  craftedWith: string;
-  statusLabel: string;
-  projectsCompleted: string;
 }
 
 export interface AudioPlayerLocale {
@@ -242,7 +205,6 @@ export interface AudioPlayerLocale {
 }
 
 export interface ErrorLocale {
-  badge: string;
   title: string;
   description: string;
   errorReference: string;

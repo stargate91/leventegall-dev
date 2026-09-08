@@ -3,7 +3,7 @@ import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { logger } from "@/lib/logger";
 
-export interface NewInquiry {
+interface NewInquiry {
   telemetryId: string;
   name: string;
   email: string;
@@ -13,7 +13,7 @@ export interface NewInquiry {
   clientIp?: string | undefined;
 }
 
-export interface InquiryRecord {
+interface InquiryRecord {
   id: number;
   telemetry_id: string;
   name: string;

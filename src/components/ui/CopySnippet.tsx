@@ -37,7 +37,6 @@ export default function CopySnippet({
           type="button"
           onClick={handleCopy}
           className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
-          aria-label="Copy to clipboard"
         >
           {copied ? <Checkmark size={14} /> : <Copy size={14} />}
           <span>{copied ? copiedLabel : label}</span>

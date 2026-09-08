@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import {
   Menu,
   Close,
@@ -12,81 +12,27 @@ import styles from "./Navbar.module.css";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import StatusPill from "@/components/ui/StatusPill";
 import IconButton from "@/components/ui/IconButton";
-import Tooltip from "@/components/ui/Tooltip";
 import Text from "@/components/ui/Text";
 import { siteConfig } from "@/config/site";
+import { useScrollSpy, useFocusTrap } from "@/hooks";
 import { useLocale } from "@/locales";
 
+const SECTION_IDS = ["hero", "trajectory", "projects", "skills", "services", "reviews", "contact"];
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const { dict } = useLocale();
 
-  // Scroll detection for ScrollSpy and mobile backdrop
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+  const scrollSpyOptions = useMemo(() => ({ sectionIds: SECTION_IDS }), []);
+  const { scrolled, activeSection } = useScrollSpy(scrollSpyOptions);
 
-      const sectionIds = ["hero", "trajectory", "projects", "skills", "services", "reviews", "contact"];
-      const scrollPosition = window.scrollY + window.innerHeight * 0.35;
-
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const id = sectionIds[i];
-        if (id) {
-          const el = document.getElementById(id);
-          if (el && el.offsetTop <= scrollPosition) {
-            setActiveSection(id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Keyboard accessibility for mobile drawer
-  useEffect(() => {
-    if (!mobileMenuOpen) {
-      return;
-    }
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMobileMenuOpen(false);
-        toggleBtnRef.current?.focus();
-        return;
-      }
-
-      if (e.key === "Tab" && menuRef.current) {
-        const interactiveItems = menuRef.current.querySelectorAll<HTMLElement>(
-          "a[href], button:not([disabled])",
-        );
-        if (interactiveItems.length === 0) {
-          return;
-        }
-
-        const first = interactiveItems[0];
-        const last = interactiveItems[interactiveItems.length - 1];
-
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [mobileMenuOpen]);
+  useFocusTrap(menuRef, {
+    isOpen: mobileMenuOpen,
+    onClose: () => setMobileMenuOpen(false),
+    returnFocusRef: toggleBtnRef,
+  });
 
   const navLinks = [
     { label: dict.nav.journey, href: "#trajectory", id: "trajectory", index: "01" },
@@ -165,35 +111,29 @@ export default function Navbar() {
         <div className={styles.footerBlock}>
           <div className={styles.socialRow}>
             <div className={styles.socialGroup}>
-              <Tooltip content="GitHub" side="top">
-                <IconButton
-                  icon={<LogoGithub size={18} />}
-                  href={siteConfig.socials.github}
-                  target="_blank"
-                  ariaLabel="GitHub Profile"
-                  variant="surface"
-                  size="md"
-                />
-              </Tooltip>
-              <Tooltip content="LinkedIn" side="top">
-                <IconButton
-                  icon={<LogoLinkedin size={18} />}
-                  href={siteConfig.socials.linkedin}
-                  target="_blank"
-                  ariaLabel="LinkedIn Profile"
-                  variant="surface"
-                  size="md"
-                />
-              </Tooltip>
-              <Tooltip content="Email" side="top">
-                <IconButton
-                  icon={<Email size={18} />}
-                  href={`mailto:${siteConfig.email}`}
-                  ariaLabel="Email Transmission"
-                  variant="surface"
-                  size="md"
-                />
-              </Tooltip>
+              <IconButton
+                icon={<LogoGithub size={18} />}
+                href={siteConfig.socials.github}
+                target="_blank"
+                ariaLabel="GitHub Profile"
+                variant="surface"
+                size="md"
+              />
+              <IconButton
+                icon={<LogoLinkedin size={18} />}
+                href={siteConfig.socials.linkedin}
+                target="_blank"
+                ariaLabel="LinkedIn Profile"
+                variant="surface"
+                size="md"
+              />
+              <IconButton
+                icon={<Email size={18} />}
+                href={`mailto:${siteConfig.email}`}
+                ariaLabel="Email Transmission"
+                variant="surface"
+                size="md"
+              />
             </div>
             <div className={styles.langContainer}>
               <LanguageSwitcher />

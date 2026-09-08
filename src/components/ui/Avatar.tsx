@@ -121,7 +121,6 @@ export default function Avatar({
       {status && (
         <span
           className={`${styles.statusBadge} ${statusClassMap[status]}`}
-          title={`Status: ${status}`}
           aria-hidden="true"
         />
       )}

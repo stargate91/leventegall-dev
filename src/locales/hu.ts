@@ -11,7 +11,6 @@ export const hu: Dictionary = {
     clients: "ÜGYFELEK",
     contact: "KAPCSOLAT",
     available: "Elérhető",
-    status: "ELÉRHETŐ ÚJ PROJEKTEKRE // BUDAPEST",
     sidebarBio: "Jelenleg a Swaya media manager backendjét írom át Pythonról TypeScriptre, tovább mélyítve a full-stack eszköztáramat.",
   },
   sections: {
@@ -23,11 +22,10 @@ export const hu: Dictionary = {
     contact: "06 // KAPCSOLATFELVÉTEL",
   },
   hero: {
-    greeting: "ÜDVÖZÖLLEK // BUDAPEST",
     titleMain: "Szia, Levente vagyok.",
     titleGradient: "Szoftvereket és márkákat építek.",
     description:
-      "Full-stack webfejlesztés, ELTE fizikus háttér, valamint márkanévadás és szlogentervezés.",
+      "Full-stack fejlesztés, ELTE fizikus háttér, valamint márkanévadás és szlogentervezés.",
     stats: {
       fiverrValue: "1 100+ Ügyfél\n4.8★ Értékelés",
       fiverrLabel: "Márkanévadás & Szlogenek a Fiverr-en",
@@ -79,100 +77,35 @@ export const hu: Dictionary = {
   },
   projects: {
     subtitle: "Válogatott Projektek",
-    title: "Kiemelt Rendszerek & Esettanulmányok",
-    description: "Betekintés abba, hogyan tervezek backend szolgáltatásokat, asztali eszközöket és full-stack webes alkalmazásokat.",
-    tabs: {
-      interactive: "Élő Demó",
-      overview: "Áttekintés",
-      architecture: "Architektúra",
-    },
+    title: "Kiemelt Munkák & Projektek",
+    description: "Valós, működő szoftverek és rendszerek, az architektúra megtervezésétől a kész felhasználói felületig.",
     labels: {
-      stack: "TECHNOLÓGIA",
-      role: "SZEREPKÖR",
-      timeline: "IDŐTARTAM",
-      challenge: "A KIHÍVÁS",
-      solution: "A MEGOLDÁS",
+      appOverview: "ALKALMAZÁS ÁTTEKINTÉS",
       viewGithub: "Forráskód a GitHubon",
+      visitWebsite: "Termék Weboldala",
       discussWork: "Hasonló Munka Megbeszélése",
+      expandScreenshot: "Kattints a nagyításhoz",
+      closeLightbox: "Előnézet bezárása",
     },
     simulators: {
-      swayaTitle: "FASTAPI FELADATÜTEMEZŐ",
-      swayaReset: "Visszaállítás",
-      swayaStep: "+ Feladat Léptetése",
-      swayaTag: "TMDB Metaadat-gazdagítás:",
-      swayaLog1: "• TMDB API Szinkronizáció: Interstellar (2014) [200 OK]",
-      swayaLog2: "• SQLAlchemy Tranzakció: 42 rekord mentve",
-      swayaLog3: "• Alembic Séma: v4.2 migráció szinkronban",
-      irisTitle: "DISCORD ESEMÉNYFOLYAM",
-      irisEmulate: "Discord Esemény Szimulálása",
-      aetheriaTitle: "AETHERIA MÁRKA MÁTRIX",
-      aetheriaStatus: "FONETIKA [OK]",
-      aetheriaPhonetic: "Fonetika: [eɪˈθɪəri.ə] • Eredet: Éter + -ia",
+      swayaOrganizerShot: "Média Rendszerező & Átnevező Folyamat",
+      swayaLibraryShot: "Médiakönyvtár & Poszter Rács",
+      swayaDetailShot: "Média Részletek & Metaadat Nézet",
     },
     items: {
       swaya: {
-        badge: "01. KIEMELT PROJEKT • ASZTALI & API",
+        badge: "KIEMELT PROJEKT • KERESKEDELMI TERMÉK",
         title: "Swaya Média & Könyvtár Rendszer",
-        codename: "FASTAPI + REACT + ELECTRON",
-        tagline: "4 iterációs fejlődés a PyQt6-tól az aszinkron FastAPI, React, Electron & SQLAlchemy 2.0 alapokig.",
+        tagline: "Nagy teljesítményű asztali médiakezelő és automatizált metaadat-feldolgozó Windowsra és Linuxra.",
         description:
-          "Négy iteráción keresztül fejlesztett asztali médiakezelő ökoszisztéma. Aszinkron FastAPI Python backendet ötvöz reaktív React felhasználói felülettel Electronba csomagolva, automatikus TMDB/OMDb metaadat-párosítással, SQLite gyorsítótárazással és háttérben futó feladatütemezővel.",
-        role: "Vezető Architekt & Fejlesztő",
-        duration: "4 Architektúra Iteráció",
-        challenge:
-          "Nagy volumenű metaadat-lekérdezések, többszálú fájlrendszer-indexelés és adatbázis-migrációk végrehajtása az asztali kezelőfelület blokkolása nélkül.",
-        solution:
-          "Letisztult rétegelt architektúra (Domain-Driven Design) aszinkron háttérfolyamat-kezelővel, SQLAlchemy 2.0 migrációkkal és memóriabeli TTL gyorsítótárral.",
+          "Kereskedelmi asztali médiakezelő szoftver kliens-szerver hibrid architektúrával. Nagy átviteli sebességű Python FastAPI backendet ötvöz Electron és React 19 felülettel, többforrásos metaadat-párosítással (TMDb, OMDb, StashDB, ThePornDB, FansDB), testreszabható átnevezési sablonokkal, kettős SFW/NSFW adatvédelmi móddal és szerveroldali képelhomályosítással, valamint szinkronizált beépített MPV videólejátszóval.",
         impactMetrics: [
-          { label: "Fejlődési Történet", value: "4 Iteráció" },
-          { label: "API Válaszidő", value: "< 15ms (Cache-elt)" },
-          { label: "Architektúra", value: "Rétegelt DDD" },
-        ],
-      },
-      iris: {
-        badge: "02. KIEMELT PROJEKT • ESEMÉNY BOT",
-        title: "Iris Aktivitás & Telemetria Bot",
-        codename: "PYTHON ASYNCIO + PILLOW",
-        tagline: "Valós idejű Discord aktivitáskövető dinamikus képgenerálással és rangsoroló algoritmusokkal.",
-        description:
-          "Eseményvezérelt Discord bot Python és asyncio alapokon. Valós időben figyeli a szerver aktivitását (hangcsatornák, streamek, üzenetek), dinamikusan renderel egyedi vizuális profilkártyákat Pillow segítségével, és automatikus heti rangsorokat kalkulál.",
-        role: "Backend & Bot Fejlesztő",
-        duration: "Aktív Nyílt Forráskód",
-        challenge:
-          "Nagy frekvenciájú eseményfolyamok valós idejű feldolgozása és nagy felbontású profilkártyák renderelése anélkül, hogy az aszinkron eseményhurok blokkolódna.",
-        solution:
-          "Python asyncio feladatfolyamatok, memóriabeli Pillow képpufferek és indexelt SQLite adatbázis alkalmazása a gyors rangsorlekérdezésekhez.",
-        impactMetrics: [
-          { label: "Eseménykezelés", value: "Aszinkron Task Loop" },
-          { label: "Kártya Renderidő", value: "< 50ms Puffer" },
-          { label: "Lokalizáció", value: "Angol & Magyar" },
-        ],
-      },
-      aetheria: {
-        badge: "03. KIEMELT PROJEKT • MÁRKA & WEB",
-        title: "Aetheria Platform Koncepció",
-        codename: "MÁRKANÉVADÁS + NEXT.JS",
-        tagline: "Esettanulmány a márka stratégia, a pozicionálási szöveg és a tiszta webes fejlesztés fúziójáról.",
-        description:
-          "Teljes termékfejlesztési folyamatot demonstráló koncepció: fonetikus márkanévadástól, domain ellenőrzéstől és konverziós szövegírástól a reszponzív, akadálymentes Next.js 16 webalkalmazásig, TypeScript és modern CSS technológiákkal.",
-        role: "Márkatervező & Full-Stack Fejlesztő",
-        duration: "Prototípus Bemutató",
-        challenge:
-          "Karakteres, jogilag tiszta márkanév és világos értékajánlat megalkotása szub-szekundumos oldalbetöltési sebesség mellett.",
-        solution:
-          "Bizonyított Fiverr névadási módszertan, fonetikai ellenőrzések és pehelysúlyú Next.js frontend külső felesleges csomagok nélkül.",
-        impactMetrics: [
-          { label: "Fiverr Módszertan", value: "1 100+ Tapasztalat" },
-          { label: "Teljesítmény", value: "99+ Lighthouse" },
-          { label: "Domain Ellenőrzés", value: "100% Védett" },
+          { label: "Architektúra", value: "Moduláris Monolit" },
+          { label: "Adatszolgáltatók", value: "5+ Metaadat API" },
+          { label: "Disztribúció", value: "Hordozható .EXE" },
         ],
       },
     },
-    brandingTaglines: [
-      { id: "tagline-clarity", text: "Tisztaságra tervezve. Napi megbízhatóságra építve.", focus: "Modern / Minimál" },
-      { id: "tagline-precision", text: "Ahol a precíz hardver találkozik az intuitív szoftverrel.", focus: "Technikai / Direkt" },
-      { id: "tagline-performance", text: "Csendes teljesítmény. Kompromisszummentes minőség.", focus: "Prémium / Visszafogott" },
-    ],
   },
   skills: {
     subtitle: "Fő Kompetenciák",
@@ -233,7 +166,7 @@ export const hu: Dictionary = {
       },
       {
         id: "branding",
-        title: "Verbális Márkaépítés & Kreatív",
+        title: "Márkaépítés & Kreatív",
         description: "5 év tapasztalat, 1 100+ Fiverr projekt: névalkotás, szlogenírás és marketing vizuálok.",
         skills: [
           "Márkanévadás",
@@ -382,12 +315,6 @@ export const hu: Dictionary = {
   },
   footer: {
     subTitle: "FULL-STACK FEJLESZTŐ & MÁRKASTRATÉGA",
-    returnToOrbit: "VISSZA A TETEJÉRE",
-    githubLabel: "GitHub",
-    directCommsLabel: "Közvetlen Elérhetőség:",
-    craftedWith: "NEXT.JS 16 & MODERN CSS ALAPJAIN KÉSZÜLT",
-    statusLabel: "ÁLLAPOT:",
-    projectsCompleted: "Befejezett Projekt",
   },
   audioPlayer: {
     badge: "Zenelejátszó",
@@ -407,7 +334,6 @@ export const hu: Dictionary = {
     directPlayHint: "Kattints a lejátszóra az indításhoz",
   },
   error: {
-    badge: "VALAMI HIBA TÖRTÉNT",
     title: "Váratlan hiba történt",
     description: "Váratlan hiba lépett fel az oldal betöltése közben. Kérlek, próbáld újra, vagy térj vissza a főoldalra.",
     errorReference: "Hiba azonosító",
