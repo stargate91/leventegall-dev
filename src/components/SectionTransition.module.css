@@ -29,13 +29,13 @@
 }
 
 .laserGlow {
-  filter: drop-shadow(0 0 10px var(--cyan-glow));
+  filter: drop-shadow(0 0 10px var(--color-accent-glow));
 }
 
 .laserGlowLarge {
-  filter: drop-shadow(0 0 12px var(--cyan-glow));
+  filter: drop-shadow(0 0 12px var(--color-accent-glow));
 }
 
 .laserGlowXLarge {
-  filter: drop-shadow(0 0 15px var(--cyan-glow));
+  filter: drop-shadow(0 0 15px var(--color-accent-glow));
 }

@@ -34,7 +34,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(0 229 255 / 25%) 50%,
+    var(--color-accent-subtle) 50%,
     transparent 100%
   );
 }
@@ -43,7 +43,7 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgb(0 229 255 / 25%) 50%,
+    var(--color-accent-subtle) 50%,
     transparent 100%
   );
 }
@@ -53,24 +53,24 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(0 229 255 / 20%) 20%,
-    var(--cyan-tron) 50%,
-    rgb(0 229 255 / 20%) 80%,
+    var(--color-accent-subtle) 20%,
+    var(--color-accent) 50%,
+    var(--color-accent-subtle) 80%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgb(0 229 255 / 30%);
+  box-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 .variantLaser.vertical {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgb(0 229 255 / 20%) 20%,
-    var(--cyan-tron) 50%,
-    rgb(0 229 255 / 20%) 80%,
+    var(--color-accent-subtle) 20%,
+    var(--color-accent) 50%,
+    var(--color-accent-subtle) 80%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgb(0 229 255 / 30%);
+  box-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 /* Spacing Scale (Horizontal) */

@@ -32,9 +32,9 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-2xs);
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
 }
 
@@ -67,5 +67,5 @@
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }

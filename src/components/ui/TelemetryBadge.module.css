@@ -14,10 +14,18 @@
   transition: all var(--transition-smooth);
 }
 
-.cyan {
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+.cyan,
+.pink,
+.purple {
+  color: var(--color-accent-core);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
+}
+
+.amber {
+  color: var(--color-warning);
+  background: rgb(245 158 11 / 8%);
+  border: 1px solid rgb(245 158 11 / 35%);
 }
 
 .subtle {
@@ -28,10 +36,18 @@
 
 .solidCyan {
   font-weight: 700;
-  color: var(--tone-a);
-  background: var(--cyan-tron);
-  border: 1px solid var(--cyan-tron);
-  box-shadow: 0 0 15px var(--cyan-glow);
+  color: var(--color-white);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 15px var(--color-accent-glow);
+}
+
+.solidPink {
+  font-weight: 700;
+  color: var(--color-white);
+  background: var(--gradient-accent-btn);
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 0 15px var(--color-accent-glow);
 }
 
 .iconWrapper {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Atom, Award, CheckCircle, Cpu, Feather, Terminal } from "lucide-react";
+import { Calculation, Certificate, CheckmarkFilled, Chip, Pen, Terminal } from "@carbon/icons-react";
 import styles from "./AboutStory.module.css";
 import {
   SectionHeader,
@@ -16,9 +16,9 @@ import { getTimelineEntries } from "@/data/timeline";
 import { useLocale } from "@/locales";
 
 const iconMap = {
-  Atom,
-  Feather,
-  Cpu,
+  Atom: Calculation,
+  Feather: Pen,
+  Cpu: Chip,
 };
 
 export default function AboutStory() {
@@ -77,7 +77,7 @@ export default function AboutStory() {
               <Stack gap="xs" className={styles.metricsList}>
                 {log.metrics.map((metric) => (
                   <Inline key={metric} gap="xs" align="center" className={styles.metricItem}>
-                    <CheckCircle size={14} className={styles.checkIcon} />
+                    <CheckmarkFilled size={14} className={styles.checkIcon} />
                     <Text as="span" font="mono" size="xs" tone="secondary">
                       {metric}
                     </Text>
@@ -93,7 +93,7 @@ export default function AboutStory() {
       <div className={styles.fiverrBanner}>
         <Inline gap="md" align="center" className={styles.fiverrLeft}>
           <div className={styles.fiverrIcon}>
-            <Award size={22} />
+            <Certificate size={22} />
           </div>
           <div>
             <Text font="heading" size="base" weight="bold" tone="primary" className={styles.fiverrTitle}>

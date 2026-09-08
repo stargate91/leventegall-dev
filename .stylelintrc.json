@@ -11,6 +11,7 @@
     "max-nesting-depth": 3,
     "selector-max-compound-selectors": 4,
     "color-named": "never",
+    "color-no-hex": true,
     "length-zero-no-unit": true,
     "number-max-precision": 4,
     "shorthand-property-no-redundant-values": true,
@@ -26,5 +27,13 @@
     "alpha-value-notation": "percentage",
     "color-function-notation": "modern",
     "no-unknown-animations": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/styles/tokens/**/*.css"],
+      "rules": {
+        "color-no-hex": null
+      }
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Checkmark } from "@carbon/icons-react";
 import styles from "./CheckList.module.css";
 
 export interface CheckItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,7 +25,7 @@ export function CheckItem({
       {...props}
     >
       <div className={styles.iconWrapper}>
-        {icon || <Check size={size === "sm" ? 14 : 16} />}
+        {icon || <Checkmark size={size === "sm" ? 14 : 16} />}
       </div>
       <div className={styles.content}>{children}</div>
     </div>

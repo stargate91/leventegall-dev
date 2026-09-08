@@ -10,7 +10,7 @@ describe("contactFormReducer", () => {
   it("handles SET_FIELD and clears field error", () => {
     const stateWithErrors: ContactFormState = {
       ...initialFormState,
-      errors: { name: "CALLSIGN REQUIRED" },
+      errors: { name: "NAME REQUIRED" },
     };
 
     const nextState = contactFormReducer(stateWithErrors, {
@@ -35,11 +35,11 @@ describe("contactFormReducer", () => {
   it("handles SET_ERRORS and CLEAR_ERROR", () => {
     const stateWithErrors = contactFormReducer(initialFormState, {
       type: "SET_ERRORS",
-      errors: { name: "CALLSIGN REQUIRED", email: "FREQUENCY REQUIRED" },
+      errors: { name: "NAME REQUIRED", email: "EMAIL REQUIRED" },
     });
 
-    expect(stateWithErrors.errors.name).toBe("CALLSIGN REQUIRED");
-    expect(stateWithErrors.errors.email).toBe("FREQUENCY REQUIRED");
+    expect(stateWithErrors.errors.name).toBe("NAME REQUIRED");
+    expect(stateWithErrors.errors.email).toBe("EMAIL REQUIRED");
 
     const clearedState = contactFormReducer(stateWithErrors, {
       type: "CLEAR_ERROR",
@@ -47,7 +47,7 @@ describe("contactFormReducer", () => {
     });
 
     expect(clearedState.errors.name).toBeUndefined();
-    expect(clearedState.errors.email).toBe("FREQUENCY REQUIRED");
+    expect(clearedState.errors.email).toBe("EMAIL REQUIRED");
   });
 
   it("handles SUBMIT_START, SUBMIT_SUCCESS, and SUBMIT_ERROR", () => {
@@ -122,9 +122,9 @@ describe("ContactForm Component", () => {
     const submitBtn = screen.getByRole("button", { name: /Send Message/i });
     fireEvent.click(submitBtn);
 
-    expect(await screen.findByText(/CALLSIGN REQUIRED/i)).toBeInTheDocument();
-    expect(await screen.findByText(/FREQUENCY REQUIRED/i)).toBeInTheDocument();
-    expect(await screen.findByText(/PAYLOAD REQUIRED/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Please enter your name/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Please enter your email address/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Please describe your project goals/i)).toBeInTheDocument();
   });
 
   it("submits the form successfully and displays telemetry acknowledgement", async () => {
@@ -180,7 +180,7 @@ describe("ContactForm Component", () => {
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getByText(/TRANSMISSION FAILED/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/Something went wrong/i).length).toBeGreaterThan(0);
     });
   });
 

@@ -1,14 +1,14 @@
 .chamberToneA {
   position: relative;
   z-index: 10;
-  padding-top: var(--space-4xl);
-  padding-bottom: var(--space-4xl);
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
 }
 
 .chamberToneA:first-child,
 .chamberToneA:first-of-type {
   padding-top: 0;
-  padding-bottom: var(--space-xl);
+  padding-bottom: var(--space-2xl);
 }
 
 .chamberDeckModule {

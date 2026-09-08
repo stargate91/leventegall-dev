@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertTriangle, RotateCcw, Home } from "lucide-react";
+import { WarningAlt, Restart, Home } from "@carbon/icons-react";
 import styles from "./error.module.css";
 import {
   HudCard,
@@ -38,7 +38,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
           </TelemetryBadge>
 
           <div className={styles.glyphWrapper}>
-            <AlertTriangle size={48} className={styles.glyphIcon} />
+            <WarningAlt size={48} className={styles.glyphIcon} />
           </div>
 
           <div className={styles.headingGroup}>
@@ -60,7 +60,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
               variant="primary"
               size="md"
               onClick={() => reset()}
-              iconLeft={<RotateCcw size={16} />}
+              iconLeft={<Restart size={16} />}
             >
               Reboot Subsystem
             </Button>

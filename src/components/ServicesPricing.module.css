@@ -25,9 +25,9 @@
 }
 
 .popularCard {
-  border-color: var(--cyan-tron);
+  border-color: var(--border-accent);
   box-shadow:
-    0 0 25px rgb(0 229 255 / 15%),
+    0 0 25px var(--color-accent-subtle),
     0 10px 40px rgb(0 0 0 / 60%);
 }
 
@@ -47,7 +47,7 @@
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
   font-weight: 600;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.05em;
 }
 
@@ -59,12 +59,13 @@
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
   font-weight: 700;
-  color: var(--tone-a);
+  color: var(--color-white);
   letter-spacing: 0.08em;
   white-space: nowrap;
-  background-color: var(--cyan-tron);
+  background: var(--gradient-accent-btn);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-full);
-  box-shadow: 0 0 16px rgb(0 229 255 / 80%);
+  box-shadow: 0 0 16px var(--color-accent-glow);
   transform: translateX(-50%);
 }
 
@@ -99,7 +100,7 @@
   font-family: var(--font-space), monospace;
   font-size: var(--text-2xl);
   font-weight: 800;
-  color: var(--cyan-tron);
+  color: var(--color-white);
 }
 
 .duration {

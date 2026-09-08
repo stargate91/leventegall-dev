@@ -1,0 +1,53 @@
+.badgeRow {
+  display: flex;
+  justify-content: center;
+  margin-top: -1rem;
+  margin-bottom: 2.25rem;
+}
+
+.feedbackGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.verifyRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+.verifyLink {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-xs);
+  color: var(--color-accent-core);
+  text-decoration: none;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 10px var(--color-accent-subtle);
+  transition: all var(--transition-fast);
+}
+
+.verifyLink:hover {
+  color: var(--color-white);
+  background: var(--bg-surface-elevated);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 16px var(--color-accent-glow);
+}
+
+@media (max-width: 768px) {
+  .badgeRow {
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feedbackGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

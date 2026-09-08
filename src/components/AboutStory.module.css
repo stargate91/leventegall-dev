@@ -22,7 +22,7 @@
 .logSol {
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-xs);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.08em;
 }
 
@@ -45,9 +45,9 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--color-accent-dim);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
 }
 
@@ -78,7 +78,7 @@
 
 .checkIcon {
   flex-shrink: 0;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .fiverrBanner {
@@ -90,9 +90,9 @@
   padding: var(--space-lg) var(--space-xl);
   margin-top: var(--space-3xl);
   background: var(--bg-surface-1);
-  border: 1px solid var(--border-cyan);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
-  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 80%), 0 0 20px var(--cyan-glow);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 80%), 0 0 16px var(--color-accent-subtle);
 }
 
 .fiverrLeft {
@@ -109,9 +109,9 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--color-accent-dim);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
 }
 

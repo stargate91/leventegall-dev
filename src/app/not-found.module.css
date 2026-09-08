@@ -29,11 +29,11 @@
   width: 80px;
   height: 80px;
   margin: 0 auto;
-  color: var(--cyan-400);
-  background: var(--surface-panel);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-full);
-  box-shadow: var(--glow-cyan-subtle);
+  box-shadow: 0 0 20px var(--color-accent-glow);
 }
 
 .glyphIcon {

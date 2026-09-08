@@ -20,10 +20,10 @@ export default function SectionHeader({
   style,
 }: SectionHeaderProps) {
   return (
-    <div className={`${styles.header} ${className}`} style={style}>
+    <header className={`${styles.header} ${className}`} style={style}>
       <div className={styles.subtitle}>
-        {subtitleIcon}
-        <Text as="span" font="mono" size="xs" tone="cyan" weight="semibold">
+        {subtitleIcon && <span className={styles.subtitleIcon}>{subtitleIcon}</span>}
+        <Text as="span" font="mono" size="xs" tone="cyan" weight="semibold" className={styles.subtitleText}>
           {subtitle}
         </Text>
       </div>
@@ -35,6 +35,6 @@ export default function SectionHeader({
           {description}
         </Text>
       )}
-    </div>
+    </header>
   );
 }

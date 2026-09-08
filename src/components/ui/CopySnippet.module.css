@@ -41,5 +41,5 @@
 }
 
 .copyBtn.copied {
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }

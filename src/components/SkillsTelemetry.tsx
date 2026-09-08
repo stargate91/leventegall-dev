@@ -1,29 +1,53 @@
 "use client";
 
-import { Terminal, Cpu, PenTool } from "lucide-react";
+import React from "react";
+import {
+  Code,
+  DataBase,
+  ApplicationWeb,
+  DataStructured,
+  Tools,
+  Screen,
+  Pen,
+  Terminal,
+} from "@carbon/icons-react";
 import styles from "./SkillsTelemetry.module.css";
 import {
   SectionHeader,
   HudCard,
-  Grid,
-  Stack,
-  ProgressBar,
-  Testimonial,
-  Text,
+  TagList,
 } from "@/components/ui";
-import { getEngineeringSkills, getBrandingSkills, getFiverrFeedback } from "@/data/skills";
+import { getSkillCategories } from "@/data/skills";
 import { useLocale } from "@/locales";
+
+function getCategoryIcon(id: string) {
+  switch (id) {
+    case "languages":
+      return <Code size={18} aria-hidden="true" />;
+    case "backend":
+      return <DataBase size={18} aria-hidden="true" />;
+    case "frontend":
+      return <ApplicationWeb size={18} aria-hidden="true" />;
+    case "database":
+      return <DataStructured size={18} aria-hidden="true" />;
+    case "devops":
+      return <Tools size={18} aria-hidden="true" />;
+    case "desktop":
+      return <Screen size={18} aria-hidden="true" />;
+    case "branding":
+      return <Pen size={18} aria-hidden="true" />;
+    default:
+      return <Code size={18} aria-hidden="true" />;
+  }
+}
 
 export default function SkillsTelemetry() {
   const { dict } = useLocale();
-  const engineeringSkills = getEngineeringSkills(dict);
-  const brandingSkills = getBrandingSkills(dict);
-  const fiverrFeedback = getFiverrFeedback(dict);
+  const categories = getSkillCategories(dict);
 
   return (
-
     <div className="section-container">
-      {/* Header */}
+      {/* Section Header */}
       <SectionHeader
         subtitle={dict.skills.subtitle}
         subtitleIcon={<Terminal size={14} />}
@@ -31,81 +55,31 @@ export default function SkillsTelemetry() {
         description={dict.skills.description}
       />
 
-      {/* Dual Matrix Grid */}
-      <Grid cols={2} gap="lg" className={styles.matrixGrid}>
-        {/* Engineering Vector */}
-        <HudCard variant="surfaceDeck" className={styles.vectorCard}>
-          <div className={styles.vectorHeader}>
-            <div className={styles.vectorIcon}>
-              <Cpu size={20} />
+      {/* Categories Grid */}
+      <div className={styles.categoriesGrid} data-testid="skills-categories-grid">
+        {categories.map((cat) => (
+          <HudCard
+            key={cat.id}
+            className={styles.categoryCard}
+          >
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>
+                {getCategoryIcon(cat.id)}
+              </div>
+              <div className={styles.headerInfo}>
+                <h3 className={styles.categoryTitle}>{cat.title}</h3>
+                <p className={styles.categoryDesc}>{cat.description}</p>
+              </div>
             </div>
-            <div>
-              <Text as="h3" font="heading" size="lg" weight="bold" tone="primary" className={styles.vectorTitle}>
-                {dict.skills.engineeringTitle}
-              </Text>
-              <Text font="mono" size="2xs" tone="cyan" className={styles.vectorSub}>
-                {dict.skills.engineeringSub}
-              </Text>
+
+            <div className={styles.cardDivider} />
+
+            <div className={styles.cardBody}>
+              <TagList items={cat.skills} variant="cyan" size="sm" />
             </div>
-          </div>
-
-          {/* Skill Bars */}
-          <Stack gap="md">
-            {engineeringSkills.map((s) => (
-              <ProgressBar
-                key={s.name}
-                label={s.name}
-                tag={s.status}
-                value={s.level}
-                variant="cyan"
-              />
-            ))}
-          </Stack>
-        </HudCard>
-
-        {/* Branding Vector */}
-        <HudCard variant="surfaceDeck" className={styles.vectorCard}>
-          <div className={styles.vectorHeader}>
-            <div className={styles.vectorIcon}>
-              <PenTool size={20} />
-            </div>
-            <div>
-              <Text as="h3" font="heading" size="lg" weight="bold" tone="primary" className={styles.vectorTitle}>
-                {dict.skills.brandingTitle}
-              </Text>
-              <Text font="mono" size="2xs" tone="cyan" className={styles.vectorSub}>
-                {dict.skills.brandingSub}
-              </Text>
-            </div>
-          </div>
-
-          {/* Skill Bars */}
-          <Stack gap="md">
-            {brandingSkills.map((s) => (
-              <ProgressBar
-                key={s.name}
-                label={s.name}
-                tag={s.status}
-                value={s.level}
-                variant="cyan"
-              />
-            ))}
-          </Stack>
-        </HudCard>
-      </Grid>
-
-      {/* Fiverr Social Proof Quotes */}
-      <Grid cols={2} gap="md" className={styles.feedbackGrid}>
-        {fiverrFeedback.map((fb) => (
-          <Testimonial
-            key={fb.id}
-            stars={fb.stars}
-            quote={fb.quote}
-            author={fb.client}
-            badge={dict.skills.verifiedBadge}
-          />
+          </HudCard>
         ))}
-      </Grid>
+      </div>
     </div>
   );
 }

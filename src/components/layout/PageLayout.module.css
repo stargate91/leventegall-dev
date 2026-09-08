@@ -1,0 +1,57 @@
+/* =========================================================================
+   2-Column Split Architecture Layout Styles
+   ========================================================================= */
+
+.layoutWrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+  background-color: var(--tone-a);
+}
+
+@media (min-width: 1024px) {
+  .layoutWrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebarColumn {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: 360px;
+    height: 100vh;
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .contentColumn {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    padding: 2.75rem var(--space-2xl) var(--space-4xl);
+  }
+
+  .contentColumn > * {
+    width: 100%;
+    max-width: 1040px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sidebarColumn {
+    width: 100%;
+  }
+
+  .contentColumn {
+    width: 100%;
+    padding: calc(57px + var(--space-lg)) var(--space-md) var(--space-3xl);
+  }
+}

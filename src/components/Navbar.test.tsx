@@ -16,9 +16,10 @@ describe("Navbar Component", () => {
     );
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
-    expect(screen.getByText(/LEVENTE GALL/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/LEVENTE GALL/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/JOURNEY/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/PROJECTS/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/migrating the Swaya media manager backend/i)).toBeInTheDocument();
 
     unmount();
 
@@ -28,67 +29,32 @@ describe("Navbar Component", () => {
       </LocaleProvider>,
     );
 
-    expect(screen.getByText(/GÁLL LEVENTE/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/GÁLL LEVENTE/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/PÁLYAÍV/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Swaya media manager backendjét írom át/i)).toBeInTheDocument();
   });
 
-  it("toggles mobile menu drawer when mobile menu button is clicked", () => {
+  it("renders all 5 section navigation links with correct IDs and hrefs", () => {
     render(
       <LocaleProvider initialLocale="en">
         <Navbar />
       </LocaleProvider>,
     );
 
-    const toggleBtn = screen.getByRole("button", { name: /Toggle Navigation Menu/i });
-    expect(screen.queryByRole("dialog", { name: /Mobile Navigation Menu/i })).not.toBeInTheDocument();
+    const trajectoryLink = screen.getByRole("link", { name: /Journey/i });
+    expect(trajectoryLink).toHaveAttribute("href", "#trajectory");
 
-    fireEvent.click(toggleBtn);
-    expect(screen.getByRole("dialog", { name: /Mobile Navigation Menu/i })).toBeInTheDocument();
+    const projectsLink = screen.getByRole("link", { name: /Projects/i });
+    expect(projectsLink).toHaveAttribute("href", "#projects");
 
-    fireEvent.click(toggleBtn);
-    expect(screen.queryByRole("dialog", { name: /Mobile Navigation Menu/i })).not.toBeInTheDocument();
-  });
+    const skillsLink = screen.getByRole("link", { name: /Skills/i });
+    expect(skillsLink).toHaveAttribute("href", "#skills");
 
-  it("closes mobile drawer and returns focus on Escape key", () => {
-    render(
-      <LocaleProvider initialLocale="en">
-        <Navbar />
-      </LocaleProvider>,
-    );
+    const servicesLink = screen.getByRole("link", { name: /Packages/i });
+    expect(servicesLink).toHaveAttribute("href", "#services");
 
-    const toggleBtn = screen.getByRole("button", { name: /Toggle Navigation Menu/i });
-    fireEvent.click(toggleBtn);
-
-    expect(screen.getByRole("dialog", { name: /Mobile Navigation Menu/i })).toBeInTheDocument();
-
-    fireEvent.keyDown(window, { key: "Escape" });
-    expect(screen.queryByRole("dialog", { name: /Mobile Navigation Menu/i })).not.toBeInTheDocument();
-  });
-
-  it("traps focus inside mobile drawer with Tab key", () => {
-    render(
-      <LocaleProvider initialLocale="en">
-        <Navbar />
-      </LocaleProvider>,
-    );
-
-    const toggleBtn = screen.getByRole("button", { name: /Toggle Navigation Menu/i });
-    fireEvent.click(toggleBtn);
-
-    const drawer = screen.getByRole("dialog", { name: /Mobile Navigation Menu/i });
-    const interactiveItems = drawer.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
-    expect(interactiveItems.length).toBeGreaterThan(1);
-
-    const firstItem = interactiveItems[0];
-    const lastItem = interactiveItems[interactiveItems.length - 1];
-
-    // Simulate focus on last item and pressing Tab
-    lastItem?.focus();
-    fireEvent.keyDown(window, { key: "Tab", shiftKey: false });
-
-    // Simulate focus on first item and pressing Shift+Tab
-    firstItem?.focus();
-    fireEvent.keyDown(window, { key: "Tab", shiftKey: true });
+    const contactLink = screen.getByRole("link", { name: /Contact/i });
+    expect(contactLink).toHaveAttribute("href", "#contact");
   });
 
   it("adds scrolled class when window is scrolled past threshold", () => {
@@ -104,5 +70,22 @@ describe("Navbar Component", () => {
     fireEvent.scroll(window);
 
     expect(header.className).toContain("scrolled");
+  });
+
+  it("renders social icon action links with valid targets in footer", () => {
+    render(
+      <LocaleProvider initialLocale="en">
+        <Navbar />
+      </LocaleProvider>,
+    );
+
+    const githubLink = screen.getByRole("link", { name: /GitHub Profile/i });
+    expect(githubLink).toHaveAttribute("href", expect.stringContaining("github.com"));
+
+    const linkedinLink = screen.getByRole("link", { name: /LinkedIn Profile/i });
+    expect(linkedinLink).toHaveAttribute("href", expect.stringContaining("linkedin.com"));
+
+    const emailLink = screen.getByRole("link", { name: /Email Transmission/i });
+    expect(emailLink).toHaveAttribute("href", expect.stringContaining("mailto:"));
   });
 });

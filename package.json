@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . && npm run lint:css",
+    "lint:fix": "eslint . --fix && npm run lint:css:fix",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
     "lint:spell": "cspell \"src/**/*.{ts,tsx,css,md,json}\" --no-progress",
@@ -17,12 +19,12 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "lint:all": "npm run lint && npm run lint:css && npm run lint:spell && npm run lint:secrets && npm run lint:knip && npm run test",
+    "lint:all": "npm run lint && npm run lint:spell && npm run lint:secrets && npm run lint:knip && npm run test",
     "prepare": "husky"
   },
   "dependencies": {
+    "@carbon/icons-react": "11.87.0",
     "@radix-ui/react-tooltip": "^1.2.16",
-    "lucide-react": "^1.41.0",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -63,4 +65,3 @@
     "npm": ">=10.0.0"
   }
 }
-

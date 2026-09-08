@@ -36,6 +36,6 @@
 .badge {
   font-family: var(--font-jetbrains), monospace;
   font-weight: 500;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.05em;
 }

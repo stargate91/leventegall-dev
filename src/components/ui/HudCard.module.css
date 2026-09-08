@@ -13,24 +13,24 @@
 
 .surfaceDeck {
   background: var(--tone-b-card);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid var(--border-medium);
   backdrop-filter: blur(16px);
 }
 
 .elevated {
-  background: rgb(18 28 48 / 90%);
-  border: 1px solid var(--cyan-tron);
-  box-shadow: 0 20px 45px -10px rgb(0 229 255 / 30%);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 20px 45px -10px rgb(0 0 0 / 80%), 0 0 20px var(--color-accent-subtle);
   backdrop-filter: blur(20px);
 }
 
 .transparent {
-  background: rgb(10 14 25 / 60%);
+  background: var(--bg-glass);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(12px);
 }
 
-/* Sci-Fi HUD Corner Brackets (Tron / Gattaca) */
+/* HUD Corner Brackets (Unified Single Accent) */
 .corners::before,
 .corners::after {
   position: absolute;
@@ -43,13 +43,13 @@
 .corners::before {
   top: -1px;
   left: -1px;
-  border-top: 2px solid var(--cyan-tron);
-  border-left: 2px solid var(--cyan-tron);
+  border-top: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-accent);
 }
 
 .corners::after {
   right: -1px;
   bottom: -1px;
-  border-right: 2px solid var(--cyan-tron);
-  border-bottom: 2px solid var(--cyan-tron);
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
 }

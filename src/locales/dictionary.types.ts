@@ -7,20 +7,14 @@ export interface NavLocale {
   packages: string;
   contact: string;
   status: string;
+  sidebarBio: string;
 }
 
 export interface HeroLocale {
-  badgeGlyph: string;
-  badgeText: string;
-  badgeTooltip: string;
+  greeting: string;
   titleMain: string;
   titleGradient: string;
-  descriptionLead: string;
-  descriptionPhysics: string;
-  descriptionFiverr: string;
-  descriptionTail: string;
-  ctaProjects: string;
-  ctaServices: string;
+  description: string;
   stats: {
     fiverrValue: string;
     fiverrLabel: string;
@@ -109,9 +103,11 @@ export interface ProjectsLocale {
   brandingTaglines: BrandingTaglineLocale[];
 }
 
-export interface SkillItemLocale {
-  name: string;
-  status: string;
+export interface SkillCategoryLocale {
+  id: string;
+  title: string;
+  description: string;
+  skills: string[];
 }
 
 export interface ClientFeedbackLocale {
@@ -124,13 +120,16 @@ export interface SkillsLocale {
   subtitle: string;
   title: string;
   description: string;
-  engineeringTitle: string;
-  engineeringSub: string;
-  brandingTitle: string;
-  brandingSub: string;
+  categories: SkillCategoryLocale[];
+}
+
+export interface TestimonialsLocale {
+  subtitle: string;
+  title: string;
+  description: string;
   verifiedBadge: string;
-  engineeringList: SkillItemLocale[];
-  brandingList: SkillItemLocale[];
+  ratingBadge: string;
+  verifyFiverrLink: string;
   feedback: ClientFeedbackLocale[];
 }
 
@@ -187,6 +186,7 @@ export interface ContactLocale {
     emailRequired: string;
     emailInvalid: string;
     briefRequired: string;
+    transmissionFailedTitle: string;
     transmissionFailed: string;
   };
   success: {
@@ -214,13 +214,11 @@ export interface ContactLocale {
 export interface FooterLocale {
   subTitle: string;
   returnToOrbit: string;
-  quote: string;
-  quoteSub: string;
-  transmissionHeading: string;
   githubLabel: string;
   directCommsLabel: string;
   craftedWith: string;
   statusLabel: string;
+  projectsCompleted: string;
 }
 
 export interface Dictionary {
@@ -232,6 +230,7 @@ export interface Dictionary {
   projects: ProjectsLocale;
   skills: SkillsLocale;
   services: ServicesLocale;
+  testimonials: TestimonialsLocale;
   contact: ContactLocale;
   footer: FooterLocale;
 }

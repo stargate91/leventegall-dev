@@ -26,9 +26,9 @@
 }
 
 .variant-cyan {
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
 }
 
 .variant-outline {

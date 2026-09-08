@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./BeaconDot.module.css";
 
 export interface BeaconDotProps {
-  color?: "cyan" | "green" | "red" | "amber";
+  color?: "blue" | "accent" | "cyan" | "pink" | "amber" | "green" | "red";
   size?: "sm" | "md" | "lg";
   className?: string;
   style?: React.CSSProperties;
 }
 
 export default function BeaconDot({
-  color = "cyan",
+  color = "blue",
   size = "md",
   className = "",
   style,

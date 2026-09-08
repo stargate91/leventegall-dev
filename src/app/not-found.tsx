@@ -1,4 +1,4 @@
-import { AlertOctagon, ArrowLeft, Orbit } from "lucide-react";
+import { Warning, ArrowLeft, Connect } from "@carbon/icons-react";
 import styles from "./not-found.module.css";
 import {
   HudCard,
@@ -21,7 +21,7 @@ export default function NotFound() {
           </TelemetryBadge>
 
           <div className={styles.glyphWrapper}>
-            <AlertOctagon size={48} className={styles.glyphIcon} />
+            <Warning size={48} className={styles.glyphIcon} />
           </div>
 
           <div className={styles.headingGroup}>
@@ -49,7 +49,7 @@ export default function NotFound() {
               variant="secondary"
               size="md"
               href="/#contact"
-              iconLeft={<Orbit size={16} />}
+              iconLeft={<Connect size={16} />}
             >
               Direct Uplink
             </Button>

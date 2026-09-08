@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertTriangle, RotateCcw } from "lucide-react";
+import { WarningAlt, Restart } from "@carbon/icons-react";
 import { logger } from "@/lib/logger";
 
 interface GlobalErrorProps {
@@ -51,7 +51,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               justifyContent: "center",
             }}
           >
-            <AlertTriangle size={48} />
+            <WarningAlt size={48} />
           </div>
           <h1
             style={{
@@ -97,7 +97,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               gap: "8px",
             }}
           >
-            <RotateCcw size={16} />
+            <Restart size={16} />
             Reinitialize System
           </button>
         </div>

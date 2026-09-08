@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@carbon/icons-react";
 import styles from "../ProjectCard.module.css";
 import type { ProjectData } from "@/data/projects";
 
@@ -19,7 +19,7 @@ import {
   HudCard,
   TelemetryBadge,
   Button,
-  Tabs,
+  SegmentedControl,
   Stat,
   TagList,
   Callout,
@@ -49,15 +49,16 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
           {project.badge}
         </TelemetryBadge>
 
-        {/* Sub-Tabs Primitive */}
-        <Tabs
+        {/* Standard SegmentedControl UI Primitive */}
+        <SegmentedControl<"interactive" | "overview" | "architecture">
           value={currTab}
-          onChange={(val) => setCurrTab(val as "overview" | "architecture" | "interactive")}
-          items={[
-            { id: "interactive", label: dict.projects.tabs.interactive },
-            { id: "overview", label: dict.projects.tabs.overview },
-            { id: "architecture", label: dict.projects.tabs.architecture },
+          onChange={(val) => setCurrTab(val)}
+          options={[
+            { value: "interactive", label: dict.projects.tabs.interactive },
+            { value: "overview", label: dict.projects.tabs.overview },
+            { value: "architecture", label: dict.projects.tabs.architecture },
           ]}
+          size="sm"
         />
       </div>
 

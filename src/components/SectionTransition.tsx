@@ -33,8 +33,8 @@ export default function SectionTransition({
   const containerClass = position === "top" ? styles.containerTop : styles.containerBottom;
   const fillColor = explicitFill || (toDeck === "tone-b" ? "var(--tone-b)" : "var(--tone-a)");
   const fromFill = explicitFill || (fromDeck === "tone-b" ? "var(--tone-b)" : "var(--tone-a)");
-  const laser = color || "var(--cyan-tron)";
-  const accent = "var(--cyan-core)";
+  const laser = color || "var(--color-accent)";
+  const accent = "var(--color-accent-core)";
 
   if (variant === "bulkhead" || variant === "tron") {
     if (position === "top") {

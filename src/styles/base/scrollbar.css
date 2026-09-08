@@ -1,11 +1,11 @@
 /* =========================================================================
-   Tron: Legacy Luminescent Scrollbar Architecture
+   Modern Cyber-Synth Scrollbar Architecture
    Cross-browser support for WebKit, Blink, Gecko, and Standard W3C CSS
    ========================================================================= */
 
 /* 1. Standard W3C Scrollbar (Firefox, Chrome 121+, Safari 17.4+) */
 html {
-  scrollbar-color: rgb(0 229 255 / 45%) var(--tone-a);
+  scrollbar-color: var(--color-accent) var(--tone-a);
   scrollbar-width: thin;
 }
 
@@ -21,21 +21,16 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgb(0 229 255 / 35%) 0%,
-    rgb(0 229 255 / 75%) 50%,
-    rgb(2 132 199 / 60%) 100%
-  );
+  background: var(--color-accent);
   border: 2px solid var(--tone-a);
   border-radius: var(--radius-full);
-  box-shadow: 0 0 8px rgb(0 229 255 / 40%);
+  box-shadow: 0 0 6px var(--color-accent-subtle);
   transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cyan-tron);
-  box-shadow: 0 0 12px var(--cyan-tron), 0 0 24px rgb(0 229 255 / 70%);
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 ::-webkit-scrollbar-corner {

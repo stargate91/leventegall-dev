@@ -1,30 +1,54 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Compass, Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  Close,
+  LogoGithub,
+  LogoLinkedin,
+  Email,
+} from "@carbon/icons-react";
 import styles from "./Navbar.module.css";
-import Button from "@/components/ui/Button";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import StatusPill from "@/components/ui/StatusPill";
+import IconButton from "@/components/ui/IconButton";
 import { siteConfig } from "@/config/site";
 import { useLocale } from "@/locales";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const { dict } = useLocale();
 
+  // Scroll detection for ScrollSpy and mobile backdrop
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sectionIds = ["hero", "trajectory", "projects", "skills", "services", "contact"];
+      const scrollPosition = window.scrollY + window.innerHeight * 0.35;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        if (id) {
+          const el = document.getElementById(id);
+          if (el && el.offsetTop <= scrollPosition) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Keyboard accessibility: Escape to close and Tab focus trap for mobile drawer
+  // Keyboard accessibility for mobile drawer
   useEffect(() => {
     if (!mobileMenuOpen) {
       return;
@@ -63,70 +87,137 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: dict.nav.journey, href: "#trajectory", index: "01" },
-    { label: dict.nav.projects, href: "#projects", index: "02" },
-    { label: dict.nav.skills, href: "#skills", index: "03" },
-    { label: dict.nav.packages, href: "#services", index: "04" },
-    { label: dict.nav.contact, href: "#contact", index: "05" },
+    { label: dict.nav.journey, href: "#trajectory", id: "trajectory", index: "01" },
+    { label: dict.nav.projects, href: "#projects", id: "projects", index: "02" },
+    { label: dict.nav.skills, href: "#skills", id: "skills", index: "03" },
+    { label: dict.nav.packages, href: "#services", id: "services", index: "04" },
+    { label: dict.nav.contact, href: "#contact", id: "contact", index: "05" },
   ];
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.navContainer}>
-        {/* Brand Signifier */}
-        <a href="#hero" className={styles.brand}>
-          <div className={styles.brandIcon}>
-            <Compass size={18} />
-          </div>
-          <div className={styles.brandText}>
-            <span className={styles.brandTitle}>{dict.brandName.toUpperCase()}</span>
-            <span className={styles.brandSubtitle}>LOC: {siteConfig.coordinates.coords}</span>
-          </div>
-        </a>
+    <header
+      role="banner"
+      className={`${styles.sidebar} ${scrolled ? styles.scrolled : ""}`}
+      aria-label="Main Navigation"
+    >
+      {/* =========================================================================
+         Desktop Sticky Sidebar Frame (100vh)
+         ========================================================================= */}
+      <div className={styles.sidebarInner}>
+        {/* Top: Identity & Status Zone */}
+        <div className={styles.identityBlock}>
+          <a href="#hero" className={styles.brandLink}>
+            <div className={styles.brandInfo}>
+              <h1 className={styles.brandTitle}>
+                <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
+                <span className={styles.brandCallsign}> // {siteConfig.callsign}</span>
+              </h1>
+              <span className={styles.brandRole}>{dict.footer.subTitle}</span>
+            </div>
+          </a>
 
-        {/* Navigation Links (Desktop) */}
-        <nav className={styles.desktopNav} aria-label="Main Navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.index}
-              href={link.href}
-              id={`nav-link-${link.index}`}
-              className={styles.navLink}
-            >
-              <span className={styles.navLinkIndex}>{link.index}</span>
-              <span>{link.label}</span>
-            </a>
-          ))}
+          {/* Live Status & Coordinates Telemetry Pill */}
+          <StatusPill
+            items={[
+              siteConfig.stats.systemStatus,
+              siteConfig.coordinates.city,
+              siteConfig.coordinates.coords,
+            ]}
+            beacon={false}
+            size="sm"
+            variant="surface"
+          />
+
+          {/* Current Focus Micro-Bio */}
+          <p className={styles.sidebarBio}>{dict.nav.sidebarBio}</p>
+        </div>
+
+        {/* Middle: Vertical Navigation Links */}
+        <nav className={styles.navBlock} aria-label="Section Navigation">
+          <ul className={styles.navList}>
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+
+              return (
+                <li key={link.index} className={styles.navListItem}>
+                  <a
+                    href={link.href}
+                    id={`nav-link-${link.index}`}
+                    className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <span className={styles.indicatorLine} aria-hidden="true" />
+                    <span className={styles.navIndex}>{link.index}</span>
+                    <span className={styles.navLabel}>{link.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
-        {/* Action Controls & Language Switcher */}
-        <div className={styles.navActions}>
+        {/* Bottom Actions: Socials on left & Language Switcher on right */}
+        <div className={styles.footerBlock}>
+          <div className={styles.socialRow}>
+            <div className={styles.socialGroup}>
+              <IconButton
+                icon={<LogoGithub size={18} />}
+                href={siteConfig.socials.github}
+                target="_blank"
+                ariaLabel="GitHub Profile"
+                title="GitHub"
+                variant="surface"
+                size="md"
+              />
+              <IconButton
+                icon={<LogoLinkedin size={18} />}
+                href={siteConfig.socials.linkedin}
+                target="_blank"
+                ariaLabel="LinkedIn Profile"
+                title="LinkedIn"
+                variant="surface"
+                size="md"
+              />
+              <IconButton
+                icon={<Email size={18} />}
+                href={`mailto:${siteConfig.email}`}
+                ariaLabel="Email Transmission"
+                title="Email"
+                variant="surface"
+                size="md"
+              />
+            </div>
+            <div className={styles.langContainer}>
+              <LanguageSwitcher />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================================================================
+         Mobile Header Bar (< 1024px)
+         ========================================================================= */}
+      <div className={styles.mobileBar}>
+        <a href="#hero" className={styles.mobileBrand}>
+          <span className={styles.mobileBrandTitle}>
+            <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
+            <span className={styles.brandCallsign}> // {siteConfig.callsign}</span>
+          </span>
+        </a>
+
+        <div className={styles.mobileActions}>
           <LanguageSwitcher />
 
-          <div className={styles.desktopCta}>
-            <Button
-              variant="primary"
-              size="sm"
-              href="#contact"
-              id="nav-cta-contact"
-              iconRight={<ArrowUpRight size={14} />}
-            >
-              {dict.contact.submitButton}
-            </Button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            ref={toggleBtnRef}
-            type="button"
-            className={styles.mobileMenuBtn}
+          <IconButton
+            ref={toggleBtnRef as unknown as React.Ref<HTMLButtonElement & HTMLAnchorElement>}
+            icon={mobileMenuOpen ? <Close size={20} /> : <Menu size={20} />}
+            ariaLabel="Toggle Navigation Menu"
+            ariaExpanded={mobileMenuOpen}
+            ariaControls="mobile-nav-drawer"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle Navigation Menu"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-nav-drawer"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            variant="ghost"
+            size="md"
+          />
         </div>
       </div>
 
@@ -138,28 +229,22 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Menu"
-          className={styles.mobileMenu}
+          className={styles.mobileDrawer}
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.index}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={styles.mobileMenuLink}
-            >
-              <span className={styles.navLinkIndex}>{link.index}</span>
-              <span>{link.label}</span>
-            </a>
-          ))}
-          <Button
-            variant="primary"
-            size="md"
-            fullWidth
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            {dict.contact.submitButton}
-          </Button>
+          <ul className={styles.mobileDrawerList}>
+            {navLinks.map((link) => (
+              <li key={link.index}>
+                <a
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.mobileDrawerLink}
+                >
+                  <span className={styles.mobileDrawerIndex}>{link.index}</span>
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </header>

@@ -62,11 +62,11 @@
   color: var(--text-primary);
   letter-spacing: 0.04em;
   user-select: none;
-  background-color: rgb(7 10 15 / 95%);
-  border: 1px solid rgb(0 229 255 / 35%);
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
   box-shadow:
-    0 0 12px rgb(0 229 255 / 20%),
+    0 0 12px var(--color-accent-subtle),
     0 8px 24px rgb(0 0 0 / 80%);
   backdrop-filter: blur(12px);
   animation-duration: 150ms;
@@ -90,12 +90,12 @@
   animation-name: tooltipFadeInRight;
 }
 
-/* Variant: Cyan Luminescent Highlight */
+/* Variant: Accent Highlight */
 .variantCyan {
-  color: var(--cyan-tron);
-  border-color: var(--cyan-tron);
+  color: var(--color-accent-core);
+  border-color: var(--color-accent);
   box-shadow:
-    0 0 16px rgb(0 229 255 / 35%),
+    0 0 16px var(--color-accent-glow),
     0 8px 24px rgb(0 0 0 / 85%);
 }
 
@@ -107,13 +107,13 @@
 }
 
 .arrow {
-  fill: rgb(7 10 15 / 95%);
-  stroke: rgb(0 229 255 / 35%);
+  fill: var(--bg-dark-card);
+  stroke: var(--border-accent);
   stroke-width: 1px;
 }
 
 .variantCyan .arrow {
-  stroke: var(--cyan-tron);
+  stroke: var(--color-accent);
 }
 
 .variantMuted .arrow {

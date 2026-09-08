@@ -23,7 +23,7 @@
 .telemetryTag {
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.08em;
 }
 
@@ -78,15 +78,15 @@
   right: var(--space-sm);
   display: flex;
   align-items: center;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   pointer-events: none;
   transition: transform var(--transition-fast);
 }
 
 .trigger.triggerOpen {
   background: var(--tone-b);
-  border-color: var(--cyan-tron);
-  box-shadow: 0 0 15px var(--cyan-glow), inset 0 1px 2px rgb(0 0 0 / 50%);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px var(--color-accent-glow), inset 0 1px 2px rgb(0 0 0 / 50%);
 }
 
 .trigger.triggerOpen .chevron {
@@ -112,9 +112,9 @@
   padding: var(--space-2xs);
   overflow-y: auto;
   background: var(--bg-dark-card);
-  border: 1px solid var(--border-cyan);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
-  box-shadow: 0 15px 35px -5px rgb(0 0 0 / 90%), 0 0 20px var(--cyan-glow);
+  box-shadow: 0 15px 35px -5px rgb(0 0 0 / 90%), 0 0 20px var(--color-accent-glow);
   backdrop-filter: blur(16px);
 }
 
@@ -137,15 +137,15 @@
 
 .optionItem:hover:not(:disabled) {
   color: var(--color-white);
-  background: var(--cyan-subtle);
-  border-color: var(--border-cyan);
+  background: var(--color-accent-subtle);
+  border-color: var(--border-accent);
 }
 
 .optionItem.optionSelected {
   font-weight: 600;
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border-color: var(--cyan-tron);
+  color: var(--color-accent-core);
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
 }
 
 .optionContent {
@@ -161,7 +161,7 @@
 
 .checkIcon {
   flex-shrink: 0;
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .errorText {

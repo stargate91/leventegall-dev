@@ -29,7 +29,7 @@
 }
 
 .terminalIcon {
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .statusDot {
@@ -40,8 +40,8 @@
 }
 
 .status-cyan {
-  background: var(--cyan-tron);
-  box-shadow: 0 0 8px var(--cyan-tron);
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-glow);
 }
 
 .status-green {
@@ -57,7 +57,7 @@
 .title {
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-xs);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }

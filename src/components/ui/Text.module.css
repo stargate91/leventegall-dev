@@ -20,7 +20,7 @@
 }
 
 .toneCyan {
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .toneSuccess {
@@ -36,10 +36,7 @@
 }
 
 .toneGradient {
-  background: linear-gradient(135deg, #fff 0%, #00e5ff 45%, #0284c7 100%);
-  background-clip: text;
-  filter: drop-shadow(0 0 25px rgb(0 229 255 / 30%));
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-core);
 }
 
 /* Size Variants */
@@ -151,7 +148,7 @@
 
 /* Modifiers */
 .glow {
-  text-shadow: 0 0 10px var(--cyan-glow);
+  text-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 .italic {

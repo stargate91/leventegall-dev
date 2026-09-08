@@ -21,7 +21,7 @@
 .tag {
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.06em;
 }
 
@@ -41,16 +41,16 @@
 }
 
 .variant-cyan {
-  background: linear-gradient(90deg, var(--deep-nebula) 0%, var(--cyan-tron) 100%);
-  box-shadow: 0 0 10px var(--cyan-glow);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-core) 100%);
+  box-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 .variant-green {
-  background: linear-gradient(90deg, #059669 0%, var(--color-success) 100%);
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-success) 100%);
   box-shadow: 0 0 10px rgb(16 185 129 / 40%);
 }
 
 .variant-gradient {
-  background: linear-gradient(90deg, #6366f1 0%, var(--cyan-tron) 100%);
-  box-shadow: 0 0 10px var(--cyan-glow);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-core) 100%);
+  box-shadow: 0 0 10px var(--color-accent-glow);
 }

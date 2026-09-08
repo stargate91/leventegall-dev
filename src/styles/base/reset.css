@@ -35,7 +35,7 @@ a {
 
 /* Accessibility Focus Ring */
 :focus-visible {
-  outline: 1px solid var(--cyan-tron);
+  outline: 1px solid var(--color-accent-core);
   outline-offset: 2px;
 }
 

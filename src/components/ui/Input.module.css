@@ -22,7 +22,7 @@
 .telemetryTag {
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
   letter-spacing: 0.08em;
 }
 
@@ -76,13 +76,13 @@
 
 .input:focus {
   background: var(--tone-b);
-  border-color: var(--cyan-tron);
-  box-shadow: 0 0 15px var(--cyan-glow), inset 0 1px 2px rgb(0 0 0 / 50%);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px var(--color-accent-glow), inset 0 1px 2px rgb(0 0 0 / 50%);
 }
 
 .inputContainer:focus-within .iconLeft,
 .inputContainer:focus-within .iconRight {
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .input.inputError {

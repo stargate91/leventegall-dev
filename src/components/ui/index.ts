@@ -90,3 +90,21 @@ export type {
 
 export { default as LanguageSwitcher } from "./LanguageSwitcher";
 export type { LanguageSwitcherProps } from "./LanguageSwitcher";
+
+export { default as SegmentedControl } from "./SegmentedControl";
+export type { SegmentedControlProps, SegmentedControlOption } from "./SegmentedControl";
+
+export { default as StatusPill } from "./StatusPill";
+export type { StatusPillProps } from "./StatusPill";
+
+export { default as IconButton } from "./IconButton";
+export type { IconButtonProps } from "./IconButton";
+
+export { default as Avatar } from "./Avatar";
+export type {
+  AvatarProps,
+  AvatarShape,
+  AvatarSize,
+  AvatarVariant,
+  AvatarStatus,
+} from "./Avatar";

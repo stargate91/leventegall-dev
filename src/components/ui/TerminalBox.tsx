@@ -1,5 +1,5 @@
 import React from "react";
-import { Terminal } from "lucide-react";
+import { Terminal } from "@carbon/icons-react";
 import styles from "./TerminalBox.module.css";
 
 export interface TerminalBoxProps extends React.HTMLAttributes<HTMLDivElement> {

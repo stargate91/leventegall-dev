@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Copy, Check } from "lucide-react";
+import { Copy, Checkmark } from "@carbon/icons-react";
 import styles from "./CopySnippet.module.css";
 import Tooltip from "./Tooltip";
 
@@ -39,7 +39,7 @@ export default function CopySnippet({
           className={`${styles.copyBtn} ${copied ? styles.copied : ""}`}
           aria-label="Copy to clipboard"
         >
-          {copied ? <Check size={14} /> : <Copy size={14} />}
+          {copied ? <Checkmark size={14} /> : <Copy size={14} />}
           <span>{copied ? copiedLabel : label}</span>
         </button>
       </Tooltip>

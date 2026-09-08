@@ -1,52 +1,39 @@
 import React from "react";
+import styles from "./DeckDivider.module.css";
 
 interface DeckDividerProps {
-  maxWidth?: string;
-  margin?: string;
-  className?: string;
-  style?: React.CSSProperties;
+  label?: string | undefined;
+  maxWidth?: string | undefined;
+  margin?: string | undefined;
+  className?: string | undefined;
+  style?: React.CSSProperties | undefined;
 }
 
 /**
- * DeckDivider renders an ultra-precise Tron luminescent laser seam
- * with a center glowing HUD telemetry indicator pip for sub-section separation.
+ * DeckDivider renders an ultra-precise retrowave laser seam
+ * with a center glowing HUD telemetry indicator pip or label.
  */
 export default function DeckDivider({
-  maxWidth = "1200px",
+  label,
+  maxWidth = "1040px",
   margin = "0 auto",
   className = "",
   style,
 }: DeckDividerProps) {
   return (
     <div
-      className={`deck-divider ${className}`}
-      style={{
-        height: "1px",
-        maxWidth,
-        margin,
-        background:
-          "linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.4) 20%, #00e5ff 50%, rgba(0, 229, 255, 0.4) 80%, transparent 100%)",
-        boxShadow: "0 0 15px rgba(0, 229, 255, 0.4)",
-        position: "relative",
-        zIndex: 5,
-        ...style,
-      }}
+      className={`${styles.divider} ${className}`}
+      style={{ maxWidth, margin, ...style }}
       aria-hidden="true"
     >
-      {/* Center HUD Indicator Pip */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-3px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "48px",
-          height: "7px",
-          borderRadius: "2px",
-          background: "var(--cyan-tron)",
-          boxShadow: "0 0 12px var(--cyan-glow)",
-        }}
-      />
+      {label ? (
+        <div className={styles.labelWrapper}>
+          <span className={styles.labelDot} />
+          <span>{label}</span>
+        </div>
+      ) : (
+        <div className={styles.pip} />
+      )}
     </div>
   );
 }

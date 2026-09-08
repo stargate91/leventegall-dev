@@ -1,13 +1,14 @@
 "use client";
 
 import { useReducer, useEffect } from "react";
-import { Send, CheckCircle2, Radio, User, Mail, AlertTriangle } from "lucide-react";
+import { SendAlt, CheckmarkFilled, Radio, User, Email, WarningAlt } from "@carbon/icons-react";
 import styles from "./ContactForm.module.css";
 import type { ContactRequestBody, ContactApiResponse } from "@/types/contact";
 import {
   SectionHeader,
   HudCard,
   Button,
+  TelemetryBadge,
   Input,
   Select,
   Textarea,
@@ -110,6 +111,7 @@ export function contactFormReducer(
       return {
         ...state,
         status: "transmitting",
+        errors: {},
       };
 
     case "SUBMIT_SUCCESS":
@@ -117,7 +119,6 @@ export function contactFormReducer(
         ...state,
         status: "success",
         telemetryId: action.telemetryId,
-        errors: {},
       };
 
     case "SUBMIT_ERROR":
@@ -128,12 +129,11 @@ export function contactFormReducer(
 
     case "RESET_FORM":
       return {
-        ...state,
+        ...initialFormState,
         formData: {
           ...initialFormState.formData,
           tier: state.formData.tier,
         },
-        errors: {},
         status: "idle",
         telemetryId: "",
       };
@@ -154,29 +154,27 @@ export default function ContactForm() {
   );
 
   useEffect(() => {
-    // 1. Sync tier from URL query parameters on mount or browser popstate
+    const handlePackageSelect = (e: Event) => {
+      const customEvent = e as CustomEvent<{ tierId: string }>;
+      if (customEvent.detail && customEvent.detail.tierId) {
+        dispatch({ type: "SET_TIER", tier: customEvent.detail.tierId });
+      }
+    };
+
     const syncTierFromUrl = () => {
       if (typeof window === "undefined") {
         return;
       }
-      const params = new URLSearchParams(window.location.search);
-      const tierParam = params.get("tier");
-      if (tierParam && ["naming", "full-orbit", "web-dev"].includes(tierParam)) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tierParam = urlParams.get("tier");
+      if (tierParam) {
         dispatch({ type: "SET_TIER", tier: tierParam });
-      }
-    };
-
-    syncTierFromUrl();
-
-    // 2. React to custom in-page selection events
-    const handlePackageSelect = (e: CustomEvent<{ tierId: string }>) => {
-      if (e.detail?.tierId) {
-        dispatch({ type: "SET_TIER", tier: e.detail.tierId });
       }
     };
 
     window.addEventListener("select-package-tier", handlePackageSelect);
     window.addEventListener("popstate", syncTierFromUrl);
+    syncTierFromUrl();
 
     return () => {
       window.removeEventListener("select-package-tier", handlePackageSelect);
@@ -236,7 +234,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className={`section-container ${styles.sectionWrapper}`}>
+    <div id="contact" className={`section-container ${styles.sectionWrapper}`}>
       {/* Header */}
       <SectionHeader
         subtitle={dict.contact.subtitle}
@@ -252,7 +250,7 @@ export default function ContactForm() {
           {status === "success" ? (
             <div role="status" aria-live="polite" className={styles.successWrapper}>
               <div className={styles.successIcon}>
-                <CheckCircle2 size={30} />
+                <CheckmarkFilled size={30} />
               </div>
               <h3 className={styles.successTitle}>
                 {dict.contact.success.title}
@@ -287,8 +285,8 @@ export default function ContactForm() {
                   <div role="alert" aria-live="assertive">
                     <Callout
                       variant="notice"
-                      icon={<AlertTriangle size={16} />}
-                      title="TRANSMISSION FAILED"
+                      icon={<WarningAlt size={16} />}
+                      title={dict.contact.errors.transmissionFailedTitle}
                     >
                       <Text size="xs" tone="secondary">
                         {dict.contact.errors.transmissionFailed} ({directEmail})
@@ -317,7 +315,7 @@ export default function ContactForm() {
                     label={dict.contact.fields.email}
                     type="email"
                     placeholder={dict.contact.fields.emailPlaceholder}
-                    iconLeft={<Mail size={16} />}
+                    iconLeft={<Email size={16} />}
                     value={formData.email}
                     error={errors.email}
                     onChange={(e) =>
@@ -369,7 +367,7 @@ export default function ContactForm() {
                   size="lg"
                   fullWidth
                   disabled={status === "transmitting"}
-                  iconLeft={<Send size={16} />}
+                  iconLeft={<SendAlt size={16} />}
                 >
                   {status === "transmitting" ? dict.contact.transmittingButton : dict.contact.submitButton}
                 </Button>
@@ -380,10 +378,10 @@ export default function ContactForm() {
 
         {/* Right Info Column */}
         <Stack gap="md" className={styles.infoColumn}>
-          <HudCard variant="transparent" corners={false} className={styles.infoCard}>
-            <div className={styles.infoCardTag}>
+          <HudCard variant="surface" corners={false} className={styles.infoCard}>
+            <TelemetryBadge variant="cyan" className={styles.infoCardTag}>
               {dict.contact.infoColumn.directEmailTag}
-            </div>
+            </TelemetryBadge>
             <h4 className={styles.infoCardTitle}>
               {dict.contact.infoColumn.directEmailTitle}
             </h4>
@@ -395,14 +393,14 @@ export default function ContactForm() {
           </HudCard>
 
           {/* Key Facts */}
-          <HudCard variant="transparent" corners={false} className={styles.infoCard}>
-            <div className={styles.infoCardTag}>
+          <HudCard variant="surface" corners={false} className={styles.infoCard}>
+            <TelemetryBadge variant="cyan" className={styles.infoCardTag}>
               {dict.contact.infoColumn.atAGlanceTag}
-            </div>
+            </TelemetryBadge>
             <Stack gap="none">
               <Stat variant="row" label={dict.contact.infoColumn.backendLabel} value={dict.contact.infoColumn.backendValue} />
               <Stat variant="row" label={dict.contact.infoColumn.frontendLabel} value={dict.contact.infoColumn.frontendValue} />
-              <Stat variant="row" label={dict.contact.infoColumn.fiverrLabel} value={`${siteConfig.telemetry.missionsDelivered} Clients (${siteConfig.telemetry.rating})`} />
+              <Stat variant="row" label={dict.contact.infoColumn.fiverrLabel} value={`${siteConfig.stats.clientsServed} Clients (${siteConfig.stats.rating})`} />
               <Stat variant="row" label={dict.contact.infoColumn.physicsLabel} value={dict.contact.infoColumn.physicsValue} />
             </Stack>
           </HudCard>

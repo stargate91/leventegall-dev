@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "../ProjectCard.module.css";
 import {
   TerminalBox,
+  Button,
   Stack,
 } from "@/components/ui";
 import { getBrandingTaglines } from "@/data/projects";
@@ -31,16 +32,15 @@ export default function AetheriaSimulator() {
 
         <Stack gap="xs">
           {brandingTaglines.map((t, i) => (
-            <button
+            <Button
               key={t.id}
-              type="button"
+              variant={selectedTaglineIndex === i ? "telemetry" : "ghost"}
+              size="sm"
+              fullWidth
               onClick={() => setSelectedTaglineIndex(i)}
-              className={`${styles.taglineBtn} ${selectedTaglineIndex === i ? styles.taglineBtnActive : ""}`}
             >
-              <div className={styles.taglineText}>
-                &ldquo;{t.text}&rdquo;
-              </div>
-            </button>
+              &ldquo;{t.text}&rdquo;
+            </Button>
           ))}
         </Stack>
       </Stack>

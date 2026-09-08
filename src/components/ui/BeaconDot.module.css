@@ -20,19 +20,27 @@
   height: 9px;
 }
 
-.cyan {
-  background-color: var(--cyan-tron);
-  box-shadow: 0 0 8px var(--cyan-tron);
+.blue,
+.accent,
+.cyan,
+.pink {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.amber {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 8px rgb(245 158 11 / 30%);
 }
 
 .green {
-  background-color: #10b981;
-  box-shadow: 0 0 8px #10b981;
+  background-color: var(--color-success);
+  box-shadow: 0 0 8px rgb(16 185 129 / 30%);
 }
 
 .red {
-  background-color: #ef4444;
-  box-shadow: 0 0 8px #ef4444;
+  background-color: var(--color-danger);
+  box-shadow: 0 0 8px rgb(239 68 68 / 30%);
 }
 
 .beacon::after {
@@ -43,16 +51,23 @@
   animation: beaconPulse 1.8s infinite ease-out;
 }
 
-.cyan::after {
-  border: 1px solid var(--cyan-tron);
+.blue::after,
+.accent::after,
+.cyan::after,
+.pink::after {
+  border: 1px solid var(--color-accent);
+}
+
+.amber::after {
+  border: 1px solid var(--color-warning);
 }
 
 .green::after {
-  border: 1px solid #10b981;
+  border: 1px solid var(--color-success);
 }
 
 .red::after {
-  border: 1px solid #ef4444;
+  border: 1px solid var(--color-danger);
 }
 
 @keyframes beaconPulse {

@@ -1,7 +1,7 @@
 .ring {
   position: absolute;
   pointer-events: none;
-  border: 1px dashed rgb(0 229 255 / 25%);
+  border: 1px dashed var(--border-accent);
   border-radius: 50%;
   animation: rotatePortal 80s linear infinite;
 }

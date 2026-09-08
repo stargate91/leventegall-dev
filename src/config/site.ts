@@ -14,10 +14,11 @@ export interface SiteConfig {
   };
   socials: {
     github: string;
+    linkedin: string;
     fiverr: string;
   };
-  telemetry: {
-    missionsDelivered: string;
+  stats: {
+    clientsServed: string;
     rating: string;
     reviewsCount: string;
     systemStatus: string;
@@ -41,12 +42,13 @@ export const siteConfig: SiteConfig = {
   },
   socials: {
     github: "https://github.com/stargate91",
+    linkedin: "https://www.linkedin.com/in/leventegall",
     fiverr: "https://www.fiverr.com/stargate91",
   },
-  telemetry: {
-    missionsDelivered: "1,100+",
+  stats: {
+    clientsServed: "1,100+",
     rating: "4.8★",
     reviewsCount: "400+",
-    systemStatus: "ALL SYSTEMS NOMINAL",
+    systemStatus: "Available",
   },
 };

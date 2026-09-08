@@ -1,6 +1,6 @@
 "use client";
 
-import { Layers } from "lucide-react";
+import { Layers } from "@carbon/icons-react";
 import styles from "./ProjectCard.module.css";
 import ProjectItemCard from "./projects/ProjectItemCard";
 import { SectionHeader, Stack } from "@/components/ui";

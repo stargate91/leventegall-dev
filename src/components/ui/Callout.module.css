@@ -36,12 +36,12 @@
 }
 
 .variant-cyan {
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
 }
 
 .variant-cyan .title {
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .variant-notice {

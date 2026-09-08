@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowRight, Orbit, Terminal } from "lucide-react";
+import { ArrowRight, Connect, Terminal } from "@carbon/icons-react";
 import styles from "./ServicesPricing.module.css";
 import {
   SectionHeader,
   HudCard,
   Button,
   TelemetryBadge,
+  Tag,
   CheckList,
   Callout,
   Grid,
@@ -50,12 +51,12 @@ export default function ServicesPricing() {
         {packageTiers.map((tier) => (
           <HudCard
             key={tier.id}
-            variant={tier.isPopular ? "surface" : "surfaceDeck"}
+            variant={tier.isPopular ? "elevated" : "surface"}
             corners={tier.isPopular}
             className={`${styles.pricingCard} ${tier.isPopular ? styles.popularCard : ""}`}
           >
             {tier.isPopular && (
-              <TelemetryBadge variant="cyan" beacon className={styles.popularBadge}>
+              <TelemetryBadge variant="solidPink" beacon beaconColor="cyan" className={styles.popularBadge}>
                 {dict.services.recommendedBadge}
               </TelemetryBadge>
             )}
@@ -65,7 +66,9 @@ export default function ServicesPricing() {
               <div className={styles.topRow}>
                 <div className={styles.tierCodename}>{tier.codename}</div>
                 <h3 className={styles.tierName}>{tier.name}</h3>
-                <div className={styles.tierBadge}>{tier.badge}</div>
+                <Tag variant="subtle" size="sm" className={styles.tierBadge}>
+                  {tier.badge}
+                </Tag>
               </div>
 
               {/* Price & Duration */}
@@ -107,7 +110,7 @@ export default function ServicesPricing() {
       {/* Bottom Consultation Callout */}
       <Callout
         variant="cyan"
-        icon={<Orbit size={18} />}
+        icon={<Connect size={18} />}
         title={dict.services.customCalloutTitle}
         action={
           <Button variant="primary" size="sm" href="#contact">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Check } from "lucide-react";
+import { ChevronDown, Checkmark } from "@carbon/icons-react";
 import styles from "./Select.module.css";
 
 export interface SelectOption {
@@ -197,7 +197,7 @@ export default function Select({
                     )}
                   </div>
                   {isSelected && (
-                    <Check size={15} className={styles.checkIcon} />
+                    <Checkmark size={15} className={styles.checkIcon} />
                   )}
                 </button>
               );

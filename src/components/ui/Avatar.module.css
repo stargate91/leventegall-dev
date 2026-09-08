@@ -1,0 +1,164 @@
+/* =========================================================================
+   Avatar Primitive Styles
+   ========================================================================= */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  font-family: var(--font-jetbrains), monospace;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-white);
+  user-select: none;
+  background-color: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+}
+
+/* =========================================================================
+   Shape Presets
+   ========================================================================= */
+
+.shapeCircle {
+  border-radius: 50%;
+}
+
+.shapeSquare {
+  border-radius: 0;
+}
+
+.shapeRounded {
+  border-radius: var(--radius-md);
+}
+
+/* =========================================================================
+   Size Presets
+   ========================================================================= */
+
+.sizeXs {
+  width: 24px;
+  height: 24px;
+  font-size: 0.65rem;
+}
+
+.sizeSm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem;
+}
+
+.sizeMd {
+  width: 40px;
+  height: 40px;
+  font-size: 0.875rem;
+}
+
+.sizeLg {
+  width: 48px;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.sizeXl {
+  width: 64px;
+  height: 64px;
+  font-size: 1.25rem;
+}
+
+.size2Xl {
+  width: 80px;
+  height: 80px;
+  font-size: 1.5rem;
+}
+
+/* =========================================================================
+   Variants
+   ========================================================================= */
+
+.variantDefault {
+  border-color: var(--border-subtle);
+}
+
+.variantGlow {
+  border-color: var(--color-accent-core);
+  box-shadow: 0 0 12px var(--color-accent-glow), inset 0 0 8px var(--color-accent-subtle);
+}
+
+.variantBordered {
+  border-color: var(--border-medium);
+}
+
+.variantHud {
+  border-color: var(--color-accent-core);
+  box-shadow: 0 0 8px var(--color-accent-subtle);
+}
+
+/* =========================================================================
+   Image & Fallback Content
+   ========================================================================= */
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.fallbackIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-core);
+}
+
+/* =========================================================================
+   Status Indicator Badge
+   ========================================================================= */
+
+.statusBadge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 25%;
+  min-width: 6px;
+  max-width: 14px;
+  height: 25%;
+  min-height: 6px;
+  max-height: 14px;
+  border: 1.5px solid var(--bg-dark-card);
+  border-radius: 50%;
+}
+
+.statusOnline {
+  background-color: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+.statusBusy {
+  background-color: var(--color-danger);
+  box-shadow: 0 0 6px var(--color-danger);
+}
+
+.statusAway {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 6px var(--color-warning);
+}
+
+.statusOffline {
+  background-color: var(--text-muted);
+}

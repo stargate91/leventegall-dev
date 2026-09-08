@@ -35,9 +35,6 @@
 
 .infoCardTag {
   margin-bottom: var(--space-xs);
-  font-family: var(--font-jetbrains), monospace;
-  font-size: var(--text-xs);
-  color: var(--cyan-tron);
 }
 
 .infoCardTitle {
@@ -68,11 +65,11 @@
   width: 60px;
   height: 60px;
   margin: 0 auto var(--space-md);
-  color: var(--cyan-tron);
-  background: var(--cyan-subtle);
-  border: 1px solid var(--border-cyan);
+  color: var(--color-accent-core);
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-full);
-  box-shadow: 0 0 20px var(--cyan-glow);
+  box-shadow: 0 0 20px var(--color-accent-glow);
 }
 
 .successTitle {
@@ -87,7 +84,7 @@
   margin-bottom: var(--space-md);
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-sm);
-  color: var(--cyan-tron);
+  color: var(--color-accent-core);
 }
 
 .successDesc {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Star } from "lucide-react";
+import { StarFilled } from "@carbon/icons-react";
 import styles from "./Testimonial.module.css";
 import Text from "./Text";
 
@@ -14,7 +14,7 @@ export interface RatingStarsProps extends React.HTMLAttributes<HTMLDivElement> {
 export function RatingStars({
   count = 5,
   size = 14,
-  fillColor = "var(--cyan-tron)",
+  fillColor = "var(--color-accent-core)",
   className = "",
   style,
   ...props
@@ -22,7 +22,7 @@ export function RatingStars({
   return (
     <div className={`${styles.starsRow} ${className}`} style={style} {...props}>
       {Array.from({ length: count }).map((_, s) => (
-        <Star key={s} size={size} fill={fillColor} color={fillColor} />
+        <StarFilled key={s} size={size} fill={fillColor} />
       ))}
     </div>
   );
