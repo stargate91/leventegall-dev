@@ -30,7 +30,7 @@ describe("Navbar Component", () => {
     );
 
     expect(screen.getAllByText(/GÁLL LEVENTE/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/PÁLYAÍV/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/RÓLAM/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Swaya media manager backendjét írom át/i)).toBeInTheDocument();
   });
 

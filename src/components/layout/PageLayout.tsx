@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./PageLayout.module.css";
 import Navbar from "@/components/Navbar";
+import AudioPlayer from "@/components/AudioPlayer";
 import TronGridBackground from "@/components/TronGridBackground";
-import { LocaleProvider } from "@/locales";
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -17,30 +17,31 @@ interface PageLayoutProps {
  */
 export default function PageLayout({ children, className = "", style }: PageLayoutProps) {
   return (
-    <LocaleProvider>
-      <div
-        id="main-content"
-        className={`page-layout ${styles.layoutWrapper} ${className}`}
-        style={style}
-      >
-        {/* Accessibility: Skip Navigation Link */}
-        <a href="#primary-content" className="skip-link">
-          Skip to main content
-        </a>
+    <div
+      id="main-content"
+      className={`page-layout ${styles.layoutWrapper} ${className}`}
+      style={style}
+    >
+      {/* Accessibility: Skip Navigation Link */}
+      <a href="#primary-content" className="skip-link">
+        Skip to main content
+      </a>
 
-        {/* Background GPU-Accelerated Tron 3D Vector Grid */}
-        <TronGridBackground />
+      {/* Background GPU-Accelerated Tron 3D Vector Grid */}
+      <TronGridBackground />
 
-        {/* 2-Column Framework: Left Sticky Sidebar */}
-        <aside className={styles.sidebarColumn}>
-          <Navbar />
-        </aside>
+      {/* 2-Column Framework: Left Sticky Sidebar */}
+      <aside className={styles.sidebarColumn}>
+        <Navbar />
+      </aside>
 
-        {/* 2-Column Framework: Right Scrollable Content Chamber */}
-        <main id="primary-content" className={styles.contentColumn} tabIndex={-1}>
-          {children}
-        </main>
-      </div>
-    </LocaleProvider>
+      {/* 2-Column Framework: Right Scrollable Content Chamber */}
+      <main id="primary-content" className={styles.contentColumn} tabIndex={-1}>
+        {children}
+      </main>
+
+      {/* Orbital Audio Telemetry Console */}
+      <AudioPlayer />
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import PageLayout from "@/components/layout/PageLayout";
 import ChamberSection from "@/components/layout/ChamberSection";
 import DeckDivider from "@/components/layout/DeckDivider";
@@ -9,10 +11,11 @@ import SkillsTelemetry from "@/components/SkillsTelemetry";
 import ServicesPricing from "@/components/ServicesPricing";
 import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
-
-export const dynamic = "force-static";
+import { useLocale } from "@/locales";
 
 export default function Home() {
+  const { dict } = useLocale();
+
   return (
     <PageLayout>
       {/* ============================================================
@@ -22,7 +25,7 @@ export default function Home() {
         <Hero />
       </ChamberSection>
 
-      <DeckDivider label="01 // ABOUT ME" />
+      <DeckDivider label={dict.sections.about} />
 
       {/* ============================================================
           CHAMBER 02: TRAJECTORY & STORY
@@ -31,7 +34,7 @@ export default function Home() {
         <AboutStory />
       </ChamberSection>
 
-      <DeckDivider label="02 // FEATURED PROJECTS" />
+      <DeckDivider label={dict.sections.projects} />
 
       {/* ============================================================
           CHAMBER 03: MISSION ARTIFACTS / PROJECTS
@@ -40,7 +43,7 @@ export default function Home() {
         <ProjectCard />
       </ChamberSection>
 
-      <DeckDivider label="03 // SKILLS & TECH STACK" />
+      <DeckDivider label={dict.sections.skills} />
 
       {/* ============================================================
           CHAMBER 04: TELEMETRY & CAPABILITIES
@@ -49,7 +52,7 @@ export default function Home() {
         <SkillsTelemetry />
       </ChamberSection>
 
-      <DeckDivider label="04 // HOW I CAN HELP" />
+      <DeckDivider label={dict.sections.services} />
 
       {/* ============================================================
           CHAMBER 05: PAYLOADS & PACKAGES
@@ -58,7 +61,7 @@ export default function Home() {
         <ServicesPricing />
       </ChamberSection>
 
-      <DeckDivider label="05 // CLIENT REVIEWS" />
+      <DeckDivider label={dict.sections.reviews} />
 
       {/* ============================================================
           CHAMBER 06: CLIENT TESTIMONIALS & REPUTATION
@@ -67,7 +70,7 @@ export default function Home() {
         <Testimonials />
       </ChamberSection>
 
-      <DeckDivider label="06 // GET IN TOUCH" />
+      <DeckDivider label={dict.sections.contact} />
 
       {/* ============================================================
           CHAMBER 07: DIRECT TRANSMISSION

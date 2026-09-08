@@ -409,7 +409,7 @@ export default function ContactForm() {
             <Stack gap="none">
               <Stat variant="row" label={dict.contact.infoColumn.backendLabel} value={dict.contact.infoColumn.backendValue} />
               <Stat variant="row" label={dict.contact.infoColumn.frontendLabel} value={dict.contact.infoColumn.frontendValue} />
-              <Stat variant="row" label={dict.contact.infoColumn.fiverrLabel} value={`${siteConfig.stats.clientsServed} Clients (${siteConfig.stats.rating})`} />
+              <Stat variant="row" label={dict.contact.infoColumn.personalLabel} value={dict.contact.infoColumn.personalValue} />
               <Stat variant="row" label={dict.contact.infoColumn.physicsLabel} value={dict.contact.infoColumn.physicsValue} />
             </Stack>
           </HudCard>

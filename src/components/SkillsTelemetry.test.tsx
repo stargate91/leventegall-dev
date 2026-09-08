@@ -10,7 +10,7 @@ describe("SkillsTelemetry Component", () => {
     expect(screen.getByText(/Core Competencies/i)).toBeInTheDocument();
   });
 
-  it("renders all 7 classic skill categories", () => {
+  it("renders all 8 skill categories", () => {
     render(<SkillsTelemetry />);
 
     expect(screen.getByRole("heading", { name: "Languages" })).toBeInTheDocument();
@@ -19,6 +19,7 @@ describe("SkillsTelemetry Component", () => {
     expect(screen.getByRole("heading", { name: "Database" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "DevOps & Tooling" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Desktop & Native" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Mathematics & Modeling" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Verbal Branding & Creative" })).toBeInTheDocument();
   });
 
@@ -49,6 +50,14 @@ describe("SkillsTelemetry Component", () => {
     // Desktop
     expect(screen.getByText("Electron")).toBeInTheDocument();
     expect(screen.getByText("MPV IPC")).toBeInTheDocument();
+
+    // Mathematics & Modeling
+    expect(screen.getByText("Analysis")).toBeInTheDocument();
+    expect(screen.getByText("Differential Equations")).toBeInTheDocument();
+    expect(screen.getByText("MATLAB")).toBeInTheDocument();
+    expect(screen.getByText("Jupyter Notebook")).toBeInTheDocument();
+    expect(screen.getByText("Gnuplot")).toBeInTheDocument();
+    expect(screen.getByText("LaTeX")).toBeInTheDocument();
 
     // Branding
     expect(screen.getByText("Brand Naming")).toBeInTheDocument();

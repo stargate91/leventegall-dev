@@ -8,6 +8,7 @@ import {
   DataStructured,
   Tools,
   Screen,
+  Calculation,
   Pen,
   Terminal,
 } from "@carbon/icons-react";
@@ -36,6 +37,8 @@ function getCategoryIcon(id: string) {
       return <Tools size={18} aria-hidden="true" />;
     case "desktop":
       return <Screen size={18} aria-hidden="true" />;
+    case "mathematics":
+      return <Calculation size={18} aria-hidden="true" />;
     case "branding":
       return <Pen size={18} aria-hidden="true" />;
     default:

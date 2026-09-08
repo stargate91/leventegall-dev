@@ -2,6 +2,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/config/site";
+import { LocaleProvider } from "@/locales";
 import "@/styles/tokens/colors.css";
 import "@/styles/tokens/spacing.css";
 import "@/styles/tokens/typography.css";
@@ -129,7 +130,7 @@ export default function RootLayout({
       <body>
         <div className="cosmic-mesh-bg" aria-hidden="true" />
         <div className="cosmic-grid-overlay" aria-hidden="true" />
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );

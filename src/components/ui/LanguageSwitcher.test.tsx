@@ -45,7 +45,7 @@ describe("LanguageSwitcher Component", () => {
     fireEvent.click(huBtn);
 
     expect(huBtn).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByTestId("nav-skills")).toHaveTextContent("KOMPETENCIÁK");
+    expect(screen.getByTestId("nav-skills")).toHaveTextContent("STACK");
 
     const enBtn = screen.getByRole("button", { name: /Switch language to English/i });
     fireEvent.click(enBtn);

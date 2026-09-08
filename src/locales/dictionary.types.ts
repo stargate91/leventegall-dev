@@ -7,8 +7,18 @@ export interface NavLocale {
   services: string;
   clients: string;
   contact: string;
+  available: string;
   status: string;
   sidebarBio: string;
+}
+
+export interface SectionsLocale {
+  about: string;
+  projects: string;
+  skills: string;
+  services: string;
+  reviews: string;
+  contact: string;
 }
 
 export interface HeroLocale {
@@ -196,7 +206,8 @@ export interface ContactLocale {
     backendValue: string;
     frontendLabel: string;
     frontendValue: string;
-    fiverrLabel: string;
+    personalLabel: string;
+    personalValue: string;
     physicsLabel: string;
     physicsValue: string;
   };
@@ -212,10 +223,29 @@ export interface FooterLocale {
   projectsCompleted: string;
 }
 
+export interface AudioPlayerLocale {
+  badge: string;
+  subtitle: string;
+  openPlayer: string;
+  closePlayer: string;
+  play: string;
+  pause: string;
+  mute: string;
+  unmute: string;
+  listenOnMixcloud: string;
+  frequenciesActive: string;
+  frequenciesStandby: string;
+  prevTrack: string;
+  nextTrack: string;
+  selectTrack: string;
+  directPlayHint: string;
+}
+
 export interface Dictionary {
   brandName: string;
   personName: string;
   nav: NavLocale;
+  sections: SectionsLocale;
   hero: HeroLocale;
   story: StoryLocale;
   projects: ProjectsLocale;
@@ -224,4 +254,5 @@ export interface Dictionary {
   testimonials: TestimonialsLocale;
   contact: ContactLocale;
   footer: FooterLocale;
+  audioPlayer: AudioPlayerLocale;
 }

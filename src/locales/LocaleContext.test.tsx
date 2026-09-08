@@ -39,7 +39,7 @@ describe("LocaleContext & Provider", () => {
     fireEvent.click(screen.getByRole("button", { name: "Switch to HU" }));
 
     expect(screen.getByTestId("current-locale")).toHaveTextContent("hu");
-    expect(screen.getByTestId("nav-journey")).toHaveTextContent("PÁLYAÍV");
+    expect(screen.getByTestId("nav-journey")).toHaveTextContent("RÓLAM");
     expect(document.documentElement.lang).toBe("hu");
     expect(document.cookie).toContain("NEXT_LOCALE=hu");
   });
@@ -49,6 +49,6 @@ describe("LocaleContext & Provider", () => {
     const huDict = getDictionary("hu");
 
     expect(enDict.nav.journey).toBe("JOURNEY");
-    expect(huDict.nav.journey).toBe("PÁLYAÍV");
+    expect(huDict.nav.journey).toBe("RÓLAM");
   });
 });

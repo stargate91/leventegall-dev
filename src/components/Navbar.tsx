@@ -122,7 +122,7 @@ export default function Navbar() {
           {/* Live Status & Coordinates Telemetry Pill */}
           <StatusPill
             items={[
-              siteConfig.stats.systemStatus,
+              dict.nav.available,
               siteConfig.coordinates.city,
               siteConfig.coordinates.coords,
             ]}

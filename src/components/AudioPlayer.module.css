@@ -1,0 +1,754 @@
+/* =========================================================================
+   Orbital Audio Player HUD Module Styles
+   ========================================================================= */
+
+@keyframes pillEqualizerPulse {
+  0%,
+  100% {
+    height: 3px;
+    opacity: 50%;
+  }
+
+  50% {
+    height: 8px;
+    opacity: 100%;
+  }
+}
+
+@keyframes pillEqualizerPulseTall {
+  0%,
+  100% {
+    height: 4px;
+    opacity: 60%;
+  }
+
+  50% {
+    height: 12px;
+    opacity: 100%;
+  }
+}
+
+@keyframes dspSubKick {
+  0% {
+    height: 4px;
+    opacity: 50%;
+  }
+
+  25% {
+    height: 38px;
+    opacity: 100%;
+  }
+
+  60% {
+    height: 14px;
+    opacity: 70%;
+  }
+
+  80% {
+    height: 32px;
+    opacity: 95%;
+  }
+
+  100% {
+    height: 6px;
+    opacity: 50%;
+  }
+}
+
+@keyframes dspBassWave {
+  0% {
+    height: 6px;
+    opacity: 55%;
+  }
+
+  35% {
+    height: 34px;
+    opacity: 100%;
+  }
+
+  65% {
+    height: 18px;
+    opacity: 75%;
+  }
+
+  100% {
+    height: 8px;
+    opacity: 60%;
+  }
+}
+
+@keyframes dspMidsSnare {
+  0% {
+    height: 4px;
+    opacity: 50%;
+  }
+
+  20% {
+    height: 12px;
+    opacity: 65%;
+  }
+
+  45% {
+    height: 30px;
+    opacity: 100%;
+  }
+
+  70% {
+    height: 8px;
+    opacity: 55%;
+  }
+
+  90% {
+    height: 24px;
+    opacity: 90%;
+  }
+
+  100% {
+    height: 4px;
+    opacity: 50%;
+  }
+}
+
+@keyframes dspHighTransient {
+  0% {
+    height: 6px;
+    opacity: 65%;
+  }
+
+  40% {
+    height: 22px;
+    opacity: 85%;
+  }
+
+  70% {
+    height: 12px;
+    opacity: 75%;
+  }
+
+  100% {
+    height: 8px;
+    opacity: 70%;
+  }
+}
+
+@keyframes dspAirFlutter {
+  0% {
+    height: 8px;
+    opacity: 70%;
+  }
+
+  50% {
+    height: 18px;
+    opacity: 85%;
+  }
+
+  100% {
+    height: 11px;
+    opacity: 75%;
+  }
+}
+
+@keyframes statusLedPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 3px rgb(16 185 129 / 50%);
+    opacity: 80%;
+  }
+
+  50% {
+    box-shadow: 0 0 8px rgb(16 185 129 / 90%);
+    opacity: 100%;
+  }
+}
+
+@keyframes beaconGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(55 148 255 / 0%);
+    opacity: 40%;
+  }
+
+  50% {
+    box-shadow: 0 0 12px 2px rgb(55 148 255 / 35%);
+    opacity: 100%;
+  }
+}
+
+.playerAnchor {
+  position: fixed;
+  right: var(--space-xl);
+  bottom: var(--space-xl);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .playerAnchor {
+    right: var(--space-md);
+    bottom: var(--space-md);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Collapsed Floating Pill
+   ------------------------------------------------------------------------- */
+.floatingPill {
+  display: inline-flex;
+  gap: var(--space-xs);
+  align-items: center;
+  padding: var(--space-2xs) var(--space-sm);
+  cursor: pointer;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
+  backdrop-filter: blur(12px);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.floatingPill:hover {
+  background: var(--tone-b-card);
+  border-color: var(--border-accent);
+  box-shadow:
+    0 8px 30px rgb(0 0 0 / 60%),
+    0 0 15px rgb(55 148 255 / 20%);
+  transform: translateY(-2px);
+}
+
+.floatingPill:focus-visible {
+  outline: 2px solid var(--color-accent-core);
+  outline-offset: 2px;
+}
+
+.pillEqualizer {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 12px;
+}
+
+.equalizerBar {
+  width: 2px;
+  height: 3px;
+  background: var(--color-accent-core);
+  border-radius: var(--radius-full);
+  transition: height var(--transition-fast);
+}
+
+.isPlaying .equalizerBar:nth-child(1) {
+  animation: pillEqualizerPulse var(--bpm-beat, 345ms) ease-in-out infinite alternate;
+}
+
+.isPlaying .equalizerBar:nth-child(2) {
+  animation: pillEqualizerPulseTall var(--bpm-half-beat, 172ms) ease-in-out infinite alternate calc(var(--bpm-half-beat, 172ms) * 0.5);
+}
+
+.isPlaying .equalizerBar:nth-child(3) {
+  animation: pillEqualizerPulse var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.5);
+}
+
+.isPlaying .equalizerBar:nth-child(4) {
+  animation: pillEqualizerPulseTall var(--bpm-half-beat, 172ms) ease-in-out infinite alternate calc(var(--bpm-half-beat, 172ms) * 0.25);
+}
+
+.pillLabel {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pillCode {
+  color: var(--color-accent-bright);
+}
+
+.pillBpm {
+  color: var(--text-secondary);
+}
+
+.pillPlayIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-core);
+}
+
+/* -------------------------------------------------------------------------
+   Expanded HUD Console Card
+   ------------------------------------------------------------------------- */
+.hudCard {
+  width: 380px;
+  max-width: calc(100vw - var(--space-xl));
+  margin-bottom: var(--space-xs);
+  overflow: hidden;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 16px 40px rgb(0 0 0 / 65%),
+    0 0 20px rgb(55 148 255 / 12%);
+  backdrop-filter: blur(16px);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.hudCardOpen {
+  display: block;
+  pointer-events: auto;
+  opacity: 100%;
+  transform: translateY(0);
+  animation: beaconGlow 4s ease-in-out infinite;
+}
+
+.hudCardClosed {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border: none;
+  box-shadow: none;
+  opacity: 0%;
+  transform: translateY(8px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-md);
+  background: rgb(0 0 0 / 25%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerTelemetry {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--color-accent-core);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.trackInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.trackMetaRow {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.genreBadge {
+  padding: var(--space-3xs) var(--space-2xs);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: var(--color-accent-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-sm);
+}
+
+
+.trackTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.trackSubtitle {
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+/* Expanded Equalizer Visualizer */
+.expandedVisualizer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-xs);
+  background: rgb(10 12 16 / 85%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 16px rgb(0 0 0 / 60%);
+}
+
+.visualizerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.visualizerTelemetry {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: var(--color-accent-core);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.visualizerBands {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.visualizerStatus {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusLed {
+  width: 6px;
+  height: 6px;
+  background: var(--text-dim);
+  border-radius: var(--radius-full);
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.statusLedActive {
+  background: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+  animation: statusLedPulse 2s ease-in-out infinite;
+}
+
+.visualizerStage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 48px;
+  padding: 4px 4px 0;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(5 7 10 / 95%) 0%,
+      rgb(10 14 20 / 95%) 100%
+    );
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.visualizerGrid {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 0 4px;
+  pointer-events: none;
+}
+
+.gridLine {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed rgb(55 148 255 / 15%);
+}
+
+.visualizerBars {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+.spectrumBarCol {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+}
+
+.spectrumBar {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 75%) 0,
+      rgb(0 0 0 / 75%) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    linear-gradient(
+      to top,
+      rgb(0 120 212 / 60%) 0%,
+      rgb(55 148 255 / 85%) 50%,
+      rgb(156 220 254 / 95%) 85%,
+      rgb(255 255 255) 100%
+    );
+  border-radius: 1px 1px 0 0;
+  opacity: 35%;
+  transition:
+    height var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.spectrumBar::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background: rgb(255 255 255);
+  border-radius: 1px;
+  box-shadow: 0 0 4px rgb(156 220 254 / 90%);
+  opacity: 0%;
+  transition: opacity var(--transition-fast);
+}
+
+.isPlaying .spectrumBar {
+  opacity: 100%;
+}
+
+.isPlaying .spectrumBar::after {
+  opacity: 100%;
+}
+
+.isPlaying .spectrumBarCol:nth-child(1) .spectrumBar {
+  animation: dspSubKick var(--bpm-beat, 345ms) ease-in-out infinite alternate;
+}
+
+.isPlaying .spectrumBarCol:nth-child(2) .spectrumBar {
+  animation: dspSubKick var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.15);
+}
+
+.isPlaying .spectrumBarCol:nth-child(3) .spectrumBar {
+  animation: dspBassWave var(--bpm-two-beats, 690ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.3);
+}
+
+.isPlaying .spectrumBarCol:nth-child(4) .spectrumBar {
+  animation: dspBassWave var(--bpm-two-beats, 690ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.1);
+}
+
+.isPlaying .spectrumBarCol:nth-child(5) .spectrumBar {
+  animation: dspBassWave var(--bpm-two-beats, 690ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.45);
+}
+
+.isPlaying .spectrumBarCol:nth-child(6) .spectrumBar {
+  animation: dspMidsSnare var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.2);
+}
+
+.isPlaying .spectrumBarCol:nth-child(7) .spectrumBar {
+  animation: dspMidsSnare var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.5);
+}
+
+.isPlaying .spectrumBarCol:nth-child(8) .spectrumBar {
+  animation: dspMidsSnare var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.15);
+}
+
+.isPlaying .spectrumBarCol:nth-child(9) .spectrumBar {
+  animation: dspMidsSnare var(--bpm-beat, 345ms) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.4);
+}
+
+.isPlaying .spectrumBarCol:nth-child(10) .spectrumBar {
+  animation: dspHighTransient calc(var(--bpm-beat, 345ms) * 0.7) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.1);
+}
+
+.isPlaying .spectrumBarCol:nth-child(11) .spectrumBar {
+  animation: dspHighTransient calc(var(--bpm-beat, 345ms) * 0.8) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.35);
+}
+
+.isPlaying .spectrumBarCol:nth-child(12) .spectrumBar {
+  animation: dspHighTransient calc(var(--bpm-beat, 345ms) * 0.65) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.2);
+}
+
+.isPlaying .spectrumBarCol:nth-child(13) .spectrumBar {
+  animation: dspHighTransient calc(var(--bpm-beat, 345ms) * 0.75) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.5);
+}
+
+.isPlaying .spectrumBarCol:nth-child(14) .spectrumBar {
+  animation: dspAirFlutter calc(var(--bpm-beat, 345ms) * 0.95) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.25);
+}
+
+.isPlaying .spectrumBarCol:nth-child(15) .spectrumBar {
+  animation: dspAirFlutter calc(var(--bpm-beat, 345ms) * 1.1) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.15);
+}
+
+.isPlaying .spectrumBarCol:nth-child(16) .spectrumBar {
+  animation: dspAirFlutter calc(var(--bpm-beat, 345ms) * 1.2) ease-in-out infinite alternate calc(var(--bpm-beat, 345ms) * 0.4);
+}
+
+.frequencyScale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 8px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Controls Action Row */
+.controlsRow {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+}
+
+.mainPlayBtn {
+  flex: 1;
+}
+
+.iframeWrapper {
+  width: 100%;
+  overflow: hidden;
+  background: rgb(0 0 0 / 40%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+}
+
+.iframeHint {
+  padding: 0 var(--space-2xs);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.mixcloudIframe {
+  display: block;
+  width: 100%;
+  height: 120px;
+  border: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Playlist Selection List
+   ------------------------------------------------------------------------- */
+.playlistWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.playlistHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.playlistList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 125px;
+  padding: 2px;
+  overflow-y: auto;
+  background: rgb(0 0 0 / 25%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.trackItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-2xs) var(--space-xs);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.trackItem:hover {
+  background: var(--color-accent-subtle);
+  border-color: var(--border-accent);
+}
+
+.trackItem:focus-visible {
+  outline: 1px solid var(--color-accent-core);
+  outline-offset: -1px;
+}
+
+.activeTrackItem {
+  background: var(--color-accent-dim);
+  border-color: var(--border-accent);
+}
+
+.trackItemLeft {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.trackItemCode {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: var(--color-accent-core);
+}
+
+.trackItemTitle {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.trackItemRight {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
