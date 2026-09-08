@@ -1,7 +1,18 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { POST } from "./route";
+import { getInquiries, closeDb } from "@/lib/db";
 
 describe("Contact API Endpoint (/api/contact)", () => {
+  beforeEach(() => {
+    process.env.DATABASE_PATH = ":memory:";
+    closeDb();
+  });
+
+  afterEach(() => {
+    closeDb();
+    delete process.env.DATABASE_PATH;
+  });
+
   const validPayload = {
     name: "Dr. Gordon Freeman",
     email: "gordon@blackmesa.gov",
@@ -10,7 +21,7 @@ describe("Contact API Endpoint (/api/contact)", () => {
     brief: "We require full-stack quantum telemetry and clean responsive interface.",
   };
 
-  it("returns 200 OK and telemetryId for valid submissions", async () => {
+  it("returns 200 OK and telemetryId for valid submissions and persists to database", async () => {
     const request = new Request("http://localhost:3000/api/contact", {
       method: "POST",
       headers: {
@@ -28,6 +39,14 @@ describe("Contact API Endpoint (/api/contact)", () => {
     expect(data.telemetryId).toMatch(/^TX-/);
     expect(response.headers.get("x-request-id")).toBeTruthy();
     expect(response.headers.get("X-RateLimit-Limit")).toBeTruthy();
+
+    // Verify inquiry is saved in database
+    const inquiries = getInquiries();
+    expect(inquiries.length).toBe(1);
+    expect(inquiries[0]?.telemetry_id).toBe(data.telemetryId);
+    expect(inquiries[0]?.name).toBe("Dr. Gordon Freeman");
+    expect(inquiries[0]?.email).toBe("gordon@blackmesa.gov");
+    expect(inquiries[0]?.brief).toBe("We require full-stack quantum telemetry and clean responsive interface.");
   });
 
   it("returns 400 Bad Request when validation fails", async () => {

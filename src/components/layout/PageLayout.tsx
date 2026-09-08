@@ -31,9 +31,9 @@ export default function PageLayout({ children, className = "", style }: PageLayo
       <TronGridBackground />
 
       {/* 2-Column Framework: Left Sticky Sidebar */}
-      <aside className={styles.sidebarColumn}>
+      <div className={styles.sidebarColumn}>
         <Navbar />
-      </aside>
+      </div>
 
       {/* 2-Column Framework: Right Scrollable Content Chamber */}
       <main id="primary-content" className={styles.contentColumn} tabIndex={-1}>

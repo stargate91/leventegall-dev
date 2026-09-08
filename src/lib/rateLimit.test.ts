@@ -58,4 +58,34 @@ describe("Rate Limiter Utility", () => {
     expect(res.success).toBe(true);
     expect(res.remaining).toBe(1);
   });
+
+  it("checkDistributedRateLimit calls Upstash pipeline with EXPIRE NX option when credentials exist", async () => {
+    const originalUrl = process.env.UPSTASH_REDIS_REST_URL;
+    const originalToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+    process.env.UPSTASH_REDIS_REST_URL = "https://mock-redis.upstash.io";
+    process.env.UPSTASH_REDIS_REST_TOKEN = "mock-token-xyz";
+
+    let capturedBody: unknown;
+    global.fetch = vi.fn().mockImplementation((_url, init) => {
+      capturedBody = JSON.parse(init.body as string);
+      return Promise.resolve({
+        ok: true,
+        json: async () => [{ result: 2 }, { result: 1 }, { result: 45 }],
+      } as Response);
+    });
+
+    const res = await checkDistributedRateLimit("user-test-dist", 5, 60000);
+
+    expect(res.success).toBe(true);
+    expect(res.remaining).toBe(3);
+    expect(capturedBody).toEqual([
+      ["INCR", "ratelimit:user-test-dist"],
+      ["EXPIRE", "ratelimit:user-test-dist", 60, "NX"],
+      ["TTL", "ratelimit:user-test-dist"],
+    ]);
+
+    process.env.UPSTASH_REDIS_REST_URL = originalUrl;
+    process.env.UPSTASH_REDIS_REST_TOKEN = originalToken;
+  });
 });

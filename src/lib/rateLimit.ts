@@ -7,7 +7,7 @@ const rateLimitStore = new Map<string, RateLimitRecord>();
 
 // Clean up expired records periodically
 if (typeof setInterval !== "undefined") {
-  setInterval(() => {
+  const cleanupTimer = setInterval(() => {
     const now = Date.now();
     for (const [key, record] of rateLimitStore.entries()) {
       if (now > record.resetTime) {
@@ -15,6 +15,10 @@ if (typeof setInterval !== "undefined") {
       }
     }
   }, 5 * 60 * 1000);
+
+  if (typeof cleanupTimer.unref === "function") {
+    cleanupTimer.unref();
+  }
 }
 
 interface RateLimitResult {
@@ -82,7 +86,7 @@ export async function checkDistributedRateLimit(
     const windowSeconds = Math.ceil(windowMs / 1000);
     const key = `ratelimit:${identifier}`;
 
-    // Execute atomic INCR and EXPIRE pipeline via Upstash REST API
+    // Execute atomic INCR, conditional EXPIRE (NX) and TTL pipeline via Upstash REST API
     const response = await fetch(`${upstashUrl}/pipeline`, {
       method: "POST",
       headers: {
@@ -91,7 +95,7 @@ export async function checkDistributedRateLimit(
       },
       body: JSON.stringify([
         ["INCR", key],
-        ["EXPIRE", key, windowSeconds],
+        ["EXPIRE", key, windowSeconds, "NX"],
         ["TTL", key],
       ]),
       cache: "no-store",

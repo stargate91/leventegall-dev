@@ -111,10 +111,10 @@ export default function Navbar() {
         <div className={styles.identityBlock}>
           <a href="#hero" className={styles.brandLink}>
             <div className={styles.brandInfo}>
-              <h1 className={styles.brandTitle}>
+              <div className={styles.brandTitle}>
                 <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
                 <span className={styles.brandCallsign}> // {siteConfig.callsign}</span>
-              </h1>
+              </div>
               <span className={styles.brandRole}>{dict.footer.subTitle}</span>
             </div>
           </a>

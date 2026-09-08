@@ -124,4 +124,52 @@ describe("AudioPlayer Component", () => {
     fireEvent.click(closeBtn);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
+
+  it("ignores postMessage events from untrusted origins and accepts trusted Mixcloud origin", () => {
+    render(
+      <LocaleProvider>
+        <AudioPlayer />
+      </LocaleProvider>,
+    );
+
+    // Open HUD
+    fireEvent.click(screen.getByTestId("audio-player-pill"));
+    expect(screen.getByRole("button", { name: /^Play$/i })).toBeInTheDocument();
+
+    const createMessageEvent = (data: unknown, origin: string) => {
+      const event = new MessageEvent("message", { data });
+      Object.defineProperty(event, "origin", { value: origin });
+      return event;
+    };
+
+    // Untrusted origin: should NOT trigger play state change
+    fireEvent(
+      window,
+      createMessageEvent(
+        JSON.stringify({ widgetEvent: "play" }),
+        "https://attacker.example.com",
+      ),
+    );
+    expect(screen.getByRole("button", { name: /^Play$/i })).toBeInTheDocument();
+
+    // Trusted origin: should trigger play state change to Pause button
+    fireEvent(
+      window,
+      createMessageEvent(
+        JSON.stringify({ widgetEvent: "play" }),
+        "https://player-widget.mixcloud.com",
+      ),
+    );
+    expect(screen.getByRole("button", { name: /^Pause$/i })).toBeInTheDocument();
+
+    // Trusted origin pause event
+    fireEvent(
+      window,
+      createMessageEvent(
+        JSON.stringify({ widgetEvent: "pause" }),
+        "https://player-widget.mixcloud.com",
+      ),
+    );
+    expect(screen.getByRole("button", { name: /^Play$/i })).toBeInTheDocument();
+  });
 });

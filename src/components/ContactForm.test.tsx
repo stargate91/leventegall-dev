@@ -71,8 +71,10 @@ describe("contactFormReducer", () => {
 
     const errorState = contactFormReducer(submittingState, {
       type: "SUBMIT_ERROR",
+      error: "Rate limit exceeded",
     });
     expect(errorState.status).toBe("error");
+    expect(errorState.serverError).toBe("Rate limit exceeded");
   });
 
   it("handles RESET_FORM", () => {
@@ -85,8 +87,9 @@ describe("contactFormReducer", () => {
         brief: "Short brief",
       },
       errors: { name: "Some error" },
-      status: "success",
+      status: "error",
       telemetryId: "TX-123",
+      serverError: "Server error",
     };
 
     const resetState = contactFormReducer(modifiedState, {
@@ -95,6 +98,7 @@ describe("contactFormReducer", () => {
 
     expect(resetState.status).toBe("idle");
     expect(resetState.telemetryId).toBe("");
+    expect(resetState.serverError).toBeUndefined();
     expect(resetState.formData.name).toBe("");
     expect(resetState.formData.email).toBe("");
     expect(resetState.formData.brief).toBe("");
@@ -160,11 +164,11 @@ describe("ContactForm Component", () => {
     expect(screen.getByLabelText(/Your Name/i)).toHaveValue("");
   });
 
-  it("handles transmission failure gracefully", async () => {
+  it("handles transmission failure gracefully and displays specific backend error message", async () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: false,
       json: async () => ({
-        error: "Rate limit exceeded",
+        error: "Too many transmissions. Please wait before sending another message.",
       }),
     } as unknown as Response);
 
@@ -180,7 +184,7 @@ describe("ContactForm Component", () => {
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getAllByText(/Something went wrong/i).length).toBeGreaterThan(0);
+      expect(screen.getByText(/Too many transmissions. Please wait before sending another message./i)).toBeInTheDocument();
     });
   });
 

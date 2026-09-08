@@ -36,6 +36,7 @@ export interface ContactFormState {
   errors: FormErrors;
   status: FormStatus;
   telemetryId: string;
+  serverError?: string | undefined;
 }
 
 type ContactFormAction =
@@ -45,7 +46,7 @@ type ContactFormAction =
   | { type: "CLEAR_ERROR"; field: keyof FormErrors }
   | { type: "SUBMIT_START" }
   | { type: "SUBMIT_SUCCESS"; telemetryId: string }
-  | { type: "SUBMIT_ERROR" }
+  | { type: "SUBMIT_ERROR"; error?: string | undefined }
   | { type: "RESET_FORM" };
 
 export const initialFormState: ContactFormState = {
@@ -60,6 +61,7 @@ export const initialFormState: ContactFormState = {
   errors: {},
   status: "idle",
   telemetryId: "",
+  serverError: undefined,
 };
 
 export function contactFormReducer(
@@ -112,6 +114,7 @@ export function contactFormReducer(
         ...state,
         status: "transmitting",
         errors: {},
+        serverError: undefined,
       };
 
     case "SUBMIT_SUCCESS":
@@ -119,12 +122,14 @@ export function contactFormReducer(
         ...state,
         status: "success",
         telemetryId: action.telemetryId,
+        serverError: undefined,
       };
 
     case "SUBMIT_ERROR":
       return {
         ...state,
         status: "error",
+        serverError: action.error,
       };
 
     case "RESET_FORM":
@@ -136,6 +141,7 @@ export function contactFormReducer(
         },
         status: "idle",
         telemetryId: "",
+        serverError: undefined,
       };
 
     default:
@@ -148,7 +154,7 @@ export default function ContactForm() {
   const contactTierOptions = getContactTierOptions(dict);
   const timelineOptions = getTimelineOptions(dict);
 
-  const [{ formData, errors, status, telemetryId }, dispatch] = useReducer(
+  const [{ formData, errors, status, telemetryId, serverError }, dispatch] = useReducer(
     contactFormReducer,
     initialFormState,
   );
@@ -187,7 +193,7 @@ export default function ContactForm() {
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.name.trim()) {
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
       newErrors.name = dict.contact.errors.nameRequired;
     }
 
@@ -197,7 +203,7 @@ export default function ContactForm() {
       newErrors.email = dict.contact.errors.emailInvalid;
     }
 
-    if (!formData.brief.trim()) {
+    if (!formData.brief.trim() || formData.brief.trim().length < 10) {
       newErrors.brief = dict.contact.errors.briefRequired;
     }
 
@@ -226,7 +232,8 @@ export default function ContactForm() {
       if (response.ok && "telemetryId" in data) {
         dispatch({ type: "SUBMIT_SUCCESS", telemetryId: data.telemetryId });
       } else {
-        dispatch({ type: "SUBMIT_ERROR" });
+        const errorMsg = "error" in data && typeof data.error === "string" ? data.error : undefined;
+        dispatch({ type: "SUBMIT_ERROR", error: errorMsg });
       }
     } catch {
       dispatch({ type: "SUBMIT_ERROR" });
@@ -294,7 +301,7 @@ export default function ContactForm() {
                       title={dict.contact.errors.transmissionFailedTitle}
                     >
                       <Text size="xs" tone="secondary">
-                        {dict.contact.errors.transmissionFailed} ({directEmail})
+                        {serverError || `${dict.contact.errors.transmissionFailed} (${directEmail})`}
                       </Text>
                     </Callout>
                   </div>

@@ -1,5 +1,20 @@
 import { siteConfig } from "@/config/site";
 
+const CANONICAL_ORIGIN = new URL(siteConfig.url).origin;
+const CANONICAL_HOST = new URL(siteConfig.url).host;
+
+const ALLOWED_ORIGINS = new Set([
+  CANONICAL_ORIGIN,
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+]);
+
+const ALLOWED_HOSTS = new Set([
+  CANONICAL_HOST,
+  "localhost:3000",
+  "127.0.0.1:3000",
+]);
+
 export function validateOrigin(request: Request): boolean {
   const origin = request.headers.get("origin");
   const referer = request.headers.get("referer");
@@ -11,31 +26,21 @@ export function validateOrigin(request: Request): boolean {
     return false;
   }
 
-  const allowedOrigins = [
-    new URL(siteConfig.url).origin,
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-  ];
-
-  if (host) {
-    allowedOrigins.push(`http://${host}`, `https://${host}`);
-  }
-
-  // 2. Validate Origin header if present
+  // 2. Validate Origin header against strict allowlist if present
   if (origin) {
     try {
       const parsedOrigin = new URL(origin).origin;
-      return allowedOrigins.includes(parsedOrigin);
+      return ALLOWED_ORIGINS.has(parsedOrigin);
     } catch {
       return false;
     }
   }
 
-  // 3. Validate Referer header if present
+  // 3. Validate Referer header against strict allowlist if present
   if (referer) {
     try {
       const parsedReferer = new URL(referer).origin;
-      return allowedOrigins.includes(parsedReferer);
+      return ALLOWED_ORIGINS.has(parsedReferer);
     } catch {
       return false;
     }
@@ -44,9 +49,7 @@ export function validateOrigin(request: Request): boolean {
   // 4. Strict check for requests lacking Origin and Referer:
   // Must possess a valid, recognized Host header matching canonical or local development domains
   if (host) {
-    const canonicalHost = new URL(siteConfig.url).host;
-    const allowedHosts = [canonicalHost, "localhost:3000", "127.0.0.1:3000"];
-    return allowedHosts.includes(host);
+    return ALLOWED_HOSTS.has(host);
   }
 
   return false;

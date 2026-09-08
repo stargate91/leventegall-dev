@@ -68,4 +68,15 @@ describe("CSRF Origin Validation", () => {
     });
     expect(validateOrigin(reqInvalidReferer)).toBe(false);
   });
+
+  it("rejects malicious origin even if host header is spoofed to match attacker origin", () => {
+    const reqSpoofed = new Request("http://localhost:3000/api/contact", {
+      method: "POST",
+      headers: {
+        host: "evil-attacker.com",
+        origin: "https://evil-attacker.com",
+      },
+    });
+    expect(validateOrigin(reqSpoofed)).toBe(false);
+  });
 });

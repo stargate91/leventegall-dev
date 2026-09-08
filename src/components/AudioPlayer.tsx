@@ -46,6 +46,12 @@ declare global {
   }
 }
 
+const ALLOWED_MIXCLOUD_ORIGINS = new Set([
+  "https://player-widget.mixcloud.com",
+  "https://www.mixcloud.com",
+  "https://widget.mixcloud.com",
+]);
+
 export default function AudioPlayer() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -254,6 +260,9 @@ export default function AudioPlayer() {
   // Listen to Mixcloud iframe postMessage events for instant play/pause/ended synchronization
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
+      if (!ALLOWED_MIXCLOUD_ORIGINS.has(event.origin)) {
+        return;
+      }
       try {
         let data = event.data;
         if (typeof data === "string" && (data.includes("play") || data.includes("pause") || data.includes("ended"))) {

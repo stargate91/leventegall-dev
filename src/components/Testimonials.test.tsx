@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import Testimonials from "./Testimonials";
 
 describe("Testimonials Component", () => {
@@ -70,5 +70,44 @@ describe("Testimonials Component", () => {
     fireEvent.scroll(viewport);
     expect(prevButton).toBeDisabled();
     expect(nextButton).toBeEnabled();
+  });
+
+  it("triggers smooth scrollBy when next and prev buttons are clicked", () => {
+    render(<Testimonials />);
+
+    const viewport = screen.getByRole("region", { name: /Client reviews carousel/i });
+    const prevButton = screen.getByRole("button", { name: /Previous reviews/i });
+    const nextButton = screen.getByRole("button", { name: /Next reviews/i });
+
+    const scrollByMock = vi.fn();
+    viewport.scrollBy = scrollByMock;
+
+    fireEvent.click(nextButton);
+    expect(scrollByMock).toHaveBeenCalledWith(
+      expect.objectContaining({ behavior: "smooth", left: expect.any(Number) }),
+    );
+
+    fireEvent.click(prevButton);
+    expect(scrollByMock).toHaveBeenCalledWith(
+      expect.objectContaining({ behavior: "smooth", left: expect.any(Number) }),
+    );
+  });
+
+  it("falls back to scrollLeft assignment when scrollBy is unavailable", () => {
+    render(<Testimonials />);
+
+    const viewport = screen.getByRole("region", { name: /Client reviews carousel/i });
+    const prevButton = screen.getByRole("button", { name: /Previous reviews/i });
+    const nextButton = screen.getByRole("button", { name: /Next reviews/i });
+
+    // Ensure scrollBy is undefined
+    // @ts-expect-error test fallback
+    delete viewport.scrollBy;
+    Object.defineProperty(viewport, "scrollLeft", { configurable: true, writable: true, value: 100 });
+
+    fireEvent.click(nextButton);
+    expect(viewport.scrollLeft).toBeGreaterThan(100);
+
+    fireEvent.click(prevButton);
   });
 });

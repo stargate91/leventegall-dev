@@ -4,6 +4,7 @@ import { validateOrigin } from "@/lib/csrf";
 import { logger } from "@/lib/logger";
 import { checkDistributedRateLimit } from "@/lib/rateLimit";
 import { contactFormSchema } from "@/lib/validations/contact";
+import { insertInquiry } from "@/lib/db";
 
 export async function POST(request: Request): Promise<NextResponse<ContactApiResponse>> {
   const traceId = request.headers.get("x-request-id") || logger.createTraceId();
@@ -93,6 +94,17 @@ export async function POST(request: Request): Promise<NextResponse<ContactApiRes
     });
 
     const telemetryId = `TX-${Date.now().toString(36).toUpperCase()}`;
+
+    // 6. Persist inquiry into database
+    insertInquiry({
+      telemetryId,
+      name,
+      email,
+      tier,
+      timeline,
+      brief,
+      clientIp,
+    });
 
     return NextResponse.json(
       {

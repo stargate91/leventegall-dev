@@ -1,15 +1,17 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://widget.mixcloud.com",
+      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://widget.mixcloud.com`.trim(),
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https: https://thumbnailer.mixcloud.com",
-      "font-src 'self' data: https:",
-      "connect-src 'self' https: http: ws: wss: https://api.mixcloud.com https://*.mixcloud.com",
+      "img-src 'self' data: blob: https://thumbnailer.mixcloud.com",
+      "font-src 'self' data:",
+      `connect-src 'self' https://api.mixcloud.com https://*.mixcloud.com https://*.upstash.io ${isDev ? "ws: wss:" : ""}`.trim(),
       "media-src 'self' https: data: blob:",
       "frame-src 'self' https://www.mixcloud.com https://player-widget.mixcloud.com",
       "frame-ancestors 'none'",
@@ -36,11 +38,8 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), payment=()",
   },
-  {
-    key: "X-XSS-Protection",
-    value: "1; mode=block",
-  },
 ];
+
 
 const nextConfig: NextConfig = {
   output: "standalone",

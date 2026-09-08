@@ -105,10 +105,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-token",
-    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || "yandex-verification-token",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "lt4P2iWw1-_j9exmD7klXqrIuJ2IXpXr--5i0P_M4jk",
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || "321fca12f1a92891",
     other: {
-      "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "bing-verification-token",
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || "11F8A467FA3C48BE70348023E354FCA3",
     },
   },
 };

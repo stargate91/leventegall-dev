@@ -67,9 +67,10 @@ export default function Testimonials() {
     const amount = getScrollAmount();
     if (typeof el.scrollBy === "function") {
       el.scrollBy({ left: -amount, behavior: "smooth" });
+    } else {
+      el.scrollLeft = Math.max(0, el.scrollLeft - amount);
+      updateScrollState();
     }
-    el.scrollLeft = Math.max(0, el.scrollLeft - amount);
-    updateScrollState();
   };
 
   const handleNext = () => {
@@ -80,9 +81,10 @@ export default function Testimonials() {
     const amount = getScrollAmount();
     if (typeof el.scrollBy === "function") {
       el.scrollBy({ left: amount, behavior: "smooth" });
+    } else {
+      el.scrollLeft = el.scrollLeft + amount;
+      updateScrollState();
     }
-    el.scrollLeft = el.scrollLeft + amount;
-    updateScrollState();
   };
 
   return (
