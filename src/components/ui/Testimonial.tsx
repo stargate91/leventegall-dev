@@ -65,6 +65,7 @@ function Testimonial({
       <div className={styles.authorRow}>
         <Avatar
           src={avatarSrc}
+          alt={author}
           initials={initials || author.slice(0, 2).toUpperCase()}
           size="md"
           variant="bordered"

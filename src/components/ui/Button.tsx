@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import styles from "./Button.module.css";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -35,8 +35,26 @@ export default function Button({
   `.trim();
 
   if (href) {
+    const isInternal = (href.startsWith("/") || href.startsWith("#")) && target !== "_blank";
+
+    if (isInternal) {
+      return (
+        <Link href={href} className={classes} style={style}>
+          {iconLeft && <span className={styles.iconWrapper}>{iconLeft}</span>}
+          <span>{children}</span>
+          {iconRight && <span className={styles.iconWrapper}>{iconRight}</span>}
+        </Link>
+      );
+    }
+
     return (
-      <a href={href} target={target} rel={rel} className={classes} style={style}>
+      <a
+        href={href}
+        target={target}
+        rel={target === "_blank" ? (rel ?? "noopener noreferrer") : rel}
+        className={classes}
+        style={style}
+      >
         {iconLeft && <span className={styles.iconWrapper}>{iconLeft}</span>}
         <span>{children}</span>
         {iconRight && <span className={styles.iconWrapper}>{iconRight}</span>}

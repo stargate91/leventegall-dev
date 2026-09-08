@@ -18,6 +18,8 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: AvatarSize | undefined;
   variant?: AvatarVariant | undefined;
   status?: AvatarStatus | undefined;
+  loading?: "lazy" | "eager" | undefined;
+  decoding?: "async" | "sync" | "auto" | undefined;
   className?: string | undefined;
   style?: React.CSSProperties | undefined;
 }
@@ -69,6 +71,8 @@ export default function Avatar({
   size = "md",
   variant = "default",
   status,
+  loading = "lazy",
+  decoding = "async",
   className = "",
   style,
   ...restProps
@@ -101,6 +105,8 @@ export default function Avatar({
         <img
           src={src}
           alt={alt}
+          loading={loading}
+          decoding={decoding}
           className={styles.image}
           onError={() => setHasImageError(true)}
         />

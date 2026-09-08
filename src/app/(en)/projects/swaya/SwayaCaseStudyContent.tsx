@@ -15,6 +15,7 @@ import ProjectGallery from "@/components/projects/ProjectGallery";
 import {
   HudCard,
   CardMetaBar,
+  TelemetryBadge,
   Button,
   TagList,
   Stat,
@@ -79,7 +80,14 @@ export default function SwayaCaseStudyContent() {
         {/* Case Study Hero Card */}
         <HudCard variant="surface" corners className={styles.heroCard}>
           <CardMetaBar
-            badge={cs.hero.badge}
+            badge={
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+                <TelemetryBadge variant="cyan">{cs.hero.badge}</TelemetryBadge>
+                <TelemetryBadge variant="amber">
+                  ENGLISH ONLY
+                </TelemetryBadge>
+              </div>
+            }
             telemetry={cs.hero.telemetry}
           />
 
@@ -140,7 +148,7 @@ export default function SwayaCaseStudyContent() {
             <div className={styles.archCard}>
               <div className={styles.archTitleRow}>
                 <Code size={18} />
-                <Text font="heading" size="base" weight="bold" tone="cyan">
+                <Text as="h3" font="heading" size="base" weight="bold" tone="cyan">
                   {cs.architecture.cards.hybridCore.title}
                 </Text>
               </div>
@@ -152,7 +160,7 @@ export default function SwayaCaseStudyContent() {
             <div className={styles.archCard}>
               <div className={styles.archTitleRow}>
                 <Folders size={18} />
-                <Text font="heading" size="base" weight="bold" tone="cyan">
+                <Text as="h3" font="heading" size="base" weight="bold" tone="cyan">
                   {cs.architecture.cards.organizer.title}
                 </Text>
               </div>
@@ -164,7 +172,7 @@ export default function SwayaCaseStudyContent() {
             <div className={styles.archCard}>
               <div className={styles.archTitleRow}>
                 <ViewOff size={18} />
-                <Text font="heading" size="base" weight="bold" tone="cyan">
+                <Text as="h3" font="heading" size="base" weight="bold" tone="cyan">
                   {cs.architecture.cards.privacy.title}
                 </Text>
               </div>
@@ -176,7 +184,7 @@ export default function SwayaCaseStudyContent() {
             <div className={styles.archCard}>
               <div className={styles.archTitleRow}>
                 <Play size={18} />
-                <Text font="heading" size="base" weight="bold" tone="cyan">
+                <Text as="h3" font="heading" size="base" weight="bold" tone="cyan">
                   {cs.architecture.cards.player.title}
                 </Text>
               </div>
@@ -208,7 +216,7 @@ export default function SwayaCaseStudyContent() {
 
         {/* Bottom CTA Card */}
         <HudCard variant="surface" corners className={styles.ctaCard}>
-          <Text font="heading" size="xl" weight="bold" tone="primary">
+          <Text as="h2" font="heading" size="xl" weight="bold" tone="primary">
             {cs.cta.title}
           </Text>
           <Text size="sm" tone="secondary" style={{ maxWidth: "600px" }}>

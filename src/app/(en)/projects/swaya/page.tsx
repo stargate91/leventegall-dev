@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Swaya Media Manager Case Study | Levente Gáll",
+  title: "Swaya Media Manager Case Study",
   description:
     "Engineering case study of Swaya: a high-performance desktop media manager built with Python, FastAPI, Electron, React, SQLite, and MPV IPC.",
   keywords: [
@@ -16,13 +16,30 @@ export const metadata: Metadata = {
     "Media Indexer Architecture",
     "Levente Gáll",
   ],
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: `${siteConfig.url}/projects/swaya`,
+    languages: {
+      en: `${siteConfig.url}/projects/swaya`,
+      "x-default": `${siteConfig.url}/projects/swaya`,
+    },
   },
   openGraph: {
     type: "article",
+    publishedTime: "2026-03-01T00:00:00.000Z",
+    modifiedTime: "2026-09-08T00:00:00.000Z",
+    authors: [siteConfig.author],
+    section: "Software Engineering",
+    tags: [
+      "Swaya",
+      "FastAPI",
+      "Electron",
+      "Python",
+      "React",
+      "SQLite",
+      "Desktop App Architecture",
+    ],
     locale: "en_US",
-    alternateLocale: ["hu_HU"],
     url: `${siteConfig.url}/projects/swaya`,
     title: "Swaya Media Manager • Architectural Case Study",
     description:
@@ -60,7 +77,7 @@ export default function SwayaCaseStudyPage() {
           {
             "@type": "ListItem",
             position: 3,
-            name: "Swaya Media Manager",
+            name: "Swaya Case Study",
             item: `${siteConfig.url}/projects/swaya`,
           },
         ],
@@ -71,6 +88,9 @@ export default function SwayaCaseStudyPage() {
         operatingSystem: "Windows, macOS, Linux",
         applicationCategory: "MultimediaApplication",
         url: "https://swaya.xyz/",
+        softwareVersion: "1.0.0",
+        image: `${siteConfig.url}/projects/swaya/library.webp`,
+        screenshot: `${siteConfig.url}/projects/swaya/library.webp`,
         author: {
           "@type": "Person",
           name: siteConfig.author,
@@ -78,6 +98,11 @@ export default function SwayaCaseStudyPage() {
         },
         description:
           "High-performance desktop media manager engineered with Python, FastAPI, Electron, and React.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
       },
     ],
   };

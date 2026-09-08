@@ -17,7 +17,7 @@ export default function ContactInfoSidebar() {
           <TelemetryBadge variant="cyan" className={styles.infoCardTag}>
             {dict.contact.infoColumn.directEmailTag}
           </TelemetryBadge>
-          <Text as="h4" font="heading" size="lg" weight="semibold" tone="primary" className={styles.infoCardTitle}>
+          <Text as="h3" font="heading" size="lg" weight="semibold" tone="primary" className={styles.infoCardTitle}>
             {dict.contact.infoColumn.directEmailTitle}
           </Text>
           <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.infoCardDesc}>

@@ -25,6 +25,8 @@ import {
 import { siteConfig } from "@/config/site";
 import { useLocale } from "@/locales";
 
+const HUD_OPEN_STORAGE_KEY = "orbital_audio_hud_open";
+
 export default function AudioPlayer() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,15 +51,36 @@ export default function AudioPlayer() {
     setIsLoaded,
   } = useMixcloudWidget();
 
+  // Restore HUD console open/collapsed state from persistence
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(HUD_OPEN_STORAGE_KEY);
+      if (stored === "true") {
+        setIsOpen(true);
+        setIsLoaded(true);
+      }
+    } catch {}
+  }, [setIsLoaded]);
+
   const handleToggleOpen = useCallback(() => {
     setIsOpen((prev) => {
       const next = !prev;
+      try {
+        localStorage.setItem(HUD_OPEN_STORAGE_KEY, String(next));
+      } catch {}
       if (next && !isLoaded) {
         setIsLoaded(true);
       }
       return next;
     });
   }, [isLoaded, setIsLoaded]);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    try {
+      localStorage.setItem(HUD_OPEN_STORAGE_KEY, "false");
+    } catch {}
+  }, []);
 
   // Keyboard accessibility: Escape key closes the HUD console
   useEffect(() => {
@@ -67,13 +90,13 @@ export default function AudioPlayer() {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setIsOpen(false);
+        handleClose();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   return (
     <div
@@ -108,7 +131,7 @@ export default function AudioPlayer() {
             variant="ghost"
             size="sm"
             data-testid="audio-player-close-btn"
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
           />
         </div>
 
@@ -122,7 +145,15 @@ export default function AudioPlayer() {
               </span>
             </div>
 
-            <Text as="h4" font="heading" size="base" weight="bold" tone="primary" className={styles.trackTitle}>
+            <Text
+              as="p"
+              font="heading"
+              size="base"
+              weight="bold"
+              tone="primary"
+              className={styles.trackTitle}
+              data-testid="audio-player-track-title"
+            >
               {currentTrack?.title}
             </Text>
 

@@ -27,14 +27,9 @@ export function LocaleProvider({
 
   useEffect(() => {
     if (typeof document !== "undefined") {
-      const match = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=([^;]+)/);
-      const cookieLocale = match?.[1] as Locale | undefined;
-      if (cookieLocale && (cookieLocale === "en" || cookieLocale === "hu") && !initialLocale) {
-        setLocaleState(cookieLocale);
-        document.documentElement.lang = cookieLocale;
-      }
+      document.documentElement.lang = locale;
     }
-  }, [initialLocale]);
+  }, [locale]);
 
   const setLocale = useCallback((nextLocale: Locale) => {
     setLocaleState(nextLocale);

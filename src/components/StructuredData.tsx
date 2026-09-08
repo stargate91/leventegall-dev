@@ -1,6 +1,17 @@
+import React from "react";
+import type { Locale } from "@/locales/dictionary.types";
 import { siteConfig } from "@/config/site";
+import { getDictionary } from "@/locales";
 
-export default function StructuredData() {
+interface StructuredDataProps {
+  locale?: Locale;
+}
+
+export default function StructuredData({ locale = "en" }: StructuredDataProps) {
+  const isHu = locale === "hu";
+  const canonicalUrl = isHu ? `${siteConfig.url}/hu` : siteConfig.url;
+  const dict = getDictionary(locale);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -10,8 +21,10 @@ export default function StructuredData() {
         name: siteConfig.author,
         alternateName: siteConfig.callsign,
         url: siteConfig.url,
-        image: `${siteConfig.url}/opengraph-image`,
-        jobTitle: "Full-Stack Developer & Brand Strategist",
+        image: `${siteConfig.url}/icon-512.png`,
+        jobTitle: isHu
+          ? "Full-Stack Fejlesztő & Márkastratéga"
+          : "Full-Stack Developer & Brand Strategist",
         email: siteConfig.email,
         worksFor: {
           "@type": "Organization",
@@ -40,23 +53,28 @@ export default function StructuredData() {
       },
       {
         "@type": "ProfilePage",
-        "@id": `${siteConfig.url}/#profilepage`,
-        url: siteConfig.url,
-        name: `${siteConfig.author} • Portfolio & Technical Profile`,
+        "@id": isHu ? `${canonicalUrl}/#profilepage` : `${siteConfig.url}/#profilepage`,
+        url: canonicalUrl,
+        name: isHu
+          ? `${siteConfig.author} • Portfólió & Technikai Profil`
+          : `${siteConfig.author} • Portfolio & Technical Profile`,
         isPartOf: {
           "@id": `${siteConfig.url}/#website`,
         },
         mainEntity: {
           "@id": `${siteConfig.url}/#person`,
         },
-        inLanguage: ["en", "hu"],
+        inLanguage: isHu ? ["hu", "en"] : ["en", "hu"],
       },
       {
         "@type": "ProfessionalService",
-        "@id": `${siteConfig.url}/#service`,
-        name: "Levente Gáll - Full-Stack Architecture & Brand Strategy",
-        url: siteConfig.url,
+        "@id": isHu ? `${canonicalUrl}/#service` : `${siteConfig.url}/#service`,
+        name: isHu
+          ? "Gáll Levente - Full-Stack Architektúra & Márkastratégia"
+          : "Levente Gáll - Full-Stack Architecture & Brand Strategy",
+        url: canonicalUrl,
         email: siteConfig.email,
+        description: dict.hero.description,
         founder: {
           "@id": `${siteConfig.url}/#person`,
         },
@@ -76,19 +94,21 @@ export default function StructuredData() {
           contactType: "customer service",
           availableLanguage: ["English", "Hungarian"],
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          reviewCount: "400",
-          bestRating: "5",
-        },
+        image: `${siteConfig.url}/icon-512.png`,
+        sameAs: [
+          siteConfig.socials.fiverr,
+          siteConfig.socials.linkedin,
+          siteConfig.socials.github,
+        ],
         priceRange: "$$",
       },
       {
         "@type": "WebSite",
         "@id": `${siteConfig.url}/#website`,
         url: siteConfig.url,
-        name: siteConfig.title,
+        name: isHu
+          ? "Levente Gáll • Full-Stack Fejlesztő & Márkastratéga"
+          : siteConfig.title,
         publisher: {
           "@id": `${siteConfig.url}/#person`,
         },

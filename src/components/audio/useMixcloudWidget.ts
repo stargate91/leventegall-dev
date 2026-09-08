@@ -34,6 +34,8 @@ const ALLOWED_MIXCLOUD_ORIGINS = new Set([
   "https://widget.mixcloud.com",
 ]);
 
+const AUDIO_TRACK_STORAGE_KEY = "orbital_audio_track_index";
+
 export function useMixcloudWidget() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -50,9 +52,15 @@ export function useMixcloudWidget() {
   const currentTrack = tracks[currentTrackIndex] || tracks[0];
 
   const handleNextTrack = useCallback(() => {
+    if (!isLoaded) {
+      setIsLoaded(true);
+    }
     setCurrentTrackIndex((prev) => {
       const nextIdx = prev < tracks.length - 1 ? prev + 1 : 0;
       const nextTrack = tracks[nextIdx];
+      try {
+        localStorage.setItem(AUDIO_TRACK_STORAGE_KEY, String(nextIdx));
+      } catch {}
       if (nextTrack) {
         setActiveFeed(nextTrack.feed);
         setIsPlaying(true);
@@ -65,12 +73,18 @@ export function useMixcloudWidget() {
       }
       return nextIdx;
     });
-  }, [tracks]);
+  }, [isLoaded, tracks]);
 
   const handlePrevTrack = useCallback(() => {
+    if (!isLoaded) {
+      setIsLoaded(true);
+    }
     setCurrentTrackIndex((prev) => {
       const prevIdx = prev > 0 ? prev - 1 : tracks.length - 1;
       const prevTrack = tracks[prevIdx];
+      try {
+        localStorage.setItem(AUDIO_TRACK_STORAGE_KEY, String(prevIdx));
+      } catch {}
       if (prevTrack) {
         setActiveFeed(prevTrack.feed);
         setIsPlaying(true);
@@ -83,7 +97,7 @@ export function useMixcloudWidget() {
       }
       return prevIdx;
     });
-  }, [tracks]);
+  }, [isLoaded, tracks]);
 
   const setupWidget = useCallback(() => {
     if (!iframeRef.current || typeof window === "undefined" || !window.Mixcloud) {
@@ -122,9 +136,9 @@ export function useMixcloudWidget() {
     } catch {}
   }, [handleNextTrack]);
 
-  // Dynamically load Mixcloud Widget API script
+  // Dynamically load Mixcloud Widget API script only when lazy-loaded (HUD opened or playback triggered)
   useEffect(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || !isLoaded) {
       return;
     }
 
@@ -150,7 +164,7 @@ export function useMixcloudWidget() {
     return () => {
       script?.removeEventListener("load", onScriptLoad);
     };
-  }, [setupWidget]);
+  }, [isLoaded, setupWidget]);
 
   const handleIframeLoad = useCallback(() => {
     setupWidget();
@@ -197,6 +211,9 @@ export function useMixcloudWidget() {
 
   const handleSelectTrack = useCallback((index: number) => {
     setCurrentTrackIndex(index);
+    try {
+      localStorage.setItem(AUDIO_TRACK_STORAGE_KEY, String(index));
+    } catch {}
     if (!isLoaded) {
       setIsLoaded(true);
     }
@@ -270,9 +287,21 @@ export function useMixcloudWidget() {
     return () => clearInterval(interval);
   }, [isWidgetReady]);
 
-  // Initialize on client mount
+  // Restore persistent track selection on client mount (lazy-loads on user interaction)
   useEffect(() => {
-    setIsLoaded(true);
+    try {
+      const stored = localStorage.getItem(AUDIO_TRACK_STORAGE_KEY);
+      if (stored !== null) {
+        const idx = parseInt(stored, 10);
+        if (!isNaN(idx) && idx >= 0 && idx < siteConfig.audio.tracks.length) {
+          setCurrentTrackIndex(idx);
+          const trk = siteConfig.audio.tracks[idx];
+          if (trk) {
+            setActiveFeed(trk.feed);
+          }
+        }
+      }
+    } catch {}
   }, []);
 
   const iframeSrc = `https://player-widget.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(activeFeed || currentTrack?.feed || "")}&hide_cover=1&light=0`;

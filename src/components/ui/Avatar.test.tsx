@@ -3,11 +3,13 @@ import { describe, it, expect } from "vitest";
 import Avatar from "./Avatar";
 
 describe("Avatar UI Component", () => {
-  it("renders with image when src is provided", () => {
+  it("renders with image when src is provided with lazy loading and async decoding by default", () => {
     render(<Avatar src="/assets/profile.jpg" alt="Levente Gall" />);
     const img = screen.getByAltText("Levente Gall");
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute("src", "/assets/profile.jpg");
+    expect(img).toHaveAttribute("loading", "lazy");
+    expect(img).toHaveAttribute("decoding", "async");
   });
 
   it("renders initials fallback when src is missing", () => {

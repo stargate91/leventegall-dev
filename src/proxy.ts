@@ -14,41 +14,12 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Explicit URL-driven localization
   const isHuPath = pathname === "/hu" || pathname.startsWith("/hu/");
-  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
-  let activeLocale = "en";
-
-  if (isHuPath) {
-    activeLocale = "hu";
-  } else if (cookieLocale === "hu" || cookieLocale === "en") {
-    activeLocale = cookieLocale;
-  } else {
-    // Detect from Accept-Language header
-    const acceptLanguage = request.headers.get("accept-language") || "";
-    if (acceptLanguage.toLowerCase().includes("hu")) {
-      activeLocale = "hu";
-    }
-  }
+  const activeLocale = isHuPath ? "hu" : "en";
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", activeLocale);
-
-  if (isHuPath) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    const response = NextResponse.rewrite(url, {
-      request: {
-        headers: requestHeaders,
-      },
-    });
-    response.headers.set("x-locale", "hu");
-    response.cookies.set("NEXT_LOCALE", "hu", {
-      path: "/",
-      maxAge: 31536000,
-      sameSite: "lax",
-    });
-    return response;
-  }
 
   const response = NextResponse.next({
     request: {
@@ -58,8 +29,9 @@ export function proxy(request: NextRequest) {
 
   response.headers.set("x-locale", activeLocale);
 
-  // Set cookie if not already set
-  if (!cookieLocale) {
+  // Synchronize NEXT_LOCALE cookie with the visited path locale
+  const currentCookie = request.cookies.get("NEXT_LOCALE")?.value;
+  if (currentCookie !== activeLocale) {
     response.cookies.set("NEXT_LOCALE", activeLocale, {
       path: "/",
       maxAge: 31536000,

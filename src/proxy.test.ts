@@ -9,8 +9,26 @@ describe("Locale Proxy", () => {
     expect(response.headers.get("x-locale")).toBeNull();
   });
 
-  it("reads locale from NEXT_LOCALE cookie if present", () => {
-    const request = new NextRequest("https://example.com/", {
+  it("resolves Hungarian locale on /hu and syncs NEXT_LOCALE cookie", () => {
+    const request = new NextRequest("https://example.com/hu");
+    const response = proxy(request);
+
+    expect(response.headers.get("x-locale")).toBe("hu");
+    const setCookie = response.headers.get("set-cookie");
+    expect(setCookie).toContain("NEXT_LOCALE=hu");
+  });
+
+  it("resolves English locale on root / and syncs NEXT_LOCALE cookie", () => {
+    const request = new NextRequest("https://example.com/");
+    const response = proxy(request);
+
+    expect(response.headers.get("x-locale")).toBe("en");
+    const setCookie = response.headers.get("set-cookie");
+    expect(setCookie).toContain("NEXT_LOCALE=en");
+  });
+
+  it("does not emit duplicate set-cookie if NEXT_LOCALE cookie already matches the path locale", () => {
+    const request = new NextRequest("https://example.com/hu", {
       headers: {
         cookie: "NEXT_LOCALE=hu",
       },
@@ -18,40 +36,17 @@ describe("Locale Proxy", () => {
 
     const response = proxy(request);
     expect(response.headers.get("x-locale")).toBe("hu");
+    expect(response.headers.get("set-cookie")).toBeNull();
   });
 
-  it("detects Hungarian locale from Accept-Language header when no cookie exists", () => {
-    const request = new NextRequest("https://example.com/", {
-      headers: {
-        "accept-language": "hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7",
-      },
-    });
-
+  it("does not issue 308 redirects for untranslated /hu/* subpaths, allowing true 404 resolution", () => {
+    const request = new NextRequest("https://example.com/hu/projects/swaya");
     const response = proxy(request);
+
+    // Must NOT return 308 permanent redirect (prevents Googlebot Soft-404 and canonical mismatch)
+    expect(response.status).not.toBe(308);
+    expect(response.headers.get("location")).toBeNull();
+    // Passes through to Next.js App Router to render not-found.tsx
     expect(response.headers.get("x-locale")).toBe("hu");
-    const setCookie = response.headers.get("set-cookie");
-    expect(setCookie).toContain("NEXT_LOCALE=hu");
-  });
-
-  it("defaults to English when Accept-Language is not Hungarian and sets cookie", () => {
-    const request = new NextRequest("https://example.com/", {
-      headers: {
-        "accept-language": "en-US,en;q=0.9,de;q=0.8",
-      },
-    });
-
-    const response = proxy(request);
-    expect(response.headers.get("x-locale")).toBe("en");
-    const setCookie = response.headers.get("set-cookie");
-    expect(setCookie).toContain("NEXT_LOCALE=en");
-  });
-
-  it("rewrites /hu pathname to root with x-locale hu and sets cookie", () => {
-    const request = new NextRequest("https://example.com/hu");
-    const response = proxy(request);
-
-    expect(response.headers.get("x-locale")).toBe("hu");
-    const setCookie = response.headers.get("set-cookie");
-    expect(setCookie).toContain("NEXT_LOCALE=hu");
   });
 });

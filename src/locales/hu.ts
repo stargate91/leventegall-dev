@@ -22,7 +22,7 @@ export const hu: Dictionary = {
     contact: "06 // KAPCSOLAT",
   },
   hero: {
-    titleMain: "Szia, Levente vagyok.",
+    titleMain: "Szia, Gáll Levente vagyok.",
     titleGradient: "Szoftvereket és márkákat építek.",
     description:
       "Full-stack fejlesztés, ELTE fizikus háttér, valamint márkanévadás és szlogentervezés.",

@@ -51,4 +51,15 @@ describe("LocaleContext & Provider", () => {
     expect(enDict.nav.journey).toBe("JOURNEY");
     expect(huDict.nav.journey).toBe("RÓLAM");
   });
+
+  it("synchronizes document.documentElement.lang to initialLocale on mount", () => {
+    render(
+      <LocaleProvider initialLocale="hu">
+        <TestConsumer />
+      </LocaleProvider>,
+    );
+
+    expect(screen.getByTestId("current-locale")).toHaveTextContent("hu");
+    expect(document.documentElement.lang).toBe("hu");
+  });
 });

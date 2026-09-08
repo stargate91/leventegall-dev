@@ -1,36 +1,6 @@
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import StructuredData from "@/components/StructuredData";
-import AudioPlayer from "@/components/AudioPlayer";
+import RootShell from "@/components/layout/RootShell";
 import { siteConfig } from "@/config/site";
-import { LocaleProvider } from "@/locales";
-import "@/styles/tokens/colors.css";
-import "@/styles/tokens/spacing.css";
-import "@/styles/tokens/typography.css";
-import "@/styles/tokens/borders.css";
-import "@/styles/base/reset.css";
-import "@/styles/base/typography.css";
-import "@/styles/base/layout.css";
-import "@/styles/base/scrollbar.css";
-import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -41,6 +11,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  referrer: "strict-origin-when-cross-origin",
   title: {
     default: siteConfig.title,
     template: "%s | Levente Gáll",
@@ -73,9 +44,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
     languages: {
-      "en-US": `${siteConfig.url}/`,
-      "hu-HU": `${siteConfig.url}/hu`,
-      "x-default": `${siteConfig.url}/`,
+      en: siteConfig.url,
+      hu: `${siteConfig.url}/hu`,
+      "x-default": siteConfig.url,
     },
   },
   icons: {
@@ -95,6 +66,14 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: "Levente Gáll Portfolio",
+    images: [
+      {
+        url: `${siteConfig.url}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Levente Gáll - Full-Stack Developer & Brand Strategist",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -103,7 +82,7 @@ export const metadata: Metadata = {
     creator: "@stargate91",
     images: [
       {
-        url: "/opengraph-image",
+        url: `${siteConfig.url}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Levente Gáll - Full-Stack Developer & Brand Strategist",
@@ -130,25 +109,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function EnglishLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-    >
-      <body>
-        <StructuredData />
-        <div className="cosmic-mesh-bg" aria-hidden="true" />
-        <div className="cosmic-grid-overlay" aria-hidden="true" />
-        <LocaleProvider>
-          {children}
-          <AudioPlayer />
-        </LocaleProvider>
-      </body>
-    </html>
-  );
+  return <RootShell lang="en">{children}</RootShell>;
 }

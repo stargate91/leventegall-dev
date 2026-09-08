@@ -20,6 +20,8 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "lint:all": "npm run lint && npm run lint:spell && npm run lint:secrets && npm run lint:knip && npm run test",
+    "ping:indexnow": "node scripts/ping-indexnow.mjs",
+    "ping:indexnow:ci": "node scripts/ping-indexnow.mjs --continue-on-error",
     "prepare": "husky"
   },
   "dependencies": {

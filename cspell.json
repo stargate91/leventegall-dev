@@ -10,7 +10,8 @@
     "package-lock.json",
     "*.log",
     "*.tsbuildinfo",
-    "src/locales/hu.ts"
+    "src/locales/hu.ts",
+    "src/app/hu/opengraph-image.tsx"
   ],
   "words": [
     "Aetheria",
@@ -165,7 +166,19 @@
     "BITMAPINFOHEADER",
     "Pels",
     "BGRA",
-    "libc"
+    "libc",
+    "crawlable",
+    "szoftvermérnök",
+    "fizikus",
+    "háttér",
+    "ügyfél",
+    "konverziófókuszú",
+    "Portfólió",
+    "Technikai",
+    "Profil",
+    "Architektúra",
+    "Márkastratégia",
+    "maxage"
   ],
   "flagWords": []
 }

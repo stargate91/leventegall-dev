@@ -12,12 +12,14 @@ interface ProjectGalleryProps {
   items: ProjectScreenshot[];
   previewCaption?: string | undefined;
   layout?: "vertical" | "grid";
+  priorityFirst?: boolean | undefined;
 }
 
 export default function ProjectGallery({
   items,
   previewCaption,
   layout = "vertical",
+  priorityFirst = true,
 }: ProjectGalleryProps) {
   const { dict } = useLocale();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -63,7 +65,8 @@ export default function ProjectGallery({
                 fill
                 sizes="(max-width: 992px) 100vw, 450px"
                 className={styles.thumbnailImg}
-                loading="lazy"
+                priority={priorityFirst && idx === 0}
+                loading={priorityFirst && idx === 0 ? undefined : "lazy"}
               />
               <div className={styles.overlay} aria-hidden="true">
                 <span className={styles.zoomBadge}>

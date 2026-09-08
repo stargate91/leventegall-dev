@@ -15,6 +15,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ARG BUILD_DATE
+ENV NEXT_PUBLIC_BUILD_DATE=${BUILD_DATE}
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

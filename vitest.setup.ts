@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/vitest";
+import { vi } from "vitest";
 
 // Polyfill window.matchMedia for jsdom
 if (typeof window !== "undefined" && !window.matchMedia) {
@@ -35,3 +36,10 @@ if (typeof global !== "undefined" && !global.ResizeObserver) {
     disconnect() {}
   };
 }
+
+// Mock next/font/google for Vitest jsdom environment
+vi.mock("next/font/google", () => ({
+  Space_Grotesk: () => ({ variable: "space-grotesk-mock" }),
+  Inter: () => ({ variable: "inter-mock" }),
+  JetBrains_Mono: () => ({ variable: "jetbrains-mono-mock" }),
+}));
