@@ -45,6 +45,14 @@ export const metadata: Metadata = {
     description:
       "Full-stack desktop media management application engineered with Python, FastAPI, Electron, and React.",
     siteName: "Levente Gáll Portfolio",
+    images: [
+      {
+        url: `${siteConfig.url}/projects/swaya/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Swaya Media Manager • Architectural Case Study",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -52,6 +60,14 @@ export const metadata: Metadata = {
     description:
       "Full-stack desktop media manager engineered with Python, FastAPI, Electron, and React.",
     creator: "@stargate91",
+    images: [
+      {
+        url: `${siteConfig.url}/projects/swaya/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Swaya Media Manager • Architectural Case Study",
+      },
+    ],
   },
 };
 

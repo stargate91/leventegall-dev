@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { describe, it, expect } from "vitest";
 import nextConfig from "../next.config";
 import robots from "@/app/robots";
@@ -123,6 +125,13 @@ describe("Automated SEO Verification Suite", () => {
 
       const huTwitterImages = huMetadata.twitter?.images as Array<{ url: string }> | undefined;
       expect(huTwitterImages?.[0]?.url).toBe(`${siteConfig.url}/hu/opengraph-image`);
+
+      // Swaya project page social cards
+      const swayaOgImages = swayaMetadata.openGraph?.images as Array<{ url: string }> | undefined;
+      expect(swayaOgImages?.[0]?.url).toBe(`${siteConfig.url}/projects/swaya/opengraph-image`);
+
+      const swayaTwitterImages = swayaMetadata.twitter?.images as Array<{ url: string }> | undefined;
+      expect(swayaTwitterImages?.[0]?.url).toBe(`${siteConfig.url}/projects/swaya/opengraph-image`);
     });
   });
 
@@ -158,6 +167,29 @@ describe("Automated SEO Verification Suite", () => {
         key: "Cache-Control",
         value: "public, max-age=86400, stale-while-revalidate=86400",
       });
+    });
+  });
+
+  describe("LLM Discovery Directives (llms.txt & llms-full.txt)", () => {
+    it("declares structured service offerings and full LLM knowledge base", () => {
+      const llmsPath = path.resolve(process.cwd(), "public/llms.txt");
+      const llmsFullPath = path.resolve(process.cwd(), "public/llms-full.txt");
+
+      expect(fs.existsSync(llmsPath)).toBe(true);
+      expect(fs.existsSync(llmsFullPath)).toBe(true);
+
+      const llmsContent = fs.readFileSync(llmsPath, "utf-8");
+      expect(llmsContent).toContain("## Services & Solutions");
+      expect(llmsContent).toContain("Brand Naming");
+      expect(llmsContent).toContain("Full-Stack & Web Development");
+      expect(llmsContent).toContain("Discord Bot Development");
+      expect(llmsContent).toContain("https://leventegall.dev/llms-full.txt");
+
+      const llmsFullContent = fs.readFileSync(llmsFullPath, "utf-8");
+      expect(llmsFullContent).toContain("Brand Naming & Verbal Identity");
+      expect(llmsFullContent).toContain("Full-Stack Software & Web Development");
+      expect(llmsFullContent).toContain("Discord Bot Development & Automation");
+      expect(llmsFullContent).toContain("Swaya Media Manager");
     });
   });
 });

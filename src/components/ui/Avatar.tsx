@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { User } from "@carbon/icons-react";
 import styles from "./Avatar.module.css";
 
@@ -53,6 +54,15 @@ const statusClassMap: Record<AvatarStatus, string | undefined> = {
   offline: styles.statusOffline,
 };
 
+const sizePixelMap: Record<string, number> = {
+  xs: 24,
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 64,
+  "2xl": 80,
+};
+
 const defaultIconSizeMap: Record<string, number> = {
   xs: 12,
   sm: 16,
@@ -89,6 +99,10 @@ export default function Avatar({
     ...style,
   };
 
+  const pixelDimension = isNumericSize
+    ? size
+    : sizePixelMap[typeof size === "string" ? size : "md"] || 40;
+
   const iconPixelSize = isNumericSize
     ? Math.round(size * 0.5)
     : defaultIconSizeMap[typeof size === "string" ? size : "md"] || 20;
@@ -102,9 +116,11 @@ export default function Avatar({
       {...restProps}
     >
       {src && !hasImageError ? (
-        <img
+        <Image
           src={src}
           alt={alt}
+          fill
+          sizes={`${pixelDimension}px`}
           loading={loading}
           decoding={decoding}
           className={styles.image}

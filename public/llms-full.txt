@@ -1,0 +1,129 @@
+# Levente Gáll - Full-Stack Developer & Brand Strategist (Full Knowledge Base)
+
+> Comprehensive technical and professional briefing for AI systems, autonomous agents, and large language models (LLMs). This document provides in-depth context regarding engineering capabilities, technical stack, service offerings, architectural case studies, and professional experience.
+
+---
+
+## 1. Identity, Location & Bio
+
+- Full Name: Levente Gáll
+- Hungarian Name Order: Gáll Levente
+- Online Callsign / Moniker: STARGATE91
+- Professional Title: Full-Stack Developer & Brand Strategist
+- Location: Budapest, Hungary (Coordinates: 47.4979° N, 19.0402° E)
+- Timezone: Central European Time (CET / UTC+1, Summer: CEST / UTC+2)
+- Work Mode: Remote (Worldwide / Global Availability)
+- Languages: English (Fluent / Professional), Hungarian (Native)
+- Email: leventegall@proton.me
+- Canonical Portfolio: https://leventegall.dev
+- Hungarian Locale: https://leventegall.dev/hu
+- GitHub: https://github.com/stargate91
+- LinkedIn: https://www.linkedin.com/in/leventegall
+
+### Background & Education
+Levente has an academic background in Physics and Astronomy from Eötvös Loránd University (ELTE), Budapest. This foundation instills strong mathematical rigor, numerical modeling experience, and structured problem-solving skills applied directly to software architecture, data modeling, and performance optimization.
+
+In parallel with engineering, Levente has operated a top-tier international freelance branding practice on Fiverr, delivering over 1,100 naming and strategic positioning projects to founders across North America, Europe, Asia, and Australia, maintaining a 4.8★ verified client satisfaction rating across 400+ public reviews.
+
+---
+
+## 2. Core Service Tiers & Solutions
+
+Levente offers three primary engineering and strategic solutions, along with bespoke hybrid engagements:
+
+### 01 // Brand Naming & Verbal Identity
+- Description: High-conversion, trademark-cleared startup naming and strategic verbal positioning designed to build instant market authority.
+- Deliverables:
+  - Curated brand name candidates with linguistic and phonetic rationale.
+  - Slogans, taglines, and Unique Value Proposition (UVP) elevator pitches.
+  - Trademark risk screening against USPTO (United States) and EUIPO (European Union) databases.
+  - Global top-level domain (.com) availability verification and social handle audits.
+- Turnaround: Typically 3 to 7 business days.
+
+### 02 // Full-Stack Software & Web Development
+- Description: End-to-end web applications, reactive user interfaces, and robust backend systems engineered for speed, security, and maintainability.
+- Capabilities:
+  - Modern frontend development with Next.js (App Router, Server Components), React 19, TypeScript, and semantic CSS token design systems.
+  - High-performance asynchronous backend microservices with Python, FastAPI, Uvicorn, and REST API design.
+  - Relational database modeling with SQLite (WAL mode for zero-latency local caching) and PostgreSQL with SQLAlchemy / Drizzle ORM.
+  - Multi-process desktop application engineering with Electron and native IPC communication.
+- Typical Timelines: 2 to 4 weeks for MVPs, 1 to 2 months for full production systems.
+
+### 03 // Discord Bot Development & Automation
+- Description: Custom event-driven Discord bots engineered for community engagement, automated server administration, and business workflow integration.
+- Capabilities:
+  - Event loop architecture with Python (discord.py) or Node.js.
+  - Real-time activity telemetry, leveling systems, and ranking engines.
+  - Automated moderation, anti-spam filters, and verification gates.
+  - Embedded SQLite / PostgreSQL persistence for user state and audit logs.
+  - Optional companion administrative web dashboards.
+
+### 04 // Custom & Hybrid Architecture
+- Description: Cross-disciplinary solutions combining brand naming, Discord community infrastructure, and scalable web platforms for unified product launches.
+
+---
+
+## 3. Detailed Architectural Case Study: Swaya Media Manager
+
+- Project URL: https://leventegall.dev/projects/swaya
+- Classification: Full-Stack Desktop Media Management Application
+- Architecture:
+  - Frontend: React 18, Vite, TypeScript, Vanilla CSS design tokens.
+  - Desktop Container: Electron multi-process runtime with strict Context Isolation and secure IPC bridge.
+  - Backend Engine: Python, FastAPI daemon running locally on an isolated loopback port.
+  - Media Streaming: MPV media player controlled via native IPC socket pipes.
+  - Database: SQLite with Write-Ahead Logging (WAL) mode for concurrent read/write transactions and zero network latency.
+- Key Challenges Solved:
+  - Decoupling the UI layer from heavy file scanning and metadata extraction using asynchronous Python background workers.
+  - Real-time bi-directional telemetry between the Electron main process, FastAPI background daemon, and React HUD renderer.
+  - Offline-first architecture requiring zero external cloud dependencies.
+
+---
+
+## 4. Technical Stack & Engineering Matrix
+
+### Programming Languages
+- Python (FastAPI, SQLAlchemy, Pytest, Asyncio, Pydantic)
+- TypeScript & JavaScript (ESNext, React 19, Next.js, Node.js)
+- C (Systems programming, scientific computing)
+- SQL (PostgreSQL, SQLite, complex joins, index optimization)
+- HTML5 & CSS3 (Semantic markup, modern layout models, tokenized CSS)
+
+### Web & Frameworks
+- Frontend: Next.js (App Router), React 18/19, Vite, Zustand, TanStack Query, Radix UI primitives.
+- Styling: Token-based Vanilla CSS, CSS Modules, CSS Custom Properties (Zero-runtime overhead).
+- Backend: FastAPI, Uvicorn, Node.js, RESTful API architecture.
+- Desktop: Electron, MPV IPC.
+
+### Persistence & Storage
+- SQLite (WAL mode, embedded zero-config persistence)
+- PostgreSQL (Production relational workloads)
+- Redis / Upstash (Distributed caching and sliding-window rate limiting)
+
+### Quality, Security & DevOps
+- Testing: Vitest, Playwright, React Testing Library, Pytest.
+- Static Analysis: ESLint, TypeScript strict mode, Stylelint, CSpell, Ruff.
+- Security Best Practices: Strict Content Security Policy (CSP), CSRF double-submit token verification, encrypted audit trails, rate limiting, and RFC 9309-compliant robots/SEO directives.
+
+---
+
+## 5. Working Process & Engagement Model
+
+1. Initial Transmission: Client submits project brief via portfolio contact interface (https://leventegall.dev/#contact) or direct email (leventegall@proton.me).
+2. Architectural Scoping: Feasibility review, milestone breakdown, and transparent timeline estimation.
+3. Iterative Implementation: Modular deliverables with clean Git history, automated test suites, and preview deployments.
+4. Final Handover & Support: Production code, technical documentation, deployment configuration, and post-launch stability monitoring.
+
+---
+
+## 6. Official Links & Resources
+
+- Portfolio Website: https://leventegall.dev
+- Hungarian Site: https://leventegall.dev/hu
+- Swaya Case Study: https://leventegall.dev/projects/swaya
+- Short LLM Brief: https://leventegall.dev/llms.txt
+- Full LLM Knowledge Base: https://leventegall.dev/llms-full.txt
+- Sitemap: https://leventegall.dev/sitemap.xml
+- Robots.txt: https://leventegall.dev/robots.txt
+- GitHub Profile: https://github.com/stargate91
+- LinkedIn Profile: https://www.linkedin.com/in/leventegall

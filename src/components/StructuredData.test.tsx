@@ -11,6 +11,7 @@ interface SchemaItem {
   review?: unknown[];
   aggregateRating?: unknown;
   address?: { addressCountry?: string };
+  areaServed?: { "@type": string; name: string };
   image?: string;
 }
 
@@ -38,6 +39,10 @@ describe("StructuredData Component", () => {
     expect(service).toBeDefined();
     expect(service?.image).toBe(`${siteConfig.url}/icon-512.png`);
     expect(service?.address?.addressCountry).toBe("HU");
+    expect(service?.areaServed).toEqual({
+      "@type": "Place",
+      name: "Worldwide",
+    });
     // Self-serving reviews removed per Google Search Central LocalBusiness update
     expect(service?.review).toBeUndefined();
     expect(service?.aggregateRating).toBeUndefined();
@@ -58,6 +63,10 @@ describe("StructuredData Component", () => {
     const service = graph.find((item) => item["@type"] === "ProfessionalService");
     expect(service).toBeDefined();
     expect(service?.name).toContain("Architektúra");
+    expect(service?.areaServed).toEqual({
+      "@type": "Place",
+      name: "Worldwide",
+    });
     expect(service?.review).toBeUndefined();
     expect(service?.aggregateRating).toBeUndefined();
   });

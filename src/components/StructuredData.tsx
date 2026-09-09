@@ -78,6 +78,10 @@ export default function StructuredData({ locale = "en" }: StructuredDataProps) {
         founder: {
           "@id": `${siteConfig.url}/#person`,
         },
+        areaServed: {
+          "@type": "Place",
+          name: "Worldwide",
+        },
         address: {
           "@type": "PostalAddress",
           addressLocality: siteConfig.coordinates.city,

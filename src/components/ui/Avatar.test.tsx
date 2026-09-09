@@ -7,7 +7,8 @@ describe("Avatar UI Component", () => {
     render(<Avatar src="/assets/profile.jpg" alt="Levente Gall" />);
     const img = screen.getByAltText("Levente Gall");
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute("src", "/assets/profile.jpg");
+    expect(img.getAttribute("src")).toContain("/_next/image");
+    expect(img.getAttribute("src")).toContain(encodeURIComponent("/assets/profile.jpg"));
     expect(img).toHaveAttribute("loading", "lazy");
     expect(img).toHaveAttribute("decoding", "async");
   });

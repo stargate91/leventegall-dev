@@ -29,11 +29,11 @@ describe("Testimonials Component", () => {
     expect(screen.getByText(/Lev came up with really good names/i)).toBeInTheDocument();
 
     const avatarImages = screen.getAllByRole("img");
-    const avatarSources = avatarImages.map((img) => img.querySelector("img")?.getAttribute("src"));
-    expect(avatarSources).toContain("/testimonials/silur.webp");
-    expect(avatarSources).toContain("/testimonials/tan-do.webp");
-    expect(avatarSources).toContain("/testimonials/aldo-scardovi.webp");
-    expect(avatarSources).toContain("/testimonials/mischa-sigtermans.webp");
+    const avatarSources = avatarImages.map((img) => img.querySelector("img")?.getAttribute("src") || "");
+    expect(avatarSources.some((src) => src.includes(encodeURIComponent("/testimonials/silur.webp")))).toBe(true);
+    expect(avatarSources.some((src) => src.includes(encodeURIComponent("/testimonials/tan-do.webp")))).toBe(true);
+    expect(avatarSources.some((src) => src.includes(encodeURIComponent("/testimonials/aldo-scardovi.webp")))).toBe(true);
+    expect(avatarSources.some((src) => src.includes(encodeURIComponent("/testimonials/mischa-sigtermans.webp")))).toBe(true);
   });
 
   it("supports carousel navigation and dynamically disables boundary buttons", () => {
