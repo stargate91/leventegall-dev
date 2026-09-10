@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: calc(100vw - 2rem);
   padding: 0.25rem 0.85rem;
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-2xs);
@@ -48,6 +49,7 @@
   color: var(--color-accent-core);
   text-transform: uppercase;
   letter-spacing: 0.12em;
+  white-space: nowrap;
   background: var(--tone-a);
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-full);
@@ -55,3 +57,9 @@
   transform: translate(-50%, -50%);
 }
 
+@media (max-width: 480px) {
+  .labelWrapper {
+    padding: 0.2rem 0.65rem;
+    letter-spacing: 0.08em;
+  }
+}
