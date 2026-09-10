@@ -6,6 +6,27 @@
   width: 100%;
 }
 
+.brandNameText {
+  color: var(--color-white);
+}
+
+.brandCallsign {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--color-accent-core);
+  transition:
+    color var(--transition-fast),
+    text-shadow var(--transition-fast);
+}
+
+.brandLink:hover .brandCallsign,
+.mobileBrand:hover .brandCallsign {
+  color: var(--color-white);
+  text-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+
 /* =========================================================================
    Desktop Sticky Sidebar Frame (100vh)
    ========================================================================= */
@@ -53,24 +74,7 @@
     letter-spacing: -0.02em;
   }
 
-  .brandNameText {
-    color: var(--color-white);
-  }
 
-  .brandCallsign {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.82em;
-    font-weight: 600;
-    color: var(--color-accent-core);
-    transition:
-      color var(--transition-fast),
-      text-shadow var(--transition-fast);
-  }
-
-  .brandLink:hover .brandCallsign {
-    color: var(--color-white);
-    text-shadow: 0 0 12px var(--color-accent-glow);
-  }
 
   .brandRole {
     margin-top: 6px;

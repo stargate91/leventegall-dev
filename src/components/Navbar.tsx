@@ -151,7 +151,17 @@ export default function Navbar() {
          Mobile Header Bar (< 1024px)
          ========================================================================= */}
       <div className={styles.mobileBar}>
-        <Link href={isHomePage ? "#hero" : "/"} className={styles.mobileBrand}>
+        <Link
+          href={isHomePage ? "#hero" : "/"}
+          onClick={(e) => {
+            if (isHomePage) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+            setMobileMenuOpen(false);
+          }}
+          className={styles.mobileBrand}
+        >
           <span className={styles.mobileBrandTitle}>
             <span className={styles.brandNameText}>{dict.personName.toUpperCase()}</span>
             <span className={styles.brandCallsign}> // {siteConfig.callsign}</span>
