@@ -1,3 +1,4 @@
+/* CardMetaBar.module.css */
 .metaBar {
   display: flex;
   flex-wrap: wrap;
@@ -7,6 +8,18 @@
   padding-bottom: var(--space-md);
   margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+.badgeWrapper {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.rightWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .telemetryText {
@@ -27,4 +40,16 @@
 .prefix {
   font-weight: 600;
   color: var(--color-accent-core);
+}
+
+@media (max-width: 640px) {
+  .metaBar {
+    gap: var(--space-xs);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .telemetryText {
+    font-size: var(--text-2xs);
+  }
 }

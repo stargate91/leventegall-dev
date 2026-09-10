@@ -1,9 +1,11 @@
+/* TelemetryBadge.module.css */
 .badge {
   display: inline-flex;
   flex-shrink: 0;
   gap: var(--space-xs);
   align-items: center;
   width: fit-content;
+  max-width: 100%;
   padding: var(--space-2xs) var(--space-sm);
   font-family: var(--font-jetbrains), monospace;
   font-size: var(--text-xs);
@@ -54,4 +56,19 @@
 .iconWrapper {
   display: inline-flex;
   align-items: center;
+}
+
+@media (max-width: 640px) {
+  .badge {
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 100%;
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--text-2xs);
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    overflow-wrap: break-word;
+    white-space: normal;
+    border-radius: var(--radius-sm);
+  }
 }

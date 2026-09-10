@@ -18,6 +18,12 @@
   }
 }
 
+@media (max-width: 640px) {
+  .projectCard {
+    padding: var(--space-md);
+  }
+}
+
 .galleryColumn {
   display: flex;
   flex-direction: column;

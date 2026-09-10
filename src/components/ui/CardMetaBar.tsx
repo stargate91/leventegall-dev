@@ -41,10 +41,13 @@ export default function CardMetaBar({
     return null;
   };
 
+  const badgeContent = renderBadge();
+  const rightContent = renderRight();
+
   return (
     <div className={`${styles.metaBar} ${className}`.trim()} style={style}>
-      <div>{renderBadge()}</div>
-      <div>{renderRight()}</div>
+      {badgeContent && <div className={styles.badgeWrapper}>{badgeContent}</div>}
+      {rightContent && <div className={styles.rightWrapper}>{rightContent}</div>}
     </div>
   );
 }

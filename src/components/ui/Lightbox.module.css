@@ -61,8 +61,10 @@
 
 .titleGroup {
   display: flex;
+  flex: 1;
   gap: var(--space-sm);
   align-items: center;
+  min-width: 0;
 }
 
 .title {
@@ -74,13 +76,16 @@
 }
 
 .counter {
+  flex-shrink: 0;
   font-family: var(--font-mono), monospace;
   font-size: var(--font-size-2xs);
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .closeBtn {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   padding: var(--space-2xs);
@@ -181,4 +186,14 @@
   font-family: var(--font-mono), monospace;
   font-size: var(--font-size-xs);
   color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .titleGroup {
+    gap: var(--space-xs);
+  }
 }
