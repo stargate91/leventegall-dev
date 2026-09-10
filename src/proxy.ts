@@ -4,11 +4,15 @@ import type { NextRequest } from "next/server";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip static assets, internal Next.js paths, and APIs
+  // Skip static assets, internal Next.js paths, media previews, and APIs
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
+    pathname.includes("opengraph-image") ||
+    pathname.includes("twitter-image") ||
+    pathname.includes("apple-icon") ||
+    pathname.includes("icon") ||
     /\.(ico|png|jpg|jpeg|svg|webp|css|js|map|txt|xml|webmanifest)$/i.test(pathname)
   ) {
     return NextResponse.next();
@@ -43,5 +47,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|favicon.svg|icon|apple-icon|opengraph-image|robots.txt|sitemap.xml).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|favicon.svg|.*icon.*|.*opengraph-image.*|.*twitter-image.*|robots.txt|sitemap.xml).*)"],
 };

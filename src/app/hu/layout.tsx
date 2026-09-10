@@ -62,14 +62,6 @@ export const metadata: Metadata = {
     description:
       "Full-stack szoftvermérnök és márkastratéga. ELTE fizikus háttér, 1,100+ ügyfél a Fiverr-en. FastAPI, Python, React, Next.js és konverziófókuszú branding.",
     siteName: "Levente Gáll Portfólió",
-    images: [
-      {
-        url: `${siteConfig.url}/hu/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Gáll Levente • Full-Stack Fejlesztő & Márkastratéga",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -77,14 +69,6 @@ export const metadata: Metadata = {
     description:
       "Full-stack szoftvermérnök és márkastratéga. ELTE fizikus háttér, 1,100+ ügyfél a Fiverr-en. FastAPI, Python, React, Next.js és konverziófókuszú branding.",
     creator: "@stargate91",
-    images: [
-      {
-        url: `${siteConfig.url}/hu/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Gáll Levente • Full-Stack Fejlesztő & Márkastratéga",
-      },
-    ],
   },
   robots: {
     index: true,
