@@ -22,7 +22,7 @@ export const en: Dictionary = {
     contact: "06 // CONTACT",
   },
   hero: {
-    titleMain: "Hi, I’m Levente Gáll.",
+    titleMain: "Hi, I’m Levente.",
     titleGradient: "I build software & brands.",
     description:
       "Full-stack development, an ELTE physics background, and independent brand naming & taglines.",

@@ -80,7 +80,7 @@ export default function Image() {
               letterSpacing: "-1px",
             }}
           >
-            Hi, I’m Levente Gáll.
+            Hi, I’m Levente.
           </div>
           <div
             style={{

@@ -80,7 +80,7 @@ export default function HungarianImage() {
               letterSpacing: "-1px",
             }}
           >
-            Szia, Gáll Levente vagyok.
+            Szia, Levente vagyok.
           </div>
           <div
             style={{
