@@ -17,9 +17,8 @@
   transition: all var(--transition-smooth);
 }
 
-.cyan,
-.pink,
-.purple {
+.accent,
+.cyan {
   color: var(--color-accent-core);
   background: var(--color-accent-subtle);
   border: 1px solid var(--border-accent);
@@ -27,8 +26,8 @@
 
 .amber {
   color: var(--color-warning);
-  background: rgb(245 158 11 / 8%);
-  border: 1px solid rgb(245 158 11 / 35%);
+  background: var(--color-warning-subtle);
+  border: 1px solid var(--border-warning);
 }
 
 .subtle {
@@ -37,15 +36,8 @@
   border: 1px solid var(--border-subtle);
 }
 
+.solidAccent,
 .solidCyan {
-  font-weight: 700;
-  color: var(--color-white);
-  background: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  box-shadow: 0 0 15px var(--color-accent-glow);
-}
-
-.solidPink {
   font-weight: 700;
   color: var(--color-white);
   background: var(--gradient-accent-btn);

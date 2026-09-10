@@ -66,7 +66,7 @@ export default function ServicesPricing() {
             className={`${styles.card} ${tier.isPopular ? styles.popularCard : ""}`}
           >
             {tier.isPopular && (
-              <TelemetryBadge variant="solidPink" className={styles.popularBadge}>
+              <TelemetryBadge variant="solidAccent" className={styles.popularBadge}>
                 {dict.services.recommendedBadge}
               </TelemetryBadge>
             )}

@@ -87,7 +87,7 @@
 
 .input.inputError {
   border-color: var(--color-danger);
-  box-shadow: 0 0 12px rgb(239 68 68 / 25%);
+  box-shadow: 0 0 12px var(--color-danger-glow);
 }
 
 .errorText {

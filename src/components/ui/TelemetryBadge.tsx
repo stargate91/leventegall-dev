@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./TelemetryBadge.module.css";
 import BeaconDot from "./BeaconDot";
 
-export type TelemetryBadgeVariant = "cyan" | "pink" | "purple" | "amber" | "subtle" | "solidCyan" | "solidPink";
+export type TelemetryBadgeVariant = "accent" | "cyan" | "amber" | "subtle" | "solidAccent" | "solidCyan";
 
 export interface TelemetryBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: TelemetryBadgeVariant | undefined;
   beacon?: boolean | undefined;
-  beaconColor?: "cyan" | "pink" | "amber" | "green" | "red" | undefined;
+  beaconColor?: "accent" | "cyan" | "amber" | "green" | "red" | undefined;
   icon?: React.ReactNode | undefined;
   children: React.ReactNode;
   className?: string | undefined;
@@ -15,9 +15,9 @@ export interface TelemetryBadgeProps extends React.HTMLAttributes<HTMLDivElement
 }
 
 export default function TelemetryBadge({
-  variant = "cyan",
+  variant = "accent",
   beacon = false,
-  beaconColor = "cyan",
+  beaconColor = "accent",
   icon,
   children,
   className = "",

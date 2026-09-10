@@ -47,7 +47,7 @@
 
 .variant-green {
   background: linear-gradient(90deg, var(--color-success) 0%, var(--color-success) 100%);
-  box-shadow: 0 0 10px rgb(16 185 129 / 40%);
+  box-shadow: 0 0 10px var(--color-success-glow);
 }
 
 .variant-gradient {

@@ -7,6 +7,8 @@
   --border-high: rgb(255 255 255 / 28%);
   --border-accent: rgb(55 148 255 / 35%);
   --border-success: rgb(16 185 129 / 35%);
+  --border-warning: rgb(245 158 11 / 35%);
+  --border-danger: rgb(239 68 68 / 35%);
 
   /* =========================================================================
      Radii & Transitions

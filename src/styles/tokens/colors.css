@@ -3,15 +3,23 @@
      Tone Palette Tokens (VS Code Dark Modern / Editor Charcoal)
      ========================================================================= */
   --tone-a: #181818;              /* VS Code Editor Dark Background */
-  --tone-b: #222;              /* VS Code Activity Bar & Sidebar Surface */
+  --tone-b: #222;                 /* VS Code Activity Bar & Sidebar Surface */
   --tone-b-card: #2b2b2b;         /* VS Code Elevated Widget & Card Surface */
 
   /* Neutral & Base Colors */
   --color-white: #fff;
   --color-black: #000;
+
+  /* Functional Semantic Status Colors */
   --color-success: #10b981;
+  --color-success-glow: rgb(16 185 129 / 30%);
+  --color-success-subtle: rgb(16 185 129 / 8%);
   --color-warning: #f59e0b;
+  --color-warning-glow: rgb(245 158 11 / 25%);
+  --color-warning-subtle: rgb(245 158 11 / 8%);
   --color-danger: #ef4444;
+  --color-danger-glow: rgb(239 68 68 / 25%);
+  --color-danger-subtle: rgb(239 68 68 / 8%);
 
   /* =========================================================================
      Single Unified Primary Accent: VS Code Blue (#0078d4 / #3794ff)
@@ -23,10 +31,8 @@
   --color-accent-subtle: rgb(55 148 255 / 8%);
   --color-accent-dim: rgb(55 148 255 / 14%);
 
-  /* Disciplined Single-Hue Text & Button Styling (No busy multi-color gradients) */
-  --gradient-accent-text: linear-gradient(180deg, #fff 30%, #3794ff 100%);
+  /* Disciplined Single-Hue Button Gradient */
   --gradient-accent-btn: linear-gradient(135deg, #0078d4 0%, #0e639c 100%);
-
 
   /* =========================================================================
      Surface & Glassmorphism Tokens (VS Code Dark Slate Surfaces)

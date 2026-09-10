@@ -22,25 +22,24 @@
 
 .blue,
 .accent,
-.cyan,
-.pink {
+.cyan {
   background-color: var(--color-accent);
   box-shadow: 0 0 8px var(--color-accent-glow);
 }
 
 .amber {
   background-color: var(--color-warning);
-  box-shadow: 0 0 8px rgb(245 158 11 / 30%);
+  box-shadow: 0 0 8px var(--color-warning-glow);
 }
 
 .green {
   background-color: var(--color-success);
-  box-shadow: 0 0 8px rgb(16 185 129 / 30%);
+  box-shadow: 0 0 8px var(--color-success-glow);
 }
 
 .red {
   background-color: var(--color-danger);
-  box-shadow: 0 0 8px rgb(239 68 68 / 30%);
+  box-shadow: 0 0 8px var(--color-danger-glow);
 }
 
 .beacon::after {
@@ -53,21 +52,20 @@
 
 .blue::after,
 .accent::after,
-.cyan::after,
-.pink::after {
+.cyan::after {
   border: 1px solid var(--color-accent);
 }
 
 .amber::after {
-  border: 1px solid var(--color-warning);
+  border: 1px solid var(--border-warning);
 }
 
 .green::after {
-  border: 1px solid var(--color-success);
+  border: 1px solid var(--border-success);
 }
 
 .red::after {
-  border: 1px solid var(--color-danger);
+  border: 1px solid var(--border-danger);
 }
 
 @keyframes beaconPulse {
