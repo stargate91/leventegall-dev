@@ -1,8 +1,7 @@
 import stylistic from "@stylistic/eslint-plugin";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import importX from "eslint-plugin-import-x";
-import security from "eslint-plugin-security";
+import globals from "globals";
 import tseslint from "typescript-eslint";
+import { createFrontendConfig } from "@stargate91/eslint-config/frontend";
 
 export default tseslint.config(
   {
@@ -17,99 +16,50 @@ export default tseslint.config(
       "*.config.ts",
     ],
   },
-  ...tseslint.configs.recommended,
-  {
-    plugins: {
-      "@stylistic": stylistic,
-      "jsx-a11y": jsxA11y,
-      "import-x": importX,
-      security,
+
+  // Shared Stargate91 frontend configuration (React 19, TS, A11y, Security, Import-X)
+  ...createFrontendConfig({
+    tsconfigRootDir: import.meta.dirname,
+    project: ["./tsconfig.json"],
+    i18n: { enabled: false },
+    react: {
+      allowInlineStyles: true, // my-website uses inline styles for dynamic CSS variables
     },
     rules: {
-      // -------------------------------------------------------------
-      // 1. Ultra-Strict TypeScript & Core Logic Rules
-      // -------------------------------------------------------------
+      // my-website preferences
       "@typescript-eslint/consistent-type-imports": [
         "error",
         { prefer: "type-imports", fixStyle: "separate-type-imports" },
       ],
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-inferrable-types": "error",
-      "@typescript-eslint/no-non-null-assertion": "error",
-      "@typescript-eslint/no-empty-object-type": "error",
-      "prefer-const": "error",
-      "no-var": "error",
-      eqeqeq: ["error", "always"],
       "no-console": ["warn", { allow: ["warn", "error"] }],
-      "no-duplicate-imports": "off",
-      "no-debugger": "error",
-      "no-alert": "error",
-      "no-eval": "error",
-      "no-implied-eval": "error",
-      "prefer-template": "error",
-      "object-shorthand": ["error", "always"],
-      "no-unneeded-ternary": "error",
-      curly: ["error", "all"],
-      "no-lonely-if": "error",
-      "prefer-arrow-callback": "error",
-      "no-useless-concat": "error",
-      "no-useless-return": "error",
+      "no-empty": ["error", { allowEmptyCatch: true }],
+      "react-refresh/only-export-components": "off",
+      "react/hook-use-state": "warn",
+      "react/no-array-index-key": "warn",
+      "react/jsx-boolean-value": "off",
+    },
+  }),
 
-      // -------------------------------------------------------------
-      // 2. Accessibility (WCAG 2.1 / jsx-a11y) Rules
-      // -------------------------------------------------------------
-      "jsx-a11y/alt-text": "error",
-      "jsx-a11y/anchor-has-content": "error",
-      "jsx-a11y/anchor-is-valid": "error",
-      "jsx-a11y/aria-props": "error",
-      "jsx-a11y/aria-proptypes": "error",
-      "jsx-a11y/aria-role": "error",
-      "jsx-a11y/aria-unsupported-elements": "error",
-      "jsx-a11y/role-has-required-aria-props": "error",
-      "jsx-a11y/role-supports-aria-props": "error",
-      "jsx-a11y/tabindex-no-positive": "error",
+  // Node script environment
+  {
+    files: ["scripts/**/*.{js,mjs}"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        fetch: "readonly",
+      },
+    },
+    rules: {
+      "no-console": "off",
+    },
+  },
 
-      // -------------------------------------------------------------
-      // 3. Module Architecture & Deterministic Import Ordering (import-x)
-      // -------------------------------------------------------------
-      "import-x/no-duplicates": "error",
-      "import-x/no-self-import": "error",
-      "import-x/order": [
-        "error",
-        {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            ["parent", "sibling", "index"],
-            "object",
-            "type",
-          ],
-          "newlines-between": "ignore",
-          alphabetize: { order: "ignore" },
-        },
-      ],
-
-      // -------------------------------------------------------------
-      // 4. Security & Vulnerability Auditing (eslint-plugin-security)
-      // -------------------------------------------------------------
-      "security/detect-possible-timing-attacks": "warn",
-      "security/detect-eval-with-expression": "error",
-      "security/detect-non-literal-regexp": "warn",
-      "security/detect-buffer-noassert": "error",
-      "security/detect-unsafe-regex": "error",
-
-      // -------------------------------------------------------------
-      // 5. Code Style & Formatting (@stylistic)
-      // -------------------------------------------------------------
+  // Project-specific formatting rules (@stylistic)
+  {
+    plugins: {
+      "@stylistic": stylistic,
+    },
+    rules: {
       "@stylistic/semi": ["error", "always"],
       "@stylistic/quotes": [
         "error",
@@ -135,5 +85,5 @@ export default tseslint.config(
         },
       ],
     },
-  },
+  }
 );

@@ -35,6 +35,8 @@
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@secretlint/quick-start": "^10.0.1",
+    "@stargate91/eslint-config": "file:../stargate91-tools/packages/eslint-config",
+    "@stargate91/stylelint-config": "file:../stargate91-tools/packages/stylelint-config",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",

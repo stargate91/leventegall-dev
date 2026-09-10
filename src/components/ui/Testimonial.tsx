@@ -22,8 +22,8 @@ export function RatingStars({
 }: RatingStarsProps) {
   return (
     <div className={`${styles.starsRow} ${className}`} style={style} {...props}>
-      {Array.from({ length: count }).map((_, s) => (
-        <StarFilled key={s} size={size} fill={fillColor} />
+      {Array.from({ length: count }, (_, i) => `star-${i + 1}`).map((starKey) => (
+        <StarFilled key={starKey} size={size} fill={fillColor} />
       ))}
     </div>
   );

@@ -19,6 +19,7 @@ export function LocaleProvider({
   children: React.ReactNode;
   initialLocale?: Locale;
 }) {
+  // eslint-disable-next-line react/hook-use-state
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {

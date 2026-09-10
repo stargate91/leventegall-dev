@@ -33,8 +33,8 @@ export default function SpectrumVisualizer({ isPlaying }: SpectrumVisualizerProp
         </div>
 
         <div className={styles.visualizerBars}>
-          {Array.from({ length: 16 }).map((_, i) => (
-            <div key={i} className={styles.spectrumBarCol}>
+          {Array.from({ length: 16 }, (_, i) => `bar-${i}`).map((barId) => (
+            <div key={barId} className={styles.spectrumBarCol}>
               <span className={styles.spectrumBar} />
             </div>
           ))}

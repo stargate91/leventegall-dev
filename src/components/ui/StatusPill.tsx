@@ -53,6 +53,7 @@ export default function StatusPill({
       ) : null}
 
       {contentItems.map((item, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <React.Fragment key={index}>
           {index > 0 && <span className={styles.separator}>{separator}</span>}
           <span className={index === 0 ? styles.labelText : styles.subLabelText}>
