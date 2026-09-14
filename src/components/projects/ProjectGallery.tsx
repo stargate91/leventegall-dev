@@ -46,10 +46,19 @@ export default function ProjectGallery({
 
   const activeShot = activeIdx !== null ? items[activeIdx] : null;
   const isGrid = layout === "grid";
+  const isSingle = items.length === 1;
 
   return (
     <div className={isGrid ? styles.galleryContainerGrid : styles.galleryContainer}>
-      <div className={isGrid ? styles.gridColumns : styles.grid}>
+      <div
+        className={
+          isGrid
+            ? styles.gridColumns
+            : isSingle
+              ? styles.gridSingle
+              : styles.grid
+        }
+      >
         {items.map((shot, idx) => (
           <button
             key={shot.id}

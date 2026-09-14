@@ -28,9 +28,10 @@ export default function HomeContent() {
       <DeckDivider label={dict.sections.about} />
 
       {/* ============================================================
-          CHAMBER 02: TRAJECTORY & STORY
+          CHAMBER 02: JOURNEY & STORY
           ============================================================ */}
-      <ChamberSection id="trajectory" tone="grid">
+      <ChamberSection id="journey" tone="grid">
+        <span id="trajectory" className="sr-only" aria-hidden="true" />
         <AboutStory />
       </ChamberSection>
 
@@ -66,7 +67,8 @@ export default function HomeContent() {
       {/* ============================================================
           CHAMBER 06: CLIENT TESTIMONIALS & REPUTATION
           ============================================================ */}
-      <ChamberSection id="reviews" tone="grid">
+      <ChamberSection id="clients" tone="grid">
+        <span id="reviews" className="sr-only" aria-hidden="true" />
         <Testimonials />
       </ChamberSection>
 

@@ -92,6 +92,10 @@ export const hu: Dictionary = {
       swayaOrganizerShot: "Média Rendszerező & Átnevező Folyamat",
       swayaLibraryShot: "Médiakönyvtár & Poszter Rács",
       swayaDetailShot: "Média Részletek & Metaadat Nézet",
+      novaDashboardShot: "Kezdőlap & Interaktív Élő Előnézet",
+      novaFeedsShot: "Szerverbeállítások & Platform Sablonok",
+      novaBotShot: "Valós Idejű Discord Értesítés & Beágyazás",
+      pillPlayerShot: "Lebegő HUD Audio Lejátszó & Spektrum-analizátor",
     },
     items: {
       swaya: {
@@ -104,6 +108,30 @@ export const hu: Dictionary = {
           { label: "Architektúra", value: "Moduláris Monolit" },
           { label: "Adatszolgáltatók", value: "5+ Metaadat API" },
           { label: "Disztribúció", value: "Hordozható .EXE" },
+        ],
+      },
+      nova: {
+        badge: "KIEMELT PROJEKT • AUTOMATIZÁCIÓ & WEBAPP",
+        title: "Nova - Discord Hírfolyam Bot & Irányítópult",
+        tagline: "Automatizált tartalom-értesítő bot és webes kezelőfelület Discord közösségek számára.",
+        description:
+          "Valós idejű értesítő rendszer, amely manuális linkmegosztás nélkül tartja aktívan a Discord szervereket. Egy aszinkron Python adatgyűjtő háttérszolgáltatást (FastAPI & Discord.py) kapcsol össze egy letisztult React & Vite kezelőfelülettel. A rendszer élő adásokat (YouTube, Twitch, Kick), játékakciókat (Steam, Epic Games, GOG), GitHub frissítéseket és egyéni RSS hírfolyamokat figyel, majd Redis és PostgreSQL segítségével formázott, szerepkör-megjelöléses Discord üzeneteket kézbesít.",
+        impactMetrics: [
+          { label: "Értesítési Sebesség", value: "Közel Valós Idejű" },
+          { label: "Tartalomforrások", value: "10+ Hírfolyam & API" },
+          { label: "Feladatsor", value: "Redis & PostgreSQL" },
+        ],
+      },
+      pillPlayer: {
+        badge: "NYÍLT FORRÁSKÓDÚ • NPM CSOMAG",
+        title: "Pill Player - HUD Cyberpunk Audio Komponens",
+        tagline: "Futurisztikus lebegő HUD audiolejátszó és 16 sávos DSP spektrum-analizátor Reacthez.",
+        description:
+          "Futurisztikus, külső UI függőségektől mentes lebegő zenelejátszó komponens és kibontható HUD konzol Reacthez. Valós idejű 16 sávos Web Audio API DSP spektrumelemzővel, többforrásos lejátszással (HTML5 audio, SoundCloud, YouTube, Mixcloud), 8 beépített kibernetikus témával, folyamatos keresősávval és teljes billentyűzet-vezérléssel rendelkezik.",
+        impactMetrics: [
+          { label: "Függőségek", value: "Zero UI Deps" },
+          { label: "Hangmotorok", value: "4 Provider" },
+          { label: "Analizátor", value: "16-Sávos DSP" },
         ],
       },
     },
@@ -123,13 +151,13 @@ export const hu: Dictionary = {
         id: "backend",
         title: "Backend",
         description: "Nagy átbocsátású, aszinkron API-k és háttérszolgáltatások építése moduláris felépítésben.",
-        skills: ["FastAPI", "Node.js", "REST APIs"],
+        skills: ["FastAPI", "Node.js", "REST APIs", "GraphQL", "Asyncio"],
       },
       {
         id: "frontend",
         title: "Frontend",
         description: "Reaktív, típusbiztos és reszponzív webes felületek modern keretrendszerekkel.",
-        skills: ["React 18 / 19", "Next.js", "Vite", "Vanilla CSS", "Zustand", "TanStack Query", "React Router", "Radix UI"],
+        skills: ["React", "Next.js", "Vite", "Vanilla CSS", "Zustand", "TanStack Query", "React Router", "Radix UI"],
       },
       {
         id: "database",
@@ -139,9 +167,9 @@ export const hu: Dictionary = {
       },
       {
         id: "devops",
-        title: "DevOps & Eszközök",
+        title: "Tesztelés & Kódminőség",
         description: "Kódegységesítés, szigorú statikus analízis és automatizált tesztelés a stabil működésért.",
-        skills: ["Git", "ESLint", "Stylelint", "Vitest", "Playwright", "Pytest", "Ruff"],
+        skills: ["ESLint", "Stylelint", "Vitest", "Playwright", "Pytest", "Ruff", "Pyright", "Pyrefly"],
       },
       {
         id: "desktop",

@@ -17,7 +17,7 @@ describe("SkillsTelemetry Component", () => {
     expect(screen.getByRole("heading", { name: "Backend" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Frontend" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Database" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "DevOps & Tooling" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Testing & Code Quality" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Desktop & Native" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Mathematics & Modeling" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Verbal Branding & Creative" })).toBeInTheDocument();
@@ -34,18 +34,22 @@ describe("SkillsTelemetry Component", () => {
     // Backend
     expect(screen.getByText("FastAPI")).toBeInTheDocument();
     expect(screen.getByText("Node.js")).toBeInTheDocument();
+    expect(screen.getByText("GraphQL")).toBeInTheDocument();
+    expect(screen.getByText("Asyncio")).toBeInTheDocument();
 
     // Frontend
-    expect(screen.getByText("React 18 / 19")).toBeInTheDocument();
+    expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText("Next.js")).toBeInTheDocument();
 
     // Database
     expect(screen.getByText("PostgreSQL")).toBeInTheDocument();
     expect(screen.getByText("Redis")).toBeInTheDocument();
 
-    // DevOps
+    // Testing & Code Quality
     expect(screen.getByText("Playwright")).toBeInTheDocument();
     expect(screen.getByText("Pytest")).toBeInTheDocument();
+    expect(screen.getByText("Pyright")).toBeInTheDocument();
+    expect(screen.getByText("Pyrefly")).toBeInTheDocument();
 
     // Desktop
     expect(screen.getByText("Electron")).toBeInTheDocument();

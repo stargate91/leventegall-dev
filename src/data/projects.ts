@@ -17,7 +17,6 @@ export interface ProjectData {
   title: string;
   tagline: string;
   description: string;
-  githubUrl?: string | undefined;
   liveUrl?: string | undefined;
   stack: string[];
   impactMetrics: ImpactMetric[];
@@ -63,6 +62,70 @@ export function getProjectsData(dict: Dictionary): ProjectData[] {
           id: "detail",
           src: "/projects/swaya/detail.webp",
           title: dict.projects.simulators.swayaDetailShot,
+        },
+      ],
+    },
+    {
+      id: "nova",
+      badge: dict.projects.items.nova.badge,
+      title: dict.projects.items.nova.title,
+      tagline: dict.projects.items.nova.tagline,
+      description: dict.projects.items.nova.description,
+      liveUrl: "https://novafeeds.xyz/",
+      stack: [
+        "Python",
+        "FastAPI",
+        "Discord.py",
+        "React",
+        "TypeScript",
+        "Vite",
+        "PostgreSQL",
+        "Redis",
+        "SQLAlchemy",
+        "Alembic",
+        "Docker",
+      ],
+      impactMetrics: dict.projects.items.nova.impactMetrics,
+      screenshots: [
+        {
+          id: "landing",
+          src: "/projects/nova/landing.webp",
+          title: dict.projects.simulators.novaDashboardShot,
+        },
+        {
+          id: "settings",
+          src: "/projects/nova/settings.webp",
+          title: dict.projects.simulators.novaFeedsShot,
+        },
+        {
+          id: "discord",
+          src: "/projects/nova/discord-alert.webp",
+          title: dict.projects.simulators.novaBotShot,
+        },
+      ],
+    },
+    {
+      id: "pill-player",
+      badge: dict.projects.items.pillPlayer.badge,
+      title: dict.projects.items.pillPlayer.title,
+      tagline: dict.projects.items.pillPlayer.tagline,
+      description: dict.projects.items.pillPlayer.description,
+      liveUrl: "https://www.npmjs.com/package/@stargate91/pill-player",
+      stack: [
+        "React",
+        "TypeScript",
+        "Web Audio API",
+        "tsup",
+        "Vite",
+        "UnoCSS",
+        "npm Package",
+      ],
+      impactMetrics: dict.projects.items.pillPlayer.impactMetrics,
+      screenshots: [
+        {
+          id: "preview",
+          src: "/projects/pill-player/preview.webp",
+          title: dict.projects.simulators.pillPlayerShot,
         },
       ],
     },

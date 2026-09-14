@@ -74,9 +74,15 @@ export interface ProjectsLocale {
     swayaOrganizerShot: string;
     swayaLibraryShot: string;
     swayaDetailShot: string;
+    novaDashboardShot: string;
+    novaFeedsShot: string;
+    novaBotShot: string;
+    pillPlayerShot: string;
   };
   items: {
     swaya: ProjectItemLocale;
+    nova: ProjectItemLocale;
+    pillPlayer: ProjectItemLocale;
   };
 }
 

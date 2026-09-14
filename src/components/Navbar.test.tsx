@@ -41,8 +41,8 @@ describe("Navbar Component", () => {
       </LocaleProvider>,
     );
 
-    const trajectoryLink = screen.getByRole("link", { name: /Journey/i });
-    expect(trajectoryLink).toHaveAttribute("href", "#trajectory");
+    const journeyLink = screen.getByRole("link", { name: /Journey/i });
+    expect(journeyLink).toHaveAttribute("href", "#journey");
 
     const projectsLink = screen.getByRole("link", { name: /Projects/i });
     expect(projectsLink).toHaveAttribute("href", "#projects");
@@ -54,7 +54,7 @@ describe("Navbar Component", () => {
     expect(servicesLink).toHaveAttribute("href", "#services");
 
     const clientsLink = screen.getByRole("link", { name: /Clients/i });
-    expect(clientsLink).toHaveAttribute("href", "#reviews");
+    expect(clientsLink).toHaveAttribute("href", "#clients");
 
     const contactLink = screen.getByRole("link", { name: /Contact/i });
     expect(contactLink).toHaveAttribute("href", "#contact");

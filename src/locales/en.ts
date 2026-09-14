@@ -92,6 +92,10 @@ export const en: Dictionary = {
       swayaOrganizerShot: "Media Organizer & Renaming Pipeline",
       swayaLibraryShot: "Media Library & Poster Grid",
       swayaDetailShot: "Media Details & Metadata Inspector",
+      novaDashboardShot: "Landing Page & Interactive Live Preview",
+      novaFeedsShot: "Guild Settings & Platform Alert Templates",
+      novaBotShot: "Real-Time Discord Notification Embed",
+      pillPlayerShot: "Floating HUD Audio Console & Spectrum Visualizer",
     },
     items: {
       swaya: {
@@ -104,6 +108,30 @@ export const en: Dictionary = {
           { label: "Architecture", value: "Modular Monolith" },
           { label: "Data Providers", value: "5+ Metadata APIs" },
           { label: "Distribution", value: "Portable .EXE" },
+        ],
+      },
+      nova: {
+        badge: "FEATURED PROJECT • AUTOMATION & WEB APP",
+        title: "Nova - Discord Feed Bot & Dashboard",
+        tagline: "Automated content feed notifier and self-service management dashboard for Discord communities.",
+        description:
+          "A real-time notification system designed to keep Discord servers active without manual link sharing. It pairs an asynchronous Python polling daemon (FastAPI & Discord.py) with a clean React & Vite management dashboard. The service tracks live streams (YouTube, Twitch, Kick), game store deals (Steam, Epic Games, GOG), GitHub releases, and custom RSS feeds, using Redis and PostgreSQL queues to reliably deliver formatted Discord embeds with role mentions.",
+        impactMetrics: [
+          { label: "Delivery Speed", value: "Near Real-Time" },
+          { label: "Content Sources", value: "10+ Feeds & APIs" },
+          { label: "Task Queue", value: "Redis & PostgreSQL" },
+        ],
+      },
+      pillPlayer: {
+        badge: "OPEN SOURCE • NPM PACKAGE",
+        title: "Pill Player - HUD Cyber Audio Component",
+        tagline: "Futuristic floating HUD audio player with 16-band DSP spectrum visualizer for React.",
+        description:
+          "A zero-runtime UI dependency floating audio component and collapsible HUD widget for React. Engineered with Web Audio API for real-time 16-band DSP spectrum analysis, unified multi-engine playback (HTML5 audio, SoundCloud, YouTube, Mixcloud), 8 cybernetic color themes, interactive scrubbing seekbar, and full keyboard navigation.",
+        impactMetrics: [
+          { label: "Dependencies", value: "Zero UI Deps" },
+          { label: "Audio Engines", value: "4 Providers" },
+          { label: "Visualizer", value: "16-Band DSP" },
         ],
       },
     },
@@ -123,13 +151,13 @@ export const en: Dictionary = {
         id: "backend",
         title: "Backend",
         description: "High-throughput, asynchronous API services and background daemons with modular architecture.",
-        skills: ["FastAPI", "Node.js", "REST APIs"],
+        skills: ["FastAPI", "Node.js", "REST APIs", "GraphQL", "Asyncio"],
       },
       {
         id: "frontend",
         title: "Frontend",
         description: "Reactive, type-safe, and responsive user interfaces built with modern web frameworks.",
-        skills: ["React 18 / 19", "Next.js", "Vite", "Vanilla CSS", "Zustand", "TanStack Query", "React Router", "Radix UI"],
+        skills: ["React", "Next.js", "Vite", "Vanilla CSS", "Zustand", "TanStack Query", "React Router", "Radix UI"],
       },
       {
         id: "database",
@@ -139,9 +167,9 @@ export const en: Dictionary = {
       },
       {
         id: "devops",
-        title: "DevOps & Tooling",
+        title: "Testing & Code Quality",
         description: "Code consistency, strict static analysis, and automated test pipelines for reliable delivery.",
-        skills: ["Git", "ESLint", "Stylelint", "Vitest", "Playwright", "Pytest", "Ruff"],
+        skills: ["ESLint", "Stylelint", "Vitest", "Playwright", "Pytest", "Ruff", "Pyright", "Pyrefly"],
       },
       {
         id: "desktop",

@@ -49,6 +49,7 @@
     "gitleaks",
     "Glassmorphism",
     "Gnuplot",
+    "GraphQL",
     "gnuplot",
     "Healthcheck",
     "JetBrains",
@@ -68,6 +69,7 @@
     "NextJS",
     "Neurofunk",
     "not-found",
+    "novafeeds",
     "nypox",
     "opengraph",
     "Oxlint",
@@ -77,6 +79,8 @@
     "Pydantic",
     "PyQt",
     "PyQt6",
+    "Pyrefly",
+    "Pyright",
     "Pytest",
     "Quickstart",
     "Radix",
@@ -184,7 +188,12 @@
     "llmstxt",
     "HSTS",
     "Lightbox",
-    "lintstagedrc"
+    "lintstagedrc",
+    "tsup",
+    "UnoCSS",
+    "SoundCloud",
+    "Mixcloud",
+    "seekbar"
   ],
   "flagWords": []
 }

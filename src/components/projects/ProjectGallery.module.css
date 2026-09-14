@@ -28,6 +28,14 @@
   width: 100%;
 }
 
+.gridSingle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
 @media (max-width: 992px) {
   .grid {
     grid-template-rows: auto;
@@ -123,12 +131,22 @@
     height: 120px;
     aspect-ratio: 16 / 9;
   }
+
+  .gridSingle .thumbnailCard .imageWrapper {
+    height: 420px;
+    aspect-ratio: auto;
+  }
 }
 
 @media (max-width: 640px) {
   .thumbnailCard .imageWrapper {
     height: 160px;
     aspect-ratio: 16 / 9;
+  }
+
+  .gridSingle .thumbnailCard .imageWrapper {
+    height: 360px;
+    aspect-ratio: auto;
   }
 }
 
@@ -138,6 +156,22 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
+}
+
+.gridSingle .thumbnailCard {
+  height: 100%;
+  min-height: 0;
+}
+
+.gridSingle .imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tone-a);
+}
+
+.gridSingle .thumbnailImg {
+  object-fit: contain;
 }
 
 .thumbnailCard:hover .thumbnailImg,

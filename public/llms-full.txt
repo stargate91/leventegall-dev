@@ -90,9 +90,9 @@ Levente offers three primary engineering and strategic solutions, along with bes
 - HTML5 & CSS3 (Semantic markup, modern layout models, tokenized CSS)
 
 ### Web & Frameworks
-- Frontend: Next.js (App Router), React 18/19, Vite, Zustand, TanStack Query, Radix UI primitives.
+- Frontend: Next.js (App Router), React, Vite, Zustand, TanStack Query, Radix UI primitives.
 - Styling: Token-based Vanilla CSS, CSS Modules, CSS Custom Properties (Zero-runtime overhead).
-- Backend: FastAPI, Uvicorn, Node.js, RESTful API architecture.
+- Backend: FastAPI, Node.js, REST APIs, GraphQL, Asyncio.
 - Desktop: Electron, MPV IPC.
 
 ### Persistence & Storage
@@ -100,9 +100,9 @@ Levente offers three primary engineering and strategic solutions, along with bes
 - PostgreSQL (Production relational workloads)
 - Redis / Upstash (Distributed caching and sliding-window rate limiting)
 
-### Quality, Security & DevOps
+### Quality, Security & Testing
 - Testing: Vitest, Playwright, React Testing Library, Pytest.
-- Static Analysis: ESLint, TypeScript strict mode, Stylelint, CSpell, Ruff.
+- Static Analysis: ESLint, TypeScript strict mode, Stylelint, CSpell, Ruff, Pyright, Pyrefly.
 - Security Best Practices: Strict Content Security Policy (CSP), CSRF double-submit token verification, encrypted audit trails, rate limiting, and RFC 9309-compliant robots/SEO directives.
 
 ---

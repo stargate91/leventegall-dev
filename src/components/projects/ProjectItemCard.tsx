@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Launch } from "@carbon/icons-react";
+import { Launch } from "@carbon/icons-react";
 import styles from "./ProjectItemCard.module.css";
 import ProjectGallery from "./ProjectGallery";
 import type { ProjectData } from "@/data/projects";
@@ -82,27 +82,6 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
                 {dict.projects.labels.visitWebsite}
               </Button>
             )}
-            {project.githubUrl && (
-              <Button
-                variant="secondary"
-                size="sm"
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                iconRight={<ArrowRight size={14} />}
-              >
-                {dict.projects.labels.viewGithub}
-              </Button>
-            )}
-            {!project.githubUrl && (
-              <Button
-                variant="secondary"
-                size="sm"
-                href="#contact"
-              >
-                {dict.projects.labels.discussWork}
-              </Button>
-            )}
             {project.id === "swaya" && (
               <Button
                 variant="secondary"
@@ -112,15 +91,13 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
                 {dict.projects.labels.caseStudy}
               </Button>
             )}
-            {project.githubUrl && (
-              <Button
-                variant="secondary"
-                size="sm"
-                href="#contact"
-              >
-                {dict.projects.labels.discussWork}
-              </Button>
-            )}
+            <Button
+              variant="secondary"
+              size="sm"
+              href="#contact"
+            >
+              {dict.projects.labels.discussWork}
+            </Button>
           </Inline>
         </Stack>
 
