@@ -1,6 +1,28 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Cosmic Portfolio E2E Quality Verification", () => {
+  for (const width of [390, 1920]) {
+    test(`opens every project image at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 960 });
+      await page.goto("/");
+      const previews = page.locator("#projects button[aria-label]");
+      await expect(previews).toHaveCount(7);
+
+      for (const preview of await previews.all()) {
+        const imageTitle = await preview.locator("img").getAttribute("alt");
+        if (!imageTitle) {
+          throw new Error("Project preview must have an accessible image title");
+        }
+        await preview.click();
+        const dialog = page.getByRole("dialog", { name: imageTitle });
+        await expect(dialog).toBeInViewport();
+        await expect(dialog.locator("img")).toBeVisible();
+        await page.keyboard.press("Escape");
+        await expect(dialog).toHaveCount(0);
+      }
+    });
+  }
+
   test("renders hero chamber with proper title and metadata", async ({ page }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Levente Gáll/);

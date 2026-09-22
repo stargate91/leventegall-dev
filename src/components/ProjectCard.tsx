@@ -1,6 +1,5 @@
 "use client";
 
-import { Layers } from "@carbon/icons-react";
 import styles from "./ProjectCard.module.css";
 import ProjectItemCard from "./projects/ProjectItemCard";
 import { SectionHeader, Stack } from "@/components/ui";
@@ -15,8 +14,7 @@ export default function ProjectCard() {
     <div className="section-container">
       {/* Header */}
       <SectionHeader
-        subtitle={dict.projects.subtitle}
-        subtitleIcon={<Layers size={14} />}
+        subtitle=""
         title={dict.projects.title}
         description={dict.projects.description}
       />

@@ -1,10 +1,15 @@
 .container {
+  --horizon-duration: 14s;
+  --horizon-delay: 0.8s;
+  --tail-length: 340px;
+
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background-color: var(--tone-a);
+  animation: horizonTravel var(--horizon-duration) linear var(--horizon-delay) infinite both;
 }
 
 /* Atmospheric Core Glow centered behind the upper workspace */
@@ -101,142 +106,201 @@
    Photonic Data Packet Stream (Kinetic Burst & Optical Trail)
    ========================================================================= */
 
-.upperDataStream {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  mix-blend-mode: screen;
-  animation: upperPhotonBurst 7.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  will-change: transform, opacity;
+@property --horizon-x {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: -420px;
 }
 
+.upperDataStream,
 .horizonDataStream {
   position: absolute;
   top: -1px;
   left: 0;
-  display: flex;
-  align-items: center;
+  width: var(--tail-length);
+  height: 2px;
   mix-blend-mode: screen;
-  animation: horizonPhotonBurst 9.2s cubic-bezier(0.25, 1, 0.5, 1) 2.4s infinite;
   will-change: transform, opacity;
 }
 
-/* Leading Photonic Node with Incandescent Core and Tapered Tail */
-.photonLeader {
-  position: relative;
-  width: 200px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--color-accent-subtle) 25%,
-    var(--color-accent) 65%,
-    var(--color-white) 96%,
-    var(--color-white) 100%
-  );
-  border-radius: 1px;
-  box-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent-glow);
+.upperDataStream {
+  --tail-length: 280px;
+
+  animation: upperTravel var(--horizon-duration) linear var(--horizon-delay) infinite both;
 }
 
-/* Super-Bright Incandescent Photon Head */
-.photonLeader::after {
+.horizonDataStream {
+  transform: translateX(calc(var(--horizon-x) - var(--tail-length)));
+  animation: horizonVisibility var(--horizon-duration) linear var(--horizon-delay) infinite both;
+}
+
+/* A narrow tapered core stays sharp inside a softer optical trail. */
+.photonLeader {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-subtle) 18%, var(--color-accent) 62%, var(--color-accent-bright) 91%, var(--color-white));
+  clip-path: polygon(0 45%, 70% 20%, 100% 0, 100% 100%, 70% 80%, 0 55%);
+}
+
+.upperDataStream::before,
+.horizonDataStream::before {
   position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 4px;
-  height: 4px;
+  top: -12px;
+  right: -24px;
+  width: calc(100% + 24px);
+  height: 26px;
+  content: "";
+  background: radial-gradient(ellipse at 90% 50%, rgb(156 220 254 / 40%), var(--color-accent-glow) 25%, transparent 72%);
+  filter: blur(5px);
+}
+
+.upperDataStream::after,
+.horizonDataStream::after {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  width: 6px;
+  height: 6px;
   content: "";
   background: var(--color-white);
   border-radius: 50%;
-  box-shadow:
-    0 0 4px var(--color-white),
-    0 0 10px var(--color-accent-bright),
-    0 0 20px var(--color-accent-glow);
+  box-shadow: 0 0 5px var(--color-white), 0 0 14px var(--color-accent-bright), 0 0 32px var(--color-accent);
 }
 
-/* Trailing Sub-Packet Bit Echo */
-.photonTrailBit {
+.upperDataStream::after {
+  width: 5px;
+  height: 5px;
+  box-shadow: 0 0 4px var(--color-accent-bright), 0 0 18px var(--color-accent);
+}
+
+/* Same floor geometry as the base grid; only the moving light mask changes. */
+.gridIllumination {
   position: absolute;
-  right: 220px;
-  width: 28px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--color-accent-dim) 40%,
-    var(--color-accent) 100%
-  );
-  border-radius: 1px;
-  box-shadow: 0 0 8px var(--color-accent-glow);
-  opacity: 70%;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 180px 130px at var(--horizon-x) 24px, var(--color-black) 0%, rgb(0 0 0 / 65%) 30%, transparent 100%);
+  animation: horizonVisibility var(--horizon-duration) linear var(--horizon-delay) infinite both;
 }
 
-@keyframes upperPhotonBurst {
-  0% {
+.litGrid {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 90vh;
+  background-image:
+    linear-gradient(to right, rgb(156 220 254 / 45%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(156 220 254 / 45%) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(450px) rotateX(60deg);
+  transform-origin: center top;
+}
+
+@keyframes upperTravel {
+  0%, 40% {
     opacity: 0%;
-    transform: translateX(-280px);
+    transform: translateX(-420px);
   }
 
-  4% {
-    opacity: 100%;
+  42%, 57% {
+    opacity: 65%;
   }
 
-  38% {
-    opacity: 100%;
-    transform: translateX(calc(100vw + 280px));
-  }
-
-  38.1% {
+  60%, 100% {
     opacity: 0%;
-    transform: translateX(calc(100vw + 280px));
-  }
-
-  100% {
-    opacity: 0%;
-    transform: translateX(calc(100vw + 280px));
+    transform: translateX(calc(100vw + 60px));
   }
 }
 
-@keyframes horizonPhotonBurst {
+@keyframes horizonTravel {
   0% {
-    opacity: 0%;
-    transform: translateX(-280px);
+    --horizon-x: -80px;
   }
 
-  4% {
+  34%, 100% {
+    --horizon-x: calc(100vw + 420px);
+  }
+}
+
+@keyframes horizonVisibility {
+  0%, 34%, 100% {
+    opacity: 0%;
+  }
+
+  3%, 29% {
     opacity: 100%;
   }
+}
 
-  42% {
-    opacity: 100%;
-    transform: translateX(calc(100vw + 280px));
+/* At constant travel speed, each point on the path fades over 320ms.
+   0.32 / 4.76 for the horizon; 0.32 / 2.8 for the upper pass. */
+.afterglow {
+  position: absolute;
+  top: 1px;
+  right: 100%;
+  width: calc((100vw + 500px) * 0.0672);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(156 220 254 / 22%));
+  box-shadow: 0 0 5px var(--color-accent-glow);
+}
+
+.upperDataStream .afterglow {
+  width: calc((100vw + 480px) * 0.1143);
+  opacity: 55%;
+}
+
+.reflection {
+  position: absolute;
+  top: 9px;
+  right: -75px;
+  width: 280px;
+  height: 110px;
+  background: radial-gradient(ellipse at 70% 0%, rgb(156 220 254 / 12%), rgb(55 148 255 / 5%) 35%, transparent 72%);
+  filter: blur(8px);
+  transform: perspective(450px) rotateX(60deg);
+  transform-origin: center top;
+}
+
+@media (max-width: 768px) {
+  .container {
+    --tail-length: 190px;
   }
 
-  42.1% {
-    opacity: 0%;
-    transform: translateX(calc(100vw + 280px));
+  .upperDataStream {
+    --tail-length: 140px;
   }
 
-  100% {
-    opacity: 0%;
-    transform: translateX(calc(100vw + 280px));
+  .gridIllumination {
+    height: 140px;
+    mask-image: radial-gradient(ellipse 100px 90px at var(--horizon-x) 16px, rgb(0 0 0 / 70%), transparent);
+  }
+
+  .reflection {
+    right: -45px;
+    width: 180px;
+    height: 80px;
+    opacity: 60%;
+  }
+
+  .upperDataStream::before,
+  .horizonDataStream::before {
+    top: -8px;
+    height: 18px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .perspectiveFloor {
-    mask-image: none;
-    transform: none;
-  }
-
-  .horizonLaser {
-    box-shadow: 0 0 6px var(--color-accent-glow);
+  .container {
+    animation: none;
   }
 
   .upperDataStream,
-  .horizonDataStream {
+  .horizonDataStream,
+  .gridIllumination {
     display: none;
     animation: none;
   }

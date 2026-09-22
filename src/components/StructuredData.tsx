@@ -23,8 +23,8 @@ export default function StructuredData({ locale = "en" }: StructuredDataProps) {
         url: siteConfig.url,
         image: `${siteConfig.url}/icon-512.png`,
         jobTitle: isHu
-          ? "Full-Stack Fejlesztő & Márkastratéga"
-          : "Full-Stack Developer & Brand Strategist",
+          ? "Full-Stack Fejlesztő"
+          : "Full-Stack Developer",
         email: siteConfig.email,
         worksFor: {
           "@type": "Organization",
@@ -70,8 +70,8 @@ export default function StructuredData({ locale = "en" }: StructuredDataProps) {
         "@type": "ProfessionalService",
         "@id": isHu ? `${canonicalUrl}/#service` : `${siteConfig.url}/#service`,
         name: isHu
-          ? "Gáll Levente - Full-Stack Architektúra & Márkastratégia"
-          : "Levente Gáll - Full-Stack Architecture & Brand Strategy",
+          ? "Gáll Levente - Full-Stack Fejlesztés & Automatizálás"
+          : "Levente Gáll - Full-Stack Development & Automation",
         url: canonicalUrl,
         email: siteConfig.email,
         description: dict.hero.description,
@@ -111,7 +111,7 @@ export default function StructuredData({ locale = "en" }: StructuredDataProps) {
         "@id": `${siteConfig.url}/#website`,
         url: siteConfig.url,
         name: isHu
-          ? "Levente Gáll • Full-Stack Fejlesztő & Márkastratéga"
+          ? "Levente Gáll • Full-Stack Fejlesztő"
           : siteConfig.title,
         publisher: {
           "@id": `${siteConfig.url}/#person`,

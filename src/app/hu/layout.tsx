@@ -13,23 +13,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   referrer: "strict-origin-when-cross-origin",
   title: {
-    default: "Levente Gáll • Full-Stack Fejlesztő & Márkastratéga",
+    default: "Levente Gáll • Full-Stack Fejlesztő",
     template: "%s | Gáll Levente",
   },
   description:
-    "Full-stack szoftvermérnök és márkastratéga. ELTE fizikus háttér, 1,100+ ügyfél a Fiverr-en. FastAPI, Python, React, Next.js és konverziófókuszú branding.",
+    "Full-stack fejlesztő: webalkalmazások, backendek és automatizálás Python, FastAPI, React, Next.js és TypeScript alapokon. Fizikusi háttér és nemzetközi ügyféltapasztalat.",
   keywords: [
     "Levente Gáll",
     "Gáll Levente",
     "Full-Stack Fejlesztő",
-    "Márkastratéga",
     "Python Fejlesztő",
     "FastAPI",
     "React",
     "Next.js",
     "TypeScript",
-    "Névadás",
-    "Szövegírás",
     "Budapest",
     "ELTE Fizika",
   ],
@@ -54,20 +51,22 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
+    images: [{ url: `${siteConfig.url}/hu/opengraph-image` }],
     type: "website",
     locale: "hu_HU",
     alternateLocale: ["en_US"],
     url: `${siteConfig.url}/hu`,
-    title: "Levente Gáll • Full-Stack Fejlesztő & Márkastratéga",
+    title: "Levente Gáll • Full-Stack Fejlesztő",
     description:
-      "Full-stack szoftvermérnök és márkastratéga. ELTE fizikus háttér, 1,100+ ügyfél a Fiverr-en. FastAPI, Python, React, Next.js és konverziófókuszú branding.",
+      "Full-stack fejlesztő: webalkalmazások, backendek és automatizálás Python, FastAPI, React, Next.js és TypeScript alapokon. Fizikusi háttér és nemzetközi ügyféltapasztalat.",
     siteName: "Levente Gáll Portfólió",
   },
   twitter: {
+    images: [{ url: `${siteConfig.url}/hu/opengraph-image` }],
     card: "summary_large_image",
-    title: "Levente Gáll • Full-Stack Fejlesztő & Márkastratéga",
+    title: "Levente Gáll • Full-Stack Fejlesztő",
     description:
-      "Full-stack szoftvermérnök és márkastratéga. ELTE fizikus háttér, 1,100+ ügyfél a Fiverr-en. FastAPI, Python, React, Next.js és konverziófókuszú branding.",
+      "Full-stack fejlesztő: webalkalmazások, backendek és automatizálás Python, FastAPI, React, Next.js és TypeScript alapokon. Fizikusi háttér és nemzetközi ügyféltapasztalat.",
     creator: "@stargate91",
   },
   robots: {

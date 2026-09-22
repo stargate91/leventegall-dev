@@ -22,6 +22,10 @@ const iconMap = {
 export default function AboutStory() {
   const { dict } = useLocale();
   const timelineEntries = getTimelineEntries(dict);
+  const orderedEntries = [
+    ...timelineEntries.filter((entry) => entry.iconName === "Cpu"),
+    ...timelineEntries.filter((entry) => entry.iconName !== "Cpu"),
+  ];
 
   return (
     <div className="section-container">
@@ -33,28 +37,17 @@ export default function AboutStory() {
         description={dict.story.description}
       />
 
-      {/* Trajectory Pipeline Bar */}
-      <div className={styles.pipelineWrapper} aria-hidden="true">
-        <div className={styles.pipelineTrack}>
-          <div className={styles.pipelineLine} />
-          {timelineEntries.map((log, index) => (
-            <div key={log.sol} className={styles.pipelineNode}>
-              <span className={styles.nodeIndex}>0{index + 1}</span>
-              <span className={styles.nodeLabel}>{log.sol}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Timeline Log Grid */}
       <div className={styles.grid}>
-        {timelineEntries.map((log) => {
+        {orderedEntries.map((log) => {
           const Icon = iconMap[log.iconName];
+          const featured = log.iconName === "Cpu";
           return (
             <HudCard
               key={log.sol}
-              variant="surfaceDeck"
-              className={styles.logCard}
+              variant="surface"
+              corners={featured}
+              className={`${styles.logCard} ${featured ? styles.featured : styles.supporting}`}
             >
               <Stack gap="sm">
                 {/* Meta Badge */}

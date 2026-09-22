@@ -94,6 +94,7 @@ export default function Testimonials() {
         subtitle={dict.testimonials.subtitle}
         subtitleIcon={<Certificate size={14} />}
         title={dict.testimonials.title}
+        description={dict.testimonials.context}
       />
 
       {/* Testimonials Smooth Scroll Carousel with Side Chevrons */}

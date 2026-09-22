@@ -16,17 +16,17 @@ export interface ServiceOption {
 export function getPackageTiers(dict: Dictionary): PackageTier[] {
   return [
     {
-      id: "branding",
-      name: dict.services.tiers.branding.name,
-      codename: dict.services.tiers.branding.codename,
-      description: dict.services.tiers.branding.description,
-    },
-    {
       id: "development",
       name: dict.services.tiers.development.name,
       codename: dict.services.tiers.development.codename,
       isPopular: true,
       description: dict.services.tiers.development.description,
+    },
+    {
+      id: "automation",
+      name: dict.services.tiers.automation.name,
+      codename: dict.services.tiers.automation.codename,
+      description: dict.services.tiers.automation.description,
     },
     {
       id: "discord-bot",

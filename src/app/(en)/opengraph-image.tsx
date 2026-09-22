@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Levente Gáll • Full-Stack Developer & Brand Strategist";
+export const alt = "Levente Gáll • Full-Stack Developer";
 export const size = {
   width: 1200,
   height: 630,
@@ -101,7 +101,7 @@ export default function Image() {
               lineHeight: 1.45,
             }}
           >
-            Full-Stack Development (FastAPI, Python, React, Next.js) • ELTE Physics Background • Brand Naming & Strategy
+            Full-Stack Development (FastAPI, Python, React, Next.js) • ELTE Physics Background • Backends & Automation
           </div>
         </div>
 

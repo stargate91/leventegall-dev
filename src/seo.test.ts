@@ -180,13 +180,13 @@ describe("Automated SEO Verification Suite", () => {
 
       const llmsContent = fs.readFileSync(llmsPath, "utf-8");
       expect(llmsContent).toContain("## Services & Solutions");
-      expect(llmsContent).toContain("Brand Naming");
+      expect(llmsContent).toContain("Backends & Automation");
       expect(llmsContent).toContain("Full-Stack & Web Development");
       expect(llmsContent).toContain("Discord Bot Development");
       expect(llmsContent).toContain("https://leventegall.dev/llms-full.txt");
 
       const llmsFullContent = fs.readFileSync(llmsFullPath, "utf-8");
-      expect(llmsFullContent).toContain("Brand Naming & Verbal Identity");
+      expect(llmsFullContent).toContain("Backends & Automation");
       expect(llmsFullContent).toContain("Full-Stack Software & Web Development");
       expect(llmsFullContent).toContain("Discord Bot Development & Automation");
       expect(llmsFullContent).toContain("Swaya Media Manager");

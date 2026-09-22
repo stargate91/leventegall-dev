@@ -19,6 +19,7 @@ export interface ProjectData {
   description: string;
   liveUrl?: string | undefined;
   stack: string[];
+  primaryStack: string[];
   impactMetrics: ImpactMetric[];
   screenshots?: ProjectScreenshot[] | undefined;
 }
@@ -46,6 +47,7 @@ export function getProjectsData(dict: Dictionary): ProjectData[] {
         "Zustand",
         "MPV IPC",
       ],
+      primaryStack: ["FastAPI", "Python", "Electron", "React", "SQLite"],
       impactMetrics: dict.projects.items.swaya.impactMetrics,
       screenshots: [
         {
@@ -85,6 +87,7 @@ export function getProjectsData(dict: Dictionary): ProjectData[] {
         "Alembic",
         "Docker",
       ],
+      primaryStack: ["Python", "FastAPI", "React", "PostgreSQL", "Redis"],
       impactMetrics: dict.projects.items.nova.impactMetrics,
       screenshots: [
         {
@@ -120,6 +123,7 @@ export function getProjectsData(dict: Dictionary): ProjectData[] {
         "UnoCSS",
         "npm Package",
       ],
+      primaryStack: ["React", "TypeScript", "Web Audio API", "tsup"],
       impactMetrics: dict.projects.items.pillPlayer.impactMetrics,
       screenshots: [
         {

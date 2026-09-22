@@ -14,8 +14,8 @@ export const en: Dictionary = {
     sidebarBio: "Currently expanding my full-stack depth while migrating the Swaya media manager backend from Python to TypeScript.",
   },
   sections: {
-    about: "01 // ABOUT ME",
-    projects: "02 // FEATURED PROJECTS",
+    about: "02 // ABOUT ME",
+    projects: "01 // FEATURED PROJECTS",
     skills: "03 // SKILLS & TECH STACK",
     services: "04 // HOW I CAN HELP",
     reviews: "05 // TESTIMONIALS",
@@ -23,12 +23,12 @@ export const en: Dictionary = {
   },
   hero: {
     titleMain: "Hi, I’m Levente.",
-    titleGradient: "I build software & brands.",
+    titleGradient: "I turn ideas into working software.",
     description:
-      "Full-stack development, an ELTE physics background, and independent brand naming & taglines.",
+      "Full-stack development, backends, and automation. Python and TypeScript systems paired with clear React interfaces.",
     stats: {
       fiverrValue: "1,100+ Clients\n4.8★ Rating",
-      fiverrLabel: "Brand Naming & Slogans on Fiverr",
+      fiverrLabel: "Previous branding work · Fiverr",
       stackValue: "Full-Stack\nDevelopment",
       stackLabel: "FastAPI, Python, React & TypeScript",
       physicsValue: "Analytical Physics\nMindset",
@@ -37,14 +37,14 @@ export const en: Dictionary = {
   },
   story: {
     subtitle: "Background & Journey",
-    title: "Where Physics, Branding & Code Meet",
-    description: "How an analytical mindset, 5 years of client-tested marketing on Fiverr, and full-stack software development come together.",
+    title: "The perspective behind the code",
+    description: "I bring a physics background and branding experience with over 1,100 international clients to software development. Analytical thinking, clear communication, and a user-focused perspective shape how I build software.",
     timeline: [
       {
         sol: "CHAPTER 01",
         date: "2014 – 2019",
         title: "Physics & Astronomy Studies (ELTE)",
-        desc: "I first got into programming while studying Physics and Astronomy at Eötvös Loránd University (ELTE). That's where I wrote my first code in C and started using Python for numerical methods, data analysis, and simulations. It gave me a solid mathematical foundation and taught me how to break down complex problems step by step.",
+        desc: "I started programming in C and Python while studying Physics and Astronomy at ELTE. Numerical methods and simulations taught me to break complex problems into clear, manageable parts.",
         metrics: [
           "ELTE Physics & Astronomy",
           "First Programming in C",
@@ -55,7 +55,7 @@ export const en: Dictionary = {
         sol: "CHAPTER 02",
         date: "2021 – 2026",
         title: "Startup Naming & Slogans (Fiverr)",
-        desc: "Over 5 years, I built a top-rated freelance branding practice on Fiverr, helping more than 1,100 international founders find the right name and message for their startups. It taught me how people actually think, choose, and buy. Clear naming and sharp copywriting aren't decoration - they're how you earn attention in a crowded market.",
+        desc: "I worked with over 1,100 international clients on naming and tagline projects. I bring that experience in clarifying requirements, communicating clearly, and understanding users into software development.",
         metrics: [
           "1,100+ Orders Delivered",
           "400+ 5-Star Reviews (4.8★)",
@@ -64,9 +64,9 @@ export const en: Dictionary = {
       },
       {
         sol: "CHAPTER 03",
-        date: "2023 – PRESENT",
+        date: "CURRENT FOCUS",
         title: "Backend Architecture & Modern Frontends",
-        desc: "Great branding falls flat without a reliable product, and clean code is wasted if the messaging is confusing. I build robust backends with FastAPI and Python, paired with modern, responsive React and TypeScript frontends. Having one person oversee both means zero handoff friction and a product that feels cohesive from the first headline to the final API call.",
+        desc: "My current focus is full-stack development, backends, and automation. I build systems with FastAPI and Python, alongside React and TypeScript interfaces. My projects span data processing, APIs, and usable frontends, with attention to how the whole system works together.",
         metrics: [
           "FastAPI & Python Architecture",
           "React & Next.js Platforms",
@@ -76,6 +76,9 @@ export const en: Dictionary = {
     ],
   },
   projects: {
+    novaSummary: "Brings live streams, game deals, and updates into Discord automatically. A web dashboard keeps sources and notifications in one place.",
+    pillPlayerSummary: "An embeddable React audio player with a compact, expandable interface. Supports multiple audio sources, a live spectrum display, and keyboard controls.",
+    featuredOutcome: "From scattered media files to an organized library: automated metadata matching, batch renaming, and integrated playback in one desktop app for Windows and Linux.",
     subtitle: "Selected Projects",
     title: "Featured Work & Projects",
     description: "Real-world software and systems built from architectural design to polished, working products.",
@@ -119,7 +122,7 @@ export const en: Dictionary = {
         impactMetrics: [
           { label: "Delivery Speed", value: "Near Real-Time" },
           { label: "Content Sources", value: "10+ Feeds & APIs" },
-          { label: "Task Queue", value: "Redis & PostgreSQL" },
+          { label: "Task Queue", value: "Redis + Postgres" },
         ],
       },
       pillPlayer: {
@@ -214,22 +217,22 @@ export const en: Dictionary = {
     subtitle: "Capabilities & Solutions",
     title: "How Can I Help You?",
     description:
-      "Whether you are launching a new startup, need a scalable full-stack web application, or want a custom event-driven Discord bot - let's build something exceptional together.",
+      "I build web applications, backend APIs, and automated workflows, from system design to a usable interface.",
     recommendedBadge: "FEATURED",
     customCalloutTitle: "HAVE A CUSTOM OR HYBRID REQUIREMENT?",
     customCalloutDesc:
-      "Need a combination of brand strategy, a custom Discord bot, and a high-performance web platform? Let's discuss a tailored solution for your exact workflow.",
+      "Planning a web application, an API integration, or an automated workflow? Let's discuss the task and the right technical approach.",
     customCalloutButton: "Discuss Your Project",
     tiers: {
-      branding: {
-        name: "Brand Naming & Slogans",
-        codename: "01 // BRANDING",
+      automation: {
+        name: "Backends & Automation",
+        codename: "02 // BACKEND & AUTOMATION",
         description:
-          "Trademark-cleared brand names, high-impact slogans, and clear value positioning to help your startup stand out and earn immediate trust.",
+          "API integrations, data-processing pipelines, and background services in Python and TypeScript to automate repetitive work.",
       },
       development: {
         name: "Full-Stack & Web Development",
-        codename: "02 // SOFTWARE & WEB",
+        codename: "01 // SOFTWARE & WEB",
         description:
           "Scalable web applications, backend APIs, and custom software systems engineered with clean architecture, responsive interfaces, and reliable databases.",
       },
@@ -241,7 +244,6 @@ export const en: Dictionary = {
       },
     },
     contactTierOptions: [
-      { value: "branding", label: "Brand Naming & Slogans" },
       { value: "development", label: "Full-Stack & Web Development" },
       { value: "discord-bot", label: "Discord Bot Development" },
       { value: "custom", label: "Custom Project / Consultation" },
@@ -253,8 +255,9 @@ export const en: Dictionary = {
     ],
   },
   testimonials: {
+    context: "Feedback from previous branding collaborations, reflecting communication, understanding requirements, and working together.",
     subtitle: "Client Feedback",
-    title: "What Founders Say About Working With Me",
+    title: "In my clients' words",
     labels: {
       prev: "Previous reviews",
       next: "Next reviews",
@@ -306,7 +309,7 @@ export const en: Dictionary = {
   contact: {
     subtitle: "Project Inquiry",
     title: "Let's Talk About Your Project",
-    description: "Have an idea in mind, need a strong brand name, or want to build a dependable full-stack web application? Send me a message and I'll get back to you within 24 hours.",
+    description: "Planning a web application, backend, or automation project? Tell me briefly what you need, and I'll reply within 24 hours.",
     fields: {
       name: "Your Name *",
       namePlaceholder: "e.g. Alex Miller",
@@ -315,7 +318,7 @@ export const en: Dictionary = {
       tier: "Project Scope / Service",
       timeline: "Expected Timeline",
       brief: "Project Details & Goals *",
-      briefPlaceholder: "Tell me a bit about your product, your goals, or what kind of brand identity or software system you're looking to build...",
+      briefPlaceholder: "What should the software help with, who will use it, and where are you with the idea?",
     },
     errors: {
       nameRequired: "Please enter your name.",
@@ -348,7 +351,7 @@ export const en: Dictionary = {
     },
   },
   footer: {
-    subTitle: "FULL-STACK DEVELOPER & BRAND STRATEGIST",
+    subTitle: "FULL-STACK DEVELOPER",
   },
   audioPlayer: {
     badge: "Music Player",
@@ -365,6 +368,7 @@ export const en: Dictionary = {
     prevTrack: "Previous track",
     nextTrack: "Next track",
     selectTrack: "Tracklist",
+    seekLabel: "Playback position",
     directPlayHint: "Click player to start playback directly",
   },
   error: {

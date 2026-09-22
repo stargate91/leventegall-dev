@@ -62,7 +62,7 @@ describe("StructuredData Component", () => {
 
     const service = graph.find((item) => item["@type"] === "ProfessionalService");
     expect(service).toBeDefined();
-    expect(service?.name).toContain("Architektúra");
+    expect(service?.name).toContain("Fejlesztés & Automatizálás");
     expect(service?.areaServed).toEqual({
       "@type": "Place",
       name: "Worldwide",

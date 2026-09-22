@@ -19,7 +19,7 @@ import { siteConfig } from "@/config/site";
 import { useScrollSpy, useFocusTrap } from "@/hooks";
 import { useLocale } from "@/locales";
 
-const SECTION_IDS = ["hero", "journey", "projects", "skills", "services", "clients", "contact"];
+const SECTION_IDS = ["hero", "projects", "journey", "skills", "services", "clients", "contact"];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,8 +39,8 @@ export default function Navbar() {
   });
 
   const navLinks = [
-    { label: dict.nav.journey, href: "#journey", id: "journey", index: "01" },
-    { label: dict.nav.projects, href: "#projects", id: "projects", index: "02" },
+    { label: dict.nav.projects, href: "#projects", id: "projects", index: "01" },
+    { label: dict.nav.journey, href: "#journey", id: "journey", index: "02" },
     { label: dict.nav.skills, href: "#skills", id: "skills", index: "03" },
     { label: dict.nav.services, href: "#services", id: "services", index: "04" },
     { label: dict.nav.clients, href: "#clients", id: "clients", index: "05" },

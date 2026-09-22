@@ -1,5 +1,5 @@
 .header {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 .subtitle {
@@ -27,19 +27,21 @@
 }
 
 .title {
+  max-width: 24ch;
   font-family: var(--font-space), sans-serif;
-  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 3.7vw, 3rem);
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-white);
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .description {
-  max-width: 680px;
+  max-width: 62ch;
   margin-top: 0.85rem;
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.75;
   color: var(--text-secondary);
 }
 
@@ -49,6 +51,6 @@
   }
 
   .title {
-    font-size: 1.75rem;
+    font-size: clamp(1.85rem, 5.5vw, 2.5rem);
   }
 }

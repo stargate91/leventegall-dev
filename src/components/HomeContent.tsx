@@ -25,6 +25,15 @@ export default function HomeContent() {
         <Hero />
       </ChamberSection>
 
+      <DeckDivider label={dict.sections.projects} />
+
+      {/* ============================================================
+          CHAMBER 03: MISSION ARTIFACTS / PROJECTS
+          ============================================================ */}
+      <ChamberSection id="projects" tone="soft">
+        <ProjectCard />
+      </ChamberSection>
+
       <DeckDivider label={dict.sections.about} />
 
       {/* ============================================================
@@ -33,15 +42,6 @@ export default function HomeContent() {
       <ChamberSection id="journey" tone="grid">
         <span id="trajectory" className="sr-only" aria-hidden="true" />
         <AboutStory />
-      </ChamberSection>
-
-      <DeckDivider label={dict.sections.projects} />
-
-      {/* ============================================================
-          CHAMBER 03: MISSION ARTIFACTS / PROJECTS
-          ============================================================ */}
-      <ChamberSection id="projects" tone="grid">
-        <ProjectCard />
       </ChamberSection>
 
       <DeckDivider label={dict.sections.skills} />
@@ -77,7 +77,7 @@ export default function HomeContent() {
       {/* ============================================================
           CHAMBER 07: DIRECT TRANSMISSION
           ============================================================ */}
-      <ChamberSection id="contact" tone="grid">
+      <ChamberSection id="contact" tone="soft">
         <ContactForm />
       </ChamberSection>
     </PageLayout>

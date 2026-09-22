@@ -25,6 +25,11 @@ import {
 import { siteConfig } from "@/config/site";
 import { useLocale } from "@/locales";
 
+const formatTime = (seconds: number) => {
+  const total = Math.max(0, Math.floor(seconds));
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
+};
+
 const HUD_OPEN_STORAGE_KEY = "orbital_audio_hud_open";
 
 export default function AudioPlayer() {
@@ -39,6 +44,10 @@ export default function AudioPlayer() {
     isPlaying,
     isMuted,
     isLoaded,
+    isWidgetReady,
+    currentTime,
+    duration,
+    handleSeek,
     iframeRef,
     iframeSrc,
     timing,
@@ -165,25 +174,39 @@ export default function AudioPlayer() {
           {/* Equalizer Spectrum Visualizer */}
           <SpectrumVisualizer isPlaying={isPlaying} />
 
-          {/* Mixcloud Embed / Stream Loader */}
+          {/* Mixcloud remains the audio engine; the HUD owns the visible controls. */}
           {isLoaded && currentTrack && (
-            <>
-              <div className={styles.iframeWrapper}>
-                <iframe
-                  ref={iframeRef}
-                  id="mixcloud-player-frame"
-                  title={`${currentTrack.code} ${currentTrack.title}`}
-                  className={styles.mixcloudIframe}
-                  src={iframeSrc}
-                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                  onLoad={handleIframeLoad}
-                />
-              </div>
-              <span className={styles.iframeHint}>
-                {dict.audioPlayer.directPlayHint}
-              </span>
-            </>
+            <div className={styles.hiddenEngine} aria-hidden="true">
+              <iframe
+                ref={iframeRef}
+                id="mixcloud-player-frame"
+                title={`${currentTrack.code} ${currentTrack.title}`}
+                src={iframeSrc}
+                tabIndex={-1}
+                allow="autoplay; encrypted-media"
+                onLoad={handleIframeLoad}
+              />
+            </div>
           )}
+          <div className={styles.seekbar}>
+            <div className={styles.seekbarTimes}>
+              <span>{formatTime(currentTime)}</span>
+              <a href={siteConfig.audio.profileUrl} target="_blank" rel="noopener noreferrer">Mixcloud ↗</a>
+              <span>{duration > 0 ? formatTime(duration) : "--:--"}</span>
+            </div>
+            <input
+              className={styles.seekInput}
+              type="range"
+              min={0}
+              max={duration || 1}
+              step={1}
+              value={Math.min(currentTime, duration || 0)}
+              disabled={!isWidgetReady || duration <= 0}
+              aria-label={dict.audioPlayer.seekLabel}
+              aria-valuetext={`${formatTime(currentTime)} / ${formatTime(duration)}`}
+              onChange={(event) => handleSeek(Number(event.target.value))}
+            />
+          </div>
 
           {/* Hardware Playback Controls */}
           <div className={styles.controlsRow}>

@@ -23,12 +23,19 @@ interface ProjectItemCardProps {
 
 export default function ProjectItemCard({ project }: ProjectItemCardProps) {
   const { dict } = useLocale();
+  const featured = project.id === "swaya";
+  const displayName = project.id === "pill-player" ? "Pill Player" : project.id === "nova" ? "Nova" : "Swaya";
+  const summary = project.id === "nova"
+    ? dict.projects.novaSummary
+    : project.id === "pill-player"
+      ? dict.projects.pillPlayerSummary
+      : project.description;
 
   return (
     <HudCard
       id={`project-${project.id}`}
       variant="surface"
-      className={styles.projectCard}
+      className={`${styles.projectCard} ${featured ? styles.featured : ""} ${project.id === "nova" ? styles.nova : ""}`}
     >
       {/* Modular Top Meta Bar */}
       <CardMetaBar
@@ -42,7 +49,7 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
         <Stack gap="md">
           <div>
             <Text as="h3" font="heading" size="2xl" weight="bold" tone="primary" className={styles.projectTitle}>
-              {project.title}
+              {displayName}
             </Text>
             <Text size="sm" weight="medium" tone="cyan" className={styles.projectTagline}>
               {project.tagline}
@@ -50,11 +57,11 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
           </div>
 
           <Text as="p" size="sm" tone="secondary" leading="relaxed" className={styles.projectDesc}>
-            {project.description}
+            {featured ? dict.projects.featuredOutcome : summary}
           </Text>
 
           {/* Technology TagList Primitive */}
-          <TagList items={project.stack} variant="subtle" size="sm" className={styles.stackList} />
+          <TagList items={project.primaryStack} variant="subtle" size="sm" className={styles.stackList} />
 
           {/* Impact Metrics Grid */}
           <Grid cols={3} gap="sm" className={styles.metricsGrid}>
@@ -69,7 +76,7 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
           </Grid>
 
           {/* Links */}
-          <Inline gap="md">
+          <Inline gap="md" className={styles.projectActions}>
             {project.liveUrl && (
               <Button
                 variant="primary"
@@ -106,6 +113,8 @@ export default function ProjectItemCard({ project }: ProjectItemCardProps) {
           {project.screenshots && project.screenshots.length > 0 && (
             <ProjectGallery
               items={project.screenshots}
+              layout={featured ? "showcase" : "featured"}
+              priorityFirst={false}
               previewCaption={`${project.title} Preview`}
             />
           )}

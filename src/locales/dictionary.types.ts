@@ -58,6 +58,9 @@ export interface ProjectItemLocale {
 }
 
 export interface ProjectsLocale {
+  novaSummary: string;
+  pillPlayerSummary: string;
+  featuredOutcome: string;
   subtitle: string;
   title: string;
   description: string;
@@ -117,6 +120,7 @@ export interface TestimonialsLabelsLocale {
 }
 
 export interface TestimonialsLocale {
+  context: string;
   subtitle: string;
   title: string;
   labels?: TestimonialsLabelsLocale;
@@ -143,7 +147,7 @@ export interface ServicesLocale {
   customCalloutDesc: string;
   customCalloutButton: string;
   tiers: {
-    branding: PackageTierLocale;
+    automation: PackageTierLocale;
     development: PackageTierLocale;
     discordBot: PackageTierLocale;
   };
@@ -215,6 +219,7 @@ export interface AudioPlayerLocale {
   prevTrack: string;
   nextTrack: string;
   selectTrack: string;
+  seekLabel: string;
   directPlayHint: string;
 }
 

@@ -1,9 +1,40 @@
-import { render, screen, fireEvent, within } from "@testing-library/react";
-import { describe, it, expect, beforeEach } from "vitest";
+import { render, screen, fireEvent, within, act, waitFor } from "@testing-library/react";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import AudioPlayer from "./AudioPlayer";
 import { LocaleProvider } from "@/locales";
 
 describe("AudioPlayer Component", () => {
+  afterEach(() => {
+    delete window.Mixcloud;
+  });
+  it("syncs the native seekbar with Mixcloud and resets it on track changes", async () => {
+    let progress: ((position: number, duration: number) => void) | undefined;
+    const seek = vi.fn().mockResolvedValue(undefined);
+    const widget = {
+      ready: Promise.resolve(undefined),
+      getDuration: vi.fn().mockResolvedValue(3600),
+      seek,
+      events: {
+        progress: { on: (callback: typeof progress) => { progress = callback; } },
+      },
+    };
+    window.Mixcloud = { PlayerWidget: vi.fn().mockReturnValue(widget) };
+    render(<LocaleProvider><AudioPlayer /></LocaleProvider>);
+    fireEvent.click(screen.getByTestId("audio-player-pill"));
+    const slider = screen.getByRole("slider", { name: "Playback position" });
+    await waitFor(() => expect(slider).toBeEnabled());
+    act(() => progress?.(90, 3600));
+    expect(slider).toHaveValue("90");
+    expect(screen.getByText("1:30")).toBeInTheDocument();
+    fireEvent.change(slider, { target: { value: "180" } });
+    await waitFor(() => expect(seek).toHaveBeenCalledWith(180));
+    fireEvent.click(screen.getByRole("button", { name: "Next track" }));
+    expect(slider).toHaveValue("0");
+    expect(slider).toBeDisabled();
+    act(() => progress?.(240, 3600));
+    expect(slider).toHaveValue("0");
+    expect(screen.getAllByRole("option")).toHaveLength(8);
+  });
   beforeEach(() => {
     localStorage.clear();
     const script = document.getElementById("mixcloud-widget-api");

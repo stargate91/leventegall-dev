@@ -11,7 +11,7 @@ import { useLocale } from "@/locales";
 interface ProjectGalleryProps {
   items: ProjectScreenshot[];
   previewCaption?: string | undefined;
-  layout?: "vertical" | "grid";
+  layout?: "vertical" | "grid" | "featured" | "showcase";
   priorityFirst?: boolean | undefined;
 }
 
@@ -52,11 +52,13 @@ export default function ProjectGallery({
     <div className={isGrid ? styles.galleryContainerGrid : styles.galleryContainer}>
       <div
         className={
-          isGrid
-            ? styles.gridColumns
-            : isSingle
-              ? styles.gridSingle
-              : styles.grid
+          layout === "featured" || layout === "showcase"
+            ? `${styles.featuredGrid} ${layout === "showcase" ? styles.showcase : ""}`
+            : isGrid
+              ? styles.gridColumns
+              : isSingle
+                ? styles.gridSingle
+                : styles.grid
         }
       >
         {items.map((shot, idx) => (
@@ -72,7 +74,7 @@ export default function ProjectGallery({
                 src={shot.src}
                 alt={shot.title}
                 fill
-                sizes="(max-width: 992px) 100vw, 450px"
+                sizes={layout === "showcase" ? "(max-width: 640px) 90vw, 700px" : layout === "featured" ? "(max-width: 1280px) 90vw, 560px" : "(max-width: 992px) 100vw, 450px"}
                 className={styles.thumbnailImg}
                 priority={priorityFirst && idx === 0}
                 loading={priorityFirst && idx === 0 ? undefined : "lazy"}

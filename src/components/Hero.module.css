@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: clamp(520px, 78vh, 720px);
+  min-height: clamp(460px, 68vh, 620px);
   padding-top: clamp(2rem, 5vh, 4rem);
   padding-bottom: var(--space-2xl);
   overflow: hidden;
@@ -27,6 +27,7 @@
   filter: blur(50px);
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease-out;
+  animation: glowArrival 600ms ease-out both;
   will-change: transform;
 }
 
@@ -65,17 +66,21 @@
 }
 
 .title {
-  max-width: 960px;
+  max-width: 1000px;
   margin-bottom: var(--space-sm);
   font-family: var(--font-space), sans-serif;
-  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-size: clamp(2.5rem, 5.8vw, 5.25rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
+  text-wrap: balance;
+  animation: contentArrival 420ms ease-out 60ms both;
 }
 
 .titleMain {
   display: block;
+  margin-bottom: var(--space-sm);
+  font-size: 0.65em;
   color: var(--color-white);
 }
 
@@ -87,21 +92,12 @@
 }
 
 .description {
-  max-width: 760px;
-  margin: var(--space-sm) auto var(--space-2xl);
+  max-width: 58ch;
+  margin: var(--space-md) auto var(--space-xl);
   font-size: clamp(1rem, 1.8vw, 1.18rem);
   font-weight: 400;
   line-height: 1.65;
   color: var(--text-secondary);
-}
-
-.buttonGroup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--space-xl);
 }
 
 .telemetryStrip {
@@ -151,13 +147,73 @@
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding-top: var(--space-md);
+    padding-top: var(--space-2xl);
     padding-bottom: var(--space-lg);
+  }
+
+  .title {
+    font-size: clamp(2.25rem, 7.8vw, 3.75rem);
+  }
+
+  .description {
+    font-size: 1.0625rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .description {
+    margin: var(--space-sm) auto var(--space-lg);
+  }
+
+  .telemetryStrip {
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-top: 0;
+  }
+
+  .telemetryStrip > * {
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .telemetryStrip svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@keyframes contentArrival {
+  from {
+    opacity: 75%;
+    translate: 0 6px;
+  }
+
+  to {
+    opacity: 100%;
+    translate: 0 0;
+  }
+}
+
+@keyframes glowArrival {
+  from {
+    opacity: 30%;
+  }
+
+  to {
+    opacity: 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .title,
   .coreGlow {
     transition: none;
+    animation: none;
   }
 }

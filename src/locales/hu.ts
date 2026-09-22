@@ -14,8 +14,8 @@ export const hu: Dictionary = {
     sidebarBio: "Jelenleg a Swaya media manager backendjét írom át Pythonról TypeScriptre, tovább mélyítve a full-stack eszköztáramat.",
   },
   sections: {
-    about: "01 // RÓLAM",
-    projects: "02 // KIEMELT PROJEKTEK",
+    about: "02 // RÓLAM",
+    projects: "01 // KIEMELT PROJEKTEK",
     skills: "03 // TECH STACK",
     services: "04 // MIBEN SEGÍTHETEK",
     reviews: "05 // VISSZAJELZÉSEK",
@@ -23,12 +23,12 @@ export const hu: Dictionary = {
   },
   hero: {
     titleMain: "Szia, Levente vagyok.",
-    titleGradient: "Szoftvereket és márkákat építek.",
+    titleGradient: "Ötletekből működő szoftvert készítek.",
     description:
-      "Full-stack fejlesztés, ELTE fizikus háttér, valamint márkanévadás és szlogentervezés.",
+      "Full-stack fejlesztés, backendek és automatizálás. Python és TypeScript alapú rendszerek, átlátható React felületekkel.",
     stats: {
       fiverrValue: "1 100+ Ügyfél\n4.8★ Értékelés",
-      fiverrLabel: "Márkanévadás & Szlogenek a Fiverr-en",
+      fiverrLabel: "Korábbi brandingmunka · Fiverr",
       stackValue: "Full-Stack\nFejlesztés",
       stackLabel: "FastAPI, Python, React & TypeScript",
       physicsValue: "Analitikus Fizikusi\nSzemlélet",
@@ -37,14 +37,14 @@ export const hu: Dictionary = {
   },
   story: {
     subtitle: "Történet",
-    title: "Ahol a Fizika, a Márka és a Kód Találkozik",
-    description: "Hogyan alkot egységet az analitikus gondolkodásmód, az 5 évnyi nemzetközi piaci tapasztalat a Fiverr-en és a full-stack szoftverfejlesztés.",
+    title: "A szemlélet a kód mögött",
+    description: "Fizikusi háttérrel és több mint 1 100 nemzetközi ügyféllel szerzett brandingtapasztalattal érkezem a szoftverfejlesztéshez. Az analitikus gondolkodást, az érthető kommunikációt és a felhasználói nézőpontot a fejlesztésben is hasznosítom.",
     timeline: [
       {
         sol: "01. FEJEZET",
         date: "2014 – 2019",
         title: "Fizika & Csillagászat Tanulmányok (ELTE)",
-        desc: "Az ELTE fizika és csillagászat szakán találkoztam először a programozással. Itt tanultam meg a C programozás alapjait, valamint Python segítségével végeztem numerikus számításokat, szimulációkat és adatfeldolgozást. Ez a háttér nemcsak erős matematikai logikát adott, hanem megtanított arra is, hogyan bontsak le összetett problémákat elemi, átlátható részekre.",
+        desc: "Az ELTE fizika és csillagászat szakán kezdtem C-ben és Pythonban programozni. A numerikus számítások és szimulációk megtanítottak összetett problémákat átlátható részekre bontani.",
         metrics: [
           "ELTE Fizika & Csillagászat",
           "C Programozási Alapok",
@@ -55,7 +55,7 @@ export const hu: Dictionary = {
         sol: "02. FEJEZET",
         date: "2021 – 2026",
         title: "Startup Névadás & Szlogenek (Fiverr)",
-        desc: "Öt év alatt egy kiemelkedő nemzetközi branding praxist építettem fel a Fiverr-en, több mint 1 100 külföldi alapítónak segítve a megfelelő név és pozicionálás megtalálásában. Megtanultam, hogyan gondolkodnak, döntenek és vásárolnak az emberek. A letisztult névadás és a tűpontos szöveg nem dísz: ez a figyelem megszerzésének eszköze a telített piacokon.",
+        desc: "Több mint 1 100 nemzetközi ügyféllel dolgoztam névadási és szlogenprojekteken. Az igények tisztázását, az érthető kommunikációt és a felhasználói nézőpontot a fejlesztésbe is továbbviszem.",
         metrics: [
           "1 100+ Befejezett Projekt",
           "400+ 5★ Értékelés (4.8)",
@@ -64,9 +64,9 @@ export const hu: Dictionary = {
       },
       {
         sol: "03. FEJEZET",
-        date: "2023 – JELENLEG",
+        date: "JELENLEGI FÓKUSZ",
         title: "Backend Architektúra & Modern Frontendek",
-        desc: "A kiváló branding hatástalan egy megbízható termék nélkül, és a tiszta kód is kárba vész, ha az üzenet zavaros. Robusztus backendeket építek FastAPI és Python alapokon, modern, reszponzív React és TypeScript frontendekkel párosítva. Ha egyetlen szakember látja át mindkét oldalt, nincs kommunikációs surlódás, és a termék az első főcímtől az utolsó API hívásig egységes élményt nyújt.",
+        desc: "Jelenleg full-stack fejlesztésre, backendekre és automatizálásra összpontosítok. FastAPI és Python alapú rendszereket, valamint React és TypeScript felületeket építek. Saját projektjeimen az adatfeldolgozástól és API-któl a használható felületig a teljes rendszer működésével foglalkozom.",
         metrics: [
           "FastAPI & Python Backendek",
           "React & Next.js Frontendek",
@@ -76,8 +76,11 @@ export const hu: Dictionary = {
     ],
   },
   projects: {
+    novaSummary: "Élő adásokat, játékakciókat és frissítéseket juttat el automatikusan Discordra. A források és értesítések egy közös webes felületen kezelhetők.",
+    pillPlayerSummary: "Beágyazható React-zenelejátszó kompakt, kibontható felülettel. Több hangforrást, élő spektrumkijelzést és billentyűzetes vezérlést támogat.",
+    featuredOutcome: "Szétszórt médiafájlokból rendezett könyvtár: automatikus metaadat-párosítás, tömeges átnevezés és beépített lejátszó egyetlen asztali alkalmazásban, Windowsra és Linuxra.",
     subtitle: "Válogatott Projektek",
-    title: "Kiemelt Munkák & Projektek",
+    title: "Válogatott munkák",
     description: "Valós, működő szoftverek és rendszerek, az architektúra megtervezésétől a kész felhasználói felületig.",
     labels: {
       appOverview: "ALKALMAZÁS ÁTTEKINTÉS",
@@ -119,7 +122,7 @@ export const hu: Dictionary = {
         impactMetrics: [
           { label: "Értesítési Sebesség", value: "Közel Valós Idejű" },
           { label: "Tartalomforrások", value: "10+ Hírfolyam & API" },
-          { label: "Feladatsor", value: "Redis & PostgreSQL" },
+          { label: "Feladatsor", value: "Redis + Postgres" },
         ],
       },
       pillPlayer: {
@@ -138,7 +141,7 @@ export const hu: Dictionary = {
   },
   skills: {
     subtitle: "Fő Kompetenciák",
-    title: "Készségek & Technikai Képességek",
+    title: "Fejlesztői eszköztár",
     description: "Elsődleges fejlesztői eszköztáram és a munkám során használt technológiák áttekintése.",
     categories: [
       {
@@ -214,22 +217,22 @@ export const hu: Dictionary = {
     subtitle: "SZOLGÁLTATÁSOK",
     title: "Miben segíthetek?",
     description:
-      "Akár új vállalkozást indítasz és karakteres márkanévre van szükséged, akár skálázható full-stack webalkalmazást vagy egyedi Discord botot szeretnél - építsünk együtt valami kiemelkedőt.",
+      "Webalkalmazást, backend API-t vagy automatizált munkafolyamatot építek, a rendszer megtervezésétől a használható felületig.",
     recommendedBadge: "LEGKERESETTEBB",
     customCalloutTitle: "EGYEDI IGÉNYED VAN?",
     customCalloutDesc:
-      "Egyedi márkastratégiára, specializált Discord botra vagy skálázható webes platformra van szükséged? Beszéljük meg a céljaidhoz illeszkedő megoldást.",
+      "Webalkalmazást, API-integrációt vagy automatizálást tervezel? Beszéljük meg a feladatot és a hozzá illő technikai megoldást.",
     customCalloutButton: "Projekt Megbeszélése",
     tiers: {
-      branding: {
-        name: "Márkanévadás & Szlogenek",
-        codename: "01 // BRANDING",
+      automation: {
+        name: "Backendek és automatizálás",
+        codename: "02 // BACKEND & AUTOMATIZÁLÁS",
         description:
-          "Védjegy-ellenőrzött márkanevek, hatásos szlogenek és tiszta értékajánlat, amelyek segítenek kitűnni és azonnali bizalmat építeni.",
+          "API-integrációk, adatfeldolgozó folyamatok és háttérszolgáltatások Python és TypeScript alapokon, ismétlődő feladatok automatizálására.",
       },
       development: {
         name: "Full-Stack & Webfejlesztés",
-        codename: "02 // SZOFTVER & WEB",
+        codename: "01 // SZOFTVER & WEB",
         description:
           "Skálázható webalkalmazások, robusztus backend API-k és egyedi szoftverrendszerek tiszta architektúrával, modern felületekkel és megbízható adatbázisokkal.",
       },
@@ -241,7 +244,6 @@ export const hu: Dictionary = {
       },
     },
     contactTierOptions: [
-      { value: "branding", label: "Márkanévadás & Szlogenek" },
       { value: "development", label: "Full-Stack & Webfejlesztés" },
       { value: "discord-bot", label: "Discord Bot Fejlesztés" },
       { value: "custom", label: "Egyedi Architektúra / Konzultáció" },
@@ -253,6 +255,7 @@ export const hu: Dictionary = {
     ],
   },
   testimonials: {
+    context: "Korábbi branding-együttműködések visszajelzései: kommunikációról, igénytisztázásról és közös munkáról.",
     subtitle: "Ügyféltapasztalatok",
     title: "Mit mondanak, akikkel együtt dolgoztam?",
     labels: {
@@ -306,7 +309,7 @@ export const hu: Dictionary = {
   contact: {
     subtitle: "Projekt Megkeresés",
     title: "Beszéljünk a Projektedről",
-    description: "Van egy konkrét ötleted, erős márkapozicionálást keresel, vagy megbízható full-stack webalkalmazást szeretnél építeni? Küldj üzenetet, és 24 órán belül válaszolok.",
+    description: "Webalkalmazást, backendet vagy automatizálást tervezel? Írd meg röviden a feladatot, és 24 órán belül válaszolok.",
     fields: {
       name: "A Neved *",
       namePlaceholder: "pl. Kovács Péter",
@@ -315,7 +318,7 @@ export const hu: Dictionary = {
       tier: "Projekt Terjedelme / Szolgáltatás",
       timeline: "Tervezett Időtartam",
       brief: "Projekt Részletei & Céljai *",
-      briefPlaceholder: "Írd le röviden a termékedet, céljaidat, vagy hogy milyen márkaidentitást vagy szoftverrendszert szeretnél megvalósítani...",
+      briefPlaceholder: "Milyen feladatot oldjon meg a szoftver, kinek készül, és hol tartasz most az ötlettel?",
     },
     errors: {
       nameRequired: "Kérlek, add meg a nevedet.",
@@ -348,7 +351,7 @@ export const hu: Dictionary = {
     },
   },
   footer: {
-    subTitle: "FULL-STACK FEJLESZTŐ & MÁRKASTRATÉGA",
+    subTitle: "FULL-STACK FEJLESZTŐ",
   },
   audioPlayer: {
     badge: "Zenelejátszó",
@@ -365,6 +368,7 @@ export const hu: Dictionary = {
     prevTrack: "Előző szám",
     nextTrack: "Következő szám",
     selectTrack: "Számlista",
+    seekLabel: "Lejátszási pozíció",
     directPlayHint: "Kattints a lejátszóra az indításhoz",
   },
   error: {

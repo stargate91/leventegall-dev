@@ -42,6 +42,7 @@ const securityHeaders = [
 
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["192.168.0.18"],
   output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,

@@ -1,12 +1,12 @@
 "use client";
 
-import { Terminal, Quotes, Code } from "@carbon/icons-react";
+import { Terminal, Code } from "@carbon/icons-react";
 import styles from "./ServicesPricing.module.css";
+import ServiceIllustration from "./ServiceIllustration";
 import {
   SectionHeader,
   HudCard,
   Button,
-  TelemetryBadge,
   Callout,
   Grid,
   Text,
@@ -31,8 +31,8 @@ function DiscordIcon({ size = 16, className }: { size?: number | undefined; clas
 
 function getServiceIcon(id: string) {
   switch (id) {
-    case "branding":
-      return <Quotes size={18} />;
+    case "automation":
+      return <Terminal size={18} />;
     case "development":
       return <Code size={18} />;
     case "discord-bot":
@@ -65,12 +65,7 @@ export default function ServicesPricing() {
             corners={tier.isPopular}
             className={`${styles.card} ${tier.isPopular ? styles.popularCard : ""}`}
           >
-            {tier.isPopular && (
-              <TelemetryBadge variant="solidAccent" className={styles.popularBadge}>
-                {dict.services.recommendedBadge}
-              </TelemetryBadge>
-            )}
-
+            <ServiceIllustration kind={tier.id} />
             <div className={styles.cardContent}>
               <div className={styles.headerZone}>
                 <div className={styles.metaRow}>

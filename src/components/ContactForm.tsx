@@ -33,6 +33,7 @@ export default function ContactForm() {
   const { dict } = useLocale();
   const contactTierOptions = getContactTierOptions(dict);
   const timelineOptions = getTimelineOptions(dict);
+  const reference = dict.testimonials.feedback.find((item) => item.id === "feedback-aldo-scardovi");
 
   const {
     formData,
@@ -56,6 +57,17 @@ export default function ContactForm() {
         title={dict.contact.title}
         description={dict.contact.description}
       />
+
+      {reference && (
+        <figure className={styles.clientQuote}>
+          <p className={styles.quoteContext}>{dict.testimonials.context}</p>
+          <blockquote>{reference.quote}</blockquote>
+          <figcaption>
+            <strong>{reference.author}</strong>
+            <span>{reference.role} · {reference.location}</span>
+          </figcaption>
+        </figure>
+      )}
 
       {/* Main Grid */}
       <div className={styles.grid}>

@@ -1,8 +1,8 @@
 .chamberToneA {
   position: relative;
   z-index: 10;
-  padding-top: var(--space-3xl);
-  padding-bottom: var(--space-3xl);
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .chamberToneA:first-child,
@@ -32,4 +32,8 @@
 .chamberDeckBody {
   position: relative;
   z-index: 20;
+}
+
+.soft {
+  background: linear-gradient(180deg, transparent, rgb(255 255 255 / 2%) 15%, rgb(255 255 255 / 2%) 85%, transparent);
 }

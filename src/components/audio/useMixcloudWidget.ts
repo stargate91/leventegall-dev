@@ -10,13 +10,15 @@ interface MixcloudWidgetInstance {
   togglePlay?: () => Promise<void>;
   load?: (feed: string, autoplay?: boolean) => Promise<void>;
   setVolume?: (volume: number) => Promise<void>;
+  getDuration?: () => Promise<number>;
+  seek?: (seconds: number) => Promise<void>;
   getIsPaused?: () => Promise<boolean>;
   events?: {
     play: { on: (cb: () => void) => void };
     pause: { on: (cb: () => void) => void };
     ended: { on: (cb: () => void) => void };
     error: { on: (cb: () => void) => void };
-    progress?: { on: (cb: () => void) => void };
+    progress?: { on: (cb: (position: number, duration: number) => void) => void };
   };
 }
 
@@ -37,6 +39,8 @@ const ALLOWED_MIXCLOUD_ORIGINS = new Set([
 const AUDIO_TRACK_STORAGE_KEY = "orbital_audio_track_index";
 
 export function useMixcloudWidget() {
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,12 +68,11 @@ export function useMixcloudWidget() {
       if (nextTrack) {
         setActiveFeed(nextTrack.feed);
         setIsPlaying(true);
-        const widget = widgetRef.current;
-        if (widget && typeof widget.load === "function") {
-          widget.load(nextTrack.feed, true).catch(() => {});
-        } else {
-          pendingPlayRef.current = true;
-        }
+        widgetRef.current = null;
+        setIsWidgetReady(false);
+        setCurrentTime(0);
+        setDuration(0);
+        pendingPlayRef.current = true;
       }
       return nextIdx;
     });
@@ -88,12 +91,11 @@ export function useMixcloudWidget() {
       if (prevTrack) {
         setActiveFeed(prevTrack.feed);
         setIsPlaying(true);
-        const widget = widgetRef.current;
-        if (widget && typeof widget.load === "function") {
-          widget.load(prevTrack.feed, true).catch(() => {});
-        } else {
-          pendingPlayRef.current = true;
-        }
+        widgetRef.current = null;
+        setIsWidgetReady(false);
+        setCurrentTime(0);
+        setDuration(0);
+        pendingPlayRef.current = true;
       }
       return prevIdx;
     });
@@ -104,22 +106,59 @@ export function useMixcloudWidget() {
       return;
     }
 
+    if (widgetRef.current) {
+      return;
+    }
+
     try {
       const widget = window.Mixcloud.PlayerWidget(iframeRef.current);
       widgetRef.current = widget;
 
       widget.ready
         .then((resolved) => {
+          if (widgetRef.current !== widget) {
+            return;
+          }
           const activeWidget = resolved || widget;
           widgetRef.current = activeWidget;
           setIsWidgetReady(true);
 
+          const readDuration = () => {
+            activeWidget.getDuration?.().then((value) => {
+              if (widgetRef.current === activeWidget && Number.isFinite(value) && value > 0) {
+                setDuration(value);
+              }
+            }).catch(() => {});
+          };
+          readDuration();
           if (activeWidget.events) {
-            activeWidget.events.play?.on?.(() => setIsPlaying(true));
-            activeWidget.events.pause?.on?.(() => setIsPlaying(false));
-            activeWidget.events.progress?.on?.(() => setIsPlaying(true));
+            activeWidget.events.play?.on?.(() => {
+              if (widgetRef.current !== activeWidget) {
+                return;
+              }
+              setIsPlaying(true);
+              readDuration();
+            });
+            activeWidget.events.pause?.on?.(() => {
+              if (widgetRef.current === activeWidget) {
+                setIsPlaying(false);
+              }
+            });
+            activeWidget.events.progress?.on?.((position, total) => {
+              if (widgetRef.current !== activeWidget) {
+                return;
+              }
+              if (Number.isFinite(position)) {
+                setCurrentTime(Math.max(0, position));
+              }
+              if (Number.isFinite(total) && total > 0) {
+                setDuration(total);
+              }
+            });
             activeWidget.events.ended?.on?.(() => {
-              handleNextTrack();
+              if (widgetRef.current === activeWidget) {
+                handleNextTrack();
+              }
             });
           }
 
@@ -210,6 +249,13 @@ export function useMixcloudWidget() {
   }, []);
 
   const handleSelectTrack = useCallback((index: number) => {
+    if (!tracks[index]) {
+      return;
+    }
+    if (tracks[index].feed === activeFeed && widgetRef.current) {
+      widgetRef.current.play?.().catch(() => {});
+      return;
+    }
     setCurrentTrackIndex(index);
     try {
       localStorage.setItem(AUDIO_TRACK_STORAGE_KEY, String(index));
@@ -222,14 +268,13 @@ export function useMixcloudWidget() {
     if (selected) {
       setActiveFeed(selected.feed);
       setIsPlaying(true);
-      const widget = widgetRef.current;
-      if (widget && typeof widget.load === "function") {
-        widget.load(selected.feed, true).catch(() => {});
-      } else {
-        pendingPlayRef.current = true;
-      }
+      widgetRef.current = null;
+      setIsWidgetReady(false);
+      setCurrentTime(0);
+      setDuration(0);
+      pendingPlayRef.current = true;
     }
-  }, [isLoaded, tracks]);
+  }, [activeFeed, isLoaded, tracks]);
 
   // Calculate exact musical timing intervals from track BPM
   const numericBpm = parseInt(currentTrack?.bpm || "174", 10) || 174;
@@ -304,6 +349,19 @@ export function useMixcloudWidget() {
     } catch {}
   }, []);
 
+  const handleSeek = useCallback((seconds: number) => {
+    const widget = widgetRef.current;
+    if (!isWidgetReady || !widget?.seek || duration <= 0) {
+      return;
+    }
+    const target = Math.min(duration, Math.max(0, seconds));
+    widget.seek(target).then(() => {
+      if (widgetRef.current === widget) {
+        setCurrentTime(target);
+      }
+    }).catch(() => {});
+  }, [duration, isWidgetReady]);
+
   const iframeSrc = `https://player-widget.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(activeFeed || currentTrack?.feed || "")}&hide_cover=1&light=0`;
 
   return {
@@ -314,6 +372,9 @@ export function useMixcloudWidget() {
     isMuted,
     isLoaded,
     isWidgetReady,
+    currentTime,
+    duration,
+    handleSeek,
     iframeRef,
     iframeSrc,
     timing: {

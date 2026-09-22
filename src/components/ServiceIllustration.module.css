@@ -1,0 +1,27 @@
+.diagram {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto var(--space-lg);
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.surface {
+  fill: var(--tone-b);
+  stroke: var(--border-medium);
+}
+
+.muted {
+  stroke: var(--text-muted);
+}
+
+.accent {
+  stroke: var(--color-accent-bright);
+}
+
+.accentSurface {
+  fill: var(--color-accent-subtle);
+  stroke: var(--color-accent-core);
+}

@@ -81,12 +81,6 @@ export default function Hero() {
         {/* Key Credibility Numbers Strip */}
         <HudCard variant="surface" className={styles.telemetryStrip}>
           <Stat
-            icon={<Flash size={20} />}
-            value={dict.hero.stats.fiverrValue}
-            label={dict.hero.stats.fiverrLabel}
-          />
-
-          <Stat
             icon={<Code size={20} />}
             value={dict.hero.stats.stackValue}
             label={dict.hero.stats.stackLabel}
@@ -96,6 +90,12 @@ export default function Hero() {
             icon={<Calculation size={20} />}
             value={dict.hero.stats.physicsValue}
             label={dict.hero.stats.physicsLabel}
+          />
+
+          <Stat
+            icon={<Flash size={20} />}
+            value={dict.hero.stats.fiverrValue}
+            label={dict.hero.stats.fiverrLabel}
           />
         </HudCard>
       </div>

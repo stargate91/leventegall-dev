@@ -6,12 +6,12 @@ describe("ServicesPricing Component", () => {
   it("renders all service categories with descriptions and without pricing", () => {
     render(<ServicesPricing />);
 
-    expect(screen.getByRole("heading", { name: "Brand Naming & Slogans" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Backends & Automation" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Full-Stack & Web Development" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Discord Bot Development" })).toBeInTheDocument();
 
-    expect(screen.getByText(/01 \/\/ BRANDING/i)).toBeInTheDocument();
-    expect(screen.getByText(/02 \/\/ SOFTWARE & WEB/i)).toBeInTheDocument();
+    expect(screen.getByText(/02 \/\/ BACKEND & AUTOMATION/i)).toBeInTheDocument();
+    expect(screen.getByText(/01 \/\/ SOFTWARE & WEB/i)).toBeInTheDocument();
     expect(screen.getByText(/03 \/\/ DISCORD BOTS/i)).toBeInTheDocument();
 
     // Verify no pricing text or dollar amounts are present

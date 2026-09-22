@@ -43,9 +43,9 @@ export const siteConfig: SiteConfig = {
   name: "Levente Gáll // Stargate91",
   author: "Levente Gáll",
   callsign: "STARGATE91",
-  title: "Levente Gáll • Full-Stack Architect & Brand Strategist",
+  title: "Levente Gáll • Full-Stack Developer",
   description:
-    "Full-stack software engineer & brand strategist. ELTE physics background, 1,100+ clients served on Fiverr. FastAPI, Python, React, Next.js, and sharp conversion branding.",
+    "Full-stack developer building web applications, backends, and automation with Python, FastAPI, React, Next.js, and TypeScript. Physics background and international client experience.",
   url: "https://leventegall.dev",
   email: "leventegall@proton.me",
   coordinates: {

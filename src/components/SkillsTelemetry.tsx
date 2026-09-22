@@ -11,6 +11,8 @@ import {
   Calculation,
   Pen,
   Terminal,
+  LogoPython,
+  LogoReact,
 } from "@carbon/icons-react";
 import styles from "./SkillsTelemetry.module.css";
 import {
@@ -18,7 +20,6 @@ import {
   HudCard,
   TagList,
   Text,
-  Divider,
 } from "@/components/ui";
 import { getSkillCategories } from "@/data/skills";
 import { useLocale } from "@/locales";
@@ -48,10 +49,14 @@ function getCategoryIcon(id: string) {
 
 export default function SkillsTelemetry() {
   const { dict } = useLocale();
-  const categories = getSkillCategories(dict);
+  const allCategories = getSkillCategories(dict);
+  const categories = [
+    ...allCategories.filter((cat) => cat.id === "backend" || cat.id === "frontend"),
+    ...allCategories.filter((cat) => cat.id !== "backend" && cat.id !== "frontend"),
+  ];
 
   return (
-    <div className="section-container">
+    <div className={`section-container ${styles.section}`}>
       {/* Section Header */}
       <SectionHeader
         subtitle={dict.skills.subtitle}
@@ -65,8 +70,21 @@ export default function SkillsTelemetry() {
         {categories.map((cat) => (
           <HudCard
             key={cat.id}
-            className={styles.categoryCard}
+            className={`${styles.categoryCard} ${cat.id === "backend" || cat.id === "frontend" ? styles.featured : ""}`}
+            corners={cat.id === "backend" || cat.id === "frontend"}
           >
+            {(cat.id === "backend" || cat.id === "frontend") && (
+              <div className={styles.technologyMarks}>
+                {cat.id === "backend" ? (
+                  <LogoPython size={44} role="img" aria-label="Python" />
+                ) : (
+                  <>
+                    <LogoReact size={44} role="img" aria-label="React" />
+                    <span className={styles.typeScriptMark} role="img" aria-label="TypeScript">TS</span>
+                  </>
+                )}
+              </div>
+            )}
             <div className={styles.cardHeader}>
               <div className={styles.iconBox}>
                 {getCategoryIcon(cat.id)}
@@ -81,7 +99,7 @@ export default function SkillsTelemetry() {
               </div>
             </div>
 
-            <Divider variant="laser" spacing="none" className={styles.cardDivider} />
+            <div className={styles.cardDivider} aria-hidden="true" />
 
             <div className={styles.cardBody}>
               <TagList items={cat.skills} variant="cyan" size="sm" />

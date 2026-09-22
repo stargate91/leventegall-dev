@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: [{ url: `${siteConfig.url}/projects/swaya/opengraph-image` }],
     type: "article",
     publishedTime: "2026-03-01T00:00:00.000Z",
     modifiedTime: "2026-09-08T00:00:00.000Z",
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
     siteName: "Levente Gáll Portfolio",
   },
   twitter: {
+    images: [{ url: `${siteConfig.url}/projects/swaya/opengraph-image` }],
     card: "summary_large_image",
     title: "Swaya Media Manager • Architectural Case Study",
     description:

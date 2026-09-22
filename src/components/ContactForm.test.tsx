@@ -196,10 +196,10 @@ describe("ContactForm Component", () => {
 
     fireEvent(
       window,
-      new CustomEvent("select-package-tier", { detail: { tierId: "branding" } }),
+      new CustomEvent("select-package-tier", { detail: { tierId: "discord-bot" } }),
     );
 
-    expect(select).toHaveTextContent(/Brand Naming & Slogans/i);
+    expect(select).toHaveTextContent(/Discord Bot Development/i);
   });
 
   it("syncs selected package tier from URL search parameter on load", () => {

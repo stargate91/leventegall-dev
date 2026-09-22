@@ -11,6 +11,7 @@
     "*.log",
     "*.tsbuildinfo",
     "src/locales/hu.ts",
+    "src/app/hu/layout.tsx",
     "src/app/hu/opengraph-image.tsx"
   ],
   "words": [
@@ -193,7 +194,10 @@
     "UnoCSS",
     "SoundCloud",
     "Mixcloud",
-    "seekbar"
+    "seekbar",
+    "nums",
+    "Fejlesztés",
+    "Automatizálás"
   ],
   "flagWords": []
 }

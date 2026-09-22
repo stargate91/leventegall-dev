@@ -5,7 +5,7 @@ import SectionTransition from "@/components/SectionTransition";
 
 interface ChamberSectionProps {
   id?: string;
-  tone: "grid" | "deck";
+  tone: "grid" | "deck" | "soft";
   topTransition?: TransitionVariant;
   bottomTransition?: TransitionVariant;
   transitionHeight?: number;
@@ -67,7 +67,7 @@ export default function ChamberSection({
   return (
     <section
       id={id}
-      className={`${styles.chamberToneA} ${className}`}
+      className={`${styles.chamberToneA} ${tone === "soft" ? styles.soft : ""} ${className}`}
       style={style}
     >
       {children}

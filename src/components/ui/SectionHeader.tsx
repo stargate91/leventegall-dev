@@ -21,12 +21,14 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <header className={`${styles.header} ${className}`} style={style}>
-      <div className={styles.subtitle}>
-        {subtitleIcon && <span className={styles.subtitleIcon}>{subtitleIcon}</span>}
-        <Text as="span" font="mono" size="xs" tone="cyan" weight="semibold" className={styles.subtitleText}>
-          {subtitle}
-        </Text>
-      </div>
+      {subtitle && (
+        <div className={styles.subtitle}>
+          {subtitleIcon && <span className={styles.subtitleIcon}>{subtitleIcon}</span>}
+          <Text as="span" font="mono" size="xs" tone="cyan" weight="semibold" className={styles.subtitleText}>
+            {subtitle}
+          </Text>
+        </div>
+      )}
       <Text as="h2" font="heading" size="3xl" weight="bold" tone="primary" className={styles.title}>
         {title}
       </Text>

@@ -14,7 +14,12 @@
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  transition: all var(--transition-smooth);
+  transition: color var(--transition-base), background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 4px;
 }
 
 .button:disabled {
@@ -51,7 +56,8 @@
   box-shadow: 0 4px 20px var(--color-accent-glow), inset 0 1px 0 rgb(255 255 255 / 35%);
 }
 
-.primary:hover {
+.primary:focus-visible,
+.primary:hover:not(:disabled) {
   box-shadow: 0 6px 28px var(--color-accent-glow), inset 0 1px 0 var(--color-white);
   transform: translateY(-2px);
 }
@@ -68,7 +74,8 @@
   transition: transform 0.6s ease-in-out;
 }
 
-.primary:hover::after {
+.primary:focus-visible::after,
+.primary:hover:not(:disabled)::after {
   transform: rotate(25deg) translateY(100%);
 }
 
@@ -79,7 +86,8 @@
   box-shadow: 0 4px 15px rgb(0 0 0 / 40%);
 }
 
-.secondary:hover {
+.secondary:focus-visible,
+.secondary:hover:not(:disabled) {
   color: var(--color-white);
   background: var(--bg-surface-2);
   border-color: var(--border-accent);
@@ -93,7 +101,8 @@
   border-color: transparent;
 }
 
-.ghost:hover {
+.ghost:focus-visible,
+.ghost:hover:not(:disabled) {
   color: var(--color-white);
   background: var(--color-accent-subtle);
   border-color: var(--border-accent);
@@ -108,7 +117,8 @@
   border-color: var(--border-accent);
 }
 
-.telemetry:hover {
+.telemetry:focus-visible,
+.telemetry:hover:not(:disabled) {
   background: var(--color-accent-subtle);
   border-color: var(--color-accent);
   box-shadow: 0 0 12px var(--color-accent-glow);
@@ -121,4 +131,8 @@
 .iconWrapper {
   display: inline-flex;
   align-items: center;
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
 }

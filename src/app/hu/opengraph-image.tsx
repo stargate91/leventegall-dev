@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Gáll Levente • Full-Stack Fejlesztő & Márkastratéga";
+export const alt = "Gáll Levente • Full-Stack Fejlesztő";
 export const size = {
   width: 1200,
   height: 630,
@@ -101,7 +101,7 @@ export default function HungarianImage() {
               lineHeight: 1.45,
             }}
           >
-            Full-Stack Fejlesztés (Python, FastAPI, React, Next.js) • ELTE Fizikus Szemlélet • Márkanévadás & Szlogenek
+            Full-Stack Fejlesztés (Python, FastAPI, React, Next.js) • Backendek & Automatizálás • ELTE Fizikus Szemlélet
           </div>
         </div>
 

@@ -1,6 +1,6 @@
-# Levente Gáll - Full-Stack Developer & Brand Strategist
+# Levente Gáll - Full-Stack Developer
 
-> Full-stack software engineer & brand strategist with an ELTE physics background. Over 1,100 international founders served on Fiverr with a 4.8★ rating. Specializing in Python, FastAPI, React 19, Next.js, TypeScript, and high-conversion startup brand naming.
+> Full-stack developer focused on web applications, backends, and automation with Python, FastAPI, React, Next.js, and TypeScript. Physics background and previous branding experience with over 1,100 international clients.
 
 ## Identity & Contact
 - Name: Levente Gáll (Hungarian: Gáll Levente)
@@ -15,17 +15,17 @@
 - Systems & Backend: Python, FastAPI, Uvicorn, SQLAlchemy, SQLite, Alembic, REST APIs, Rate Limiting, SQLite DB architecture
 - Frontend & UI: React, Next.js (App Router), TypeScript, JavaScript, Electron, Vite, Zustand, TanStack Query, Vanilla CSS Tokens
 - Scientific Background: Eötvös Loránd University (ELTE) Physics & Astronomy, numerical simulations, C programming
-- Creative Direction: Startup naming, slogan architecture, trademark vetting, brand positioning, conversion copywriting, audio engineering
+- Previous Branding Experience: Startup naming, slogan architecture, trademark vetting, brand positioning, conversion copywriting, audio engineering
 
 ## Services & Solutions
-- Brand Naming & Slogans: Trademark-cleared startup names, high-impact slogans, phonetic analysis, USPTO / EUIPO preliminary vetting, .com domain availability audits, and UVP positioning. 1,100+ completed projects.
+- Backends & Automation: API integrations, data-processing pipelines, and background services in Python and TypeScript.
 - Full-Stack & Web Development: Production-grade web applications, backend REST APIs, and bespoke software systems engineered with clean architecture, responsive UI, and reliable databases (Next.js, React, TypeScript, Python, FastAPI, SQLite, PostgreSQL).
 - Discord Bot Development: Event-driven automation bots, real-time activity tracking, automated moderation, ranking engines, and administrative web dashboards.
-- Custom Architectural Solutions: Hybrid engagements combining brand identity, custom bot architecture, and scalable web applications.
+- Custom Architectural Solutions: Custom integrations connecting backend services, bots, and web applications.
 
 ## Key Projects & Case Studies
 - Swaya Media Manager: Desktop media management application (FastAPI, Python, Electron, React, JavaScript, SQLite, MPV IPC streaming). Dedicated Case Study: https://leventegall.dev/projects/swaya
-- Freelance Branding Practice: 1,100+ delivered branding orders on Fiverr, 400+ reviews, 4.8★ rating.
+- Previous Freelance Branding Practice: 1,100+ delivered branding orders on Fiverr, 400+ reviews, 4.8★ rating.
 
 ## Indexable Routes
 - English Home: https://leventegall.dev/
